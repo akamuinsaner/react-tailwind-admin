@@ -24,6 +24,10 @@ export const config: Config[] = [
                 path: '/components/accordion',
             },
             {
+                name: 'Alert',
+                path: '/components/alert',
+            },
+            {
                 name: 'Button',
                 path: '/components/button',
             },
