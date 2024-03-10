@@ -15,25 +15,30 @@ export const config: Config[] = [
         icon: HomeIcon
     },
     {
-        name: 'Display',
-        path: '/display',
+        name: 'Components',
+        path: '/components',
         icon: CalendarIcon,
         children: [
             {
-                name: 'Stepper',
-                path: '/display/stepper',
+                name: 'Accordion',
+                path: '/components/accordion',
+            },
+            {
+                name: 'Button',
+                path: '/components/button',
             },
             {
                 name: 'List',
-                path: '/display/list',
+                path: '/components/list',
             },
             {
-                name: 'Accordion',
-                path: '/display/accordion',
+                name: 'Stepper',
+                path: '/components/stepper',
             },
+
             {
                 name: 'Tabs',
-                path: '/display/tabs',
+                path: '/components/tabs',
             }
         ]
     }

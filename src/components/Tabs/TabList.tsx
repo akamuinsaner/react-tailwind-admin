@@ -17,17 +17,22 @@ const TabList: FC<RTTabsListProps> = ({
     style,
 }) => {
     const context = useContext(TabsContext);
-    const { active, focusInfo, vertical } = context;
+    const { active, focusInfo, placement } = context;
     const computedClassNames = twMerge(classNames({
-        [styles.tabs.base]: !vertical,
-        [styles.tabs.vertical]: vertical
+        [styles.tabs.base]: placement === 'top',
+        [styles.tabs.left]: placement === 'left',
+        [styles.tabs.bottom]: placement === 'bottom',
+        [styles.tabs.right]: placement === 'right'
     }), className);
 
-    const focusClassNames = twMerge(classNames(styles.focus.base, {
-        [styles.focus.vertical]: vertical,
+    const focusClassNames = twMerge(classNames({
+        [styles.focus.base]: placement === 'top',
+        [styles.focus.left]: placement === 'left',
+        [styles.focus.bottom]: placement === 'bottom',
+        [styles.focus.right]: placement === 'right',
     }))
 
-    const focusStyle = vertical ? {
+    const focusStyle = (placement === 'left' || placement === 'right') ? {
         top: `${focusInfo?.left}px`,
         height: `${focusInfo?.width}px`,
     } : {

@@ -11,7 +11,7 @@ export type RTTabsProps = {
     children?: ReactNode;
     active?: string | number;
     onChange?: (active: string | number) => void;
-    vertical?: boolean;
+    placement?: 'top' | 'left' | 'bottom' | 'right';
 }
 
 export type RTTabsContext = {
@@ -21,7 +21,7 @@ export type RTTabsContext = {
     active: string | number;
     focusInfo: { width: number; left: number; };
     setFocusInfo: (info: { width: number; left: number; }) => void;
-    vertical: boolean;
+    placement: 'top' | 'left' | 'bottom' | 'right';
 }
 
 export const TabsContext = createContext<RTTabsContext>(null);
@@ -32,13 +32,15 @@ const Tabs: FC<RTTabsProps> = ({
     style,
     active,
     onChange,
-    vertical,
+    placement = 'top',
 }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const isControlled = !!(active !== undefined);
-    const computedClassNames = twMerge(classNames({
-        [styles.base.base] : !vertical,
-        [styles.base.vertical]: vertical
+    const computedClassNames = twMerge(styles.base.base, classNames({
+        [styles.base.base]: placement === 'top',
+        [styles.base.left]: placement === 'left',
+        [styles.base.bottom]: placement === 'bottom',
+        [styles.base.right]: placement === 'right'
     }), className);
 
     const setActive = (activeTab: string | number) => {
@@ -64,7 +66,7 @@ const Tabs: FC<RTTabsProps> = ({
             focusInfo: state.focusInfo,
             setActive,
             setFocusInfo,
-            vertical
+            placement
         }}>
             <div
                 style={style}

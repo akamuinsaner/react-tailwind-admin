@@ -4,16 +4,16 @@ import One from "./One";
 import Icon from "./Icon";
 import Disabled from "./Disabled";
 
-const DisplayList = () => {
+const AccordionPage = () => {
     return (
-        <>
+        <div className="flex flex-col gap-6">
             <Basic />
             <Controlled />
             <One />
             <Icon />
             <Disabled />
-        </>
+        </div>
     )
 }
 
-export default DisplayList;
+export default AccordionPage;

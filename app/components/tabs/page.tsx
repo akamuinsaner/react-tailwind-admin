@@ -2,7 +2,7 @@ import Basic from "./Basic/index";
 import Disabled from "./Disabled";
 import Controlled from "./Controlled";
 import Icon from "./Icon";
-import Vertical from "./Vertical";
+import Vertical from "./Placement";
 
 const DisplayList = () => {
     return (

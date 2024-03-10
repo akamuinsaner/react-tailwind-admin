@@ -26,6 +26,7 @@ const Tab: FC<RTTabProps> = ({
 }) => {
     const tabRef = useRef<HTMLButtonElement>(null);
     const context = useContext(TabsContext);
+    const { placement } = context;
     const computedClassNames = twMerge(classNames(styles.tab.base, {
         [styles.tab.active]: context.active === value,
         [styles.tab.disabled]: disabled,
@@ -39,8 +40,8 @@ const Tab: FC<RTTabProps> = ({
         if (context.active === value) {
             const element = tabRef.current;
             context.setFocusInfo({ 
-                width: context.vertical ? element.offsetHeight : element.offsetWidth,
-                left: context.vertical ? element.offsetTop : element.offsetLeft
+                width: (placement === 'top' || placement === 'bottom') ? element.offsetWidth : element.offsetHeight,
+                left: (placement === 'left' || placement === 'right') ? element.offsetTop : element.offsetLeft
             });
         }
     }, [context.active]);

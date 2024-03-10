@@ -23,13 +23,15 @@ const AccordionHeader: FC<RTAccordionHeaderProps> = ({
 }) => {
     const context = useContext(AccordionContext);
     const panelContext = useContext(AccordionPanelContext);
-
+    const { name } = panelContext;
+    const { openKeys, togglePanel } = context;
     const computedClassNames = twMerge(styles.header.base, classNames({
+        [styles.header.open]: openKeys.includes(name),
         [styles.header.disabled]: disabled,
     }), className);
 
     const iconClassNames = twMerge(styles.icon.base, classNames({
-        [styles.icon.open]: context.openKeys.includes(panelContext.name),
+        [styles.icon.open]: openKeys.includes(name),
     }))
 
     return (
@@ -37,7 +39,7 @@ const AccordionHeader: FC<RTAccordionHeaderProps> = ({
             disabled={disabled}
             style={style}
             className={computedClassNames}
-            onClick={() => context.togglePanel(panelContext.name)}
+            onClick={() => togglePanel(name)}
         >
             <p>{children}</p>
             <div className={iconClassNames}>{expandIcon}</div>
