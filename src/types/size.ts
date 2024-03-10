@@ -1,0 +1,1 @@
+export type RTSize = 'small' | 'medium' | 'large';
