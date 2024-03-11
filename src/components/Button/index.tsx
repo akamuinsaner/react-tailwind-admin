@@ -1,5 +1,5 @@
 'use client'
-import { useReducer, CSSProperties, FC, ReactNode, memo } from 'react';
+import { useReducer, CSSProperties, FC, ReactNode, memo, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 import { RTSize } from '../../types/size';
 import { styles } from './styles';
@@ -15,7 +15,8 @@ export type RTButtonProps = {
     color?: 'primary' | 'secondary' | RTSeverity | 'disabled';
     disabled?: boolean;
     prefix?: ReactNode;
-    suffix?: ReactNode
+    suffix?: ReactNode;
+    onClick?: (e: SyntheticEvent) => void;
 }
 
 const Button: FC<RTButtonProps> = ({
@@ -27,7 +28,8 @@ const Button: FC<RTButtonProps> = ({
     color = 'primary',
     disabled,
     prefix,
-    suffix
+    suffix,
+    onClick
 }) => {
 
     const computedClassNames = twMerge(styles.base, classNames({
@@ -63,6 +65,7 @@ const Button: FC<RTButtonProps> = ({
             style={style}
             className={computedClassNames}
             disabled={disabled}
+            onClick={onClick}
         >
             {prefix && <div className={preFixIconClassNames}>{prefix}</div>}
             {children}

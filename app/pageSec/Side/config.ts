@@ -40,10 +40,13 @@ export const config: Config[] = [
                 path: '/components/list',
             },
             {
+                name: 'Modal',
+                path: '/components/modal',
+            },
+            {
                 name: 'Stepper',
                 path: '/components/stepper',
             },
-
             {
                 name: 'Tabs',
                 path: '/components/tabs',
