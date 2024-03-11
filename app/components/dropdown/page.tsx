@@ -1,12 +1,19 @@
+import Basic from "./Basic";
+import Placement from "./Placement";
+import Arrow from "./Arrow";
+import Trigger from "./Trigger";
+import Controlled from "./Controlled";
 
-
-const DisplayList = () => {
+const DropdownPage = () => {
     return (
-        <div className="flex flex-col gap-6">
-
+        <div className="flex flex-col gap-3">
+            <Basic />
+            <Placement />
+            <Arrow />
+            <Trigger />
+            <Controlled />
         </div>
-            
     )
 }
 
-export default DisplayList;
+export default DropdownPage;

@@ -32,6 +32,10 @@ export const config: Config[] = [
                 path: '/components/button',
             },
             {
+                name: 'Dropdown',
+                path: '/components/dropdown',
+            },
+            {
                 name: 'List',
                 path: '/components/list',
             },
