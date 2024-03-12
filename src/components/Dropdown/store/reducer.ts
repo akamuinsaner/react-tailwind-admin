@@ -1,7 +1,7 @@
-import { EActions, RTTabsAction } from './action';
+import { EActions, RTDropdownAction } from './action';
 import { RTDropdownState } from './state';
 
-export const reducer = (state: RTDropdownState, action: RTTabsAction<any>): RTDropdownState => {
+export const reducer = (state: RTDropdownState, action: RTDropdownAction<any>): RTDropdownState => {
     switch(action.type) {
         case EActions['set-anchor']:
             return { ...state, anchor: action.value };

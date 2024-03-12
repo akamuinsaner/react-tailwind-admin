@@ -1,0 +1,1 @@
+export type RTVariant = 'outlined' | 'contained' | 'underlined' | 'borderless'

@@ -23,6 +23,17 @@ const config: Config = {
       },
       colors: {
 
+      },
+      height: {
+        'rt-large': '48px',
+        'rt-medium': '40px',
+        'rt-small': '32px'
+      },
+      fontSize: {
+        'rt-large': '16px',
+        'rt-medium': '14px',
+        'rt-small': '14px',
+        'inherit': 'inherit'
       }
     },
   },

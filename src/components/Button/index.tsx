@@ -1,5 +1,5 @@
 'use client'
-import { useReducer, CSSProperties, FC, ReactNode, memo, SyntheticEvent } from 'react';
+import { CSSProperties, FC, ReactNode, memo, SyntheticEvent, ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { RTSize } from '../../types/size';
 import { styles } from './styles';
@@ -11,25 +11,26 @@ export type RTButtonProps = {
     style?: CSSProperties;
     children?: ReactNode;
     size?: RTSize;
-    type?: 'contained' | 'outlined' | 'text',
-    color?: 'primary' | 'secondary' | RTSeverity | 'disabled';
+    variant?: 'contained' | 'outlined' | 'text',
+    color?: 'primary' | 'secondary' | RTSeverity;
     disabled?: boolean;
     prefix?: ReactNode;
     suffix?: ReactNode;
     onClick?: (e: SyntheticEvent) => void;
-}
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button: FC<RTButtonProps> = ({
     children,
     className,
     style,
     size = 'medium',
-    type = 'contained',
+    variant = 'contained',
     color = 'primary',
     disabled,
     prefix,
     suffix,
-    onClick
+    onClick,
+    ...nativeProps
 }) => {
 
     const computedClassNames = twMerge(styles.base, classNames({
@@ -43,9 +44,9 @@ const Button: FC<RTButtonProps> = ({
         [styles.warning] : color === 'warning',
         [styles.danger] : color === 'danger',
         [styles.disabled]: disabled,
-        [styles.contained]: type === 'contained',
-        [styles.outlined]: type === 'outlined',
-        [styles.text]: type === 'text',
+        [styles.contained]: variant === 'contained',
+        [styles.outlined]: variant === 'outlined',
+        [styles.text]: variant === 'text',
     }), className);
 
     const preFixIconClassNames = twMerge(styles.prefix, classNames({
@@ -66,6 +67,7 @@ const Button: FC<RTButtonProps> = ({
             className={computedClassNames}
             disabled={disabled}
             onClick={onClick}
+            {...nativeProps}
         >
             {prefix && <div className={preFixIconClassNames}>{prefix}</div>}
             {children}

@@ -8,9 +8,9 @@ const Basic = () => {
         <Card>
             <CardHeader>Basic</CardHeader>
             <CardBody className="flex gap-4">
-                <Button type="text">Text</Button>
-                <Button type="contained">Contained</Button>
-                <Button type="outlined">Outlined</Button>
+                <Button variant="text">Text</Button>
+                <Button variant="contained">Contained</Button>
+                <Button variant="outlined">Outlined</Button>
             </CardBody>
         </Card>
     )

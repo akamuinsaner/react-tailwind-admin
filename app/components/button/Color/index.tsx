@@ -18,22 +18,22 @@ const Color = () => {
                     <Button disabled>Disabled</Button>
                 </div>
                 <div className="flex gap-4 flex-row">
-                    <Button type="outlined" color="primary">Primary</Button>
-                    <Button type="outlined" color="secondary">Secondary</Button>
-                    <Button type="outlined" color="success">Success</Button>
-                    <Button type="outlined" color="info">Info</Button>
-                    <Button type="outlined" color="warning">Warning</Button>
-                    <Button type="outlined" color="danger">Danger</Button>
-                    <Button type="outlined" disabled>Disabled</Button>
+                    <Button variant="outlined" color="primary">Primary</Button>
+                    <Button variant="outlined" color="secondary">Secondary</Button>
+                    <Button variant="outlined" color="success">Success</Button>
+                    <Button variant="outlined" color="info">Info</Button>
+                    <Button variant="outlined" color="warning">Warning</Button>
+                    <Button variant="outlined" color="danger">Danger</Button>
+                    <Button variant="outlined" disabled>Disabled</Button>
                 </div>
                 <div className="flex gap-4 flex-row">
-                    <Button type="text" color="primary">Primary</Button>
-                    <Button type="text" color="secondary">Secondary</Button>
-                    <Button type="text" color="success">Success</Button>
-                    <Button type="text" color="info">Info</Button>
-                    <Button type="text" color="warning">Warning</Button>
-                    <Button type="text" color="danger">Danger</Button>
-                    <Button type="text" disabled>Disabled</Button>
+                    <Button variant="text" color="primary">Primary</Button>
+                    <Button variant="text" color="secondary">Secondary</Button>
+                    <Button variant="text" color="success">Success</Button>
+                    <Button variant="text" color="info">Info</Button>
+                    <Button variant="text" color="warning">Warning</Button>
+                    <Button variant="text" color="danger">Danger</Button>
+                    <Button variant="text" disabled>Disabled</Button>
                 </div>
             </CardBody>
         </Card>

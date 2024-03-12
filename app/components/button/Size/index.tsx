@@ -9,19 +9,19 @@ const Size = () => {
             <CardHeader>Size</CardHeader>
             <CardBody className="flex gap-4 flex-col">
                 <div className="flex gap-4 flex-row items-center">
-                    <Button size="small" type="text">small</Button>
-                    <Button size="medium" type="text">medium</Button>
-                    <Button size="large" type="text">large</Button>
+                    <Button size="small" variant="text">small</Button>
+                    <Button size="medium" variant="text">medium</Button>
+                    <Button size="large" variant="text">large</Button>
                 </div>
                 <div className="flex gap-4 flex-row items-center">
-                    <Button size="small" type="outlined">small</Button>
-                    <Button size="medium" type="outlined">medium</Button>
-                    <Button size="large" type="outlined">large</Button>
+                    <Button size="small" variant="outlined">small</Button>
+                    <Button size="medium" variant="outlined">medium</Button>
+                    <Button size="large" variant="outlined">large</Button>
                 </div>
                 <div className="flex gap-4 flex-row items-center">
-                    <Button size="small" type="contained">small</Button>
-                    <Button size="medium" type="contained">medium</Button>
-                    <Button size="large" type="contained">large</Button>
+                    <Button size="small" variant="contained">small</Button>
+                    <Button size="medium" variant="contained">medium</Button>
+                    <Button size="large" variant="contained">large</Button>
                 </div>
             </CardBody>
         </Card>

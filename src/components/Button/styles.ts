@@ -21,6 +21,7 @@ export type RTButtonStyles = {
     mediumIcon: string;
     smallIcon: string;
     iconButton: string;
+    group: string;
 }
 
 export const styles: RTButtonStyles = {
@@ -43,5 +44,6 @@ export const styles: RTButtonStyles = {
     largeIcon: 'h-6 w-6',
     mediumIcon: 'h-6 w-6',
     smallIcon: 'h-4 w-4',
-    iconButton: '[&>*]:h-6 [&>*]:w-6 p-0'
+    iconButton: '[&>*]:h-6 [&>*]:w-6 p-0',
+    group: 'inline-flex items-center overflow-hidden'
 }

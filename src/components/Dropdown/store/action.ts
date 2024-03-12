@@ -5,19 +5,19 @@ export enum EActions {
     'set-active',
 }
 
-export type RTTabsAction<T> = {
+export type RTDropdownAction<T> = {
     type: EActions,
     value?: T
 }
 
-export const setAnchorAction = <T extends RTDropdownState["anchor"]>(anchor: T): RTTabsAction<T> => {
+export const setAnchorAction = <T extends RTDropdownState["anchor"]>(anchor: T): RTDropdownAction<T> => {
     return {
         type: EActions["set-anchor"],
         value: anchor,
     }
 }
 
-export const setActiveAction = <T extends RTDropdownState["active"]>(active: T): RTTabsAction<T> => {
+export const setActiveAction = <T extends RTDropdownState["active"]>(active: T): RTDropdownAction<T> => {
     return {
         type: EActions["set-active"],
         value: active,

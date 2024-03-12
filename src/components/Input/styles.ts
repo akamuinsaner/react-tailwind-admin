@@ -1,0 +1,72 @@
+export interface RTInputStyles {
+    box: {
+        base: string;
+        focused: string;
+        large: string;
+        medium: string;
+        small: string;
+        contained: string;
+        underlined: string;
+        outlined: string;
+        underlinedFocus: string;
+        borderless: string;
+        success: string;
+        info: string;
+        warning: string;
+        danger: string;
+        disabled: string;
+    },
+    wrapper: string;
+    inner: string;
+    count: string;
+    addOnBefore: string;
+    prefix: {
+        base: string;
+        warning: string;
+        danger: string;
+    };
+    input: string;
+    suffix: {
+        base: string;
+        warning: string;
+        danger: string;
+    };
+    addOnAfter: string;
+}
+
+export const styles: RTInputStyles = {
+    box: {
+        base: 'rounded overflow-hidden border-solid flex items-center flex-1',
+        large: 'h-rt-large text-rt-large',
+        medium: 'h-rt-medium text-rt-medium',
+        small: 'h-rt-small text-rt-small',
+        outlined: 'border',
+        contained: 'bg-slate-100',
+        underlined: '!border-b-2 !ring-0 rounded-none',
+        underlinedFocus: '!border-primary',
+        borderless: '!border-none !ring-0',
+        success: 'border-success !ring-success',
+        info: 'border-info !ring-info',
+        warning: 'border-warning !ring-warning',
+        danger: 'border-danger !ring-danger',
+        focused: 'border-transparent ring-2 ring-primary',
+        disabled: 'bg-disableBg'
+    },
+    wrapper: ' px-3 py-1 flex items-center w-full h-full text-inherit bg-inherit',
+    inner: 'w-full h-full  text-inherit bg-inherit relative',
+    count: 'absolute right-1 top-1/2 -translate-y-1/2 text-inherit',
+    addOnBefore: 'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit px-3 bg-slate-100 [&>*]:border-none',
+    prefix: {
+        base :'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit mr-3 text-inherit [&>svg]:h-5 [&>svg]:cursor-pointer',
+        warning: 'text-warning',
+        danger: 'text-danger'
+    },
+    input: 'outline-none border-none w-full h-full text-inherit bg-inherit',
+    suffix: {
+        base: 'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit ml-3 [&>svg]:h-5 [&>svg]:cursor-pointer',
+        warning: 'text-warning',
+        danger: 'text-danger'
+    },
+    addOnAfter: 'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit px-3 bg-slate-100 [&>*]:border-none'
+}
+

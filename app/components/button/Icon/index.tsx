@@ -9,12 +9,12 @@ const Icon = () => {
         <Card>
             <CardHeader>Basic</CardHeader>
             <CardBody className="flex gap-4">
-                <Button prefix={<HomeIcon />} type="text">Prefix</Button>
-                <Button suffix={<BellAlertIcon />} type="text">Suffix</Button>
-                <Button prefix={<HomeIcon />} type="outlined">Prefix</Button>
-                <Button suffix={<BellAlertIcon />} type="outlined">Suffix</Button>
-                <Button prefix={<HomeIcon />} type="contained">Prefix</Button>
-                <Button suffix={<BellAlertIcon />} type="contained">Suffix</Button>
+                <Button prefix={<HomeIcon />} variant="text">Prefix</Button>
+                <Button suffix={<BellAlertIcon />} variant="text">Suffix</Button>
+                <Button prefix={<HomeIcon />} variant="outlined">Prefix</Button>
+                <Button suffix={<BellAlertIcon />} variant="outlined">Suffix</Button>
+                <Button prefix={<HomeIcon />} variant="contained">Prefix</Button>
+                <Button suffix={<BellAlertIcon />} variant="contained">Suffix</Button>
             </CardBody>
         </Card>
     )
