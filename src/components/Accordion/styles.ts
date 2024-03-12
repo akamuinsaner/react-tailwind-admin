@@ -27,11 +27,11 @@ export const styles: RTAccordionStyles = {
         disabled: 'flex w-full items-center justify-between py-4 px-6 font-semibold text-base cursor-pointer border-b select-none bg-disableBg text-disableText hover:bg-disableBg'
     },
     icon: {
-        base: 'transition-transform duration-100 ease-linear h-6 w-6',
-        open: 'transition-transform duration-100 ease-linear h-6 w-6 rotate-180'
+        base: 'transition-transform duration-200 ease-linear h-6 w-6',
+        open: 'transition-transform duration-200 ease-linear h-6 w-6 rotate-180'
     },
     body: {
-        base: 'flex-1 overflow-hidden border-b transition-[max-height] duration-100 ease-linear origin-top max-h-64',
-        closed: 'flex-1 border-b transition-[max-height] duration-100 ease-linear origin-top max-h-0 overflow-hidden'
+        base: 'flex-1 overflow-hidden border-b transition-[max-height] duration-200 ease-linear origin-top max-h-64',
+        closed: 'flex-1 border-b transition-[max-height] duration-200 ease-linear origin-top max-h-0 overflow-hidden'
     }
 }

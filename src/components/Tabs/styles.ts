@@ -50,9 +50,9 @@ export const styles: RTTabsStyles = {
     },
     pane: 'hidden flex-1 overflow-auto border-b max-h-64 box-border py-4 px-6',
     focus: {
-        base: 'absolute bottom-0 h-[3px] bg-primary block transition-[left] duration-100 ease-linear',
-        left: 'absolute right-0 w-[3px] bg-primary block transition-[top] duration-100 ease-linear',
-        bottom: 'absolute top-0 h-[3px] bg-primary block transition-[left] duration-100 ease-linear',
-        right: 'absolute left-0 w-[3px] bg-primary block transition-[top] duration-100 ease-linear'
+        base: 'absolute bottom-0 h-[3px] bg-primary block transition-[left] duration-200 ease-linear',
+        left: 'absolute right-0 w-[3px] bg-primary block transition-[top] duration-200 ease-linear',
+        bottom: 'absolute top-0 h-[3px] bg-primary block transition-[left] duration-200 ease-linear',
+        right: 'absolute left-0 w-[3px] bg-primary block transition-[top] duration-200 ease-linear'
     }
 }

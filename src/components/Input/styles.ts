@@ -36,21 +36,21 @@ export interface RTInputStyles {
 
 export const styles: RTInputStyles = {
     box: {
-        base: 'rounded overflow-hidden border-solid flex items-center flex-1',
+        base: 'rounded overflow-hidden border-solid flex items-center flex-1 hover:border-primary',
         large: 'h-rt-large text-rt-large',
         medium: 'h-rt-medium text-rt-medium',
         small: 'h-rt-small text-rt-small',
         outlined: 'border',
         contained: 'bg-slate-100',
-        underlined: '!border-b-2 !ring-0 rounded-none',
-        underlinedFocus: '!border-primary',
+        underlined: '!border-b !ring-0 rounded-none !hover:border-primary',
+        underlinedFocus: '!border-primary !border-b-2',
         borderless: '!border-none !ring-0',
-        success: 'border-success !ring-success',
-        info: 'border-info !ring-info',
-        warning: 'border-warning !ring-warning',
-        danger: 'border-danger !ring-danger',
-        focused: 'border-transparent ring-2 ring-primary',
-        disabled: 'bg-disableBg'
+        success: 'border-success !ring-success hover:border-success',
+        info: 'border-info !ring-info hover:border-info',
+        warning: 'border-warning !ring-warning hover:border-warning',
+        danger: 'border-danger !ring-danger hover:border-danger',
+        focused: 'border-transparent ring-2 ring-primary hover:border-transparent',
+        disabled: 'bg-disableBg hover:border-disableBg'
     },
     wrapper: ' px-3 py-1 flex items-center w-full h-full text-inherit bg-inherit',
     inner: 'w-full h-full  text-inherit bg-inherit relative',
