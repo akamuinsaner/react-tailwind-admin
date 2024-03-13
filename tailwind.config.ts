@@ -11,9 +11,6 @@ const config: Config = {
   theme: {
     variables: {
     },
-    screens: {
-
-    },
     extend: {
       transitionProperty: {
         'height': 'height',
@@ -57,8 +54,8 @@ const config: Config = {
         'warning-hover': '#a16207',
         danger: '#dc2626',
         'danger-hover': '#b91c1c',
-        disableBg: '#cbd5e1',
-        disableText: '#94a3b8'
+        disableBg: '#e5e7eb',
+        disableText: '#9ca3af'
       },
       dark: {
 

@@ -48,6 +48,10 @@ export const config: Config[] = [
                 path: '/components/modal',
             },
             {
+                name: 'Select',
+                path: '/components/select',
+            },
+            {
                 name: 'Stepper',
                 path: '/components/stepper',
             },

@@ -21,7 +21,7 @@ export const styles: RTTextareaStyles = {
         warning: 'border-warning !ring-warning hover:border-warning',
         danger: 'border-danger !ring-danger hover:border-danger',
         focused: 'border-transparent ring-2 ring-primary hover:border-transparent',
-        disabled: 'bg-disableBg hover:border-disableBg'
+        disabled: 'bg-disableBg hover:border-disableBg text-disableText'
     },
 
     input: 'outline-none border-none w-full h-full text-inherit bg-inherit',

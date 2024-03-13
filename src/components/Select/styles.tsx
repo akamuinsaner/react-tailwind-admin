@@ -1,4 +1,4 @@
-export interface RTInputStyles {
+export interface RTSelectStyles {
     box: {
         base: string;
         focused: string;
@@ -16,27 +16,32 @@ export interface RTInputStyles {
         danger: string;
         disabled: string;
     },
+    icon: {
+        base: string;
+        large: string;
+        medium: string;
+        small: string;
+    },
     wrapper: string;
     inner: string;
     count: string;
-    addOnBefore: string;
-    prefix: {
-        base: string;
-        warning: string;
-        danger: string;
-    };
     input: string;
-    suffix: {
+    selectBox: {
         base: string;
-        warning: string;
-        danger: string;
-    };
-    addOnAfter: string;
+        show: string;
+    }
+    option: {
+        base: string;
+        selected: string;
+        large: string;
+        medium: string;
+        small: string;
+    }
 }
 
-export const styles: RTInputStyles = {
+export const styles: RTSelectStyles = {
     box: {
-        base: 'rounded overflow-hidden border-solid flex items-center hover:border-primary  shrink-0',
+        base: 'rounded overflow-hidden border-solid flex items-center shrink-0 hover:border-primary pr-8 relative',
         large: 'h-rt-large text-rt-large',
         medium: 'h-rt-medium text-rt-medium',
         small: 'h-rt-small text-rt-small',
@@ -52,21 +57,29 @@ export const styles: RTInputStyles = {
         focused: 'border-transparent ring-2 ring-primary hover:border-transparent',
         disabled: 'bg-disableBg hover:border-disableBg text-disableText'
     },
-    wrapper: ' px-3 py-1 flex items-center w-full h-full text-inherit bg-inherit',
+    icon: {
+        base: 'absolute top-1/2 -translate-y-1/2 right-2 w-6 h-6  cursor-pointer text-disableText',
+        large: 'w-7 h-7',
+        medium: 'w-6 h-6',
+        small: 'w-5 h-5',
+    },
+    wrapper: 'px-3 py-1 flex items-center w-full h-full text-inherit bg-inherit',
     inner: 'w-full h-full  text-inherit bg-inherit relative',
     count: 'absolute right-1 top-1/2 -translate-y-1/2 text-inherit',
-    addOnBefore: 'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit px-3 bg-slate-100 [&>*]:border-none',
-    prefix: {
-        base :'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit mr-3 text-inherit [&>svg]:h-5 [&>svg]:cursor-pointer',
-        warning: 'text-warning',
-        danger: 'text-danger'
-    },
     input: 'outline-none border-none w-full h-full text-inherit bg-inherit',
-    suffix: {
-        base: 'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit ml-3 [&>svg]:h-5 [&>svg]:cursor-pointer',
-        warning: 'text-warning',
-        danger: 'text-danger'
+    selectBox: {
+        base: `opacity-0 overflow-hidden absolute z-10 shadow bg-main  transition-[transform, opacity] 
+        duration-200 ease-linear scale-y-0 max-h-56`,
+        show: `opacity-100 scale-y-1`
     },
-    addOnAfter: 'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit px-3 bg-slate-100 [&>*]:border-none'
+    option: {
+        base: `flex justify-start items-center relative w-full text-left 
+            cursor-pointer px-4 py-2 select-none bg-inherit
+            hover:bg-main-hover break-inside-avoid`,
+        selected: 'text-primary bg-primary/10 hover:bg-primary/10',
+        large: 'h-rt-large text-rt-large',
+        medium: 'h-rt-medium text-rt-medium',
+        small: 'h-rt-small text-rt-small',
+    }
 }
 
