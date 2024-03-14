@@ -32,6 +32,10 @@ export const config: Config[] = [
                 path: '/components/button',
             },
             {
+                name: 'Checkbox',
+                path: '/components/checkbox',
+            },
+            {
                 name: 'Dropdown',
                 path: '/components/dropdown',
             },

@@ -17,7 +17,7 @@ const CloseIcon = () => {
         <Card className="break-inside-avoid mb-6">
             <CardHeader>Close icon</CardHeader>
             <CardBody>
-                <Button type="outlined" onClick={() => setOpen(true)}>custom close icon</Button>
+                <Button variant="outlined" onClick={() => setOpen(true)}>custom close icon</Button>
                 <Modal open={open} onClose={close} closable>
                     <ModalHeader closeIcon={<CheckIcon />}>custom close icon</ModalHeader>
                     <ModalBody>
@@ -26,7 +26,7 @@ const CloseIcon = () => {
                         Modal contents...<br />
                     </ModalBody>
                     <ModalFooter>
-                        <Button type="text" onClick={close}>Cancel</Button>
+                        <Button variant="text" onClick={close}>Cancel</Button>
                         <Button>Confirm</Button>
                     </ModalFooter>
                 </Modal>

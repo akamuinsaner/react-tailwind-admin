@@ -26,7 +26,7 @@ const Arrow = () => {
                     >
                         <DropdownAnchor>
                             <Button
-                                type="contained"
+                                variant="contained"
                             >{placement}</Button>
                         </DropdownAnchor>
                         <DropdownBox className="w-48">

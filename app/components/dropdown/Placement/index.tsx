@@ -22,7 +22,7 @@ const Placement = () => {
                         <Dropdown key={placement} placement={placement}>
                             <DropdownAnchor>
                                 <Button
-                                    type="contained"
+                                    variant="contained"
                                 >{placement}</Button>
                             </DropdownAnchor>
                             <DropdownBox className="w-48">

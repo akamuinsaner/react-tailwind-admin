@@ -24,7 +24,7 @@ const Controlled = () => {
                 <Dropdown open={open} onOpenChange={onOpenChange}>
                     <DropdownAnchor>
                         <Button
-                            type="text"
+                            variant="text"
                             suffix={<ChevronDownIcon />}
                         >Hover me</Button>
                     </DropdownAnchor>

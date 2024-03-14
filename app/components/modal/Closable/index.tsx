@@ -16,7 +16,7 @@ const Closable = () => {
         <Card className="break-inside-avoid mb-6">
             <CardHeader>Closable</CardHeader>
             <CardBody>
-                <Button type="outlined" onClick={() => setOpen(true)}>Open closable Modal</Button>
+                <Button variant="outlined" onClick={() => setOpen(true)}>Open closable Modal</Button>
                 <Modal open={open} onClose={close} closable>
                     <ModalHeader>Basic Modal</ModalHeader>
                     <ModalBody>
@@ -25,7 +25,7 @@ const Closable = () => {
                         Modal contents...<br />
                     </ModalBody>
                     <ModalFooter>
-                        <Button type="text" onClick={close}>Cancel</Button>
+                        <Button variant="text" onClick={close}>Cancel</Button>
                         <Button>Confirm</Button>
                     </ModalFooter>
                 </Modal>

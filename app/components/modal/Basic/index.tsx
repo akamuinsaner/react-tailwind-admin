@@ -25,7 +25,7 @@ const Basic = () => {
                         Modal contents...<br />
                     </ModalBody>
                     <ModalFooter>
-                        <Button type="text" onClick={close}>Cancel</Button>
+                        <Button variant="text" onClick={close}>Cancel</Button>
                         <Button>Confirm</Button>
                     </ModalFooter>
                 </Modal>

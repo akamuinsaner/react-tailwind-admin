@@ -17,7 +17,7 @@ const Basic = () => {
                 <Dropdown>
                     <DropdownAnchor>
                         <Button
-                            type="text"
+                            variant="text"
                             suffix={<ChevronDownIcon />}
                         >Hover me</Button>
                     </DropdownAnchor>

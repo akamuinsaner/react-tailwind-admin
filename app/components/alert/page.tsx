@@ -7,7 +7,7 @@ import Action from "./Action";
 
 const AlertPage = () => {
     return (
-        <div className="columns-2 sm:columns-1 lg:columns-3">
+        <div className="sm:columns-2">
             <Basic />
             <Severity />
             <Icon />

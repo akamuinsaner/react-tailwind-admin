@@ -17,7 +17,7 @@ const Trigger = () => {
                 <Dropdown>
                     <DropdownAnchor>
                         <Button
-                            type="text"
+                            variant="text"
                             suffix={<ChevronDownIcon />}
                         >Hover me</Button>
                     </DropdownAnchor>
@@ -33,7 +33,7 @@ const Trigger = () => {
                 <Dropdown trigger="click">
                     <DropdownAnchor>
                         <Button
-                            type="outlined"
+                            variant="outlined"
                             suffix={<ChevronDownIcon />}
                         >Click me</Button>
                     </DropdownAnchor>
@@ -49,7 +49,7 @@ const Trigger = () => {
                 <Dropdown trigger="contextMenu">
                     <DropdownAnchor>
                         <Button
-                            type="contained"
+                            variant="contained"
                             suffix={<ChevronDownIcon />}
                         >Click Right</Button>
                     </DropdownAnchor>

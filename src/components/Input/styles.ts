@@ -50,7 +50,7 @@ export const styles: RTInputStyles = {
         warning: 'border-warning !ring-warning hover:border-warning',
         danger: 'border-danger !ring-danger hover:border-danger',
         focused: 'border-transparent ring-2 ring-primary hover:border-transparent',
-        disabled: 'bg-disableBg hover:border-disableBg text-disableText'
+        disabled: 'bg-disableBg hover:border-disableBg text-disableText pointer-events-none select-none'
     },
     wrapper: ' px-3 py-1 flex items-center w-full h-full text-inherit bg-inherit',
     inner: 'w-full h-full  text-inherit bg-inherit relative',
