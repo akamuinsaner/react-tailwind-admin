@@ -8,57 +8,69 @@ import {
     initialState,
     reducer,
     setCheckedAction,
-    setIndeterminateAction
+    setLeftAction
 } from './store';
 import { RTSeverity } from '@/src/types/severity';
 import { RTSize } from '@/src/types/size';
 
-export type RTCheckboxProps = {
+export type RTSwitchProps = {
     className?: string;
     style?: CSSProperties;
-    children?: ReactNode;
     checked?: boolean,
     status?: RTSeverity;
-    indeterminate?: boolean;
-    disabled?: boolean
+    disabled?: boolean;
+    value?: boolean;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     defaultChecked?: boolean;
-    value?: boolean;
+    checkedText?: ReactNode;
+    unCheckedText?: ReactNode;
+    size?: RTSize;
+    children?: ReactNode;
 }
 
-const Checkbox: FC<RTCheckboxProps> = ({
-    children,
+const Switch: FC<RTSwitchProps> = ({
     className,
     style,
     checked,
+    value,
     onChange,
     status,
-    indeterminate,
     disabled,
     defaultChecked,
-    value
+    checkedText,
+    unCheckedText,
+    size = 'medium',
+    children
 }) => {
+    const boxRef = useRef<HTMLDivElement>(null);
+    const innerRef = useRef<HTMLSpanElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    const [state, dispatch] = useReducer(reducer, initialState);
     checked = (typeof value !== 'undefined' || typeof checked !== 'undefined')
         ? !!(value || checked)
         : undefined;
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const setLeft = (left: number) => dispatch(setLeftAction(left));
     const setChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (onChange) onChange(e);
         if (typeof checked === 'boolean') return;
-        if (indeterminate) return;
         dispatch(setCheckedAction(e.target.checked))
     };
 
-    const computedClassNames = twMerge(styles.box.base, classNames({
-        [styles.box.disabled]: disabled
+    const wrapperClassName = twMerge(styles.box.base, classNames({
+        [styles.box.checked]: state.checked,
+        [styles.box[status]]: state.checked,
+        [styles.box.disabled]: disabled,
+        [styles.box[size]]: true
     }), className);
 
     const innerClassNames = twMerge(styles.inner.base, classNames({
-        [styles.inner.checked]: state.checked,
-        [styles.inner.indeterminate]: state.indeterminate,
-        [styles.inner[status]]: state.checked || state.indeterminate,
         [styles.inner.disabled]: disabled,
+        [styles.inner[size]]: true
+    }));
+
+    const textClassName = twMerge(styles.text.base, classNames({
+        [styles.text.checked]: state.checked,
+        [styles.text[size]]: true
     }));
 
     useEffect(() => {
@@ -72,26 +84,36 @@ const Checkbox: FC<RTCheckboxProps> = ({
     }, [checked]);
 
     useEffect(() => {
-        if (typeof indeterminate === 'boolean') {
-            dispatch(setIndeterminateAction(indeterminate));
+        const box = boxRef.current;
+        const inner = innerRef.current;
+        if (state.checked) {
+            setLeft(box.offsetWidth - inner.offsetWidth - 2);
+        } else {
+            setLeft(2);
         }
-    }, [indeterminate])
-
-    useEffect(() => {
-
-    }, []);
+    }, [state.checked]);
 
     return (
         <span
             style={style}
-            className={computedClassNames}
+            className={styles.base}
             onClick={() => {
                 if (disabled) return;
                 inputRef.current.click()
             }}
         >
-            <div className={styles.wrapper}>
-                <span className={innerClassNames}></span>
+            <div
+                className={wrapperClassName}
+                ref={boxRef}
+            >
+                <span
+                    className={innerClassNames}
+                    ref={innerRef}
+                    style={{ left: `${state.offsetLeft}px` }}
+                ></span>
+                <span className={textClassName}>
+                    {state.checked ? checkedText : unCheckedText}
+                </span>
                 <input
                     disabled={disabled}
                     type="checkbox"
@@ -111,4 +133,4 @@ const Checkbox: FC<RTCheckboxProps> = ({
     )
 }
 
-export default memo(Checkbox);
+export default memo(Switch);

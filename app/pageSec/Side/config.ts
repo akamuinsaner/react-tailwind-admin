@@ -64,6 +64,10 @@ export const config: Config[] = [
                 path: '/components/stepper',
             },
             {
+                name: 'Switch',
+                path: '/components/switch',
+            },
+            {
                 name: 'Tabs',
                 path: '/components/tabs',
             }
