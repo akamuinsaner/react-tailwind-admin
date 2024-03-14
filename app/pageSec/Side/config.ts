@@ -52,6 +52,10 @@ export const config: Config[] = [
                 path: '/components/modal',
             },
             {
+                name: 'Radio',
+                path: '/components/radio',
+            },
+            {
                 name: 'Select',
                 path: '/components/select',
             },
