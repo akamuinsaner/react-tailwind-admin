@@ -92,7 +92,7 @@ export const styles: RTSelectStyles = {
     input: 'outline-none border-none flex-1 h-full text-inherit bg-inherit',
     selectBox: {
         base: `opacity-0 overflow-hidden absolute z-10 shadow bg-main  transition-[transform, opacity] 
-        duration-200 ease-linear scale-y-0 flex`,
+        duration-200 ease-linear scale-y-0 flex text-[0px]`,
         show: `opacity-100 scale-y-1`
     },
     panel: {
