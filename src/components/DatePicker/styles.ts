@@ -65,12 +65,12 @@ export interface RTSelectStyles {
 
 export const styles: RTSelectStyles = {
     box: {
-        base: 'rounded overflow-hidden border-solid flex items-center shrink-0 hover:border-primary pr-8 relative',
+        base: 'rounded overflow-hidden border-solid border-mainBorder flex items-center shrink-0 hover:border-primary pr-8 relative text-mainText',
         large: 'h-rt-large text-rt-large',
         medium: 'h-rt-medium text-rt-medium',
         small: 'h-rt-small text-rt-small',
         outlined: 'border',
-        contained: 'bg-slate-100',
+        contained: 'bg-content',
         underlined: '!border-b !ring-0 rounded-none !hover:border-primary',
         underlinedFocus: '!border-primary !border-b-2',
         borderless: '!border-none !ring-0',
@@ -82,7 +82,7 @@ export const styles: RTSelectStyles = {
         disabled: 'bg-disableBg hover:border-disableBg text-disableText pointer-events-none select-none'
     },
     icon: {
-        base: 'absolute top-1/2 -translate-y-1/2 right-2 w-6 h-6  cursor-pointer text-disableText',
+        base: 'absolute top-1/2 -translate-y-1/2 right-2 w-6 h-6 cursor-pointer text-mainText',
         large: 'w-7 h-7',
         medium: 'w-6 h-6',
         small: 'w-5 h-5',
@@ -96,16 +96,16 @@ export const styles: RTSelectStyles = {
         show: `opacity-100 scale-y-1`
     },
     panel: {
-        base: '',
+        base: 'text-mainText',
         header: {
-            base: 'flex items-center px-4 py-2 border-b',
-            icon: 'h-4 w-4 mx-0.5 cursor-pointer select-none hover:text-primary',
+            base: 'flex items-center px-4 py-2 border-b text-inherit',
+            icon: 'h-4 w-4 mx-0.5 cursor-pointer select-none hover:text-primary text-inherit',
             display: `font-semibold m-auto flex gap-2 text-sm [&>span]:cursor-pointer 
                     [&>span]:select-none [&>span:hover]:text-primary`,
             disabledIcon: `opacity-0 pointer-events-none select-none`
         },
         body: {
-            base: 'px-4 py-2',
+            base: 'px-4 py-2 text-mainText',
             wrapper: 'grid grid-cols-7 gap-3',
             header: ' flex items-center justify-center font-semibold text-sm h-8 w-8',
             item: 'flex items-center justify-center text-sm cursor-pointer h-8 w-8 hover:bg-disableBg/50 rounded',
@@ -121,7 +121,7 @@ export const styles: RTSelectStyles = {
             notIn: 'text-disableText',
         },
         footer: {
-            base: 'border-t flex px-4 py-2 items-center justify-center text-primary font-semibold text-sm [&>span]:cursor-pointer'
+            base: 'border-mainBorder border-t flex px-4 py-2 items-center justify-center text-primary font-semibold text-sm [&>span]:cursor-pointer'
         }
     },
     range: {

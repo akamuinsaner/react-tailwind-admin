@@ -35,10 +35,10 @@ export const styles: RTTabsStyles = {
         right: 'bg-main rounded flex flex-row-reverse w-full flex-nowrap break-inside-avoid overflow-hidden relative'
     },
     tabs: {
-        base: 'flex items-center break-inside-avoid border-b relative',
-        left: 'flex flex-col items-center break-inside-avoid border-b relative',
-        bottom: 'flex items-center break-inside-avoid border-t relative',
-        right: 'flex flex-col items-center break-inside-avoid border-l relative',
+        base: 'flex items-center break-inside-avoid border-b border-mainBorder relative',
+        left: 'flex flex-col items-center break-inside-avoid border-b border-mainBorder relative',
+        bottom: 'flex items-center break-inside-avoid border-t border-mainBorder relative',
+        right: 'flex flex-col items-center break-inside-avoid border-l border-mainBorder relative',
     },
     tab: {
         base: `relative inline-flex flex-col items-center justify-center py-4 px-6 font-semibold text-base 
@@ -48,7 +48,7 @@ export const styles: RTTabsStyles = {
         disabled: `relative inline-flex flex-col items-center justify-center py-4 px-6 font-semibold text-base 
                 cursor-pointer select-none outline-none bg-disableBg text-disableText hover:text-disableText`
     },
-    pane: 'hidden flex-1 overflow-auto border-b max-h-64 box-border py-4 px-6',
+    pane: 'hidden flex-1 overflow-auto max-h-64 box-border py-4 px-6',
     focus: {
         base: 'absolute bottom-0 h-[3px] bg-primary block transition-[left] duration-200 ease-linear',
         left: 'absolute right-0 w-[3px] bg-primary block transition-[top] duration-200 ease-linear',

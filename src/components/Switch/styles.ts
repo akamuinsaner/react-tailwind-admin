@@ -30,7 +30,7 @@ export interface RTCheckboxStyles {
 }
 
 export const styles: RTCheckboxStyles = {
-    base: 'inline-flex items-center gap-2',
+    base: 'inline-flex items-center gap-2 text-mainText',
     box: {
         base: `inline-flex items-center cursor-pointer select-none min-w-12 rounded-full 
             overflow-hidden h-6 relative bg-primary bg-disableText
@@ -47,7 +47,7 @@ export const styles: RTCheckboxStyles = {
     },
     input: 'absolute z-[1] opacity-0 cursor-pointer w-full h-full',
     text: {
-        base: 'w-full h-full text-center flex items-center justify-center pl-7 pr-2 text-sm text-white',
+        base: 'w-full h-full text-center flex items-center justify-center pl-7 pr-2 text-sm text-inherit',
         checked: 'pl-2 pr-7',
         large: 'text-md',
         medium: 'text-sm',

@@ -22,10 +22,10 @@ export interface RTCheckboxStyles {
 
 export const styles: RTCheckboxStyles = {
     box: {
-        base: 'inline-flex items-center cursor-pointer select-none',
+        base: 'inline-flex items-center cursor-pointer select-none text-mainText',
         disabled: 'text-disableText pointer-events-none select-none'
     },
-    wrapper: 'relative w-5 h-5 overflow-hidden border overflow-hidden mr-2 rounded-full',
+    wrapper: 'relative w-5 h-5 overflow-hidden border border-mainBorder overflow-hidden mr-2 rounded-full',
     input: 'absolute z-[1] opacity-0 cursor-pointer w-full h-full',
     inner: {
         base: `inline-block absolute w-full h-full overflow-hidden after:content=['']

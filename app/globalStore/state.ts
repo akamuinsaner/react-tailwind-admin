@@ -3,5 +3,5 @@ export type GlobalState = {
 }
 
 export const initialState: GlobalState = {
-    theme: 'light',
+    theme: localStorage.getItem('RT_THEME') || 'light',
 }

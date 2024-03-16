@@ -21,7 +21,7 @@ export const styles: RTAlertStyles = {
     icon: 'h-6 w-6 mr-3',
     normal: 'bg-opacity-10 border-opacity-10',
     contained: 'text-white',
-    outlined: 'bg-white border',
+    outlined: 'bg-main border',
     accent: 'border-t-4 border-opacity-100',
     action: 'ml-auto min-w-4 cursor-pointer'
 }

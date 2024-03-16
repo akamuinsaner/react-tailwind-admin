@@ -164,9 +164,9 @@ const Select: FC<RTSelectProps> = ({
     }
 
     useEffect(() => {
-        if (value !== undefined) setValue(value);
-        if (defaultValue !== undefined) setValue(defaultValue);
-    }, [value, defaultValue]);
+        if (value !== undefined) dispatch(setValueAction(value));
+        if (defaultValue !== undefined) dispatch(setValueAction(defaultValue));
+    }, [value]);
 
     const contextValue: RTMultiSelectContext = {
         onChange,

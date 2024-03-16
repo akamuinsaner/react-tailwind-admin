@@ -2,6 +2,8 @@
 import { reducer, initialState } from './reducer';
 import { useReducer, CSSProperties, FC, ReactNode, memo } from 'react';
 import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
+import { styles } from './styles';
 
 export type Props = {
     className?: string;
@@ -17,7 +19,7 @@ const NavBar: FC<Props> = ({
 
     const [state, dispatch] = useReducer(reducer, initialState)
 
-    const navClassNames = classNames(state.styles.base, className);
+    const navClassNames = twMerge(styles.base, className);
 
     return (
         <nav

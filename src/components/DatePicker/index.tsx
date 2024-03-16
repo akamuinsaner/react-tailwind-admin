@@ -165,7 +165,7 @@ const DatePicker: FC<RTDatePickerProps> = ({
                 removeWrapper={removeWrapper}
             >
                 <DatePickerPanel
-                    value={value}
+                    value={state.value}
                     setValue={setValue}
                     minDate={minDate}
                     maxDate={maxDate}

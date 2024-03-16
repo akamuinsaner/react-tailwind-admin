@@ -37,7 +37,6 @@ const Accordion: FC<RTAccordionProps> = ({
 
     useEffect(() => {
         if (openKeys) {
-            console.log(1111111111, openKeys)
             dispatch(setKeysAction(openKeys));
         }
     }, [openKeys]);

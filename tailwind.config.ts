@@ -39,8 +39,10 @@ const config: Config = {
     createThemes({
       light: {
         main: '#fff',
-        'main-hover': '#f1f5f9',
-        content: '',
+        mainText: '#1f2937', // gray-900
+        'main-hover': '#f3f4f6', // gray-100
+        mainBorder: '#e5e7eb', // gray-200
+        content: '#F1F5F9',
         primary: '#2563eb',
         'primary-hover': '#1d4ed8',
         hover: '#f1f5f9',
@@ -54,11 +56,30 @@ const config: Config = {
         'warning-hover': '#a16207',
         danger: '#dc2626',
         'danger-hover': '#b91c1c',
-        disableBg: '#e5e7eb',
-        disableText: '#9ca3af'
+        disableBg: '#e5e7eb', // gray-200
+        disableText: '#d1d5db' // gray-300
       },
       dark: {
-
+        main: '#1f2937', // gray-800
+        mainText: '#e5e7eb', // gray-200
+        'main-hover': '#4b5563', // gray-600
+        mainBorder: '#030712', // gray-950
+        content: '#111827', // gray-900
+        primary: '#2563eb',
+        'primary-hover': '#1d4ed8',
+        hover: '#616161',
+        secondary: '#9333ea',
+        'secondary-hover': '#7e22ce',
+        success: '#16a34a',
+        'success-hover': '#15803d',
+        info: '#0284c7',
+        'info-hover': '#0369a1',
+        warning: '#ca8a04',
+        'warning-hover': '#a16207',
+        danger: '#dc2626',
+        'danger-hover': '#b91c1c',
+        disableBg: '#6b7280', // gray-500
+        disableText: '#9ca3af' // gray-400
       }
     })
   ],

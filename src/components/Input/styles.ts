@@ -36,12 +36,12 @@ export interface RTInputStyles {
 
 export const styles: RTInputStyles = {
     box: {
-        base: 'rounded overflow-hidden border-solid flex items-center hover:border-primary  shrink-0',
+        base: 'rounded overflow-hidden border-solid border-mainBorder text-mainText flex items-center hover:border-primary shrink-0',
         large: 'h-rt-large text-rt-large',
         medium: 'h-rt-medium text-rt-medium',
         small: 'h-rt-small text-rt-small',
         outlined: 'border',
-        contained: 'bg-slate-100',
+        contained: 'bg-content',
         underlined: '!border-b !ring-0 rounded-none !hover:border-primary',
         underlinedFocus: '!border-primary !border-b-2',
         borderless: '!border-none !ring-0',
@@ -50,12 +50,12 @@ export const styles: RTInputStyles = {
         warning: 'border-warning !ring-warning hover:border-warning',
         danger: 'border-danger !ring-danger hover:border-danger',
         focused: 'border-transparent ring-2 ring-primary hover:border-transparent',
-        disabled: 'bg-disableBg hover:border-disableBg text-disableText pointer-events-none select-none'
+        disabled: 'bg-disableBg hover:bg-disableBg text-disableText pointer-events-none select-none'
     },
     wrapper: ' px-3 py-1 flex items-center w-full h-full text-inherit bg-inherit',
     inner: 'w-full h-full  text-inherit bg-inherit relative',
     count: 'absolute right-1 top-1/2 -translate-y-1/2 text-inherit',
-    addOnBefore: 'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit px-3 bg-slate-100 [&>*]:border-none',
+    addOnBefore: 'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit px-3 bg-main [&>*]:border-none',
     prefix: {
         base :'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit mr-3 text-inherit [&>svg]:h-5 [&>svg]:cursor-pointer',
         warning: 'text-warning',
@@ -67,6 +67,6 @@ export const styles: RTInputStyles = {
         warning: 'text-warning',
         danger: 'text-danger'
     },
-    addOnAfter: 'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit px-3 bg-slate-100 [&>*]:border-none'
+    addOnAfter: 'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit px-3 bg-main [&>*]:border-none'
 }
 

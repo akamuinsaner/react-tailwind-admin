@@ -1,5 +1,5 @@
 import { RTStyles } from '../../types/styles';
 
 export const styles: RTStyles = {
-    base: 'block'
+    base: 'block text-mainText'
 }

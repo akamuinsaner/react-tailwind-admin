@@ -23,7 +23,7 @@ const Text: FC<Props> = ({
 
     const computedClassNames = twMerge(state.styles.base, classNames({
         '[&>li>div]:min-h-10': densed,
-        '[&>li]:border-t': divider
+        '[&>li]:border-t [&>li]:border-mainBorder': divider
     }), className);
 
     return (

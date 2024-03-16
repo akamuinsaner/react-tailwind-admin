@@ -2,6 +2,8 @@
 import { reducer, initialState } from './reducer';
 import { useReducer, CSSProperties, FC, ReactNode, memo } from 'react';
 import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
+import { styles } from './styles';
 
 export type Props = {
     className?: string;
@@ -18,7 +20,7 @@ const Text: FC<Props> = ({
 }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
-    const computedClassNames = classNames(state.styles.base, {
+    const computedClassNames = twMerge(styles.base, classNames({
         "text-8xl": size === 'h1',
         "text-6xl": size === 'h2',
         "text-5xl": size === 'h3',
@@ -27,7 +29,7 @@ const Text: FC<Props> = ({
         "text-xl": size === 'h6',
         "text-base": size === 'body',
         "text-xs": size === 'tip',
-    }, className);
+    }), className);
 
     return (
         <p

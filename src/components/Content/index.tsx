@@ -2,6 +2,7 @@
 import { reducer, initialState } from './reducer';
 import { useReducer, CSSProperties, FC, ReactNode, memo } from 'react';
 import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 export type Props = {
     className?: string;
@@ -16,7 +17,7 @@ const Content: FC<Props> = ({
 }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
-    const computedClassNames = classNames(state.styles.base, className);
+    const computedClassNames = twMerge(state.styles.base, className);
 
     return (
         <article

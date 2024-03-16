@@ -49,12 +49,12 @@ export interface RTSelectStyles {
 
 export const styles: RTSelectStyles = {
     box: {
-        base: 'rounded overflow-hidden border-solid flex items-center shrink-0 hover:border-primary pr-8 relative',
+        base: 'rounded overflow-hidden border-solid border-mainBorder text-mainText flex items-center shrink-0 hover:border-primary pr-8 relative',
         large: 'h-rt-large text-rt-large',
         medium: 'h-rt-medium text-rt-medium',
         small: 'h-rt-small text-rt-small',
         outlined: 'border',
-        contained: 'bg-slate-100',
+        contained: 'bg-content',
         underlined: '!border-b !ring-0 rounded-none !hover:border-primary',
         underlinedFocus: '!border-primary !border-b-2',
         borderless: '!border-none !ring-0',
@@ -81,13 +81,11 @@ export const styles: RTSelectStyles = {
         show: `opacity-100 scale-y-1`
     },
     option: {
-        base: `flex justify-start items-center relative w-full text-left 
-            cursor-pointer px-4 py-2 select-none bg-inherit
-            hover:bg-main-hover break-inside-avoid`,
+        base: `flex justify-start items-center relative w-full text-left  cursor-pointer px-4 py-2 select-none bg-inherit hover:bg-main-hover break-inside-avoid text-mainText`,
         selected: 'text-primary bg-primary/10 hover:bg-primary/10',
-        large: 'h-rt-large text-rt-large',
-        medium: 'h-rt-medium text-rt-medium',
-        small: 'h-rt-small text-rt-small',
+        large: 'h-rt-large text-rt-large text-mainText',
+        medium: 'h-rt-medium text-rt-medium text-mainText',
+        small: 'h-rt-small text-rt-small text-mainText',
     },
     tagBox: 'h-full flex items-center pl-3 py-1 gap-x-0.5',
     tag: {
