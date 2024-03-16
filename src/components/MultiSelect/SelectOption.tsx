@@ -32,7 +32,6 @@ const Option: FC<RTOptionProps> = ({
         ? curValue.filter(v => v !== value)
         : [...curValue, value]
         setValue(values);
-        if (onChange) onChange(values);
     }
 
     return (

@@ -20,17 +20,14 @@ const Option: FC<RTOptionProps> = ({
 }) => {
     const context = useContext(SelectContext);
 
-    const { value: curValue, setValue, size, onChange } = context;
+    const { value: curValue, setValue, size } = context;
 
     const computedClassNames = twMerge(styles.option.base, classNames({
         [styles.option.selected]: value === curValue,
         [styles.option[size]]: true,
     }), className);
 
-    const onSelect = () => {
-        setValue(value);
-        if (onChange) onChange(value);
-    }
+    const onSelect = () => setValue(value);
 
     return (
         <li

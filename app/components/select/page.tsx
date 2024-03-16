@@ -1,4 +1,5 @@
 import Basic from "./Basic/index";
+import Clear from "./Clear";
 import Sizes from "./Sizes";
 import Status from "./Status";
 import Variant from "./Variant";
@@ -10,6 +11,7 @@ const SelectPage = () => {
     return (
         <div className="columns-2 gap-6">
             <Basic />
+            <Clear />
             <Sizes />
             <Status />
             <Variant />

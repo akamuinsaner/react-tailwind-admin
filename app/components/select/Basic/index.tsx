@@ -4,10 +4,13 @@ import CardBody from "@/src/components/Card/CardBody";
 import CardHeader from "@/src/components/Card/CardHeader";
 import Select from "@/src/components/Select";
 import Option from "@/src/components/Select/SelectOption";
+import { useState } from "react";
 
 const Basic = () => {
+    const [value, setValue] = useState<string>('1');
     const handleChange = (value: string) => {
         console.log(value)
+        setValue(value)
     }
 
     return (
@@ -21,7 +24,7 @@ const Basic = () => {
                     <Option value="4">Entrepreneur</Option>
                     <Option value="5">Astronaut</Option>
                 </Select>
-                <Select value={'1'} onChange={handleChange}>
+                <Select value={value} onChange={handleChange}>
                     <Option value="1">Docter</Option>
                     <Option value="2">Lawer</Option>
                     <Option value="3">Scientist</Option>

@@ -44,6 +44,7 @@ export type RTSelectProps = {
     search?: boolean;
     onSearch?: (search: string) => void;
     tagLimit?: number;
+    allowClear?: boolean;
 };
 
 const Select: FC<RTSelectProps> = ({
@@ -61,6 +62,7 @@ const Select: FC<RTSelectProps> = ({
     disabled,
     onSearch,
     tagLimit = Infinity,
+    allowClear = false,
 }) => {
     const wrapperIdRef = useRef(uuidV4());
     const anchorRef = useRef<HTMLDivElement>(null);
@@ -122,7 +124,7 @@ const Select: FC<RTSelectProps> = ({
     }, [searchValue]);
 
     const displayIcon = useMemo(() => {
-        if (hover && state.value.length && !disabled) return <XCircleIcon onClick={() => {
+        if (hover && state.value.length && !disabled && allowClear) return <XCircleIcon onClick={() => {
             setValue([]);
             if (onChange) onChange([]);
         }} />;
@@ -143,7 +145,11 @@ const Select: FC<RTSelectProps> = ({
     }));
 
     const setHover = (hover: boolean) => dispatch(setHoverAction(hover));
-    const setValue = (value: string[]) => dispatch(setValueAction(value));
+    const setValue = (curVal: string[]) => {
+        if (onChange) onChange(curVal);
+        if (value !== undefined) return;
+        dispatch(setValueAction(curVal))
+    };
     const setWrapper = () => {
         const wrapperId = wrapperIdRef.current;
         let element = document.getElementById(wrapperId) as HTMLDivElement;

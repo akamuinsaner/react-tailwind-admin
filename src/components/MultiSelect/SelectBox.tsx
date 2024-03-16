@@ -24,14 +24,11 @@ const SelectBox = ({
 
     const resetClassName = () => {
         setBoxClassName(styles.selectBox.base);
-        document.removeEventListener('click', resetClassName);
-        
     }
 
     useEffect(() => {
         if (tempWrapper) {
             setBoxClassName(twMerge(boxClassName, styles.selectBox.show));
-            document.addEventListener('click', resetClassName);
         }
     }, [tempWrapper]);
 
