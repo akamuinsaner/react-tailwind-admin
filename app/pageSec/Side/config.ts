@@ -36,6 +36,10 @@ export const config: Config[] = [
                 path: '/components/checkbox',
             },
             {
+                name: 'DatePicker',
+                path: '/components/datePicker',
+            },
+            {
                 name: 'Dropdown',
                 path: '/components/dropdown',
             },

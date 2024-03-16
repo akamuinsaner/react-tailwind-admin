@@ -27,7 +27,9 @@ export type RTInputProps = {
     variant?: RTVariant;
     status?: RTSeverity;
     showCount?: boolean;
-} & InputHTMLAttributes<HTMLInputElement>;
+    disabled?: boolean;
+    maxLength?: number;
+};
 
 const Input: FC<RTInputProps> = ({
     className,
@@ -43,16 +45,18 @@ const Input: FC<RTInputProps> = ({
     variant = 'outlined',
     status,
     showCount,
+    disabled,
+    maxLength,
     ...nativeProps
 }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const computedClassNames = twMerge(styles.box.base, classNames({
         [styles.box[variant]]: true,
         [styles.box.underlinedFocus]: variant === 'underlined' && state.focused,
-        [styles.box[status]]: !nativeProps.disabled,
+        [styles.box[status]]: !disabled,
         [styles.box.focused]: state.focused,
         [styles.box[size]]: true,
-        [styles.box.disabled]: nativeProps.disabled
+        [styles.box.disabled]: disabled
     }), className);
 
     const prefixClassNames = twMerge(styles.prefix.base, classNames({
@@ -97,9 +101,10 @@ const Input: FC<RTInputProps> = ({
                         value={state.value}
                         onChange={onValueChange}
                         className={styles.input}
+                        disabled={disabled}
                     />
                     {showCount
-                    ? <span className={styles.count}>{`${state.value.length} ${nativeProps.maxLength ? `/ ${nativeProps.maxLength}` : ''}`}</span>
+                    ? <span className={styles.count}>{`${state.value.length} ${maxLength ? `/ ${maxLength}` : ''}`}</span>
                     : null}
                 </div>
                 {suffix
