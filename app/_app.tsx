@@ -19,7 +19,7 @@ export default function App({ children }: { children: ReactNode }) {
   return (
     <GlobalContext.Provider value={contextValue}>
       <ScrollPage>
-        <Page className='pt-20 pl-64'>
+        <Page className='pt-20 md:pl-64'>
           <Nav />
           <Side />
           <Content>{children}</Content>

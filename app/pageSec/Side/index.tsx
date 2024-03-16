@@ -85,7 +85,7 @@ const Side = () => {
     }, [openKeys, pathname]);
 
     return (
-        <SideBar className='pt-20'>
+        <SideBar className='pt-20 hidden md:block'>
             <List divider>
                 {getList(config)}
             </List>

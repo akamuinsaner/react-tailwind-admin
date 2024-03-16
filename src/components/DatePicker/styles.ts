@@ -125,7 +125,7 @@ export const styles: RTSelectStyles = {
         }
     },
     range: {
-        connector: 'w-6 mx-2  text-disableText',
+        connector: 'w-6 mx-2  text-disableText shrink-0',
         wrapper: 'flex'
     }
 }

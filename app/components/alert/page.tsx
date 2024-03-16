@@ -1,21 +1,22 @@
-import Basic from "./Basic";
-import Severity from "./Severity";
-import Icon from "./Icon";
-import Type from "./Type";
-import Accent from "./Accent";
-import Action from "./Action";
+import Basic from './Basic'
+import Severity from './Severity'
+import Icon from './Icon'
+import Type from './Type'
+import Accent from './Accent'
+import Action from './Action'
+import Box from '@/src/components/Box'
 
 const AlertPage = () => {
-    return (
-        <div className="sm:columns-2">
-            <Basic />
-            <Severity />
-            <Icon />
-            <Type />
-            <Accent />
-            <Action />
-        </div>
-    )
+  return (
+    <Box className='columns-1 xl:columns-2'>
+      <Basic />
+      <Severity />
+      <Icon />
+      <Type />
+      <Accent />
+      <Action />
+    </Box>
+  )
 }
 
-export default AlertPage;
+export default AlertPage

@@ -1,37 +1,34 @@
-import type { Config } from "tailwindcss";
-const { createThemes } = require('tw-colors');
+import type { Config } from 'tailwindcss'
+const { createThemes } = require('tw-colors')
 
 const config: Config = {
   content: [
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    variables: {
-    },
+    variables: {},
     extend: {
       transitionProperty: {
-        'height': 'height',
+        height: 'height',
         'max-height': 'max-height',
-        'left': 'left',
-        'top': 'top',
+        left: 'left',
+        top: 'top',
       },
-      colors: {
-
-      },
+      colors: {},
       height: {
         'rt-large': '48px',
         'rt-medium': '40px',
-        'rt-small': '32px'
+        'rt-small': '32px',
       },
       fontSize: {
         'rt-large': '16px',
         'rt-medium': '14px',
         'rt-small': '14px',
-        'inherit': 'inherit'
-      }
+        inherit: 'inherit',
+      },
     },
   },
   plugins: [
@@ -57,7 +54,7 @@ const config: Config = {
         danger: '#dc2626',
         'danger-hover': '#b91c1c',
         disableBg: '#e5e7eb', // gray-200
-        disableText: '#d1d5db' // gray-300
+        disableText: '#9ca3af', // gray-300
       },
       dark: {
         main: '#1f2937', // gray-800
@@ -79,13 +76,13 @@ const config: Config = {
         danger: '#dc2626',
         'danger-hover': '#b91c1c',
         disableBg: '#6b7280', // gray-500
-        disableText: '#9ca3af' // gray-400
-      }
-    })
+        disableText: '#9ca3af', // gray-400
+      },
+    }),
   ],
   function({ addVariant }: any) {
-    addVariant('child', '& > *');
-    addVariant('child-hover', '& > *:hover');
-  }
-};
-export default config;
+    addVariant('child', '& > *')
+    addVariant('child-hover', '& > *:hover')
+  },
+}
+export default config
