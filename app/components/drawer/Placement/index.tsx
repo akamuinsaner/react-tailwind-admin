@@ -13,7 +13,7 @@ const Basic = () => {
     const close = () => setPlacement(null)
     return (
         <Card className='break-inside-avoid mb-6'>
-            <CardHeader>Basic usage</CardHeader>
+            <CardHeader>Placement</CardHeader>
             <CardBody className='flex gap-3'>
                 {placements.map(place => (
                     <Button key={place} onClick={() => setPlacement(place)}>
