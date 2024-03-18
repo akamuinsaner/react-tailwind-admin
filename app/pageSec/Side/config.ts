@@ -1,12 +1,12 @@
-import HomeIcon from '@heroicons/react/24/solid/HomeIcon'
-import CalendarIcon from '@heroicons/react/24/solid/CalendarIcon'
+import HomeIcon from '@heroicons/react/24/solid/HomeIcon';
+import CalendarIcon from '@heroicons/react/24/solid/CalendarIcon';
 
 export type Config = {
-    name: string
-    path: string
-    icon?: any
-    children?: Config[]
-}
+    name: string;
+    path: string;
+    icon?: any;
+    children?: Config[];
+};
 
 export const config: Config[] = [
     {
@@ -38,6 +38,10 @@ export const config: Config[] = [
             {
                 name: 'DatePicker',
                 path: '/components/datePicker',
+            },
+            {
+                name: 'DataTable',
+                path: '/components/dataTable',
             },
             {
                 name: 'Drawer',
@@ -80,9 +84,13 @@ export const config: Config[] = [
                 path: '/components/switch',
             },
             {
+                name: 'Table',
+                path: '/components/table',
+            },
+            {
                 name: 'Tabs',
                 path: '/components/tabs',
             },
         ],
     },
-]
+];

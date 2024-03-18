@@ -1,5 +1,5 @@
-import type { Config } from 'tailwindcss'
-const { createThemes } = require('tw-colors')
+import type { Config } from 'tailwindcss';
+const { createThemes } = require('tw-colors');
 
 const config: Config = {
     content: [
@@ -34,10 +34,15 @@ const config: Config = {
                 'rt-small': '14px',
                 inherit: 'inherit',
             },
+            boxShadow: {
+                'tableLeft': '4px 0 8px -4px rgba(0,0,0,0.2)',
+                'tableRight': '-4px 0 8px -4px rgba(0,0,0,0.2)',
+            }
         },
     },
     plugins: [
         require('@mertasan/tailwindcss-variables'),
+        require('tailwind-scrollbar'),
         createThemes({
             light: {
                 main: '#fff',
@@ -86,8 +91,8 @@ const config: Config = {
         }),
     ],
     function({ addVariant }: any) {
-        addVariant('child', '& > *')
-        addVariant('child-hover', '& > *:hover')
+        addVariant('child', '& > *');
+        addVariant('child-hover', '& > *:hover');
     },
-}
-export default config
+};
+export default config;
