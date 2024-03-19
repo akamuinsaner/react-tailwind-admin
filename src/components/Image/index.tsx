@@ -64,7 +64,11 @@ const Image: FC<RTImageProps> = ({
                 });
             });
             observer.observe(imgRef.current);
-            return () => observer.unobserve(imgRef.current);
+            return () => {
+                if (imgRef.current) {
+                    observer.unobserve(imgRef.current);
+                }
+            };
         }
     }, []);
 

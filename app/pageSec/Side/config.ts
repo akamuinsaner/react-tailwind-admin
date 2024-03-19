@@ -1,5 +1,5 @@
 import HomeIcon from '@heroicons/react/24/solid/HomeIcon';
-import CalendarIcon from '@heroicons/react/24/solid/CalendarIcon';
+import { CalendarIcon, ChartBarIcon } from '@heroicons/react/24/solid';
 
 export type Config = {
     name: string;
@@ -94,6 +94,27 @@ export const config: Config[] = [
             {
                 name: 'Tabs',
                 path: '/components/tabs',
+            },
+        ],
+    },
+    {
+        name: 'Charts',
+        path: '/charts',
+        icon: ChartBarIcon,
+        children: [
+            {
+                name: 'chartjs',
+                path: '/charts/chartjs',
+                children: [
+                    {
+                        name: 'bar',
+                        path: '/charts/chartjs/bar',
+                    },
+                    {
+                        name: 'line',
+                        path: '/charts/chartjs/line',
+                    },
+                ],
             },
         ],
     },
