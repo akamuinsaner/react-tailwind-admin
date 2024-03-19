@@ -56,6 +56,10 @@ export const config: Config[] = [
                 path: '/components/input',
             },
             {
+                name: 'Image',
+                path: '/components/image',
+            },
+            {
                 name: 'List',
                 path: '/components/list',
             },
