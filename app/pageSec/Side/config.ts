@@ -24,12 +24,16 @@ export const config: Config[] = [
                 path: '/components/layout',
                 children: [
                     {
-                        name: 'Flex',
-                        path: '/components/layout/flex',
-                    },
-                    {
                         name: 'Columns',
                         path: '/components/layout/columns',
+                    },
+                    {
+                        name: 'Divider',
+                        path: '/components/layout/divider',
+                    },
+                    {
+                        name: 'Flex',
+                        path: '/components/layout/flex',
                     },
                 ],
             },

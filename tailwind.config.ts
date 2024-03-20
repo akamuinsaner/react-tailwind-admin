@@ -3,6 +3,7 @@ const { createThemes } = require('tw-colors');
 let columnsSafeList = [];
 let gapSafeList = [];
 let spaceSafeList = [];
+let dividerGapList = [];
 Array(1000)
     .fill(0)
     .forEach((a, i) => {
@@ -25,10 +26,20 @@ Array(1000)
             `2xl:gap-[${i + 1}px]`,
         ];
         spaceSafeList = [...spaceSafeList, `[&>*]:mb-[${i + 1}px]`];
+        dividerGapList = [
+            ...dividerGapList,
+            `mx-[${i + 1}px]`,
+            `my-[${i + 1}px]`,
+        ];
     });
 
 const config: Config = {
-    safelist: [...columnsSafeList, ...gapSafeList, ...spaceSafeList],
+    safelist: [
+        ...columnsSafeList,
+        ...gapSafeList,
+        ...spaceSafeList,
+        ...dividerGapList,
+    ],
     content: [
         './src/**/*.{js,ts,jsx,tsx,mdx}',
         './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -38,6 +49,17 @@ const config: Config = {
     theme: {
         variables: {},
         extend: {
+            flexGrow: {
+                2: '2',
+                3: '3',
+                4: '4',
+                5: '5',
+                6: '6',
+                7: '7',
+                8: '8',
+                9: '9',
+                10: '10',
+            },
             transitionProperty: {
                 height: 'height',
                 'max-height': 'max-height',

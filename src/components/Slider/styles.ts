@@ -24,7 +24,7 @@ export const styles: RTSliderStyles = {
     },
     bar: {
         base: `w-4 h-4 rounded-full border-2 border-primary/50 absolute -translate-x-1/2
-            bg-main cursor-pointer hover:w-6 hover:h-6 hover:border-4 hover:border-primary`,
+            bg-main cursor-pointer hover:w-6 hover:h-6 hover:border-4 hover:border-primary select-none`,
         active: ` w-6 h-6 border-4 border-primary`,
         disabled:
             'bg-disableBg border-disableText select-none pointer-events-none',

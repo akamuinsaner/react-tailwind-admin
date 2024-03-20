@@ -25,7 +25,7 @@ const Columns: FC<RTColumnsProps> = ({
     style,
     className,
     children,
-    count,
+    count = 1,
     gap = 'medium',
     space = 'medium',
 }) => {
