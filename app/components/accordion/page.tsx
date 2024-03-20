@@ -1,19 +1,20 @@
-import Basic from "./Basic/index";
-import Controlled from "./controlled";
-import One from "./One";
-import Icon from "./Icon";
-import Disabled from "./Disabled";
+import Basic from './Basic/index';
+import Controlled from './controlled';
+import One from './One';
+import Icon from './Icon';
+import Disabled from './Disabled';
+import Flex from '@/src/components/Flex';
 
 const AccordionPage = () => {
     return (
-        <div className="flex flex-col gap-6">
+        <Flex direction='column' gap='medium'>
             <Basic />
             <Controlled />
             <One />
             <Icon />
             <Disabled />
-        </div>
-    )
-}
+        </Flex>
+    );
+};
 
 export default AccordionPage;

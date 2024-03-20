@@ -1,22 +1,22 @@
-import Basic from './Basic'
-import Variants from './Variants'
-import Color from './Color'
-import Size from './Size'
-import Icon from './Icon'
-import Grouped from './Grouped'
-import Box from '@/src/components/Box'
+import Basic from './Basic';
+import Variants from './Variants';
+import Color from './Color';
+import Size from './Size';
+import Icon from './Icon';
+import Grouped from './Grouped';
+import Flex from '@/src/components/Flex';
 
 const ButtonPage = () => {
-  return (
-    <Box className='flex flex-col gap-6'>
-      <Basic />
-      <Variants />
-      <Color />
-      <Size />
-      <Icon />
-      <Grouped />
-    </Box>
-  )
-}
+    return (
+        <Flex direction='column' gap='medium'>
+            <Basic />
+            <Variants />
+            <Color />
+            <Size />
+            <Icon />
+            <Grouped />
+        </Flex>
+    );
+};
 
-export default ButtonPage
+export default ButtonPage;

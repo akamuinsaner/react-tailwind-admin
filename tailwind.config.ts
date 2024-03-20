@@ -35,14 +35,15 @@ const config: Config = {
                 inherit: 'inherit',
             },
             boxShadow: {
-                'tableLeft': '4px 0 8px -4px rgba(0,0,0,0.2)',
-                'tableRight': '-4px 0 8px -4px rgba(0,0,0,0.2)',
-            }
+                tableLeft: '4px 0 8px -4px rgba(0,0,0,0.2)',
+                tableRight: '-4px 0 8px -4px rgba(0,0,0,0.2)',
+            },
         },
     },
     plugins: [
         require('@mertasan/tailwindcss-variables'),
         require('tailwind-scrollbar'),
+        require('tailwind-children'),
         createThemes({
             light: {
                 main: '#fff',
@@ -90,9 +91,5 @@ const config: Config = {
             },
         }),
     ],
-    function({ addVariant }: any) {
-        addVariant('child', '& > *');
-        addVariant('child-hover', '& > *:hover');
-    },
 };
 export default config;
