@@ -94,6 +94,10 @@ export const config: Config[] = [
                 path: '/components/select',
             },
             {
+                name: 'Slider',
+                path: '/components/slider',
+            },
+            {
                 name: 'Stepper',
                 path: '/components/stepper',
             },

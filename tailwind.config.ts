@@ -1,7 +1,34 @@
 import type { Config } from 'tailwindcss';
 const { createThemes } = require('tw-colors');
+let columnsSafeList = [];
+let gapSafeList = [];
+let spaceSafeList = [];
+Array(1000)
+    .fill(0)
+    .forEach((a, i) => {
+        columnsSafeList = [
+            ...columnsSafeList,
+            `columns-${i + 1}`,
+            `sm:columns-${i + 1}`,
+            `md:columns-${i + 1}`,
+            `lg:columns-${i + 1}`,
+            `xl:columns-${i + 1}`,
+            `2xl:columns-${i + 1}`,
+        ];
+        gapSafeList = [
+            ...gapSafeList,
+            `gap-[${i + 1}px]`,
+            `sm:gap-[${i + 1}px]`,
+            `md:gap-[${i + 1}px]`,
+            `lg:gap-[${i + 1}px]`,
+            `xl:gap-[${i + 1}px]`,
+            `2xl:gap-[${i + 1}px]`,
+        ];
+        spaceSafeList = [...spaceSafeList, `[&>*]:mb-[${i + 1}px]`];
+    });
 
 const config: Config = {
+    safelist: [...columnsSafeList, ...gapSafeList, ...spaceSafeList],
     content: [
         './src/**/*.{js,ts,jsx,tsx,mdx}',
         './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -65,7 +92,7 @@ const config: Config = {
                 danger: '#dc2626',
                 'danger-hover': '#b91c1c',
                 disableBg: '#e5e7eb', // gray-200
-                disableText: '#9ca3af', // gray-300
+                disableText: '#d1d5db', // gray-300
             },
             dark: {
                 main: '#1f2937', // gray-800

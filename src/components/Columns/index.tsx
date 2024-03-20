@@ -37,24 +37,25 @@ const Columns: FC<RTColumnsProps> = ({
         }, `columns-${defaultCount}`);
     }, [count]);
 
+    const gapClassStr = useMemo(() => {
+        if (typeof gap === 'string') return styles[`gap-${gap}`];
+        return `gap-[${gap}px]`;
+    }, [gap]);
+
+    const spaceClassStr = useMemo(() => {
+        if (typeof space === 'string') return styles[`space-${space}`];
+        return `[&>*]:mb-[${space}px]`;
+    }, [space]);
+
     const baseClassName = twMerge(
         columnClassStr,
-        styles[`gap-${gap}`],
-        styles[`space-${space}`],
+        gapClassStr,
+        spaceClassStr,
         className,
     );
 
-    const finalStyle = useMemo(() => {
-        if (typeof gap === 'number') {
-            style = Object.assign({}, style, { gap: `${gap}px` });
-        }
-        if (typeof space === 'number') {
-            style = Object.assign({}, style, { marginBottom: `${space}px` });
-        }
-        return style;
-    }, [style, gap, space]);
     return (
-        <div style={finalStyle} className={baseClassName}>
+        <div style={style} className={baseClassName}>
             {children}
         </div>
     );

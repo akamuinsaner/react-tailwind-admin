@@ -18,6 +18,7 @@ import { config, Config } from './config';
 import { useRouter, usePathname } from 'next/navigation';
 import classnames from 'classnames';
 import { twMerge } from 'tailwind-merge';
+import Box from '@/src/components/Box';
 
 const Side = () => {
     const router = useRouter();
@@ -49,7 +50,7 @@ const Side = () => {
     );
 
     const getList = useCallback(
-        (list: Config[]) => {
+        (list: Config[], depth: number = 0) => {
             if (!list || !list.length) return null;
             return list.map(item => {
                 const hasChildren = item?.children?.length;
@@ -60,9 +61,6 @@ const Side = () => {
                         'rotate-90': showChildren,
                     }),
                 );
-                const actualHeight = hasChildren
-                    ? item.children.length * 50
-                    : 0;
                 const childrenClassName = twMerge(
                     'origin-top overflow-hidden transition-[max-height] duration-100 ease-linear',
                     classnames({
@@ -76,6 +74,11 @@ const Side = () => {
                             onClick={() => onMenuClick(item)}
                             active={pathname === item.path}
                         >
+                            <Box
+                                style={{
+                                    width: `${depth * 12}px`,
+                                }}
+                            ></Box>
                             <ListItemIcon>
                                 {item.icon ? createElement(item.icon) : null}
                             </ListItemIcon>
@@ -92,7 +95,9 @@ const Side = () => {
                             className={childrenClassName}
                             onTransitionEnd={onTransitionEnd}
                         >
-                            <List divider>{getList(item.children || [])}</List>
+                            <List divider>
+                                {getList(item.children || [], depth + 1)}
+                            </List>
                         </div>
                     </Fragment>
                 );
