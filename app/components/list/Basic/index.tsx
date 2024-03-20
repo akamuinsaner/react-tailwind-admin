@@ -1,12 +1,12 @@
-import Card from "@/src/components/Card";
-import CardBody from "@/src/components/Card/CardBody";
-import CardHeader from "@/src/components/Card/CardHeader";
-import List from "@/src/components/List";
-import ListItem from "@/src/components/List/ListItem";
+import Card from '@/src/components/Card';
+import CardBody from '@/src/components/Card/CardBody';
+import CardHeader from '@/src/components/Card/CardHeader';
+import List from '@/src/components/List';
+import ListItem from '@/src/components/List/ListItem';
 
 const Basic = () => {
     return (
-        <Card className="break-inside-avoid mb-6">
+        <Card className='break-inside-avoid mb-6'>
             <CardHeader>Basic usage</CardHeader>
             <CardBody>
                 <List>
@@ -18,7 +18,7 @@ const Basic = () => {
                 </List>
             </CardBody>
         </Card>
-    )
-}
+    );
+};
 
 export default Basic;

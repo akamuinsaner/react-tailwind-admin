@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { twMerge } from 'tailwind-merge';
 import { styles } from './styles';
 
-export type Props = {
+export type RTFlexProps = {
     inline?: boolean;
     className?: string;
     style?: CSSProperties;
@@ -24,7 +24,7 @@ export type Props = {
         | 'stretch';
 };
 
-const Flex: FC<Props> = ({
+const Flex: FC<RTFlexProps> = ({
     inline,
     children,
     className,

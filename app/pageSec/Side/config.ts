@@ -20,6 +20,20 @@ export const config: Config[] = [
         icon: CalendarIcon,
         children: [
             {
+                name: 'Layout',
+                path: '/components/layout',
+                children: [
+                    {
+                        name: 'Flex',
+                        path: '/components/layout/flex',
+                    },
+                    {
+                        name: 'Columns',
+                        path: '/components/layout/columns',
+                    },
+                ],
+            },
+            {
                 name: 'Accordion',
                 path: '/components/accordion',
             },
