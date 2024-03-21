@@ -59,7 +59,7 @@ export const config: Config[] = [
                 children: [
                     {
                         name: 'Button',
-                        path: '/components/button',
+                        path: '/components/dataInput/button',
                     },
                     {
                         name: 'Checkbox',
