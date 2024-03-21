@@ -1,5 +1,5 @@
 'use client';
-import Border from '@/app/components/dataTable/Border';
+import Border from '@/app/components/dataDisplay/dataTable/Border';
 import classNames from 'classnames';
 import { CSSProperties, FC, memo, ReactNode, useContext } from 'react';
 import { twMerge } from 'tailwind-merge';

@@ -20,6 +20,96 @@ export const config: Config[] = [
         icon: CalendarIcon,
         children: [
             {
+                name: 'Display',
+                path: '/components/dataDisplay',
+                children: [
+                    {
+                        name: 'Accordion',
+                        path: '/components/dataDisplay/accordion',
+                    },
+                    {
+                        name: 'DataTable',
+                        path: '/components/dataDisplay/dataTable',
+                    },
+                    {
+                        name: 'Image',
+                        path: '/components/dataDisplay/image',
+                    },
+                    {
+                        name: 'List',
+                        path: '/components/dataDisplay/list',
+                    },
+                    {
+                        name: 'Stepper',
+                        path: '/components/dataDisplay/stepper',
+                    },
+                    {
+                        name: 'Table',
+                        path: '/components/dataDisplay/table',
+                    },
+                    {
+                        name: 'Tabs',
+                        path: '/components/dataDisplay/tabs',
+                    },
+                ],
+            },
+            {
+                name: 'Data Input',
+                path: '/components/dataInput',
+                children: [
+                    {
+                        name: 'Button',
+                        path: '/components/button',
+                    },
+                    {
+                        name: 'Checkbox',
+                        path: '/components/dataInput/checkbox',
+                    },
+                    {
+                        name: 'DatePicker',
+                        path: '/components/dataInput/datePicker',
+                    },
+                    {
+                        name: 'Input',
+                        path: '/components/dataInput/input',
+                    },
+                    {
+                        name: 'Radio',
+                        path: '/components/dataInput/radio',
+                    },
+                    {
+                        name: 'Select',
+                        path: '/components/dataInput/select',
+                    },
+                    {
+                        name: 'Slider',
+                        path: '/components/dataInput/slider',
+                    },
+                    {
+                        name: 'Switch',
+                        path: '/components/dataInput/switch',
+                    },
+                ],
+            },
+            {
+                name: 'Feedback',
+                path: '/components/feedback',
+                children: [
+                    {
+                        name: 'Alert',
+                        path: '/components/feedback/alert',
+                    },
+                    {
+                        name: 'Drawer',
+                        path: '/components/feedback/drawer',
+                    },
+                    {
+                        name: 'Modal',
+                        path: '/components/feedback/modal',
+                    },
+                ],
+            },
+            {
                 name: 'Layout',
                 path: '/components/layout',
                 children: [
@@ -42,84 +132,19 @@ export const config: Config[] = [
                 ],
             },
             {
-                name: 'Accordion',
-                path: '/components/accordion',
-            },
-            {
-                name: 'Alert',
-                path: '/components/alert',
-            },
-            {
-                name: 'Button',
-                path: '/components/button',
-            },
-            {
-                name: 'Checkbox',
-                path: '/components/checkbox',
-            },
-            {
-                name: 'DatePicker',
-                path: '/components/datePicker',
-            },
-            {
-                name: 'DataTable',
-                path: '/components/dataTable',
-            },
-            {
-                name: 'Drawer',
-                path: '/components/drawer',
-            },
-            {
-                name: 'Dropdown',
-                path: '/components/dropdown',
-            },
-            {
-                name: 'Input',
-                path: '/components/input',
-            },
-            {
-                name: 'Image',
-                path: '/components/image',
-            },
-            {
-                name: 'List',
-                path: '/components/list',
-            },
-            {
-                name: 'Modal',
-                path: '/components/modal',
-            },
-            {
-                name: 'Pagination',
-                path: '/components/pagination',
-            },
-            {
-                name: 'Radio',
-                path: '/components/radio',
-            },
-            {
-                name: 'Select',
-                path: '/components/select',
-            },
-            {
-                name: 'Slider',
-                path: '/components/slider',
-            },
-            {
-                name: 'Stepper',
-                path: '/components/stepper',
-            },
-            {
-                name: 'Switch',
-                path: '/components/switch',
-            },
-            {
-                name: 'Table',
-                path: '/components/table',
-            },
-            {
-                name: 'Tabs',
-                path: '/components/tabs',
+                name: 'Navigation',
+                path: '/components/navigation',
+                children: [
+                    {
+                        name: 'Dropdown',
+                        path: '/components/navigation/dropdown',
+                    },
+
+                    {
+                        name: 'Pagination',
+                        path: '/components/navigation/pagination',
+                    },
+                ],
             },
         ],
     },

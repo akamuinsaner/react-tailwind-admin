@@ -15,7 +15,7 @@ export type RTDividerStyles = {
 };
 
 export const styles: RTDividerStyles = {
-    base: 'flex clear-both w-full h-0 border-t border-mainborder self-stretch shrink-0',
+    base: 'flex clear-both w-full h-0 border-t border-mainBorder self-stretch shrink-0',
     'gap-small-x': 'mx-2',
     'gap-medium-x': 'mx-4',
     'gap-large-x': 'mx-6',
