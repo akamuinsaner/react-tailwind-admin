@@ -35,6 +35,10 @@ export const config: Config[] = [
                         name: 'Flex',
                         path: '/components/layout/flex',
                     },
+                    {
+                        name: 'Grid',
+                        path: '/components/layout/grid',
+                    },
                 ],
             },
             {
