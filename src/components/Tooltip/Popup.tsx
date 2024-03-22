@@ -60,7 +60,7 @@ const Popup: FC<RTPopupProps> = ({
         return twMerge(
             className,
             `transition-[transform, opacity] opacity-0 duration-75 
-            ease-linear overflow-hidden absolute z-50 shadow-xl`,
+            ease-linear overflow-hidden absolute z-50 shadow-[0_0_60px_rgba(0,0,0,0.3)]`,
             classNames({
                 'origin-top scale-y-0': placement.includes('bottom'),
                 'origin-bottom scale-y-0': placement.includes('top'),

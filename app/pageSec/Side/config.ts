@@ -40,6 +40,10 @@ export const config: Config[] = [
                         path: '/components/dataDisplay/list',
                     },
                     {
+                        name: 'Popover',
+                        path: '/components/dataDisplay/popover',
+                    },
+                    {
                         name: 'Stepper',
                         path: '/components/dataDisplay/stepper',
                     },
