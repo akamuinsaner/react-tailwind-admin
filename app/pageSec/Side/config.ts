@@ -51,6 +51,10 @@ export const config: Config[] = [
                         name: 'Tabs',
                         path: '/components/dataDisplay/tabs',
                     },
+                    {
+                        name: 'Timeline',
+                        path: '/components/dataDisplay/timeline',
+                    },
                 ],
             },
             {
