@@ -55,6 +55,10 @@ export const config: Config[] = [
                         name: 'Timeline',
                         path: '/components/dataDisplay/timeline',
                     },
+                    {
+                        name: 'Tooltip',
+                        path: '/components/dataDisplay/tooltip',
+                    },
                 ],
             },
             {
