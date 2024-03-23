@@ -1,10 +1,9 @@
 'use client';
+import Tooltip from '../Tooltip';
 import classNames from 'classnames';
 import {
     CSSProperties,
     FC,
-    SyntheticEvent,
-    useCallback,
     useEffect,
     useReducer,
     useRef,
@@ -143,37 +142,51 @@ const Slider: FC<RTSliderProps> = ({
                 ></div>
             </div>
             {range ? (
+                <Tooltip
+                    title={state.values[0]}
+                    placement='top'
+                    open={activeIndex === 0}
+                    arrow
+                >
+                    <div
+                        className={barClassName(0)}
+                        style={{ left: `${getPosition(0)}px` }}
+                        onMouseDown={(e: any) => {
+                            setActiveIndex(0);
+                            initialInfoRef.current = {
+                                index: 0,
+                                pageX: e.pageX,
+                                value: state.values[0],
+                                offsetLeft: e.target.offsetLeft,
+                            };
+                            document.addEventListener('mousemove', onMouseMove);
+                            document.addEventListener('mouseup', onMouseUp);
+                        }}
+                    ></div>
+                </Tooltip>
+            ) : null}
+            <Tooltip
+                title={state.values[1]}
+                placement='top'
+                open={activeIndex === 1}
+                arrow
+            >
                 <div
-                    className={barClassName(0)}
-                    style={{ left: `${getPosition(0)}px` }}
+                    className={barClassName(1)}
+                    style={{ left: `${getPosition(1)}px` }}
                     onMouseDown={(e: any) => {
-                        setActiveIndex(0);
+                        setActiveIndex(1);
                         initialInfoRef.current = {
-                            index: 0,
+                            index: 1,
                             pageX: e.pageX,
-                            value: state.values[0],
+                            value: state.values[1],
                             offsetLeft: e.target.offsetLeft,
                         };
                         document.addEventListener('mousemove', onMouseMove);
                         document.addEventListener('mouseup', onMouseUp);
                     }}
                 ></div>
-            ) : null}
-            <div
-                className={barClassName(1)}
-                style={{ left: `${getPosition(1)}px` }}
-                onMouseDown={(e: any) => {
-                    setActiveIndex(1);
-                    initialInfoRef.current = {
-                        index: 1,
-                        pageX: e.pageX,
-                        value: state.values[1],
-                        offsetLeft: e.target.offsetLeft,
-                    };
-                    document.addEventListener('mousemove', onMouseMove);
-                    document.addEventListener('mouseup', onMouseUp);
-                }}
-            ></div>
+            </Tooltip>
         </div>
     );
 };

@@ -48,17 +48,26 @@ const Popup: FC<RTPopupProps> = ({
     trigger,
 }) => {
     const popRef = useRef<HTMLDivElement>(null);
-    const [popupStyle, setPopupStyle] = useState<CSSProperties>({});
-    // const [insetData, setInsetData] = useState<{
-    //     top: number | 'auto';
-    //     right: number | 'auto';
-    //     bottom: number | 'auto';
-    //     left: number | 'auto';
-    // }>(null);
+    // const [popupStyle, setPopupStyle] = useState<CSSProperties>({});
+    const [insetData, setInsetData] = useState<{
+        top: number | 'auto';
+        right: number | 'auto';
+        bottom: number | 'auto';
+        left: number | 'auto';
+    }>(null);
+
+    const insetStyle = useMemo(() => {
+        if (!insetData) return '';
+        return `
+        ${insetData.top === 'auto' ? 'auto' : `${insetData.top}px`}
+        ${insetData.right === 'auto' ? 'auto' : `${insetData.right}px`}
+        ${insetData.bottom === 'auto' ? 'auto' : `${insetData.bottom}px`}
+        ${insetData.left === 'auto' ? 'auto' : `${insetData.left}px`}
+        `;
+    }, [insetData]);
 
     const baseClassName = useMemo(() => {
         return twMerge(
-            className,
             `transition-[transform, opacity] opacity-0 duration-75 
             ease-linear overflow-hidden absolute z-50 shadow-[0_0_60px_rgba(0,0,0,0.3)]`,
             classNames({
@@ -67,6 +76,7 @@ const Popup: FC<RTPopupProps> = ({
                 'origin-left scale-x-0': placement.includes('right'),
                 'origin-right scale-x-0': placement.includes('left'),
             }),
+            className,
         );
     }, [className, placement]);
     const showClassName = useMemo(() => {
@@ -80,10 +90,13 @@ const Popup: FC<RTPopupProps> = ({
             }),
         );
     }, [visibleClassName, placement]);
+
     const [tempWrapper, setTempWrapper] = useState<HTMLElement>(null);
     const [boxClassName, setBoxClassName] = useState<string>(baseClassName);
+
     const onTransitionEnd = (e: SyntheticEvent) => {
         if (!!wrapper) {
+            document.addEventListener('click', onClose);
         } else {
             setTempWrapper(null);
         }
@@ -97,7 +110,6 @@ const Popup: FC<RTPopupProps> = ({
     useEffect(() => {
         if (tempWrapper) {
             setBoxClassName(twMerge(boxClassName, showClassName));
-            document.addEventListener('click', onClose);
         }
     }, [tempWrapper]);
 
@@ -107,9 +119,13 @@ const Popup: FC<RTPopupProps> = ({
     }, [wrapper]);
 
     const computeStyle = () => {
-        setPopupStyle(computePlacementStyle(anchor, placement, popRef.current));
-        // setInsetData(getInsetData(anchor, placement, popRef.current));
+        // setPopupStyle(computePlacementStyle(anchor, placement, popRef.current));
+        setInsetData(getInsetData(anchor, placement, popRef.current));
     };
+
+    useEffect(() => {
+        computeStyle();
+    }, [anchor?.offsetLeft, anchor?.offsetTop]);
 
     useEffect(() => {
         computeStyle();
@@ -122,6 +138,7 @@ const Popup: FC<RTPopupProps> = ({
     }, [tempWrapper]);
 
     if (!tempWrapper) return null;
+
     return createPortal(
         <div
             ref={popRef}
@@ -134,7 +151,7 @@ const Popup: FC<RTPopupProps> = ({
                 }
             }}
             style={{
-                ...popupStyle,
+                inset: insetStyle,
                 ...style,
             }}
         >

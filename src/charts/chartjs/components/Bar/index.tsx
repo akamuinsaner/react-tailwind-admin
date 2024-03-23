@@ -1,16 +1,24 @@
 'use client';
 import { FC, useEffect, useMemo, useRef } from 'react';
-import Chart, { Point, TitleOptions } from 'chart.js/auto';
+import Chart, { LegendOptions, Point, TitleOptions } from 'chart.js/auto';
 import { styles } from './styles';
 import { TRBL } from 'chart.js/dist/types/geometric';
+import useTitle from '../../hooks/useTitle';
+import useSubtitle from '../../hooks/useSubtitle';
 
 export type RTChartJSBarChartProps = {
-    title?: TitleOptions;
-    subtitle?: TitleOptions;
+    title?: Partial<TitleOptions>;
+    subtitle?: Partial<TitleOptions>;
+    legend?: LegendOptions<'bar'>;
     padding?: Partial<TRBL> | number | Point;
 };
 
-const BarChart: FC<RTChartJSBarChartProps> = ({ padding, title, subtitle }) => {
+const BarChart: FC<RTChartJSBarChartProps> = ({
+    padding,
+    title,
+    subtitle,
+    legend,
+}) => {
     const chartRef = useRef(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -21,17 +29,15 @@ const BarChart: FC<RTChartJSBarChartProps> = ({ padding, title, subtitle }) => {
         return layout;
     }, [padding]);
 
-    const titleOptions = useMemo(() => {
-        if (title) return title;
-        return null;
-    }, [title]);
+    const titleOptions = useTitle({ title });
+    const subtitleOptions = useSubtitle({ subtitle });
 
-    const subtitleOptions = useMemo(() => {
-        if (subtitle) return subtitle;
-        return null;
-    }, [subtitle]);
+    const legendOptions = useMemo(() => {
+        return legend;
+    }, [legend]);
 
     useEffect(() => {
+        console.log(titleOptions);
         const data = [
             { year: 2010, count: 10 },
             { year: 2011, count: 20 },
@@ -62,6 +68,7 @@ const BarChart: FC<RTChartJSBarChartProps> = ({ padding, title, subtitle }) => {
                 plugins: {
                     title: titleOptions,
                     subtitle: subtitleOptions,
+                    legend: legendOptions,
                 },
             },
         });
@@ -70,7 +77,7 @@ const BarChart: FC<RTChartJSBarChartProps> = ({ padding, title, subtitle }) => {
                 chartRef.current.destroy();
             }
         };
-    }, [layoutOptions]);
+    }, [layoutOptions, titleOptions, subtitleOptions]);
 
     return (
         <div className=''>
