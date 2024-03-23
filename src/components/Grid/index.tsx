@@ -85,18 +85,19 @@ const Grid: FC<RTGridProps> = ({
             [wrapperColGapClassStr]: wrapper,
             [wrapperRowGapClassStr]: wrapper,
         }),
-        className,
     );
     const contentClassName = twMerge(styles.inner.content, className);
+
+    if (wrapper) {
+        return (
+            <div className={twMerge(gridClassName, className)}>{children}</div>
+        );
+    }
     return (
         <div className={gridClassName}>
-            {wrapper ? (
-                children
-            ) : (
-                <div className={contentClassName} style={style}>
-                    {children}
-                </div>
-            )}
+            <div className={contentClassName} style={style}>
+                {children}
+            </div>
         </div>
     );
 };
