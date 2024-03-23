@@ -161,20 +161,31 @@ export const config: Config[] = [
         ],
     },
     {
+        name: 'Animation',
+        path: '/animation',
+        icon: ChartBarIcon,
+        children: [
+            {
+                name: 'Fade',
+                path: '/animation/Fade',
+            },
+        ],
+    },
+    {
         name: 'Charts',
         path: '/charts',
         icon: ChartBarIcon,
         children: [
             {
-                name: 'chartjs',
+                name: 'Chartjs',
                 path: '/charts/chartjs',
                 children: [
                     {
-                        name: 'bar',
+                        name: 'Bar',
                         path: '/charts/chartjs/bar',
                     },
                     {
-                        name: 'line',
+                        name: 'Line',
                         path: '/charts/chartjs/line',
                     },
                 ],
