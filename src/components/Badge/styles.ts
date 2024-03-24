@@ -1,5 +1,8 @@
 export type RTBadgeStyles = {
-    base: string;
+    wrapper: {
+        base: string;
+        alone: string;
+    };
     sup: {
         base: string;
         count: string;
@@ -15,11 +18,15 @@ export type RTBadgeStyles = {
         left: string;
         center: string;
         right: string;
+        alone: string;
     };
 };
 
 export const styles: RTBadgeStyles = {
-    base: 'relative p-0 m-0 leading-none',
+    wrapper: {
+        base: 'relative p-0 m-0 leading-none',
+        alone: 'flex items-center justify-center',
+    },
     sup: {
         base: 'absolute rounded-full p-1 z-[1] -translate-x-1/2 -translate-y-1/2 text-xs',
         count: 'h-6 min-w-6 border-2 border-white text-white flex items-center justify-center',
@@ -35,5 +42,6 @@ export const styles: RTBadgeStyles = {
         left: 'left-0',
         center: 'left-1/2',
         right: 'left-full',
+        alone: 'relative  -translate-x-0 -translate-y-0 left-0 top-0 shrink-0',
     },
 };

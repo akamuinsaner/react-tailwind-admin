@@ -33,6 +33,12 @@ const Badge = forwardRef(
         }: RTBadgeProps,
         ref: LegacyRef<HTMLSpanElement>,
     ) => {
+        const wrapperClassName = twMerge(
+            styles.wrapper.base,
+            classNames({
+                [styles.wrapper.alone]: !children,
+            }),
+        );
         const computedClassName = twMerge(
             styles.sup.base,
             styles.sup[color],
@@ -40,11 +46,12 @@ const Badge = forwardRef(
             styles.sup[horizontal],
             classNames({
                 [styles.sup.count]: count !== undefined,
+                [styles.sup.alone]: !children,
             }),
             className,
         );
         return (
-            <span ref={ref} className={styles.base}>
+            <span ref={ref} className={wrapperClassName}>
                 {children}
                 <span style={style} className={computedClassName}>
                     {count > maxCount ? `${maxCount}+` : count}

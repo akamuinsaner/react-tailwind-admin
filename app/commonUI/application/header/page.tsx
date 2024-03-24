@@ -2,6 +2,7 @@ import Flex from '@/src/components/Flex';
 import Simple from './Simple';
 import NavBtn from './NavBtn';
 import WithDrawer from './Drawer';
+import Search from './Search';
 
 const HeaderPage = () => {
     return (
@@ -9,6 +10,7 @@ const HeaderPage = () => {
             <Simple />
             <NavBtn />
             <WithDrawer />
+            <Search />
         </Flex>
     );
 };
