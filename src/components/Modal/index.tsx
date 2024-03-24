@@ -16,17 +16,17 @@ export type RTModalProps = {
     children?: ReactNode;
     open?: boolean;
     onClose?: () => void;
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
     fullWidth?: boolean;
     closable?: boolean;
 }
 
 const sizeMap = {
-    'xs': 'w-[450px]',
-    'sm': 'w-[600px]',
-    'md': 'w-[900px]',
-    'lg': 'w-[1200px]',
-    'xl': 'w-[1800px]',
+    sm: 'w-[400px]',
+    md: 'w-[480px]',
+    lg: 'w-[720px]',
+    xl: 'w-[960px]',
+    '2xl': 'w-[1280px]',
 }
 
 const ModalContainer: FC<RTModalProps> = ({

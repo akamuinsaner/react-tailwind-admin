@@ -10,33 +10,38 @@ import classNames from 'classnames';
 
 export type RTModalConfirmProps = {
     title: ReactNode;
-    content: ReactNode,
-    icon?: ReactNode,
+    content: ReactNode;
+    icon?: ReactNode;
     confirmText?: ReactNode;
     closeText?: ReactNode;
     onConfirm?: () => void | Promise<any>;
     onClose?: () => void;
-}
+};
 
-export type RTConfirmModalType = 'confirm' | 'success' | 'info' | 'warning' | 'danger';
+export type RTConfirmModalType =
+    | 'confirm'
+    | 'success'
+    | 'info'
+    | 'warning'
+    | 'danger';
 
-type RTModalMethod = (params: RTModalConfirmProps) => void
+type RTModalMethod = (params: RTModalConfirmProps) => void;
 
 export class confirm {
-    static confirm: RTModalMethod
-    static info: RTModalMethod
-    static warning: RTModalMethod
-    static success: RTModalMethod
-    static danger: RTModalMethod
+    static confirm: RTModalMethod;
+    static info: RTModalMethod;
+    static warning: RTModalMethod;
+    static success: RTModalMethod;
+    static danger: RTModalMethod;
 }
-
 
 const ConfirmModal = () => {
     const [open, setOpen] = useState<boolean>(false);
-    const [confirmInfo, setConfirmInfo] = useState<RTModalConfirmProps & {
-        type: RTConfirmModalType
-    }>(null);
-
+    const [confirmInfo, setConfirmInfo] = useState<
+        RTModalConfirmProps & {
+            type: RTConfirmModalType;
+        }
+    >(null);
 
     const generateConfirm = (type: RTConfirmModalType) => {
         return (params: RTModalConfirmProps) => {
@@ -44,9 +49,9 @@ const ConfirmModal = () => {
             setConfirmInfo({
                 ...params,
                 type,
-            })
-        }
-    }
+            });
+        };
+    };
 
     useEffect(() => {
         confirm.confirm = generateConfirm('confirm');
@@ -54,7 +59,7 @@ const ConfirmModal = () => {
         confirm.info = generateConfirm('info');
         confirm.warning = generateConfirm('warning');
         confirm.danger = generateConfirm('danger');
-    })
+    });
 
     if (!confirmInfo) return null;
 
@@ -72,21 +77,20 @@ const ConfirmModal = () => {
     const onCancel = () => {
         onClose();
         setOpen(false);
-    }
+    };
 
     const onOk = () => {
         onConfirm();
         onCancel();
-    }
+    };
 
-    const iconClassName = twMerge('h-8 w-8 mr-3', classNames(`text-${type === 'confirm' ? 'primary' : type}`))
+    const iconClassName = twMerge(
+        'h-8 w-8 mr-3',
+        classNames(`text-${type === 'confirm' ? 'primary' : type}`),
+    );
 
     return (
-        <Modal
-            open={open}
-            onClose={onCancel}
-            size="xs"
-        >
+        <Modal open={open} onClose={onCancel} size='md'>
             <ModalHeader>
                 <div className={iconClassName}>
                     {icon || <ExclamationCircleIcon />}
@@ -95,18 +99,22 @@ const ConfirmModal = () => {
             </ModalHeader>
             <ModalBody>{content}</ModalBody>
             <ModalFooter>
-                {type === 'confirm' ? <Button onClick={onCancel}>{closeText || 'Cancel'}</Button> : ''}
+                {type === 'confirm' ? (
+                    <Button onClick={onCancel}>{closeText || 'Cancel'}</Button>
+                ) : (
+                    ''
+                )}
                 <Button onClick={onOk}>{confirmText || 'Ok'}</Button>
             </ModalFooter>
         </Modal>
-    )
-}
+    );
+};
 
-export const ConfirmModalProvider = ({
-    children
-}: { children: any }) => {
-    return <>
-        {children}
-        <ConfirmModal />
-    </>
-}
+export const ConfirmModalProvider = ({ children }: { children: any }) => {
+    return (
+        <>
+            {children}
+            <ConfirmModal />
+        </>
+    );
+};
