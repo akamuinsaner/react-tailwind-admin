@@ -5,8 +5,8 @@ export const reducer = (state: RTDropdownState, action: RTDropdownAction<any>): 
     switch(action.type) {
         case EActions['set-anchor']:
             return { ...state, anchor: action.value };
-        case EActions['set-active']:
-            return { ...state, active: action.value };
+        case EActions['set-wrapper']:
+            return { ...state, wrapper: action.value };
         default:
             return state;
     }

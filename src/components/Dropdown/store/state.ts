@@ -1,9 +1,9 @@
 export type RTDropdownState = {
     anchor: HTMLElement;
-    active: boolean;
+    wrapper: HTMLElement;
 }
 
 export const initialState: RTDropdownState = {
     anchor: null,
-    active: false,
+    wrapper: null,
 }

@@ -1,15 +1,17 @@
-import { RTPlacement } from "@/src/types/placement";
-import { createContext } from "react";
+import { RTPlacement } from '@/src/types/placement';
+import { createContext, MutableRefObject, SyntheticEvent } from 'react';
 import { RTDropdownProps } from './index';
 
 export type RTDropDownContext = {
     anchor: HTMLElement;
-    active: boolean;
+    wrapper: HTMLElement;
     setAnchor: (anchor: HTMLElement) => void;
-    setActive: (open: boolean, trigger?: RTDropdownProps["trigger"]) => void;
+    setWrapper: (e: SyntheticEvent) => void;
+    removeWrapper: () => void;
     placement: RTPlacement;
-    trigger: RTDropdownProps["trigger"];
+    trigger: RTDropdownProps['trigger'];
     arrow: boolean;
-}
+    leaveTimerRef: MutableRefObject<NodeJS.Timeout>;
+};
 
 export const DropDownContext = createContext<RTDropDownContext>(null);
