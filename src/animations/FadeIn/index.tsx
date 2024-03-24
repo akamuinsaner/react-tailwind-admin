@@ -1,26 +1,22 @@
 'use client';
-import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
+import { ReactElement } from 'react';
+import Motion, { RTMotionTrigger } from '../Motion';
 
-const FadeIn = ({ children }: { children: ReactNode }) => {
+const FadeIn = ({
+    children,
+    trigger = 'auto',
+}: {
+    children: ReactElement;
+    trigger?: RTMotionTrigger;
+}) => {
     return (
-        <motion.div
+        <Motion
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{
-                repeat: Infinity,
-                duration: 2,
-            }}
-            whileHover={{
-                opacity: [0, 1],
-                transition: {
-                    repeat: Infinity,
-                    duration: 2,
-                },
-            }}
+            trigger={trigger}
         >
             {children}
-        </motion.div>
+        </Motion>
     );
 };
 

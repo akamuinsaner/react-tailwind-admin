@@ -1,11 +1,12 @@
 import FadeInComp from './FadeInComp';
 import Columns from '@/src/components/Columns';
+import Flex from '@/src/components/Flex';
 
 const FadePage = () => {
     return (
-        <Columns count={{ default: 1, xl: 2 }} gap='medium' space='medium'>
+        <Flex direction='column' gap='medium'>
             <FadeInComp />
-        </Columns>
+        </Flex>
     );
 };
 

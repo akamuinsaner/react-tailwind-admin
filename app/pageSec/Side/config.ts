@@ -159,7 +159,10 @@ export const config: Config[] = [
                         name: 'Dropdown',
                         path: '/components/navigation/dropdown',
                     },
-
+                    {
+                        name: 'Segment',
+                        path: '/components/navigation/segment',
+                    },
                     {
                         name: 'Pagination',
                         path: '/components/navigation/pagination',
@@ -180,6 +183,10 @@ export const config: Config[] = [
                     {
                         name: 'Header',
                         path: '/commonUI/application/header',
+                    },
+                    {
+                        name: 'Footer',
+                        path: '/commonUI/application/footer',
                     },
                 ],
             },

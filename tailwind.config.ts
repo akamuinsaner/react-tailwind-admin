@@ -67,6 +67,11 @@ const config: Config = {
                 top: 'top',
             },
             colors: {},
+            minHeight: {
+                'rt-large': '48px',
+                'rt-medium': '40px',
+                'rt-small': '32px',
+            },
             height: {
                 'rt-large': '48px',
                 'rt-medium': '40px',
