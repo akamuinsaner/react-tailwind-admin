@@ -1,3 +1,4 @@
+'use client';
 import Card from '@/src/components/Card';
 import CardHeader from '@/src/components/Card/CardHeader';
 import CardBody from '@/src/components/Card/CardBody';
@@ -11,40 +12,46 @@ import Avatar from '@/src/components/Avatar';
 import Link from 'next/link';
 import Divider from '@/src/components/Divider';
 import Tooltip from '@/src/components/Tooltip';
-import Dropdown from '@/src/components/Dropdown';
-import DropdownAnchor from '@/src/components/Dropdown/DropdownAnchor';
-import DropdownBox from '@/src/components/Dropdown/DropdownBox';
 import Box from '@/src/components/Box';
-import DropdownItem from '@/src/components/Dropdown/DropdownItem';
+import { useState } from 'react';
+import Drawer from '@/src/components/Drawer';
+import ListItem from '@/src/components/List/ListItem';
+import List from '@/src/components/List';
 
-const NavBtn = () => {
+const WithDrawer = () => {
+    const [open, setOpen] = useState<boolean>(false);
     return (
         <Card>
-            <CardHeader>Responsive with Nav Buttons</CardHeader>
+            <CardHeader>Responsive with Drawer</CardHeader>
             <CardBody>
                 <Flex align='center' justify='center' className='h-40'>
                     <NavBar className='relative'>
-                        <Flex className='mr-auto' align='center' gap='medium'>
-                            <Box className='block xl:hidden'>
-                                <Dropdown>
-                                    <DropdownAnchor>
-                                        <IconButton>
-                                            <Bars3Icon />
-                                        </IconButton>
-                                    </DropdownAnchor>
-                                    <DropdownBox>
-                                        <DropdownItem>Home</DropdownItem>
-                                        <DropdownItem>Products</DropdownItem>
-                                        <DropdownItem>Join Us</DropdownItem>
-                                        <DropdownItem>About</DropdownItem>
-                                    </DropdownBox>
-                                </Dropdown>
-                            </Box>
-                            <IconButton className='hidden xl:block'>
-                                <Bars3Icon />
-                            </IconButton>
-                            <Text size='h5'>RTADMIN</Text>
-                        </Flex>
+                        <Drawer
+                            open={open}
+                            placement='left'
+                            closable
+                            onClose={() => setOpen(false)}
+                            className='w-64'
+                        >
+                            <List size='large' className='mt-10'>
+                                <ListItem>Home</ListItem>
+                                <ListItem>Products</ListItem>
+                                <ListItem>Join Us</ListItem>
+                                <ListItem>About</ListItem>
+                            </List>
+                        </Drawer>
+                        <IconButton
+                            onClick={() => setOpen(true)}
+                            className='mr-4 block xl:hidden'
+                        >
+                            <Bars3Icon />
+                        </IconButton>
+                        <IconButton className='mr-4 hidden xl:block'>
+                            <Bars3Icon />
+                        </IconButton>
+                        <Text size='h5' className='mx-auto xl:mr-auto xl:ml-0'>
+                            RTADMIN
+                        </Text>
                         <Flex align='center' className='mr-24 hidden xl:flex'>
                             <Link href='#'>Home</Link>
                             <Divider vertical />
@@ -74,4 +81,4 @@ const NavBtn = () => {
     );
 };
 
-export default NavBtn;
+export default WithDrawer;

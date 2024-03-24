@@ -7,6 +7,7 @@ import {
     useCallback,
     forwardRef,
     LegacyRef,
+    HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 import { twMerge } from 'tailwind-merge';
@@ -21,11 +22,20 @@ export type RTAvatarProps = {
     alt?: string;
     children?: ReactNode;
     title?: string;
-};
+} & HTMLAttributes<HTMLDivElement>;
 
 const Avatar: FC<RTAvatarProps> = forwardRef(
     (
-        { className, style, size = 'medium', src, alt, children, title },
+        {
+            className,
+            style,
+            size = 'medium',
+            src,
+            alt,
+            children,
+            title,
+            ...nativeProps
+        },
         ref: LegacyRef<HTMLDivElement>,
     ) => {
         const baseClassNames = twMerge(
@@ -54,6 +64,7 @@ const Avatar: FC<RTAvatarProps> = forwardRef(
                 className={baseClassNames}
                 title={title}
                 ref={ref}
+                {...nativeProps}
             >
                 {getContent()}
             </div>
