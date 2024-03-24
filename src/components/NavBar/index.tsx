@@ -8,27 +8,19 @@ import { styles } from './styles';
 export type Props = {
     className?: string;
     style?: CSSProperties;
-    children?: ReactNode
-}
+    children?: ReactNode;
+};
 
-const NavBar: FC<Props> = ({
-    children,
-    className,
-    style,
-}) => {
-
-    const [state, dispatch] = useReducer(reducer, initialState)
+const NavBar: FC<Props> = ({ children, className, style }) => {
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     const navClassNames = twMerge(styles.base, className);
 
     return (
-        <nav
-            style={style}
-            className={navClassNames}
-        >
+        <nav style={style} className={navClassNames}>
             {children}
         </nav>
-    )
-}
+    );
+};
 
 export default memo(NavBar);

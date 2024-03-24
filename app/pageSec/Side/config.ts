@@ -1,5 +1,9 @@
 import HomeIcon from '@heroicons/react/24/solid/HomeIcon';
-import { CalendarIcon, ChartBarIcon } from '@heroicons/react/24/solid';
+import {
+    CalendarIcon,
+    ChartBarIcon,
+    Squares2X2Icon,
+} from '@heroicons/react/24/solid';
 
 export type Config = {
     name: string;
@@ -155,6 +159,23 @@ export const config: Config[] = [
                     {
                         name: 'Pagination',
                         path: '/components/navigation/pagination',
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        name: 'Common UI',
+        path: '/commonUI',
+        icon: Squares2X2Icon,
+        children: [
+            {
+                name: 'Application',
+                path: '/commonUI/application',
+                children: [
+                    {
+                        name: 'Header',
+                        path: '/commonUI/application/header',
                     },
                 ],
             },
