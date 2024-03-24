@@ -61,6 +61,6 @@ export const styles: RTButtonStyles = {
         medium: '[&>*]:h-7 [&>*]:w-7',
         small: '[&>*]:h-5 [&>*]:w-5',
     },
-    group: 'inline-flex items-center overflow-hidden',
+    group: 'inline-flex items-center overflow-hidden shrink-0',
     icon: 'outline-none inline-flex items-center justify-center cursor-pointer py-1.5 px-1.5 rounded',
 };

@@ -58,6 +58,7 @@ const ButtonGroup: FC<RTButtonProps> = forwardRef(
                         className: twMerge(
                             child?.props.className,
                             '!rounded-l-none',
+                            '-ml-px'
                         ),
                     });
                 }
@@ -65,7 +66,7 @@ const ButtonGroup: FC<RTButtonProps> = forwardRef(
                 return cloneElement(child, {
                     ...props,
                     ...child.props,
-                    className: twMerge(child?.props.className, '!rounded-none'),
+                    className: twMerge(child?.props.className, '!rounded-none', '-ml-px'),
                 });
             });
         }

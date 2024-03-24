@@ -32,6 +32,10 @@ export const config: Config[] = [
                         path: '/components/dataDisplay/accordion',
                     },
                     {
+                        name: 'Badge',
+                        path: '/components/dataDisplay/badge',
+                    },
+                    {
                         name: 'DataTable',
                         path: '/components/dataDisplay/dataTable',
                     },
