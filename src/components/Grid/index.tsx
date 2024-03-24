@@ -66,13 +66,13 @@ const Grid: FC<RTGridProps> = ({
         return styles.inner[`col-gap-${colGap}`];
     }, [colGap]);
     const rowGapClassStr = useMemo(() => {
-        return styles.inner[`row-gap-${colGap}`];
+        return styles.inner[`row-gap-${rowGap}`];
     }, [rowGap]);
     const wrapperColGapClassStr = useMemo(() => {
         return styles.wrapper[`col-gap-${colGap}`];
     }, [colGap]);
     const wrapperRowGapClassStr = useMemo(() => {
-        return styles.wrapper[`row-gap-${colGap}`];
+        return styles.wrapper[`row-gap-${rowGap}`];
     }, [rowGap]);
     const gridClassName = twMerge(
         styles.inner.base,
