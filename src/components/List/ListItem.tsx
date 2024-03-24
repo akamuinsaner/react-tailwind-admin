@@ -1,41 +1,52 @@
-'use client'
-import { CSSProperties, FC, ReactNode, memo, MouseEventHandler } from 'react';
+'use client';
+import {
+    CSSProperties,
+    FC,
+    ReactNode,
+    forwardRef,
+    LegacyRef,
+    HTMLAttributes,
+    useContext,
+} from 'react';
 import classNames from 'classnames';
 import { twMerge } from 'tailwind-merge';
 import { styles } from './styles';
+import { ListContext } from './context';
 
-export type Props = {
+export type RTListItemProps = {
     className?: string;
     style?: CSSProperties;
     children?: ReactNode;
     active?: boolean;
-    onClick?: MouseEventHandler<HTMLElement>
-}
+} & HTMLAttributes<HTMLLIElement>;
 
-const ListItem: FC<Props> = ({
-    children,
-    className,
-    style,
-    active,
-    onClick
-}) => {
-    const computedClassNames = twMerge(
-        styles.item,
-        classNames({
-            'text-primary bg-primary/10 hover:bg-primary/10': active,
-        }),
-        className);
+const ListItem: FC<RTListItemProps> = forwardRef(
+    (
+        { children, className, style, active, ...nativeProps },
+        ref: LegacyRef<HTMLLIElement>,
+    ) => {
+        const context = useContext(ListContext);
+        const computedClassNames = twMerge(
+            styles.item.base,
+            [styles.item[context.size]],
+            classNames({
+                [styles.item.active]: active,
+                [styles.item.divider]: context.divider,
+            }),
+            className,
+        );
 
-    return (
-        <li onClick={onClick}>
-            <div
+        return (
+            <li
                 style={style}
                 className={computedClassNames}
+                ref={ref}
+                {...nativeProps}
             >
                 {children}
-            </div>
-        </li>
-    )
-}
+            </li>
+        );
+    },
+);
 
-export default memo(ListItem);
+export default ListItem;

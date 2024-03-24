@@ -1,39 +1,56 @@
-'use client'
-import { reducer, initialState } from './reducer';
-import { useReducer, CSSProperties, FC, ReactNode, memo } from 'react';
+'use client';
+import {
+    useReducer,
+    CSSProperties,
+    FC,
+    ReactNode,
+    memo,
+    forwardRef,
+    LegacyRef,
+    HTMLAttributes,
+} from 'react';
 import classNames from 'classnames';
 import { twMerge } from 'tailwind-merge';
+import { styles } from './styles';
+import { ListContext, RTListContext } from './context';
+import { RTSize } from '@/src/types/size';
 
-export type Props = {
+export type RTListProps = {
     className?: string;
     style?: CSSProperties;
     children?: ReactNode;
-    densed?: boolean;
+    size?: RTSize;
     divider?: boolean;
-}
+} & HTMLAttributes<HTMLUListElement>;
 
-const Text: FC<Props> = ({
-    children,
-    className,
-    style,
-    densed,
-    divider,
-}) => {
-    const [state, dispatch] = useReducer(reducer, initialState)
+const List: FC<RTListProps> = forwardRef(
+    (
+        { children, className, style, divider, size, ...nativeProps },
+        ref: LegacyRef<HTMLUListElement>,
+    ) => {
+        const computedClassNames = twMerge(
+            styles.base,
+            className,
+        );
 
-    const computedClassNames = twMerge(state.styles.base, classNames({
-        '[&>li>div]:min-h-10': densed,
-        '[&>li]:border-t [&>li]:border-mainBorder': divider
-    }), className);
+        const contextValue: RTListContext = {
+            divider,
+            size
+        };
 
-    return (
-        <ul
-            style={style}
-            className={computedClassNames}
-        >
-            {children}
-        </ul>
-    )
-}
+        return (
+            <ListContext.Provider value={contextValue}>
+                <ul
+                    style={style}
+                    className={computedClassNames}
+                    ref={ref}
+                    {...nativeProps}
+                >
+                    {children}
+                </ul>
+            </ListContext.Provider>
+        );
+    },
+);
 
-export default memo(Text);
+export default List;
