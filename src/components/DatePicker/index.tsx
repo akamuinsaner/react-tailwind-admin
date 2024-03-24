@@ -1,8 +1,13 @@
-'use client'
+'use client';
 import { reducer, initialState } from './store';
 import {
-    useReducer, CSSProperties, FC, memo,
-    useEffect, useRef, useMemo
+    useReducer,
+    CSSProperties,
+    FC,
+    memo,
+    useEffect,
+    useRef,
+    useMemo,
 } from 'react';
 import classNames from 'classnames';
 import { styles } from './styles';
@@ -21,9 +26,9 @@ import {
     setWrapperAction,
 } from './store';
 import { createWrapperAndAppendToBody } from '../Modal/utils';
-import DatePickerBox from './DatePickerBox';
 import DatePickerPanel from './DatePickerPanel';
 import { Dayjs } from 'dayjs';
+import Popup from '../Tooltip/Popup';
 
 export type RTDatePickerProps = {
     className?: string;
@@ -34,7 +39,7 @@ export type RTDatePickerProps = {
     onChange?: (value: Dayjs, valueStr: string) => void;
     variant?: RTVariant;
     status?: RTSeverity;
-    disabled?: boolean
+    disabled?: boolean;
     defaultValue?: Dayjs;
     search?: boolean;
     onSearch?: (search: string) => void;
@@ -63,7 +68,6 @@ const DatePicker: FC<RTDatePickerProps> = ({
     maxDate,
 }) => {
     const wrapperIdRef = useRef(uuidV4());
-    const timerRef = useRef<NodeJS.Timeout>(null);
     const anchorRef = useRef<HTMLDivElement>(null);
     const [state, dispatch] = useReducer(reducer, initialState);
     const { wrapper, anchor, searchValue, hover } = state;
@@ -74,51 +78,64 @@ const DatePicker: FC<RTDatePickerProps> = ({
     }, [wrapper, state.value, placeholder]);
 
     const displayIcon = useMemo(() => {
-        if (hover && state.value && !disabled) return <XCircleIcon onClick={() => {
-            setValue(null);
-            if (onChange) onChange(null, '');
-        }} />;
-        return <CalendarIcon />
+        if (hover && state.value && !disabled)
+            return (
+                <XCircleIcon
+                    onClick={() => {
+                        setValue(null);
+                        if (onChange) onChange(null, '');
+                    }}
+                />
+            );
+        return <CalendarIcon />;
     }, [hover, state.value, disabled]);
 
     const display = useMemo(() => {
         if (searchValue) return searchValue;
         if (wrapper) return '';
         if (!state.value) return mask || '';
-        return state.value.format(format)
+        return state.value.format(format);
     }, [searchValue, wrapper, state.value, mask]);
 
-    const computedClassNames = twMerge(styles.box.base, classNames({
-        [styles.box[variant]]: true,
-        [styles.box.underlinedFocus]: variant === 'underlined' && wrapper,
-        [styles.box[status]]: !disabled,
-        [styles.box.focused]: wrapper,
-        [styles.box[size]]: true,
-        [styles.box.disabled]: disabled
-    }), className);
+    const computedClassNames = twMerge(
+        styles.box.base,
+        classNames({
+            [styles.box[variant]]: true,
+            [styles.box.underlinedFocus]: variant === 'underlined' && wrapper,
+            [styles.box[status]]: !disabled,
+            [styles.box.focused]: wrapper,
+            [styles.box[size]]: true,
+            [styles.box.disabled]: disabled,
+        }),
+        className,
+    );
 
-    const iconClassNames = twMerge(styles.icon.base, classNames({
-        [styles.icon[size]]: true,
-    }));
+    const iconClassNames = twMerge(
+        styles.icon.base,
+        classNames({
+            [styles.icon[size]]: true,
+        }),
+    );
 
     const setHover = (hover: boolean) => dispatch(setHoverAction(hover));
     const setValue = (curValue: Dayjs) => {
-        if (onChange) onChange(curValue, curValue?.format(format) || '')
+        if (onChange) onChange(curValue, curValue?.format(format) || '');
         if (!!value) return;
-        dispatch(setValueAction(curValue))
+        dispatch(setValueAction(curValue));
     };
     const setWrapper = () => {
         const wrapperId = wrapperIdRef.current;
         let element = document.getElementById(wrapperId) as HTMLDivElement;
         if (!element) element = createWrapperAndAppendToBody(wrapperId);
-        dispatch(setWrapperAction(element))
+        dispatch(setWrapperAction(element));
     };
     const removeWrapper = () => dispatch(setWrapperAction(null));
-    const setAnchor = (anchor: HTMLDivElement) => dispatch(setAnchorAction(anchor));
+    const setAnchor = (anchor: HTMLDivElement) =>
+        dispatch(setAnchorAction(anchor));
     const onInputChange = (e: any) => {
         dispatch(setSearchAction(e.currentTarget.value));
         if (onSearch) onSearch(e.currentTarget.value);
-    }
+    };
 
     useEffect(() => {
         if (value !== undefined) dispatch(setValueAction(value));
@@ -137,20 +154,12 @@ const DatePicker: FC<RTDatePickerProps> = ({
                 ref={anchorRef}
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
-                onClick={ev => {
-                    ev.stopPropagation();
-                    ev.preventDefault();
-                    ev.nativeEvent.stopImmediatePropagation();
-                }}
+                onClick={setWrapper}
             >
                 <div className={styles.wrapper}>
                     <input
                         readOnly={!search}
                         placeholder={showHolder}
-                        onFocus={setWrapper}
-                        // onBlur={() => {
-                        //     timerRef.current = setTimeout(removeWrapper, 100);
-                        // }}
                         value={display}
                         className={styles.input}
                         disabled={disabled}
@@ -159,10 +168,17 @@ const DatePicker: FC<RTDatePickerProps> = ({
                 </div>
                 <span className={iconClassNames}>{displayIcon}</span>
             </div>
-            <DatePickerBox
-                wrapper={wrapper}
-                anchor={anchor}
-                removeWrapper={removeWrapper}
+            <Popup
+                style={style}
+                className={twMerge(styles.selectBox.base, className)}
+                anchor={state.anchor}
+                wrapper={state.wrapper}
+                placement='bottom-start'
+                visibleClassName={styles.selectBox.show}
+                onClose={removeWrapper}
+                arrow={false}
+                timerRef={null}
+                trigger='click'
             >
                 <DatePickerPanel
                     value={state.value}
@@ -170,11 +186,9 @@ const DatePicker: FC<RTDatePickerProps> = ({
                     minDate={minDate}
                     maxDate={maxDate}
                 />
-            </DatePickerBox>
+            </Popup>
         </>
-
-
-    )
-}
+    );
+};
 
 export default memo(DatePicker);

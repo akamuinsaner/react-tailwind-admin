@@ -99,7 +99,6 @@ const Popup: FC<RTPopupProps> = ({
 
     const onTransitionEnd = (e: SyntheticEvent) => {
         if (!!wrapper) {
-            console.log('add');
             document.addEventListener('click', close);
         } else {
             setTempWrapper(null);
@@ -108,7 +107,6 @@ const Popup: FC<RTPopupProps> = ({
 
     const resetClassName = () => {
         setBoxClassName(baseClassName);
-        console.log('remove');
         document.removeEventListener('click', close);
     };
 

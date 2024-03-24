@@ -94,9 +94,8 @@ export const styles: RTSelectStyles = {
     count: 'absolute right-1 top-1/2 -translate-y-1/2 text-inherit',
     input: 'outline-none border-none flex-1 h-full text-inherit bg-inherit',
     selectBox: {
-        base: `opacity-0 overflow-hidden absolute z-50 shadow bg-main  transition-[transform, opacity] 
-        duration-200 ease-linear scale-y-0 flex text-[0px]`,
-        show: `opacity-100 scale-y-1`,
+        base: `overflow-hidden bg-main rounded`,
+        show: `overflow-auto`,
     },
     panel: {
         base: 'text-mainText',
