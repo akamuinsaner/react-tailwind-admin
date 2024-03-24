@@ -5,6 +5,7 @@ import {
     MutableRefObject,
     ReactNode,
     SyntheticEvent,
+    useCallback,
     useEffect,
     useMemo,
     useRef,
@@ -69,7 +70,7 @@ const Popup: FC<RTPopupProps> = ({
     const baseClassName = useMemo(() => {
         return twMerge(
             `transition-[transform, opacity] opacity-0 duration-75 
-            ease-linear overflow-hidden absolute z-50 shadow-[0_0_60px_rgba(0,0,0,0.3)]`,
+            ease-linear overflow-hidden absolute z-50 shadow-[0_0_10px_rgba(0,0,0,0.3)]`,
             classNames({
                 'origin-top scale-y-0': placement.includes('bottom'),
                 'origin-bottom scale-y-0': placement.includes('top'),
@@ -94,9 +95,12 @@ const Popup: FC<RTPopupProps> = ({
     const [tempWrapper, setTempWrapper] = useState<HTMLElement>(null);
     const [boxClassName, setBoxClassName] = useState<string>(baseClassName);
 
+    const close = useCallback(onClose, []);
+
     const onTransitionEnd = (e: SyntheticEvent) => {
         if (!!wrapper) {
-            document.addEventListener('click', onClose);
+            console.log('add');
+            document.addEventListener('click', close);
         } else {
             setTempWrapper(null);
         }
@@ -104,7 +108,8 @@ const Popup: FC<RTPopupProps> = ({
 
     const resetClassName = () => {
         setBoxClassName(baseClassName);
-        document.removeEventListener('click', onClose);
+        console.log('remove');
+        document.removeEventListener('click', close);
     };
 
     useEffect(() => {
@@ -144,7 +149,7 @@ const Popup: FC<RTPopupProps> = ({
             ref={popRef}
             className={boxClassName}
             onTransitionEnd={onTransitionEnd}
-            onMouseEnter={() => clearTimeout(timerRef.current)}
+            onMouseEnter={() => timerRef && clearTimeout(timerRef.current)}
             onMouseLeave={() => {
                 if (trigger === 'hover' && wrapper) {
                     onClose();
