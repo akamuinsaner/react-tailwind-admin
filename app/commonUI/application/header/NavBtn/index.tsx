@@ -14,8 +14,8 @@ import Tooltip from '@/src/components/Tooltip';
 import Dropdown from '@/src/components/Dropdown';
 import DropdownAnchor from '@/src/components/Dropdown/DropdownAnchor';
 import DropdownBox from '@/src/components/Dropdown/DropdownBox';
-import ListItem from '@/src/components/List/ListItem';
-import List from '@/src/components/List';
+import Box from '@/src/components/Box';
+import DropdownItem from '@/src/components/Dropdown/DropdownItem';
 
 const NavBtn = () => {
     return (
@@ -25,22 +25,22 @@ const NavBtn = () => {
                 <Flex align='center' justify='center' className='h-40'>
                     <NavBar className='relative'>
                         <Flex className='mr-auto' align='center' gap='medium'>
-                            <Dropdown>
-                                <DropdownAnchor>
-                                    <IconButton>
-                                        <Bars3Icon />
-                                    </IconButton>
-                                </DropdownAnchor>
-                                <DropdownBox>
-                                    <List>
-                                        <ListItem>Home</ListItem>
-                                        <ListItem>Products</ListItem>
-                                        <ListItem>Join Us</ListItem>
-                                        <ListItem>About</ListItem>
-                                    </List>
-                                </DropdownBox>
-                            </Dropdown>
-                            <IconButton>
+                            <Box className='block xl:hidden'>
+                                <Dropdown>
+                                    <DropdownAnchor>
+                                        <IconButton>
+                                            <Bars3Icon />
+                                        </IconButton>
+                                    </DropdownAnchor>
+                                    <DropdownBox>
+                                        <DropdownItem>Home</DropdownItem>
+                                        <DropdownItem>Products</DropdownItem>
+                                        <DropdownItem>Join Us</DropdownItem>
+                                        <DropdownItem>About</DropdownItem>
+                                    </DropdownBox>
+                                </Dropdown>
+                            </Box>
+                            <IconButton className='hidden xl:block'>
                                 <Bars3Icon />
                             </IconButton>
                             <Text size='h5'>RTADMIN</Text>
@@ -56,18 +56,15 @@ const NavBtn = () => {
                         </Flex>
                         <Flex align='center' gap='small'>
                             <Tooltip title='ElCid Wang'>
-                                <span>
-                                    <Avatar
-                                        className='bg-amber-500'
-                                        src='https://avatars.githubusercontent.com/u/23072998?v=4'
-                                        alt='ElCid Wang'
-                                        title='ElCid Wang'
-                                    >
-                                        ElCid Wang
-                                    </Avatar>
-                                </span>
+                                <Avatar
+                                    className='bg-amber-500'
+                                    src='https://avatars.githubusercontent.com/u/23072998?v=4'
+                                    alt='ElCid Wang'
+                                    title='ElCid Wang'
+                                >
+                                    ElCid Wang
+                                </Avatar>
                             </Tooltip>
-
                             <Text>ElCid Wang</Text>
                         </Flex>
                     </NavBar>

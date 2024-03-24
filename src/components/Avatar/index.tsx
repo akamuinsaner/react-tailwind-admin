@@ -1,7 +1,5 @@
 'use client';
-import { reducer, initialState } from './reducer';
 import {
-    useReducer,
     CSSProperties,
     FC,
     ReactNode,
@@ -13,6 +11,7 @@ import {
 import classNames from 'classnames';
 import { twMerge } from 'tailwind-merge';
 import { RTSize } from '../../types/size';
+import { styles } from './styles';
 
 export type RTAvatarProps = {
     className?: string;
@@ -29,10 +28,8 @@ const Avatar: FC<RTAvatarProps> = forwardRef(
         { className, style, size = 'medium', src, alt, children, title },
         ref: LegacyRef<HTMLDivElement>,
     ) => {
-        const [state, dispatch] = useReducer(reducer, initialState);
-
         const baseClassNames = twMerge(
-            state.styles.base,
+            styles.base,
             classNames({
                 'h-6 w-6': size === 'small',
                 'h-10 w-10': size === 'medium',

@@ -12,7 +12,7 @@ export const styles: RTDropDownStyles = {
     base: 'inline-block',
     anchor: '',
     box: {
-        base: `bg-main py-1 text-mainText`,
+        base: `bg-main py-1 text-mainText rounded`,
         show: 'block overflow-visible',
         arrow: 'h-3 w-3 absolute bg-main',
     },

@@ -81,7 +81,6 @@ const config: Config = {
                 'rt-large': '16px',
                 'rt-medium': '14px',
                 'rt-small': '14px',
-                inherit: 'inherit',
             },
             boxShadow: {
                 tableLeft: '4px 0 8px -4px rgba(0,0,0,0.2)',
