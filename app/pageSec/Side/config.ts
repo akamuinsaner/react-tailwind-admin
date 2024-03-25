@@ -199,8 +199,8 @@ export const config: Config[] = [
         icon: ChartBarIcon,
         children: [
             {
-                name: 'Fade',
-                path: '/animation/Fade',
+                name: 'Basic',
+                path: '/animation/basic',
             },
         ],
     },

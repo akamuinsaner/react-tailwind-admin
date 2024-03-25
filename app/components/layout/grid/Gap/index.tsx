@@ -26,73 +26,73 @@ const Gap = () => {
                     <Grid wrapper rowGap={gap} colGap={gap}>
                         <Grid
                             span={3}
-                            className='text-center py-6 bg-primary text-white'
+                            className='text-center py-4 bg-primary text-white'
                         >
                             3
                         </Grid>
                         <Grid
                             span={3}
-                            className='text-center py-6 bg-secondary text-white'
+                            className='text-center py-4 bg-secondary text-white'
                         >
                             3
                         </Grid>
                         <Grid
                             span={3}
-                            className='text-center py-6 bg-primary text-white'
+                            className='text-center py-4 bg-primary text-white'
                         >
                             3
                         </Grid>
                         <Grid
                             span={3}
-                            className='text-center py-6 bg-secondary text-white'
+                            className='text-center py-4 bg-secondary text-white'
                         >
                             3
                         </Grid>
                         <Grid
                             span={3}
-                            className='text-center py-6 bg-primary text-white'
+                            className='text-center py-4 bg-primary text-white'
                         >
                             3
                         </Grid>
                         <Grid
                             span={3}
-                            className='text-center py-6 bg-secondary text-white'
+                            className='text-center py-4 bg-secondary text-white'
                         >
                             3
                         </Grid>
                         <Grid
                             span={3}
-                            className='text-center py-6 bg-primary text-white'
+                            className='text-center py-4 bg-primary text-white'
                         >
                             3
                         </Grid>
                         <Grid
                             span={3}
-                            className='text-center py-6 bg-secondary text-white'
+                            className='text-center py-4 bg-secondary text-white'
                         >
                             3
                         </Grid>
                         <Grid
                             span={3}
-                            className='text-center py-6 bg-primary text-white'
+                            className='text-center py-4 bg-primary text-white'
                         >
                             3
                         </Grid>
                         <Grid
                             span={3}
-                            className='text-center py-6 bg-secondary text-white'
+                            className='text-center py-4 bg-secondary text-white'
                         >
                             3
                         </Grid>
                         <Grid
                             span={3}
-                            className='text-center py-6 bg-primary text-white'
+                            className='text-center py-4 bg-primary text-white'
                         >
                             3
                         </Grid>
                         <Grid
                             span={3}
-                            className='text-center py-6 bg-secondary text-white'
+                            className='text-center py-4 bg-secondary text-white'
                         >
                             3
                         </Grid>

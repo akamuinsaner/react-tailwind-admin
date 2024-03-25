@@ -7,7 +7,7 @@ export interface RTCardStyles extends RTStyles {
 }
 
 export const styles: RTCardStyles = {
-    base: 'bg-main text-mainText rounded shadow-sm flex flex-col w-full flex-nowrap break-inside-avoid',
+    base: 'bg-main text-mainText rounded shadow flex flex-col w-full flex-nowrap break-inside-avoid',
     header: 'py-4 px-6 font-semibold text-base border-b border-mainBorder text-inherit',
-    body: 'flex-1 overflow-auto py-4 px-6 text-inherit'
-}
+    body: 'flex-1 overflow-auto py-4 px-6 text-inherit',
+};

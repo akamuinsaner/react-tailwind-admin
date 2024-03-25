@@ -13,21 +13,21 @@ const Offset = () => {
                     <Grid wrapper>
                         <Grid
                             span={2}
-                            className='text-center py-6 bg-primary text-white'
+                            className='text-center py-4 bg-primary text-white'
                         >
                             span-2 offset-0
                         </Grid>
                         <Grid
                             span={2}
                             offset={2}
-                            className='text-center py-6 bg-secondary text-white'
+                            className='text-center py-4 bg-secondary text-white'
                         >
                             span-2 offset-2
                         </Grid>
                         <Grid
                             span={2}
                             offset={2}
-                            className='text-center py-6 bg-primary text-white'
+                            className='text-center py-4 bg-primary text-white'
                         >
                             span-2 offset-2
                         </Grid>
@@ -35,14 +35,14 @@ const Offset = () => {
                     <Grid wrapper>
                         <Grid
                             span={4}
-                            className='text-center py-6 bg-primary text-white'
+                            className='text-center py-4 bg-primary text-white'
                         >
                             span-4 offset-0
                         </Grid>
                         <Grid
                             span={4}
                             offset={2}
-                            className='text-center py-6 bg-secondary text-white'
+                            className='text-center py-4 bg-secondary text-white'
                         >
                             span-4 offset-2
                         </Grid>

@@ -17,13 +17,13 @@ const Responsive = () => {
                                 <Grid
                                     key={i}
                                     span={{
-                                        default: 2,
+                                        default: 6,
                                         md: 4,
                                         lg: 3,
                                         xl: 2,
                                         '2xl': 1,
                                     }}
-                                    className={`text-center py-6 ${i % 2 === 0 ? 'bg-primary' : 'bg-secondary'} text-white`}
+                                    className={`text-center py-4 ${i % 2 === 0 ? 'bg-primary' : 'bg-secondary'} text-white`}
                                 >
                                     item
                                 </Grid>
