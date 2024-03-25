@@ -164,6 +164,10 @@ export const config: Config[] = [
                         path: '/components/navigation/segment',
                     },
                     {
+                        name: 'Stepper',
+                        path: '/components/navigation/stepper',
+                    },
+                    {
                         name: 'Pagination',
                         path: '/components/navigation/pagination',
                     },

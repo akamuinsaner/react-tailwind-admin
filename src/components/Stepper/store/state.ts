@@ -1,7 +1,7 @@
 export type RTStepperState = {
-    step: number;
+    active: number;
 };
 
 export const initialState: RTStepperState = {
-    step: 1,
+    active: 0,
 };

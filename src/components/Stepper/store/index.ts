@@ -1,8 +1,3 @@
 export { reducer } from './reducer';
-export {
-    initialState,
-} from './state';
-export {
-    setActiveAction,
-    setFocusInfoAction,
-} from './action';
+export { initialState } from './state';
+export { setActiveAction } from './action';
