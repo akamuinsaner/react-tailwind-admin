@@ -194,6 +194,17 @@ export const config: Config[] = [
         ],
     },
     {
+        name: 'UI features',
+        path: '/UIFeatures',
+        icon: Squares2X2Icon,
+        children: [
+            {
+                name: 'Waterfall',
+                path: '/UIFeatures/waterfall',
+            },
+        ],
+    },
+    {
         name: 'Animation',
         path: '/animation',
         icon: ChartBarIcon,
