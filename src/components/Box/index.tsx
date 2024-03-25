@@ -1,33 +1,45 @@
-'use client'
+'use client';
 import { reducer, initialState } from './reducer';
-import { useReducer, CSSProperties, FC, ReactNode, memo } from 'react';
+import {
+    useReducer,
+    CSSProperties,
+    FC,
+    ReactNode,
+    memo,
+    forwardRef,
+    LegacyRef,
+    HTMLAttributes,
+} from 'react';
 import classNames from 'classnames';
 import { twMerge } from 'tailwind-merge';
 import { styles } from './styles';
 
-export type Props = {
+export type RTBoxProps = {
     className?: string;
     style?: CSSProperties;
     children?: ReactNode;
-}
+} & HTMLAttributes<HTMLDivElement>;
 
-const Box: FC<Props> = ({
-    children,
-    className,
-    style,
-}) => {
-    const [state, dispatch] = useReducer(reducer, initialState)
+const Box: FC<RTBoxProps> = forwardRef(
+    (
+        { children, className, style, ...nativeProps },
+        ref: LegacyRef<HTMLDivElement>,
+    ) => {
+        const [state, dispatch] = useReducer(reducer, initialState);
 
-    const computedClassNames = twMerge(styles.base, className);
+        const computedClassNames = twMerge(styles.base, className);
 
-    return (
-        <div
-            style={style}
-            className={computedClassNames}
-        >
-            {children}
-        </div>
-    )
-}
+        return (
+            <div
+                ref={ref}
+                style={style}
+                className={computedClassNames}
+                {...nativeProps}
+            >
+                {children}
+            </div>
+        );
+    },
+);
 
-export default memo(Box);
+export default Box;

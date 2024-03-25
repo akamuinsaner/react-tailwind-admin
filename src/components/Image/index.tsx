@@ -40,7 +40,7 @@ const Image: FC<RTImageProps> = ({
             [styles.mask.show]: isMaskVisible,
         }),
     );
-    const wrapperClassName = twMerge(styles.wrapper, classNames({}));
+    const wrapperClassName = twMerge(styles.wrapper, classNames({}), className);
 
     const imageProps = useMemo(() => {
         const { src, ...extraProps } = imgProps;

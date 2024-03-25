@@ -33,7 +33,7 @@ export type RTFlexProps = {
         | 'stretch';
 } & HTMLAttributes<HTMLDivElement>;
 
-const Flex: FC<RTFlexProps> = forwardRef(
+const Flex = forwardRef<HTMLDivElement, RTFlexProps>(
     (
         {
             inline,

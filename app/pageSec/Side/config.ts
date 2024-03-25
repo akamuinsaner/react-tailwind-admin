@@ -195,12 +195,12 @@ export const config: Config[] = [
     },
     {
         name: 'UI features',
-        path: '/UIFeatures',
+        path: '/uiFeatures',
         icon: Squares2X2Icon,
         children: [
             {
                 name: 'Waterfall',
-                path: '/UIFeatures/waterfall',
+                path: '/uiFeatures/waterfall',
             },
         ],
     },
