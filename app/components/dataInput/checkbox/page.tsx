@@ -1,20 +1,25 @@
-import Basic from './Basic'
-import Status from './Status'
-import Indeterminate from './Indeterminate'
-import Disabled from './Disabled'
-import Controlled from './Controlled'
-import Box from '@/src/components/Box'
+import Basic from './Basic';
+import Status from './Status';
+import Indeterminate from './Indeterminate';
+import Disabled from './Disabled';
+import Controlled from './Controlled';
+import Columns from '@/src/components/Columns';
 
 const CheckboxPage = () => {
-  return (
-    <Box className='columns-1 xl:columns-2 gap-3'>
-      <Basic />
-      <Status />
-      <Indeterminate />
-      <Disabled />
-      <Controlled />
-    </Box>
-  )
-}
+    return (
+        <Columns
+            count={1}
+            gap='medium'
+            space='medium'
+            className='max-w-[1200px] mx-auto'
+        >
+            <Basic />
+            <Status />
+            <Indeterminate />
+            <Disabled />
+            <Controlled />
+        </Columns>
+    );
+};
 
-export default CheckboxPage
+export default CheckboxPage;

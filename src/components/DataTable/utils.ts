@@ -224,7 +224,7 @@ export const getFixedStyle = (
             {
                 left: getFixedWidth(columns, key, expandFixed, selectFixed),
                 position: 'sticky',
-                backgroundColor: '#fff',
+
                 zIndex: 5,
             },
         );
@@ -235,7 +235,6 @@ export const getFixedStyle = (
             {
                 right: getFixedWidth(columns, key, expandFixed, selectFixed),
                 position: 'sticky',
-                backgroundColor: '#fff',
                 zIndex: 5,
             },
         );

@@ -10,7 +10,12 @@ import Custom from './Custom';
 
 const SegmentPage = () => {
     return (
-        <Columns count={{ default: 1, xl: 2 }} gap='medium' space='medium'>
+        <Columns
+            count={1}
+            gap='medium'
+            space='medium'
+            className='max-w-[1200px] mx-auto'
+        >
             <Basic />
             <Block />
             <Controlled />

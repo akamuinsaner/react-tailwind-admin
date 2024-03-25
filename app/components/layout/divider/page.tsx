@@ -5,7 +5,12 @@ import Gap from './Gap';
 import Text from './Text';
 const DividerPage = () => {
     return (
-        <Columns count={2}>
+        <Columns
+            count={1}
+            gap='medium'
+            space='medium'
+            className='max-w-[1200px] mx-auto'
+        >
             <Basic />
             <Vertical />
             <Gap />

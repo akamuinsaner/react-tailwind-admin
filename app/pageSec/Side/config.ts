@@ -51,10 +51,7 @@ export const config: Config[] = [
                         name: 'Popover',
                         path: '/components/dataDisplay/popover',
                     },
-                    {
-                        name: 'Stepper',
-                        path: '/components/dataDisplay/stepper',
-                    },
+
                     {
                         name: 'Table',
                         path: '/components/dataDisplay/table',

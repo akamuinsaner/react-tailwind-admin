@@ -10,10 +10,16 @@ import HeadGroup from './HeadGroup';
 import Select from './Select';
 import Expand from './Expand';
 import Sort from './Sort';
+import Columns from '@/src/components/Columns';
 
 const TablePage = () => {
     return (
-        <Box className='columns-1 gap-6'>
+        <Columns
+            count={1}
+            gap='medium'
+            space='medium'
+            className='max-w-[1200px] mx-auto'
+        >
             <Basic />
             <Densed />
             <Border />
@@ -25,7 +31,7 @@ const TablePage = () => {
             <Select />
             <Expand />
             <Sort />
-        </Box>
+        </Columns>
     );
 };
 

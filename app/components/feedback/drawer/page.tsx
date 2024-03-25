@@ -1,16 +1,21 @@
-import Box from '@/src/components/Box'
-import Basic from './Basic/index'
-import Placement from './Placement'
-import Size from './Size'
+import Columns from '@/src/components/Columns';
+import Basic from './Basic/index';
+import Placement from './Placement';
+import Size from './Size';
 
 const ModalPage = () => {
     return (
-        <Box className='columns-1 xl:columns-2 gap-6'>
+        <Columns
+            count={1}
+            gap='medium'
+            space='medium'
+            className='max-w-[1200px] mx-auto'
+        >
             <Basic />
             <Placement />
             <Size />
-        </Box>
-    )
-}
+        </Columns>
+    );
+};
 
-export default ModalPage
+export default ModalPage;

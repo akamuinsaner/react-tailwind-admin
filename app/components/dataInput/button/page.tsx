@@ -4,18 +4,23 @@ import Color from './Color';
 import Size from './Size';
 import Icon from './Icon';
 import Grouped from './Grouped';
-import Flex from '@/src/components/Flex';
+import Columns from '@/src/components/Columns';
 
 const ButtonPage = () => {
     return (
-        <Flex direction='column' gap='medium'>
+        <Columns
+            count={1}
+            gap='medium'
+            space='medium'
+            className='max-w-[1200px] mx-auto'
+        >
             <Basic />
             <Variants />
             <Color />
             <Size />
             <Icon />
             <Grouped />
-        </Flex>
+        </Columns>
     );
 };
 

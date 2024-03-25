@@ -1,19 +1,25 @@
-import Basic from "./Basic";
-import Placement from "./Placement";
-import Arrow from "./Arrow";
-import Trigger from "./Trigger";
-import Controlled from "./Controlled";
+import Basic from './Basic';
+import Placement from './Placement';
+import Arrow from './Arrow';
+import Trigger from './Trigger';
+import Controlled from './Controlled';
+import Columns from '@/src/components/Columns';
 
 const DropdownPage = () => {
     return (
-        <div className="flex flex-col gap-3">
+        <Columns
+            count={1}
+            gap='medium'
+            space='medium'
+            className='max-w-[1200px] mx-auto'
+        >
             <Basic />
             <Placement />
             <Arrow />
             <Trigger />
             <Controlled />
-        </div>
-    )
-}
+        </Columns>
+    );
+};
 
 export default DropdownPage;

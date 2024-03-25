@@ -1,22 +1,27 @@
-import Basic from "./Basic";
-import Disabled from "./Disabled";
-import Text from "./Text";
-import Status from "./Status";
-import Size from "./Size";
-import Label from "./Label";
-import Box from "@/src/components/Box";
+import Basic from './Basic';
+import Disabled from './Disabled';
+import Text from './Text';
+import Status from './Status';
+import Size from './Size';
+import Label from './Label';
+import Columns from '@/src/components/Columns';
 
 const SwitchPage = () => {
     return (
-        <Box className="columns-1 xl:columns-2 gap-3">
+        <Columns
+            count={1}
+            gap='medium'
+            space='medium'
+            className='max-w-[1200px] mx-auto'
+        >
             <Basic />
             <Label />
             <Disabled />
             <Text />
             <Status />
             <Size />
-        </Box>
-    )
-}
+        </Columns>
+    );
+};
 
 export default SwitchPage;

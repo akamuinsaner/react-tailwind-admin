@@ -1,17 +1,22 @@
 import Basic from './Basic/index';
-import Box from '@/src/components/Box';
 import Border from './Border';
 import Pagination from './Pagination';
 import Sizes from './Size';
+import Columns from '@/src/components/Columns';
 
 const TablePage = () => {
     return (
-        <Box className='columns-1 2xl:columns-2 gap-6'>
+        <Columns
+            count={1}
+            gap='medium'
+            space='medium'
+            className='max-w-[1200px] mx-auto'
+        >
             <Basic />
             <Border />
             <Pagination />
             <Sizes />
-        </Box>
+        </Columns>
     );
 };
 

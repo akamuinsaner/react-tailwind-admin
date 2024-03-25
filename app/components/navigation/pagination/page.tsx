@@ -1,21 +1,26 @@
 import Basic from './Basic/index'
-import Box from '@/src/components/Box'
 import Size from './Sizes'
 import Variants from './Variants'
 import Colors from './Colors'
 import Shapes from './Shapes'
 import SizeOption from './SizeOption'
+import Columns from '@/src/components/Columns'
 
 const InputPage = () => {
     return (
-        <Box className='columns-1 xl:columns-2 gap-6'>
+        <Columns
+            count={1}
+            gap='medium'
+            space='medium'
+            className='max-w-[1200px] mx-auto'
+        >
             <Basic />
             <Size />
             <Variants />
             <Colors />
             <Shapes />
             <SizeOption />
-        </Box>
+        </Columns>
     )
 }
 

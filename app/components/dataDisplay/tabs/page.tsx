@@ -1,20 +1,25 @@
-import Basic from "./Basic/index";
-import Disabled from "./Disabled";
-import Controlled from "./Controlled";
-import Icon from "./Icon";
-import Vertical from "./Placement";
+import Basic from './Basic/index';
+import Disabled from './Disabled';
+import Controlled from './Controlled';
+import Icon from './Icon';
+import Vertical from './Placement';
+import Columns from '@/src/components/Columns';
 
 const DisplayList = () => {
     return (
-        <div className="flex flex-col gap-6">
+        <Columns
+            count={1}
+            gap='medium'
+            space='medium'
+            className='max-w-[1200px] mx-auto'
+        >
             <Basic />
             <Disabled />
             <Controlled />
             <Icon />
             <Vertical />
-        </div>
-            
-    )
-}
+        </Columns>
+    );
+};
 
 export default DisplayList;

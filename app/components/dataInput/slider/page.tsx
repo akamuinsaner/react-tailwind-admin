@@ -4,7 +4,12 @@ import Basic from './Basic/index';
 
 const SliderPage = () => {
     return (
-        <Columns gap='medium' space='medium' count={{ default: 1, xl: 2 }}>
+        <Columns
+            count={1}
+            gap='medium'
+            space='medium'
+            className='max-w-[1200px] mx-auto'
+        >
             <Basic />
         </Columns>
     );

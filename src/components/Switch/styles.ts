@@ -19,21 +19,21 @@ export interface RTCheckboxStyles {
         large: string;
         medium: string;
         small: string;
-    }
+    };
     inner: {
         base: string;
         disabled: string;
         large: string;
         medium: string;
         small: string;
-    }
+    };
 }
 
 export const styles: RTCheckboxStyles = {
     base: 'inline-flex items-center gap-2 text-mainText',
     box: {
         base: `inline-flex items-center cursor-pointer select-none min-w-12 rounded-full 
-            overflow-hidden h-6 relative bg-primary bg-disableText
+            overflow-hidden h-6 relative bg-primary bg-disableText 
             transition-[background-color] duration-200 ease-linear`,
         checked: 'bg-primary',
         success: 'bg-success',
@@ -47,7 +47,7 @@ export const styles: RTCheckboxStyles = {
     },
     input: 'absolute z-[1] opacity-0 cursor-pointer w-full h-full',
     text: {
-        base: 'w-full h-full text-center flex items-center justify-center pl-7 pr-2 text-sm text-inherit',
+        base: 'w-full h-full text-center flex items-center justify-center pl-7 pr-2 text-sm text-white',
         checked: 'pl-2 pr-7',
         large: 'text-md',
         medium: 'text-sm',
@@ -60,6 +60,5 @@ export const styles: RTCheckboxStyles = {
         large: 'h-6 w-6',
         medium: 'h-5 w-5',
         small: 'h-4 w-4',
-    }
-}
-
+    },
+};

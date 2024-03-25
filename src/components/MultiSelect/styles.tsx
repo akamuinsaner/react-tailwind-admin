@@ -65,7 +65,7 @@ export const styles: RTSelectStyles = {
         focused:
             'border-transparent ring-2 ring-primary hover:border-transparent',
         disabled:
-            'bg-disableBg hover:border-disableBg text-disableText select-none pointer-event-none',
+            'bg-disableBg hover:border-disableBg text-disableText select-none pointer-events-none',
     },
     icon: {
         base: 'absolute top-1/2 -translate-y-1/2 right-2 w-6 h-6  cursor-pointer text-disableText',

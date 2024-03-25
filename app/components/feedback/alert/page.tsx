@@ -8,7 +8,12 @@ import Columns from '@/src/components/Columns';
 
 const AlertPage = () => {
     return (
-        <Columns count={{ default: 1, xl: 2 }}>
+        <Columns
+            count={1}
+            gap='medium'
+            space='medium'
+            className='max-w-[1200px] mx-auto'
+        >
             <Basic />
             <Severity />
             <Icon />
