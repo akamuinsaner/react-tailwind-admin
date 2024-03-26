@@ -36,6 +36,10 @@ export const config: Config[] = [
                         path: '/components/dataDisplay/badge',
                     },
                     {
+                        name: 'Carousel',
+                        path: '/components/dataDisplay/carousel',
+                    },
+                    {
                         name: 'DataTable',
                         path: '/components/dataDisplay/dataTable',
                     },
@@ -198,6 +202,10 @@ export const config: Config[] = [
         path: '/uiFeatures',
         icon: Squares2X2Icon,
         children: [
+            {
+                name: 'Carousel',
+                path: '/uiFeatures/carousel',
+            },
             {
                 name: 'Waterfall',
                 path: '/uiFeatures/waterfall',

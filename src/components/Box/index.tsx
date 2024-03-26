@@ -20,7 +20,7 @@ export type RTBoxProps = {
     children?: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
-const Box: FC<RTBoxProps> = forwardRef(
+const Box = forwardRef<HTMLDivElement, RTBoxProps>(
     (
         { children, className, style, ...nativeProps },
         ref: LegacyRef<HTMLDivElement>,
