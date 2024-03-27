@@ -102,6 +102,7 @@ const Image: FC<RTImageProps> = ({
             {loadFail ? placeholder : null}
             {!loadFail ? (
                 <img
+                    draggable='false'
                     style={style}
                     className={className}
                     {...imageProps}

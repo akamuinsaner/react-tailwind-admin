@@ -1,41 +1,64 @@
 'use client';
+import { simpleRequest } from '@/app/utils/request';
 import Box from '@/src/components/Box';
 import Card from '@/src/components/Card';
+import Image from '@/src/components/Image';
 import CardBody from '@/src/components/Card/CardBody';
+import Carousel from '@/src/components/Carousel';
+import CarouselItem from '@/src/components/Carousel/CarouselItem';
 import Flex from '@/src/components/Flex';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const CarouselPage = () => {
-    const [containerWidth, setContainerWidth] = useState<number>(0);
-    const containerRef = useRef<HTMLDivElement>(null);
-    const cards = Array(10)
-        .fill(0)
-        .map((a, i) => i + 1);
+    const [images, setImages] = useState<any[]>([]);
+    const fetchList = useCallback(() => {
+        simpleRequest(`http://localhost:3001/unsplash/list`, {
+            data: {
+                page: 1,
+                perPage: 10,
+            },
+        }).then((res: any) => {
+            setImages(res.results);
+        });
+    }, [images]);
     useEffect(() => {
-        setContainerWidth(containerRef.current.offsetWidth);
+        fetchList();
     }, []);
+    const onCarousel = (active, children) => {
+        children.forEach((element: HTMLDivElement, index) => {
+            // element.style.transition = `
+            //     transform 0.3s
+            // `;
+            element.style.transform = `
+            scale(${1 - Math.abs(active - index) * 0.1})
+            `;
+        });
+    };
     return (
-        <Box ref={containerRef} className='h-96 w-96 overflow-hidden'>
-            <Flex
-                className='h-full'
+        <Flex
+            align='center'
+            justify='center'
+            className='h-full w-full overflow-hidden'
+        >
+            <Carousel
+                className='h-4/5 w-full'
+                autoPlay
+                loop
+                centered
+                slidesPerView={5}
+                space={10}
+                onCarousel={onCarousel}
             >
-                {cards.map(card => {
-                    return (
-                        <Card
-                            className='shrink-0'
-                            style={{
-                                height: '100%',
-                                width: containerWidth,
-                            }}
-                        >
-                            <CardBody className='flex items-center justify-center'>
-                                slide {card}
-                            </CardBody>
-                        </Card>
-                    );
-                })}
-            </Flex>
-        </Box>
+                {images.map(image => (
+                    <CarouselItem>
+                        <Image
+                            src={image.urls.regular}
+                            className='h-full w-full object-center object-cover'
+                        />
+                    </CarouselItem>
+                ))}
+            </Carousel>
+        </Flex>
     );
 };
 
