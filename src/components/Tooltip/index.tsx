@@ -31,7 +31,7 @@ export type RTTooltipProps = {
     style?: CSSProperties;
     className?: string;
     children: ReactNode;
-    title: ReactNode;
+    title?: ReactNode;
     placement?: RTPlacement;
     trigger?: RTTooltipTrigger;
     arrow?: boolean;

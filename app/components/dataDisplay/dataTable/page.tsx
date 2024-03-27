@@ -10,6 +10,7 @@ import HeadGroup from './HeadGroup';
 import Select from './Select';
 import Expand from './Expand';
 import Sort from './Sort';
+import Filter from './Filter';
 import Columns from '@/src/components/Columns';
 
 const TablePage = () => {
@@ -31,6 +32,7 @@ const TablePage = () => {
             <Select />
             <Expand />
             <Sort />
+            <Filter />
         </Columns>
     );
 };

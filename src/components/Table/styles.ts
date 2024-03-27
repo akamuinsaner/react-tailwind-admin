@@ -37,11 +37,11 @@ export const styles: RTTableStyles = {
         base: 'relative',
     },
     table: {
-        base: 'w-full table-auto border-spacing-0 ',
+        base: 'w-full table-auto border-spacing-0 border-separate',
         border: 'border-separate',
     },
     head: {
-        base: 'font-semibold',
+        base: 'font-semibold  [&>*:first-child>*]:border-t',
         border: 'border-t border-mainBorder border-solid',
     },
     body: {
@@ -55,7 +55,7 @@ export const styles: RTTableStyles = {
         border: 'border-none',
     },
     cell: {
-        base: '',
+        base: 'border-b border-mainBorder border-solid',
         large: 'py-4 px-4',
         medium: 'py-3 px-4',
         small: 'py-1 px-4',

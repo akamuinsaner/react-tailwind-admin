@@ -231,16 +231,6 @@ export const config: Config[] = [
             {
                 name: 'Chartjs',
                 path: '/charts/chartjs',
-                children: [
-                    {
-                        name: 'Bar',
-                        path: '/charts/chartjs/bar',
-                    },
-                    {
-                        name: 'Line',
-                        path: '/charts/chartjs/line',
-                    },
-                ],
             },
         ],
     },

@@ -88,6 +88,14 @@ const RecordTableBodyCell = <T,>({
         column.fixed === 'right' &&
         columns[columnIndex - 1] &&
         columns[columnIndex - 1].fixed !== 'right';
+    const tableCellClassName = twMerge(
+        styles.cell.base,
+        classNames({
+            [styles.cell.noBorderRight]: column.noBorderRight,
+            [styles.cell.scrollLeft]: showLeftFixShadow,
+            [styles.cell.scrollRight]: showRightFixShadow,
+        }),
+    );
     return (
         <TableCell
             align={align}
@@ -95,11 +103,7 @@ const RecordTableBodyCell = <T,>({
             rowSpan={rowSpan}
             width={width}
             style={style}
-            // sx={sx}
-            // className={classNames({
-            //     [styles['mr-table-column-scroll-left']]: showLeftFixShadow,
-            //     [styles['mr-table-column-scroll-right']]: showRightFixShadow,
-            // })}
+            className={tableCellClassName}
         >
             {data}
         </TableCell>

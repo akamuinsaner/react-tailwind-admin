@@ -43,6 +43,12 @@ export type RTTableStyles = {
             reverse: string;
         };
     };
+    filter: {
+        icon: {
+            base: string;
+            active: string;
+        };
+    };
 };
 
 export const styles: RTTableStyles = {
@@ -59,7 +65,7 @@ export const styles: RTTableStyles = {
         base: 'table-auto overflow-x-hidden bg-inherit',
     },
     header: {
-        base: 'bg-main',
+        base: 'bg-inherit',
         sticky: 'sticky top-0 z-10',
         scrollTop: 'shadow-lg',
     },
@@ -67,18 +73,18 @@ export const styles: RTTableStyles = {
         base: 'hover:bg-main-hover',
     },
     cell: {
-        base: '',
+        base: '!bg-main',
         noBorderRight: '!border-r-0',
         scrollLeft: 'shadow-tableLeft',
         scrollRight: 'shadow-tableRight',
     },
     select: {
         base: '',
-        fixed: 'left-0 sticky !w-[50px] !z-10 bg-main',
+        fixed: 'left-0 sticky !w-[50px] !z-10 bg-inherit',
         afterExpand: 'left-[50px]',
     },
     expand: {
-        base: '',
+        base: 'bg-inherit',
         fixed: 'sticky left-0 !z-10',
         icon: 'h-6 w-6',
     },
@@ -88,6 +94,12 @@ export const styles: RTTableStyles = {
             base: 'h-5 w-5 opacity-0 transition-[opacity,transform] ease-linear duration-100',
             show: 'opacity-1',
             reverse: 'rotate-180',
+        },
+    },
+    filter: {
+        icon: {
+            base: 'h-5 w-5',
+            active: 'text-primary',
         },
     },
 };

@@ -16,6 +16,7 @@ import { DataTableContext } from './context';
 import { styles } from './styles';
 import { twMerge } from 'tailwind-merge';
 import DataTableSortLabel from './DataTableSortLabel';
+import Filter from './Filter';
 
 export type RecordTableHeaderCellProps<T> = {
     column: RTDataTableColumn<T>;
@@ -101,15 +102,16 @@ const RecordTableHeaderCell = <T,>({
         ? filterProps?.filters(column, index)
         : column.filters;
     if (filters) {
-        // children = (
-        //     <Filter
-        //         column={column}
-        //         index={index}
-        //         onChange={(value) => onFilterChange({ [column.key]: value })}
-        //         value={filterParams[column.key]}
-        //     >{children}
-        //     </Filter>
-        // )
+        children = (
+            <Filter
+                column={column}
+                index={index}
+                onChange={value => onFilterChange({ [column.key]: value })}
+                value={filterParams[column.key]}
+            >
+                {children}
+            </Filter>
+        );
     }
     const showLeftFixShadow =
         !scrollingInfo.scrollLeft &&
@@ -282,7 +284,7 @@ const RTDataTableHead = <T,>() => {
         styles.header.base,
         classNames({
             [styles.header.sticky]: !!scrollProps?.y,
-            [styles.header.scrollTop]: !scrollingInfo.scrollTop
+            [styles.header.scrollTop]: !scrollingInfo.scrollTop,
         }),
     );
 

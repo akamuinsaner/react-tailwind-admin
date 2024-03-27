@@ -25,7 +25,6 @@ export default () => {
         }, 300);
     };
     React.useEffect(() => {
-        console.log(containerRef);
         containerScrolling();
         if (containerRef.current) {
             containerRef.current.addEventListener('scroll', containerScrolling);
