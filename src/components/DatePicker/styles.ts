@@ -107,10 +107,10 @@ export const styles: RTSelectStyles = {
             disabledIcon: `opacity-0 pointer-events-none select-none`,
         },
         body: {
-            base: 'px-4 py-2 text-mainText',
-            wrapper: 'grid grid-cols-7 gap-3',
-            header: ' flex items-center justify-center font-semibold text-sm h-8 w-8',
-            item: 'flex items-center justify-center text-sm cursor-pointer h-8 w-8 hover:bg-disableBg/50 rounded',
+            base: 'px-2 py-2 text-mainText h-72 w-72',
+            wrapper: 'grid grid-cols-7 h-full w-full gap-2',
+            header: ' flex items-center justify-center font-semibold text-sm',
+            item: 'flex items-center justify-center text-sm cursor-pointer hover:bg-disableBg/50 rounded',
             notInMonth: 'text-disableText',
             isToday: 'border-primary border',
             selected: 'bg-primary text-white hover:bg-primary',
@@ -118,9 +118,9 @@ export const styles: RTSelectStyles = {
                 'text-disableText bg-disableBg hover:bg-disableBg pointer-events-none select-none',
         },
         year: {
-            selected: 'bg-primary text-white hover:bg-primary',
-            wrapper: 'grid grid-cols-3 px-4 py-2 gap-2',
-            item: 'flex items-center justify-center text-sm cursor-pointer w-24 h-12 hover:bg-disableBg/50 rounded',
+            selected: 'bg-primary text-white hover:bg-primary ',
+            wrapper: 'grid grid-cols-3 px-2 py-2 h-72 w-72 gap-2',
+            item: 'flex items-center justify-center text-sm cursor-pointer hover:bg-disableBg/50 rounded',
             notIn: 'text-disableText',
         },
         footer: {

@@ -207,6 +207,10 @@ export const config: Config[] = [
                 path: '/uiFeatures/carousel',
             },
             {
+                name: 'Datatable',
+                path: '/uiFeatures/dataTable',
+            },
+            {
                 name: 'Waterfall',
                 path: '/uiFeatures/waterfall',
             },

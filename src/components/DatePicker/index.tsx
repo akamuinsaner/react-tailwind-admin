@@ -47,6 +47,7 @@ export type RTDatePickerProps = {
     mask?: string;
     minDate?: Dayjs;
     maxDate?: Dayjs;
+    standalone?: Boolean;
 };
 
 const DatePicker: FC<RTDatePickerProps> = ({
@@ -66,6 +67,7 @@ const DatePicker: FC<RTDatePickerProps> = ({
     mask = '',
     minDate,
     maxDate,
+    standalone = false,
 }) => {
     const wrapperIdRef = useRef(uuidV4());
     const anchorRef = useRef<HTMLDivElement>(null);
@@ -145,6 +147,17 @@ const DatePicker: FC<RTDatePickerProps> = ({
     useEffect(() => {
         setAnchor(anchorRef.current);
     }, []);
+
+    if (standalone) {
+        return (
+            <DatePickerPanel
+                value={state.value}
+                setValue={setValue}
+                minDate={minDate}
+                maxDate={maxDate}
+            />
+        );
+    }
 
     return (
         <>
