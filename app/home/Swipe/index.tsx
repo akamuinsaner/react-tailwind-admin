@@ -33,6 +33,8 @@ const Swipe = () => {
                     centered
                     slidesPerView={1}
                     className='h-96'
+                    pagination
+                    navigation
                 >
                     {images.map(image => (
                         <CarouselItem>

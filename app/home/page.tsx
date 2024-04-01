@@ -2,6 +2,10 @@ import Grid from '@/src/components/Grid';
 import Calendar from './Calendar';
 import Clock from './Clock';
 import Swipe from './Swipe';
+import Table from './Table';
+import Tl from './Timeline';
+import StepperComp from './Stepper';
+import ListComp from './List';
 
 const Home = () => {
     return (
@@ -14,6 +18,18 @@ const Home = () => {
             </Grid>
             <Grid span={{ default: 12, '2xl': 4 }}>
                 <Swipe />
+            </Grid>
+            <Grid span={{ default: 12, '2xl': 4 }}>
+                <Tl />
+            </Grid>
+            <Grid span={{ default: 12, '2xl': 8 }}>
+                <Table />
+            </Grid>
+            <Grid span={{ default: 12, '2xl': 9 }}>
+                <StepperComp />
+            </Grid>
+            <Grid span={{ default: 12, '2xl': 3 }}>
+                <ListComp />
             </Grid>
         </Grid>
     );

@@ -26,6 +26,8 @@ import {
     setReverseAction,
 } from './store';
 import { CarouselContext, RTCarouselContext } from './context';
+import CarouselPagination from './CarouselPagination';
+import CarouselNavigation from './CarouselNavigation';
 
 export type RTCarouselDirection = 'horizontal' | 'vertical';
 
@@ -44,6 +46,8 @@ export type RTCarouselProps = {
     centered?: boolean;
     onCarousel?: (active: number, children: any) => void;
     effect?: any;
+    pagination?: boolean;
+    navigation?: boolean;
 } & HTMLAttributes<HTMLDivElement>;
 
 const Carousel: FC<RTCarouselProps> = ({
@@ -60,6 +64,8 @@ const Carousel: FC<RTCarouselProps> = ({
     centered = false,
     onCarousel,
     effect,
+    pagination,
+    navigation,
     ...nativeProps
 }) => {
     const childrenRefs = useRef<HTMLElement[]>([]);
@@ -126,6 +132,8 @@ const Carousel: FC<RTCarouselProps> = ({
         space,
         count,
         active,
+        setActive,
+        setTransitioning,
         actualActive,
         direction,
         childrenRefs,
@@ -298,6 +306,22 @@ const Carousel: FC<RTCarouselProps> = ({
                 >
                     {finalChildren}
                 </div>
+                {pagination ? (
+                    <CarouselPagination
+                        onPagination={(active: number) => {
+                            setTransitioning(true);
+                            setActive(active);
+                        }}
+                    />
+                ) : null}
+                {navigation ? (
+                    <CarouselNavigation
+                        onNavigation={(active: number) => {
+                            setTransitioning(true);
+                            setActive(active);
+                        }}
+                    />
+                ) : null}
             </div>
         </CarouselContext.Provider>
     );

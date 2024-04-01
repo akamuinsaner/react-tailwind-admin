@@ -37,11 +37,11 @@ export const styles: RTStepperStyles = {
         vertical: 'flex-col',
     },
     item: {
-        base: `flex flex-row relative grow overflow-hidden mr-4`,
+        base: `flex flex-row relative grow overflow-hidden mr-4 px-2`,
         alternative: 'mr-0',
         last: 'grow-0',
         description: 'text-sm text-disableText',
-        vertical: 'pb-6',
+        vertical: 'pb-8 px-0',
     },
     inner: {
         base: 'flex flex-row  gap-2',
@@ -53,7 +53,7 @@ export const styles: RTStepperStyles = {
         alternative: 'pr-0 after:content-none',
     },
     order: {
-        base: 'h-6 w-6 rounded-full bg-disableBg flex items-center justify-center relative',
+        base: 'h-6 w-6 rounded-full bg-disableBg flex items-center justify-center relative shrink-0',
         alternative: `
         before:content-[""] before:absolute before:w-screen before:top-1/2 before:border-t before:right-full before:border-mainBorder
         after:content-[""] after:absolute after:w-screen after:top-1/2 after:border-t after:left-full after:border-mainBorder

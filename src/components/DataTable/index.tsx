@@ -295,14 +295,16 @@ const DataTable = <T extends object>(props: RTDataTableProps<T>) => {
                         <RTDataTableBody />
                     </Table>
                 </TableContainer>
-                <TablePagination
-                    size={size}
-                    {...paginationProps}
-                    total={pageParams.total}
-                    page={pageParams.page}
-                    pageSize={pageParams.pageSize}
-                    onChange={onPaginationChange}
-                />
+                {paginationProps === false ? null : (
+                    <TablePagination
+                        size={size}
+                        {...paginationProps}
+                        total={pageParams.total}
+                        page={pageParams.page}
+                        pageSize={pageParams.pageSize}
+                        onChange={onPaginationChange}
+                    />
+                )}
             </TableWrapper>
         </DataTableContext.Provider>
     );

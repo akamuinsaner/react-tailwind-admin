@@ -98,7 +98,7 @@ export const styles: RTTableStyles = {
     },
     filter: {
         icon: {
-            base: 'h-5 w-5',
+            base: 'h-4 w-3',
             active: 'text-primary',
         },
     },
