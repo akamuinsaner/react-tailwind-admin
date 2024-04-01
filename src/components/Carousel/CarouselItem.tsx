@@ -26,8 +26,15 @@ const CarouselItem: FC<RTCarouselItemProps> = ({
     index,
 }) => {
     const slideRef = useRef<HTMLDivElement>(null);
-    const { span, direction, space, childrenRefs } =
-        useContext<RTCarouselContext>(CarouselContext);
+    const {
+        span,
+        direction,
+        space,
+        childrenRefs,
+        active,
+        count,
+        actualActive,
+    } = useContext<RTCarouselContext>(CarouselContext);
     const itemClasses = twMerge(
         styles.item.base,
         styles.item[direction],
@@ -55,8 +62,16 @@ const CarouselItem: FC<RTCarouselItemProps> = ({
         }
         return fs;
     }, [style, direction, span, space]);
+
     return (
-        <div ref={slideRef} style={finalStyle} className={itemClasses}>
+        <div
+            data-index={index}
+            data-active={index === actualActive}
+            data-offset={index - actualActive}
+            ref={slideRef}
+            style={finalStyle}
+            className={itemClasses}
+        >
             {children}
         </div>
     );

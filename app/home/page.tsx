@@ -12,10 +12,7 @@ const Home = () => {
             <Grid span={{ default: 12, xl: 6, '2xl': 4 }}>
                 <Clock />
             </Grid>
-            <Grid
-                span={{ default: 12, xl: 6, '2xl': 4 }}
-                className='overflow-hidden'
-            >
+            <Grid span={{ default: 12, '2xl': 4 }}>
                 <Swipe />
             </Grid>
         </Grid>

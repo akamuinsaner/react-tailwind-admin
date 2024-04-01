@@ -4,25 +4,28 @@ import {
     cloneElement,
     CSSProperties,
     FC,
-    forwardRef,
     HTMLAttributes,
-    LegacyRef,
     MouseEventHandler,
-    ReactElement,
     ReactNode,
     useCallback,
     useEffect,
     useMemo,
     useReducer,
     useRef,
-    useState,
     WheelEventHandler,
 } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { styles } from './styles';
-import { setSizeAction, reducer, initialState, setActiveAction } from './store';
+import {
+    setSizeAction,
+    reducer,
+    initialState,
+    setActiveAction,
+    setTransitioningAction,
+    setTransformAction,
+    setReverseAction,
+} from './store';
 import { CarouselContext, RTCarouselContext } from './context';
-import classNames from 'classnames';
 
 export type RTCarouselDirection = 'horizontal' | 'vertical';
 
@@ -40,6 +43,7 @@ export type RTCarouselProps = {
     slidesPerView?: number;
     centered?: boolean;
     onCarousel?: (active: number, children: any) => void;
+    effect?: any;
 } & HTMLAttributes<HTMLDivElement>;
 
 const Carousel: FC<RTCarouselProps> = ({
@@ -55,38 +59,64 @@ const Carousel: FC<RTCarouselProps> = ({
     slidesPerView = 1,
     centered = false,
     onCarousel,
+    effect,
     ...nativeProps
 }) => {
     const childrenRefs = useRef<HTMLElement[]>([]);
-    const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
     const autoPlayTimer = useRef<NodeJS.Timeout>(null);
     const initialTransform = useRef<number>(0);
     const initialPageXY = useRef<number>(0);
     const currentPageXY = useRef<number>(0);
-    const [transformInfo, setTransformInfo] = useState({ x: 0, y: 0 });
     const [state, dispatch] = useReducer(reducer, initialState);
     const containerRef = useRef<HTMLDivElement>(null);
     const containerClasses = twMerge(styles.container, className);
-    const { size, active } = state;
+    const { size, active, transitioning, transform, reverse } = state;
+
     const isHorizontal = useMemo(() => {
         return direction === 'horizontal';
     }, [direction]);
+
     const span = useMemo(() => {
         return (size - (slidesPerView - 1) * space) / slidesPerView + space;
     }, [isHorizontal, size, slidesPerView, space]);
+
+    const count = useMemo(() => {
+        if (Array.isArray(children)) return children.length;
+        return 1;
+    }, [children]);
+
     const finalChildren = useMemo(() => {
         let preChildren;
         if (Array.isArray(children)) preChildren = [...children];
         else preChildren = [children];
-        if (loop) preChildren = [...preChildren, ...preChildren];
-        const length = preChildren.length / 2;
+        preChildren = [...preChildren, ...preChildren, ...preChildren];
         return Children.map(preChildren, (child: any, index) =>
             cloneElement(child, {
-                index,
-                actualIndex: index < length ? index : index - length,
+                index: index - count,
             }),
         );
-    }, [children, loop]);
+    }, [children, loop, count]);
+
+    const actualActive = useMemo(() => {
+        if (active < 0) {
+            return active + count;
+        }
+        if (active >= count) {
+            return active - count;
+        } else {
+            return active;
+        }
+    }, [active, count]);
+
+    const setSize = (span: number) => dispatch(setSizeAction(span));
+    const setActive = (active: number) => dispatch(setActiveAction(active));
+    const setTransitioning = (transitioning: boolean) =>
+        dispatch(setTransitioningAction(transitioning));
+    const setTransform = (transform: { x: number; y: number }) =>
+        dispatch(setTransformAction(transform));
+    const setReverse = (reverse: boolean) =>
+        dispatch(setReverseAction(reverse));
+
     const wrapperClasses = twMerge(
         styles.wrapper.base,
         styles.wrapper[direction],
@@ -94,16 +124,18 @@ const Carousel: FC<RTCarouselProps> = ({
     const contextValue: RTCarouselContext = {
         span,
         space,
+        count,
+        active,
+        actualActive,
         direction,
         childrenRefs,
     };
-    const setSize = (span: number) => dispatch(setSizeAction(span));
-    const setActive = (active: number) => dispatch(setActiveAction(active));
 
     const setAutoPlay = () => {
         autoPlayTimer.current = setInterval(() => {
-            setIsTransitioning(true);
-            if (active === finalChildren.length - 1) {
+            setTransitioning(true);
+            setReverse(false);
+            if (active === count - 1) {
                 setActive(0);
             } else {
                 setActive(active + 1);
@@ -118,28 +150,22 @@ const Carousel: FC<RTCarouselProps> = ({
     }, [active]);
 
     useEffect(() => {
-        const ti = { ...transformInfo };
+        const ti = { ...transform };
         if (isHorizontal) {
             if (centered) {
-                ti.x =
-                    -active * span +
-                    containerRef.current.offsetWidth / 2 -
-                    (span - space) / 2;
+                ti.x = -(active + count) * span + size / 2 - (span - space) / 2;
             } else {
-                ti.x = -active * span;
+                ti.x = -(active + count) * span;
             }
         } else {
             if (centered) {
-                ti.y =
-                    -active * span +
-                    containerRef.current.offsetHeight / 2 -
-                    (span - space) / 2;
+                ti.y = -(active + count) * span + size / 2 - (span - space) / 2;
             } else {
-                ti.y = -active * span;
+                ti.y = -(active + count) * span;
             }
         }
-        setTransformInfo(ti);
-    }, [active, span]);
+        setTransform(ti);
+    }, [active, span, count]);
 
     const computeSize = useCallback(() => {
         let size = isHorizontal
@@ -148,10 +174,22 @@ const Carousel: FC<RTCarouselProps> = ({
         setSize(size);
     }, [isHorizontal]);
 
+    const debounce = useCallback(cb => {
+        let timer;
+        return () => {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                cb();
+            }, 300);
+        };
+    }, []);
+
+    const denoucedCompoteSize = debounce(computeSize);
+
     useEffect(() => {
         computeSize();
-        window.addEventListener('resize', computeSize);
-        return () => window.removeEventListener('resize', computeSize);
+        window.addEventListener('resize', denoucedCompoteSize);
+        return () => window.removeEventListener('resize', denoucedCompoteSize);
     }, []);
 
     useEffect(() => {
@@ -159,27 +197,32 @@ const Carousel: FC<RTCarouselProps> = ({
         return () => clearInterval(autoPlayTimer.current);
     }, [autoPlay, active]);
 
+    const checkIfDraggable = (diff: number) => {
+        if (!diff) return;
+        if (!loop) {
+            if (active === 0 && diff > 0) return false;
+            if (active === count - 1 && diff < 0) return false;
+        }
+        return true;
+    };
+
     const onMouseMove = (e: MouseEvent) => {
         currentPageXY.current = isHorizontal ? e.pageX : e.pageY;
-        const curActive = active;
         const pageXYDiff = currentPageXY.current - initialPageXY.current;
-        if (curActive === 0 && pageXYDiff > 0) return;
-        if (curActive === finalChildren.length - 1 && pageXYDiff < 0) return;
-        setTransformInfo({
+        if (!checkIfDraggable(pageXYDiff)) return;
+        setTransform({
             x: isHorizontal
                 ? initialTransform.current + pageXYDiff
-                : transformInfo.x,
+                : transform.x,
             y: isHorizontal
-                ? transformInfo.y
+                ? transform.y
                 : initialTransform.current + pageXYDiff,
         });
     };
 
     const onMouseDown: MouseEventHandler<HTMLDivElement> = e => {
         initialPageXY.current = isHorizontal ? e.pageX : e.pageY;
-        initialTransform.current = isHorizontal
-            ? transformInfo.x
-            : transformInfo.y;
+        initialTransform.current = isHorizontal ? transform.x : transform.y;
         document.addEventListener('mousemove', onMouseMove);
         document.addEventListener('mouseup', onMouseUp);
     };
@@ -188,45 +231,45 @@ const Carousel: FC<RTCarouselProps> = ({
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
         currentPageXY.current = isHorizontal ? e.pageX : e.pageY;
-        const curActive = active;
         const pageXYDiff = currentPageXY.current - initialPageXY.current;
-        if (curActive === 0 && pageXYDiff > 0) return;
-        if (curActive === finalChildren.length - 1 && pageXYDiff < 0) return;
-        if (pageXYDiff === 0) return;
-        console.log(pageXYDiff);
-        setIsTransitioning(true);
+        if (!checkIfDraggable(pageXYDiff)) return;
+        setTransitioning(true);
+        if (pageXYDiff > 0) setReverse(true);
+        else setReverse(false);
         if (Math.abs(pageXYDiff) > span / 2) {
-            setActive(
+            const steps =
                 pageXYDiff < 0
-                    ? active + Math.ceil(Math.abs(pageXYDiff) / span)
-                    : active - Math.ceil(Math.abs(pageXYDiff) / span),
-            );
+                    ? Math.ceil(Math.abs(pageXYDiff) / span)
+                    : -Math.ceil(Math.abs(pageXYDiff) / span);
+            setActive(active + steps);
         } else {
-            setTransformInfo({
-                x: isHorizontal ? initialTransform.current : transformInfo.x,
-                y: !isHorizontal ? initialTransform.current : transformInfo.y,
+            setTransform({
+                x: isHorizontal ? initialTransform.current : transform.x,
+                y: !isHorizontal ? initialTransform.current : transform.y,
             });
         }
     };
 
     const onTransitionEnd = () => {
-        setIsTransitioning(false);
+        setTransitioning(false);
         // scroll to last one
-        if (loop && active === finalChildren.length - 1) {
-            setActive(finalChildren.length / 2 - 1);
+        if (loop && active >= count - 1 && !reverse) {
+            setActive(active - count);
         }
         // scroll to first one
-        if (loop && active === 0) {
-            setActive(finalChildren.length / 2);
+        if (loop && active <= 0 && reverse) {
+            setActive(active + count);
         }
     };
 
     const onMouseWheel: WheelEventHandler = e => {
         if (!mouseWheel) return;
-        setIsTransitioning(true);
+        setTransitioning(true);
         if (e.deltaY > 0) {
+            setReverse(true);
             setActive(active + 1);
         } else {
+            setReverse(false);
             setActive(active - 1);
         }
     };
@@ -245,10 +288,10 @@ const Carousel: FC<RTCarouselProps> = ({
                     onTransitionEnd={onTransitionEnd}
                     onWheel={onMouseWheel}
                     style={{
-                        transition: isTransitioning ? 'transform 0.3s' : null,
+                        transition: transitioning ? 'transform 0.3s' : null,
                         transform: `translate3d(
-                            ${transformInfo.x}px,
-                            ${transformInfo.y}px, 
+                            ${transform.x}px,
+                            ${transform.y}px, 
                              0px
                         )`,
                     }}

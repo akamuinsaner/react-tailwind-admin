@@ -4,6 +4,9 @@ import { RTCarouselDirection } from '.';
 export type RTCarouselContext = {
     span: number;
     space: number;
+    active: number;
+    actualActive: number;
+    count: number;
     direction: RTCarouselDirection;
     childrenRefs: MutableRefObject<HTMLElement[]>;
 };
