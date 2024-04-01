@@ -549,7 +549,7 @@ const DateRangePickerPanel = ({
         <div className={styles.panel.base}>
             {mode === 0 ? (
                 <div className={styles.range.wrapper}>
-                    <div>
+                    <div className={twMerge(styles.panel.base)}>
                         <DatePickerPanelHeader
                             index={0}
                             current={current}
@@ -568,7 +568,7 @@ const DateRangePickerPanel = ({
                             minDate={minDate}
                         />
                     </div>
-                    <div>
+                    <div className={twMerge(styles.panel.base)}>
                         <DatePickerPanelHeader
                             index={1}
                             current={current}

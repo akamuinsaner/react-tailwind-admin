@@ -98,7 +98,7 @@ export const styles: RTSelectStyles = {
         show: `overflow-auto`,
     },
     panel: {
-        base: 'text-mainText',
+        base: 'text-mainText h-full w-full flex flex-col',
         header: {
             base: 'flex items-center px-4 py-2 border-b text-inherit',
             icon: 'h-4 w-4 mx-0.5 cursor-pointer select-none hover:text-primary text-inherit',
@@ -107,10 +107,10 @@ export const styles: RTSelectStyles = {
             disabledIcon: `opacity-0 pointer-events-none select-none`,
         },
         body: {
-            base: 'px-2 py-2 text-mainText h-72 w-72',
+            base: 'px-2 py-2 text-mainText flex-1',
             wrapper: 'grid grid-cols-7 h-full w-full gap-2',
             header: ' flex items-center justify-center font-semibold text-sm',
-            item: 'flex items-center justify-center text-sm cursor-pointer hover:bg-disableBg/50 rounded',
+            item: 'flex items-center justify-center text-sm cursor-pointer hover:bg-disableBg/50 min-h-8 min-w-8 rounded',
             notInMonth: 'text-disableText',
             isToday: 'border-primary border',
             selected: 'bg-primary text-white hover:bg-primary',
@@ -119,8 +119,8 @@ export const styles: RTSelectStyles = {
         },
         year: {
             selected: 'bg-primary text-white hover:bg-primary ',
-            wrapper: 'grid grid-cols-3 px-2 py-2 h-72 w-72 gap-2',
-            item: 'flex items-center justify-center text-sm cursor-pointer hover:bg-disableBg/50 rounded',
+            wrapper: 'grid grid-cols-3 px-2 py-2 gap-4 flex-1',
+            item: 'flex items-center justify-center text-sm cursor-pointer hover:bg-disableBg/50 min-h-8 min-w-8 rounded',
             notIn: 'text-disableText',
         },
         footer: {
