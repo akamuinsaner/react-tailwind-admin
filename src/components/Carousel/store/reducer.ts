@@ -8,8 +8,8 @@ export const reducer = (
     switch (action.type) {
         case EActions['set-active']:
             return { ...state, active: action.value };
-        case EActions['set-span']:
-            return { ...state, span: action.value };
+        case EActions['set-size']:
+            return { ...state, size: action.value };
         default:
             return state;
     }

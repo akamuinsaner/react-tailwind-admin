@@ -1,31 +1,22 @@
-'use client'
-import { reducer, initialState } from './reducer';
-import { useReducer, CSSProperties, FC, ReactNode, memo } from 'react';
+'use client';
+import { CSSProperties, FC, ReactNode, memo } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { styles } from './styles';
 
 export type Props = {
     className?: string;
     style?: CSSProperties;
     children?: ReactNode;
-}
+};
 
-const CardHeader: FC<Props> = ({
-    children,
-    className,
-    style,
-}) => {
-    const [state, dispatch] = useReducer(reducer, initialState)
-
-    const computedClassNames = twMerge(state.styles.body, className);
+const CardHeader: FC<Props> = ({ children, className, style }) => {
+    const computedClassNames = twMerge(styles.body, className);
 
     return (
-        <div
-            style={style}
-            className={computedClassNames}
-        >
+        <div style={style} className={computedClassNames}>
             {children}
         </div>
-    )
-}
+    );
+};
 
 export default memo(CardHeader);

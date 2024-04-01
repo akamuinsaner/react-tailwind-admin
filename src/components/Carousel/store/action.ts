@@ -2,7 +2,7 @@ import { RTCarouselState } from './state';
 
 export enum EActions {
     'set-active',
-    'set-span',
+    'set-size',
 }
 
 export type RTCarouselAction<T> = {
@@ -19,11 +19,11 @@ export const setActiveAction = <T extends RTCarouselState['active']>(
     };
 };
 
-export const setSpanAction = <T extends RTCarouselState['span']>(
+export const setSizeAction = <T extends RTCarouselState['size']>(
     active: T,
 ): RTCarouselAction<T> => {
     return {
-        type: EActions['set-span'],
+        type: EActions['set-size'],
         value: active,
     };
 };

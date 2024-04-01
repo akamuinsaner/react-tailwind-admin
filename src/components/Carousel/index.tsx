@@ -10,6 +10,7 @@ import {
     MouseEventHandler,
     ReactElement,
     ReactNode,
+    useCallback,
     useEffect,
     useMemo,
     useReducer,
@@ -19,7 +20,7 @@ import {
 } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { styles } from './styles';
-import { setSpanAction, reducer, initialState, setActiveAction } from './store';
+import { setSizeAction, reducer, initialState, setActiveAction } from './store';
 import { CarouselContext, RTCarouselContext } from './context';
 import classNames from 'classnames';
 
@@ -59,7 +60,6 @@ const Carousel: FC<RTCarouselProps> = ({
     const childrenRefs = useRef<HTMLElement[]>([]);
     const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
     const autoPlayTimer = useRef<NodeJS.Timeout>(null);
-    const isX = direction === 'horizontal';
     const initialTransform = useRef<number>(0);
     const initialPageXY = useRef<number>(0);
     const currentPageXY = useRef<number>(0);
@@ -67,6 +67,13 @@ const Carousel: FC<RTCarouselProps> = ({
     const [state, dispatch] = useReducer(reducer, initialState);
     const containerRef = useRef<HTMLDivElement>(null);
     const containerClasses = twMerge(styles.container, className);
+    const { size, active } = state;
+    const isHorizontal = useMemo(() => {
+        return direction === 'horizontal';
+    }, [direction]);
+    const span = useMemo(() => {
+        return (size - (slidesPerView - 1) * space) / slidesPerView + space;
+    }, [isHorizontal, size, slidesPerView, space]);
     const finalChildren = useMemo(() => {
         let preChildren;
         if (Array.isArray(children)) preChildren = [...children];
@@ -85,83 +92,94 @@ const Carousel: FC<RTCarouselProps> = ({
         styles.wrapper[direction],
     );
     const contextValue: RTCarouselContext = {
-        span: state.span,
+        span,
         space,
         direction,
         childrenRefs,
     };
-    const setSpan = (span: number) => dispatch(setSpanAction(span));
+    const setSize = (span: number) => dispatch(setSizeAction(span));
     const setActive = (active: number) => dispatch(setActiveAction(active));
 
     const setAutoPlay = () => {
         autoPlayTimer.current = setInterval(() => {
             setIsTransitioning(true);
-            if (state.active === finalChildren.length - 1) {
+            if (active === finalChildren.length - 1) {
                 setActive(0);
             } else {
-                setActive(state.active + 1);
+                setActive(active + 1);
             }
         }, speed);
     };
 
     useEffect(() => {
         if (onCarousel) {
-            onCarousel(state.active, childrenRefs.current);
+            onCarousel(active, childrenRefs.current);
         }
-    }, [state.active]);
+    }, [active]);
 
     useEffect(() => {
         const ti = { ...transformInfo };
-        if (isX) {
+        if (isHorizontal) {
             if (centered) {
                 ti.x =
-                    -state.active * state.span +
+                    -active * span +
                     containerRef.current.offsetWidth / 2 -
-                    (state.span - space) / 2;
+                    (span - space) / 2;
             } else {
-                ti.x = -state.active * state.span;
+                ti.x = -active * span;
             }
         } else {
             if (centered) {
                 ti.y =
-                    -state.active * state.span +
+                    -active * span +
                     containerRef.current.offsetHeight / 2 -
-                    (state.span - space) / 2;
+                    (span - space) / 2;
             } else {
-                ti.y = -state.active * state.span;
+                ti.y = -active * span;
             }
         }
         setTransformInfo(ti);
-    }, [state.active, state.span]);
+    }, [active, span]);
 
-    useEffect(() => {
-        let span = isX
+    const computeSize = useCallback(() => {
+        let size = isHorizontal
             ? containerRef.current.offsetWidth
             : containerRef.current.offsetHeight;
-        span = (span - (slidesPerView - 1) * space) / slidesPerView + space;
-        setSpan(span);
+        setSize(size);
+    }, [isHorizontal]);
+
+    useEffect(() => {
+        computeSize();
+        window.addEventListener('resize', computeSize);
+        return () => window.removeEventListener('resize', computeSize);
     }, []);
 
     useEffect(() => {
         if (autoPlay) setAutoPlay();
         return () => clearInterval(autoPlayTimer.current);
-    }, [autoPlay, state.active]);
+    }, [autoPlay, active]);
 
     const onMouseMove = (e: MouseEvent) => {
-        currentPageXY.current = isX ? e.pageX : e.pageY;
-        const curActive = state.active;
+        currentPageXY.current = isHorizontal ? e.pageX : e.pageY;
+        const curActive = active;
         const pageXYDiff = currentPageXY.current - initialPageXY.current;
         if (curActive === 0 && pageXYDiff > 0) return;
         if (curActive === finalChildren.length - 1 && pageXYDiff < 0) return;
         setTransformInfo({
-            x: isX ? initialTransform.current + pageXYDiff : transformInfo.x,
-            y: isX ? transformInfo.y : initialTransform.current + pageXYDiff,
+            x: isHorizontal
+                ? initialTransform.current + pageXYDiff
+                : transformInfo.x,
+            y: isHorizontal
+                ? transformInfo.y
+                : initialTransform.current + pageXYDiff,
         });
     };
 
     const onMouseDown: MouseEventHandler<HTMLDivElement> = e => {
-        initialPageXY.current = isX ? e.pageX : e.pageY;
-        initialTransform.current = isX ? transformInfo.x : transformInfo.y;
+        initialPageXY.current = isHorizontal ? e.pageX : e.pageY;
+        initialTransform.current = isHorizontal
+            ? transformInfo.x
+            : transformInfo.y;
         document.addEventListener('mousemove', onMouseMove);
         document.addEventListener('mouseup', onMouseUp);
     };
@@ -169,26 +187,24 @@ const Carousel: FC<RTCarouselProps> = ({
     const onMouseUp = e => {
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
-        currentPageXY.current = isX ? e.pageX : e.pageY;
-        const curActive = state.active;
+        currentPageXY.current = isHorizontal ? e.pageX : e.pageY;
+        const curActive = active;
         const pageXYDiff = currentPageXY.current - initialPageXY.current;
         if (curActive === 0 && pageXYDiff > 0) return;
         if (curActive === finalChildren.length - 1 && pageXYDiff < 0) return;
         if (pageXYDiff === 0) return;
         console.log(pageXYDiff);
         setIsTransitioning(true);
-        if (Math.abs(pageXYDiff) > state.span / 2) {
+        if (Math.abs(pageXYDiff) > span / 2) {
             setActive(
                 pageXYDiff < 0
-                    ? state.active +
-                          Math.ceil(Math.abs(pageXYDiff) / state.span)
-                    : state.active -
-                          Math.ceil(Math.abs(pageXYDiff) / state.span),
+                    ? active + Math.ceil(Math.abs(pageXYDiff) / span)
+                    : active - Math.ceil(Math.abs(pageXYDiff) / span),
             );
         } else {
             setTransformInfo({
-                x: isX ? initialTransform.current : transformInfo.x,
-                y: !isX ? initialTransform.current : transformInfo.y,
+                x: isHorizontal ? initialTransform.current : transformInfo.x,
+                y: !isHorizontal ? initialTransform.current : transformInfo.y,
             });
         }
     };
@@ -196,11 +212,11 @@ const Carousel: FC<RTCarouselProps> = ({
     const onTransitionEnd = () => {
         setIsTransitioning(false);
         // scroll to last one
-        if (loop && state.active === finalChildren.length - 1) {
+        if (loop && active === finalChildren.length - 1) {
             setActive(finalChildren.length / 2 - 1);
         }
         // scroll to first one
-        if (loop && state.active === 0) {
+        if (loop && active === 0) {
             setActive(finalChildren.length / 2);
         }
     };
@@ -209,9 +225,9 @@ const Carousel: FC<RTCarouselProps> = ({
         if (!mouseWheel) return;
         setIsTransitioning(true);
         if (e.deltaY > 0) {
-            setActive(state.active + 1);
+            setActive(active + 1);
         } else {
-            setActive(state.active - 1);
+            setActive(active - 1);
         }
     };
 

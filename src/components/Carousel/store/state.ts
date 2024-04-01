@@ -1,9 +1,9 @@
 export type RTCarouselState = {
-    span: number;
+    size: number;
     active: number;
 };
 
 export const initialState: RTCarouselState = {
-    span: 0,
+    size: 0,
     active: 0,
 };
