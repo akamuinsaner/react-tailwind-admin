@@ -2,6 +2,7 @@ import Grid from '@/src/components/Grid';
 import BarChart from './Bar';
 import ChartJSLineChart from './Line';
 import ChartJSPieChart from './Pie';
+import ChartJSRadarChart from './Radar';
 
 const ChartJS = () => {
     return (
@@ -14,6 +15,9 @@ const ChartJS = () => {
             </Grid>
             <Grid span={{ default: 12, '2xl': 6 }}>
                 <ChartJSPieChart />
+            </Grid>
+            <Grid span={{ default: 12, '2xl': 6 }}>
+                <ChartJSRadarChart />
             </Grid>
         </Grid>
     );

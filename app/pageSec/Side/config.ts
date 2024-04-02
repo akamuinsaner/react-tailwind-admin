@@ -233,6 +233,10 @@ export const config: Config[] = [
         icon: ChartBarIcon,
         children: [
             {
+                name: 'Rechart',
+                path: '/charts/rechart',
+            },
+            {
                 name: 'Chartjs',
                 path: '/charts/chartjs',
             },
