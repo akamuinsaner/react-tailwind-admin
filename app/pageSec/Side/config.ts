@@ -91,6 +91,10 @@ export const config: Config[] = [
                         path: '/components/dataInput/datePicker',
                     },
                     {
+                        name: 'Form',
+                        path: '/components/dataInput/form',
+                    },
+                    {
                         name: 'Input',
                         path: '/components/dataInput/input',
                     },

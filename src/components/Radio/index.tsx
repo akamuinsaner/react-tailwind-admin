@@ -38,7 +38,7 @@ const Radio: FC<RTRadioProps> = ({
     const computedClassNames = twMerge(
         styles.box.base,
         classNames({
-            [styles.box.disabled]: disabled,
+            [styles.box.disabled]: disable,
         }),
         className,
     );
@@ -52,23 +52,29 @@ const Radio: FC<RTRadioProps> = ({
         }),
     );
 
+    const inputClassName = twMerge(
+        styles.input.base,
+        classNames({
+            [styles.input.disabled]: disable,
+        }),
+    );
+
     return (
         <span
             style={style}
             className={computedClassNames}
             onClick={() => {
-                if (disabled) return;
                 inputRef.current.click();
             }}
         >
             <div className={styles.wrapper}>
                 <span className={innerClassNames}></span>
                 <input
-                    disabled={disabled}
+                    disabled={disable}
                     type='radio'
                     value={value}
                     ref={inputRef}
-                    className={styles.input}
+                    className={inputClassName}
                     onClick={e => {
                         context.onRadioChange(e as any);
                         e.nativeEvent.stopImmediatePropagation();

@@ -48,6 +48,7 @@ export type RTDatePickerProps = {
     minDate?: Dayjs;
     maxDate?: Dayjs;
     standalone?: Boolean;
+    allowClear?: boolean;
 };
 
 const DatePicker: FC<RTDatePickerProps> = ({
@@ -68,6 +69,7 @@ const DatePicker: FC<RTDatePickerProps> = ({
     minDate,
     maxDate,
     standalone = false,
+    allowClear = true,
 }) => {
     const wrapperIdRef = useRef(uuidV4());
     const anchorRef = useRef<HTMLDivElement>(null);
@@ -80,10 +82,11 @@ const DatePicker: FC<RTDatePickerProps> = ({
     }, [wrapper, state.value, placeholder]);
 
     const displayIcon = useMemo(() => {
-        if (hover && state.value && !disabled)
+        if (hover && state.value && !disabled && allowClear)
             return (
                 <XCircleIcon
-                    onClick={() => {
+                    onClick={e => {
+                        e.stopPropagation();
                         setValue(null);
                         if (onChange) onChange(null, '');
                     }}

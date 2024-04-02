@@ -96,8 +96,13 @@ const config: Config = {
             },
             fontSize: {
                 'rt-large': '16px',
-                'rt-medium': '14px',
+                'rt-medium': '16px',
                 'rt-small': '14px',
+            },
+            lineHeight: {
+                'rt-large': '48px',
+                'rt-medium': '40px',
+                'rt-small': '32px',
             },
             boxShadow: {
                 tableLeft: '4px 0 8px -4px rgba(0,0,0,0.2)',
@@ -114,7 +119,7 @@ const config: Config = {
                 main: '#fff',
                 mainText: '#1f2937', // gray-900
                 'main-hover': '#f3f4f6', // gray-100
-                mainBorder: '#e5e7eb', // gray-200
+                mainBorder: '#d1d5db', // gray-300
                 content: '#F1F5F9',
                 primary: '#2563eb',
                 'primary-hover': '#1d4ed8',
@@ -130,7 +135,7 @@ const config: Config = {
                 danger: '#dc2626',
                 'danger-hover': '#b91c1c',
                 disableBg: '#e5e7eb', // gray-200
-                disableText: '#d1d5db', // gray-300
+                disableText: '#9ca3af', // gray-400
             },
             dark: {
                 main: '#1f2937', // gray-800

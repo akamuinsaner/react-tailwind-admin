@@ -1,9 +1,22 @@
-'use client'
-import { reducer, initialState, setFocusedAction, setValueAction } from './store';
+'use client';
 import {
-    useReducer, CSSProperties, FC, ReactNode, memo,
-    SyntheticEvent, useEffect, ChangeEvent, EventHandler,
-    InputHTMLAttributes
+    reducer,
+    initialState,
+    setFocusedAction,
+    setValueAction,
+} from './store';
+import {
+    useReducer,
+    CSSProperties,
+    FC,
+    ReactNode,
+    memo,
+    SyntheticEvent,
+    useEffect,
+    ChangeEvent,
+    EventHandler,
+    InputHTMLAttributes,
+    HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 import { styles } from './styles';
@@ -29,7 +42,7 @@ export type RTInputProps = {
     showCount?: boolean;
     disabled?: boolean;
     maxLength?: number;
-};
+} & InputHTMLAttributes<HTMLInputElement>;
 
 const Input: FC<RTInputProps> = ({
     className,
@@ -50,48 +63,56 @@ const Input: FC<RTInputProps> = ({
     ...nativeProps
 }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const computedClassNames = twMerge(styles.box.base, classNames({
-        [styles.box[variant]]: true,
-        [styles.box.underlinedFocus]: variant === 'underlined' && state.focused,
-        [styles.box[status]]: !disabled,
-        [styles.box.focused]: state.focused,
-        [styles.box[size]]: true,
-        [styles.box.disabled]: disabled
-    }), className);
+    const computedClassNames = twMerge(
+        styles.box.base,
+        classNames({
+            [styles.box[variant]]: true,
+            [styles.box.underlinedFocus]:
+                variant === 'underlined' && state.focused,
+            [styles.box[status]]: !disabled,
+            [styles.box.focused]: state.focused,
+            [styles.box[size]]: true,
+            [styles.box.disabled]: disabled,
+        }),
+        className,
+    );
 
-    const prefixClassNames = twMerge(styles.prefix.base, classNames({
-        [styles.prefix[status]]: true
-    }))
+    const prefixClassNames = twMerge(
+        styles.prefix.base,
+        classNames({
+            [styles.prefix[status]]: true,
+        }),
+    );
 
-    const suffixClassNames = twMerge(styles.suffix.base, classNames({
-        [styles.suffix[status]]: true
-    }))
+    const suffixClassNames = twMerge(
+        styles.suffix.base,
+        classNames({
+            [styles.suffix[status]]: true,
+        }),
+    );
 
     const setFocused = (focus: boolean) => dispatch(setFocusedAction(focus));
     const setValue = (value: string) => dispatch(setValueAction(value));
 
-    const onValueChange: EventHandler<ChangeEvent<HTMLInputElement>> = (e) => {
+    const onValueChange: EventHandler<ChangeEvent<HTMLInputElement>> = e => {
         if (onChange) onChange(e);
         if (value !== undefined) return;
         setValue(e.target.value);
-    }
+    };
 
     useEffect(() => {
         if (value !== undefined) setValue(value);
     }, [value]);
 
     return (
-        <div
-            style={style}
-            className={computedClassNames}
-        >
-            {addOnBefore
-                ? <span className={styles.addOnBefore}>{addOnBefore}</span>
-                : null}
+        <div style={style} className={computedClassNames}>
+            {addOnBefore ? (
+                <span className={styles.addOnBefore}>{addOnBefore}</span>
+            ) : null}
             <div className={styles.wrapper}>
-                {prefix
-                    ? <span className={prefixClassNames}>{prefix}</span>
-                    : null}
+                {prefix ? (
+                    <span className={prefixClassNames}>{prefix}</span>
+                ) : null}
                 <div className={styles.inner}>
                     <input
                         {...nativeProps}
@@ -103,20 +124,22 @@ const Input: FC<RTInputProps> = ({
                         className={styles.input}
                         disabled={disabled}
                     />
-                    {showCount
-                    ? <span className={styles.count}>{`${state.value.length} ${maxLength ? `/ ${maxLength}` : ''}`}</span>
-                    : null}
+                    {showCount ? (
+                        <span
+                            className={styles.count}
+                        >{`${state.value.length} ${maxLength ? `/ ${maxLength}` : ''}`}</span>
+                    ) : null}
                 </div>
-                {suffix
-                    ? <span className={suffixClassNames}>{suffix}</span>
-                    : null}
+                {suffix ? (
+                    <span className={suffixClassNames}>{suffix}</span>
+                ) : null}
             </div>
 
-            {addOnAfter
-                ? <span className={styles.addOnAfter}>{addOnAfter}</span>
-                : null}
+            {addOnAfter ? (
+                <span className={styles.addOnAfter}>{addOnAfter}</span>
+            ) : null}
         </div>
-    )
-}
+    );
+};
 
 export default memo(Input);

@@ -48,6 +48,7 @@ export type RTDateRangePickerProps = {
     mask?: string;
     minDate?: Dayjs;
     maxDate?: Dayjs;
+    allowClear?: boolean;
 };
 
 const DateRangePicker: FC<RTDateRangePickerProps> = ({
@@ -67,6 +68,7 @@ const DateRangePicker: FC<RTDateRangePickerProps> = ({
     mask = '',
     minDate,
     maxDate,
+    allowClear = true,
 }) => {
     const wrapperIdRef = useRef(uuidV4());
     const inputRefs = [
@@ -90,11 +92,13 @@ const DateRangePicker: FC<RTDateRangePickerProps> = ({
         if (
             hover &&
             (state.rangeValue?.[0] || state.rangeValue?.[1]) &&
-            !disabled
+            !disabled &&
+            allowClear
         )
             return (
                 <XCircleIcon
-                    onClick={() => {
+                    onClick={e => {
+                        e.stopPropagation();
                         setValue([null, null]);
                         if (onChange) onChange([null, null], ['', '']);
                     }}
@@ -135,7 +139,6 @@ const DateRangePicker: FC<RTDateRangePickerProps> = ({
 
     const setHover = (hover: boolean) => dispatch(setHoverAction(hover));
     const setValue = (curValue: [Dayjs, Dayjs]) => {
-        console.log(curValue);
         if (onChange)
             onChange(curValue, [
                 curValue[0] ? curValue[0].format(format) : '',
@@ -159,7 +162,8 @@ const DateRangePicker: FC<RTDateRangePickerProps> = ({
     };
 
     useEffect(() => {
-        if (value !== undefined) dispatch(setRangeValueAction(value));
+        if (value !== undefined && value.length === 2)
+            dispatch(setRangeValueAction(value));
         if (defaultValue !== undefined)
             dispatch(setRangeValueAction(defaultValue));
     }, [value]);

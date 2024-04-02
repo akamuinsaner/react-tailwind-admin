@@ -325,12 +325,12 @@ export const styles: RTGridStyles = {
         '2xl:offset-11': '2xl:ml-[91.666666666%]',
         '2xl:offset-12': '2xl:ml-[100%]',
 
-        'col-gap-small': '[&>*]:pt-2',
-        'col-gap-medium': '[&>*]:pt-4',
-        'col-gap-large': '[&>*]:pt-6',
-        'row-gap-small': '[&>*]:pl-2',
-        'row-gap-medium': '[&>*]:pl-4',
-        'row-gap-large': '[&>*]:pl-6',
+        'col-gap-small': '[&>*]:pl-2',
+        'col-gap-medium': '[&>*]:pl-4',
+        'col-gap-large': '[&>*]:pl-6',
+        'row-gap-small': '[&>*]:pt-2',
+        'row-gap-medium': '[&>*]:pt-4',
+        'row-gap-large': '[&>*]:pt-6',
         content: 'w-full h-full',
     },
 };

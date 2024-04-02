@@ -15,7 +15,7 @@ export interface RTInputStyles {
         warning: string;
         danger: string;
         disabled: string;
-    },
+    };
     wrapper: string;
     inner: string;
     count: string;
@@ -43,30 +43,33 @@ export const styles: RTInputStyles = {
         outlined: 'border',
         contained: 'bg-content',
         underlined: '!border-b !ring-0 rounded-none !hover:border-primary',
-        underlinedFocus: '!border-primary !border-b-2',
+        underlinedFocus: '!border-primary !border-b',
         borderless: '!border-none !ring-0',
-        success: 'border-success !ring-success hover:border-success',
-        info: 'border-info !ring-info hover:border-info',
-        warning: 'border-warning !ring-warning hover:border-warning',
-        danger: 'border-danger !ring-danger hover:border-danger',
-        focused: 'border-transparent ring-2 ring-primary hover:border-transparent',
-        disabled: 'bg-disableBg hover:bg-disableBg text-disableText pointer-events-none select-none'
+        success: '!border-success  !hover:border-success',
+        info: '!border-info  !hover:border-info',
+        warning: '!border-warning !hover:border-warning',
+        danger: '!border-danger  !hover:border-danger',
+        focused: 'border-primary hover:border-primary',
+        disabled:
+            'bg-disableBg hover:bg-disableBg text-disableText pointer-events-none select-none',
     },
-    wrapper: ' px-3 py-1 flex items-center w-full h-full text-inherit bg-inherit',
+    wrapper:
+        ' px-3 py-1 flex items-center w-full h-full text-inherit bg-inherit',
     inner: 'w-full h-full  text-inherit bg-inherit relative',
     count: 'absolute right-1 top-1/2 -translate-y-1/2 text-inherit',
-    addOnBefore: 'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit px-3 bg-main [&>*]:border-none',
+    addOnBefore:
+        'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit px-3 bg-main [&>*]:border-none',
     prefix: {
-        base :'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit mr-3 text-inherit [&>svg]:h-5 [&>svg]:cursor-pointer',
+        base: 'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit mr-3 text-inherit [&>svg]:h-5 [&>svg]:cursor-pointer',
         warning: 'text-warning',
-        danger: 'text-danger'
+        danger: 'text-danger',
     },
     input: 'outline-none border-none w-full h-full text-inherit bg-inherit',
     suffix: {
         base: 'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit ml-3 [&>svg]:h-5 [&>svg]:cursor-pointer',
         warning: 'text-warning',
-        danger: 'text-danger'
+        danger: 'text-danger',
     },
-    addOnAfter: 'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit px-3 bg-main [&>*]:border-none'
-}
-
+    addOnAfter:
+        'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit px-3 bg-main [&>*]:border-none',
+};

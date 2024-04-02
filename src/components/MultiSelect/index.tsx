@@ -38,6 +38,7 @@ import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { XCircleIcon } from '@heroicons/react/24/solid';
 import SelectTag from './SelectTag';
 import Popup from '../Tooltip/Popup';
+import SelectOption, { RTOptionProps } from './SelectOption';
 
 export type RTSelectProps = {
     className?: string;
@@ -57,7 +58,11 @@ export type RTSelectProps = {
     allowClear?: boolean;
 };
 
-const Select: FC<RTSelectProps> = ({
+type MultiSelectFC = FC<RTSelectProps> & {
+    Option: FC<RTOptionProps>;
+};
+
+const MultiSelect: MultiSelectFC = ({
     className,
     style,
     placeholder,
@@ -72,7 +77,7 @@ const Select: FC<RTSelectProps> = ({
     disabled,
     onSearch,
     tagLimit = Infinity,
-    allowClear = false,
+    allowClear = true,
 }) => {
     const wrapperIdRef = useRef(uuidV4());
     const anchorRef = useRef<HTMLDivElement>(null);
@@ -150,7 +155,8 @@ const Select: FC<RTSelectProps> = ({
         if (hover && state.value.length && !disabled && allowClear)
             return (
                 <XCircleIcon
-                    onClick={() => {
+                    onClick={e => {
+                        e.stopPropagation();
                         setValue([]);
                         if (onChange) onChange([]);
                     }}
@@ -274,4 +280,6 @@ const Select: FC<RTSelectProps> = ({
     );
 };
 
-export default memo(Select);
+MultiSelect.Option = SelectOption;
+
+export default MultiSelect;

@@ -33,6 +33,7 @@ import { createWrapperAndAppendToBody } from '../Modal/utils';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { XCircleIcon } from '@heroicons/react/24/solid';
 import Popup from '../Tooltip/Popup';
+import SelectOption, { RTOptionProps } from './SelectOption';
 
 export type RTSelectProps = {
     className?: string;
@@ -51,7 +52,11 @@ export type RTSelectProps = {
     allowClear?: boolean;
 };
 
-const Select: FC<RTSelectProps> = ({
+type SelectFC = FC<RTSelectProps> & {
+    Option: FC<RTOptionProps>;
+};
+
+const Select: SelectFC = ({
     className,
     style,
     placeholder,
@@ -65,7 +70,7 @@ const Select: FC<RTSelectProps> = ({
     search,
     disabled,
     onSearch,
-    allowClear = false,
+    allowClear = true,
 }) => {
     const wrapperIdRef = useRef(uuidV4());
     const displayMap = useMemo(() => {
@@ -114,7 +119,8 @@ const Select: FC<RTSelectProps> = ({
         if (hover && state.value && !disabled && allowClear)
             return (
                 <XCircleIcon
-                    onClick={() => {
+                    onClick={e => {
+                        e.stopPropagation();
                         setValue('');
                         if (onChange) onChange('');
                     }}
@@ -156,7 +162,6 @@ const Select: FC<RTSelectProps> = ({
         dispatch(setWrapperAction(element));
     };
     const removeWrapper = () => {
-        console.log(1111111111111111);
         dispatch(setWrapperAction(null));
     };
     const setAnchor = (anchor: HTMLDivElement) =>
@@ -226,4 +231,6 @@ const Select: FC<RTSelectProps> = ({
     );
 };
 
-export default memo(Select);
+Select.Option = SelectOption;
+
+export default Select;

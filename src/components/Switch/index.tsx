@@ -1,6 +1,14 @@
-'use client'
+'use client';
 import { styles } from './styles';
-import { useReducer, CSSProperties, FC, ReactNode, memo, useRef, useEffect } from 'react';
+import {
+    useReducer,
+    CSSProperties,
+    FC,
+    ReactNode,
+    memo,
+    useRef,
+    useEffect,
+} from 'react';
 import classNames from 'classnames';
 import { twMerge } from 'tailwind-merge';
 
@@ -8,7 +16,7 @@ import {
     initialState,
     reducer,
     setCheckedAction,
-    setLeftAction
+    setLeftAction,
 } from './store';
 import { RTSeverity } from '@/src/types/severity';
 import { RTSize } from '@/src/types/size';
@@ -16,7 +24,7 @@ import { RTSize } from '@/src/types/size';
 export type RTSwitchProps = {
     className?: string;
     style?: CSSProperties;
-    checked?: boolean,
+    checked?: boolean;
     status?: RTSeverity;
     disabled?: boolean;
     value?: boolean;
@@ -26,7 +34,7 @@ export type RTSwitchProps = {
     unCheckedText?: ReactNode;
     size?: RTSize;
     children?: ReactNode;
-}
+};
 
 const Switch: FC<RTSwitchProps> = ({
     className,
@@ -40,38 +48,50 @@ const Switch: FC<RTSwitchProps> = ({
     checkedText,
     unCheckedText,
     size = 'medium',
-    children
+    children,
 }) => {
     const boxRef = useRef<HTMLDivElement>(null);
     const innerRef = useRef<HTMLSpanElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    checked = (typeof value !== 'undefined' || typeof checked !== 'undefined')
-        ? !!(value || checked)
-        : undefined;
+    checked =
+        typeof value !== 'undefined' || typeof checked !== 'undefined'
+            ? !!(value || checked)
+            : undefined;
     const [state, dispatch] = useReducer(reducer, initialState);
     const setLeft = (left: number) => dispatch(setLeftAction(left));
     const setChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.value = e.target.checked as any;
         if (onChange) onChange(e);
         if (typeof checked === 'boolean') return;
-        dispatch(setCheckedAction(e.target.checked))
+        dispatch(setCheckedAction(e.target.checked));
     };
 
-    const wrapperClassName = twMerge(styles.box.base, classNames({
-        [styles.box.checked]: state.checked,
-        [styles.box[status]]: state.checked,
-        [styles.box.disabled]: disabled,
-        [styles.box[size]]: true
-    }), className);
+    const wrapperClassName = twMerge(
+        styles.box.base,
+        classNames({
+            [styles.box.checked]: state.checked,
+            [styles.box[status]]: state.checked,
+            [styles.box.disabled]: disabled,
+            [styles.box[size]]: true,
+        }),
+        className,
+    );
 
-    const innerClassNames = twMerge(styles.inner.base, classNames({
-        [styles.inner.disabled]: disabled,
-        [styles.inner[size]]: true
-    }));
+    const innerClassNames = twMerge(
+        styles.inner.base,
+        classNames({
+            [styles.inner.disabled]: disabled,
+            [styles.inner[size]]: true,
+        }),
+    );
 
-    const textClassName = twMerge(styles.text.base, classNames({
-        [styles.text.checked]: state.checked,
-        [styles.text[size]]: true
-    }));
+    const textClassName = twMerge(
+        styles.text.base,
+        classNames({
+            [styles.text.checked]: state.checked,
+            [styles.text[size]]: true,
+        }),
+    );
 
     useEffect(() => {
         if (typeof checked === 'boolean') {
@@ -79,7 +99,7 @@ const Switch: FC<RTSwitchProps> = ({
             return;
         }
         if (defaultChecked) {
-            dispatch(setCheckedAction(true))
+            dispatch(setCheckedAction(true));
         }
     }, [checked]);
 
@@ -99,13 +119,10 @@ const Switch: FC<RTSwitchProps> = ({
             className={styles.base}
             onClick={() => {
                 if (disabled) return;
-                inputRef.current.click()
+                inputRef.current.click();
             }}
         >
-            <div
-                className={wrapperClassName}
-                ref={boxRef}
-            >
+            <div className={wrapperClassName} ref={boxRef}>
                 <span
                     className={innerClassNames}
                     ref={innerRef}
@@ -116,7 +133,7 @@ const Switch: FC<RTSwitchProps> = ({
                 </span>
                 <input
                     disabled={disabled}
-                    type="checkbox"
+                    type='checkbox'
                     ref={inputRef}
                     className={styles.input}
                     onChange={setChecked}
@@ -129,8 +146,7 @@ const Switch: FC<RTSwitchProps> = ({
             </div>
             <span>{children}</span>
         </span>
-
-    )
-}
+    );
+};
 
 export default memo(Switch);

@@ -9,7 +9,7 @@ const Basic = () => {
         <Card className='break-inside-avoid mb-6'>
             <CardHeader>Basic usage</CardHeader>
             <CardBody>
-                <Grid wrapper colGap='medium'>
+                <Grid wrapper rowGap='medium'>
                     <Grid wrapper>
                         <Grid
                             span={12}

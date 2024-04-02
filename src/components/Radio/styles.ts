@@ -1,10 +1,13 @@
-export interface RTCheckboxStyles {
+export interface RTRadioStyles {
     box: {
         base: string;
         disabled: string;
     };
     wrapper: string;
-    input: string;
+    input: {
+        base: string;
+        disabled: string;
+    };
     inner: {
         base: string;
         checked: string;
@@ -13,20 +16,24 @@ export interface RTCheckboxStyles {
         warning: string;
         danger: string;
         disabled: string;
-    },
+    };
     group: {
         base: string;
         vertical: string;
-    }
+    };
 }
 
-export const styles: RTCheckboxStyles = {
+export const styles: RTRadioStyles = {
     box: {
         base: 'inline-flex items-center cursor-pointer select-none text-mainText',
-        disabled: 'text-disableText pointer-events-none select-none'
+        disabled: 'text-disableText pointer-events-none select-none',
     },
-    wrapper: 'relative w-5 h-5 overflow-hidden border border-mainBorder overflow-hidden mr-2 rounded-full',
-    input: 'absolute z-[1] opacity-0 cursor-pointer w-full h-full',
+    wrapper:
+        'relative w-5 h-5 overflow-hidden border border-mainBorder overflow-hidden mr-2 rounded-full',
+    input: {
+        base: 'absolute z-[1] opacity-0 cursor-pointer w-full h-full',
+        disabled: ' pointer-events-none select-none',
+    },
     inner: {
         base: `inline-block absolute w-full h-full overflow-hidden after:content=['']
             after:absolute after:border-white transition-[background-color] duration-200 ease-linear`,
@@ -36,11 +43,10 @@ export const styles: RTCheckboxStyles = {
         info: 'bg-info',
         warning: 'bg-warning',
         danger: 'bg-danger',
-        disabled: 'bg-disableBg pointer-events-none select-none'
+        disabled: 'bg-disableBg pointer-events-none select-none',
     },
     group: {
         base: 'inline-flex flex-row gap-3',
-        vertical: 'flex-col'
-    }
-}
-
+        vertical: 'flex-col',
+    },
+};
