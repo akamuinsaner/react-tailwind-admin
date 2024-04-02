@@ -1,5 +1,7 @@
 'use client';
 
+export const host = `http://localhost:3001`;
+
 export const simpleRequest = <T>(path: string, options: any): Promise<T> => {
     const { data, headers, method = 'GET' } = options;
     const userInfo = localStorage.getItem('userInfo')
