@@ -140,6 +140,10 @@ export const config: Config[] = [
                         name: 'Progress',
                         path: '/components/feedback/progress',
                     },
+                    {
+                        name: 'Skeleton',
+                        path: '/components/feedback/skeleton',
+                    },
                 ],
             },
             {

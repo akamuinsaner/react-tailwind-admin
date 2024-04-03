@@ -128,8 +128,23 @@ const config: Config = {
                         'stroke-dashoffset': '-113px',
                     },
                 },
+                flow: {
+                    '0%': {
+                        left: '0',
+                        transform: 'translateX(-100%)',
+                    },
+                    '80%': {
+                        left: '100%',
+                        transform: 'translateX(0)',
+                    },
+                    '100%': {
+                        left: '100%',
+                        transform: 'translateX(0)',
+                    },
+                },
             },
             animation: {
+                flow: 'flow 1.5s linear infinite',
                 linearProgress: 'linearProgress 1s ease-in-out infinite',
                 circularProgress: 'circularProgress 1s ease-in-out infinite',
             },
