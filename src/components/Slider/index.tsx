@@ -51,7 +51,13 @@ const Slider: FC<RTSliderProps> = ({
     const [state, dispatch] = useReducer(reducer, {
         values: [min, min],
     });
-    const baseClassName = twMerge(styles.base, className);
+    const baseClassName = twMerge(
+        styles.box.base,
+        classNames({
+            [styles.box.disabled]: disabled,
+        }),
+        className,
+    );
     const trackClassName = twMerge(styles.track.base);
     const barClassName = (index: number) =>
         twMerge(

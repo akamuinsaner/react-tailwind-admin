@@ -129,6 +129,10 @@ export const config: Config[] = [
                         path: '/components/feedback/drawer',
                     },
                     {
+                        name: 'Message',
+                        path: '/components/feedback/message',
+                    },
+                    {
                         name: 'Modal',
                         path: '/components/feedback/modal',
                     },

@@ -65,6 +65,7 @@ const config: Config = {
                 'max-height': 'max-height',
                 left: 'left',
                 top: 'top',
+                opacity: 'opacity',
             },
             colors: {},
             minHeight: {
