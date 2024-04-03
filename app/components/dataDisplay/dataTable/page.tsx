@@ -1,5 +1,6 @@
 import Box from '@/src/components/Box';
 import Basic from './Basic/index';
+import Loading from './Loading';
 import Densed from './Densed';
 import Border from './Border';
 import Spanning from './Spanning';
@@ -22,6 +23,7 @@ const TablePage = () => {
             className='max-w-[1200px] mx-auto'
         >
             <Basic />
+            <Loading />
             <Densed />
             <Border />
             <Spanning />

@@ -49,6 +49,9 @@ export type RTTableStyles = {
             active: string;
         };
     };
+    loading: {
+        mask: string;
+    };
 };
 
 export const styles: RTTableStyles = {
@@ -101,5 +104,8 @@ export const styles: RTTableStyles = {
             base: 'h-4 w-3',
             active: 'text-primary',
         },
+    },
+    loading: {
+        mask: 'absolute top-0 left-0 h-full w-full bg-main/70 flex items-center justify-center',
     },
 };

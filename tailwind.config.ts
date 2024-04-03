@@ -108,6 +108,30 @@ const config: Config = {
                 tableLeft: '4px 0 8px -4px rgba(0,0,0,0.2)',
                 tableRight: '-4px 0 8px -4px rgba(0,0,0,0.2)',
             },
+            keyframes: {
+                linearProgress: {
+                    '0%': {
+                        left: '0',
+                        transform: 'translateX(-100%)',
+                    },
+                    '100%': {
+                        left: '100%',
+                        transform: 'translateX(0)',
+                    },
+                },
+                circularProgress: {
+                    '0%': {
+                        'stroke-dashoffset': '113px',
+                    },
+                    '100%': {
+                        'stroke-dashoffset': '-113px',
+                    },
+                },
+            },
+            animation: {
+                linearProgress: 'linearProgress 1s ease-in-out infinite',
+                circularProgress: 'circularProgress 1s ease-in-out infinite',
+            },
         },
     },
     plugins: [

@@ -26,6 +26,9 @@ import useExpanded from './useExpanded';
 import RTDataTableHead from './DataTableHead';
 import RTDataTableBody from './DataTableBody';
 import classNames from 'classnames';
+import CircularProgress, {
+    RTCircularProgressProps,
+} from '../Progress/CircularProgress';
 
 export type RTDataTableFilters = {
     parentId?: string | number;
@@ -133,7 +136,7 @@ export type RTDataTableProps<T> = {
     dataSource: T[];
     dragProps?: RTDataTableDropable<T>;
     expandProps?: RTDataTableExpandable<T>;
-    loadingProps?: any; //erwewrwe
+    loadingProps?: RTCircularProgressProps; //erwewrwe
     paginationProps?: RTTablePaginationProps | false;
     rowClassName?: string | { (record: T, index: number): string };
     rowKey?: string | number | { (record: T): string | number };
@@ -305,6 +308,11 @@ const DataTable = <T extends object>(props: RTDataTableProps<T>) => {
                         onChange={onPaginationChange}
                     />
                 )}
+                {loadingProps ? (
+                    <div className={styles.loading.mask}>
+                        <CircularProgress />
+                    </div>
+                ) : null}
             </TableWrapper>
         </DataTableContext.Provider>
     );

@@ -132,6 +132,10 @@ export const config: Config[] = [
                         name: 'Modal',
                         path: '/components/feedback/modal',
                     },
+                    {
+                        name: 'Progress',
+                        path: '/components/feedback/progress',
+                    },
                 ],
             },
             {

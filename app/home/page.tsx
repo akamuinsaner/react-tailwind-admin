@@ -6,6 +6,7 @@ import Table from './Table';
 import Tl from './Timeline';
 import StepperComp from './Stepper';
 import ListComp from './List';
+import FormComp from './Form';
 
 const Home = () => {
     return (
@@ -22,6 +23,7 @@ const Home = () => {
             <Grid span={{ default: 12, '2xl': 4 }}>
                 <Tl />
             </Grid>
+
             <Grid span={{ default: 12, '2xl': 8 }}>
                 <Table />
             </Grid>
@@ -31,6 +33,9 @@ const Home = () => {
             <Grid span={{ default: 12, '2xl': 3 }}>
                 <ListComp />
             </Grid>
+            {/* <Grid span={{ default: 12, '2xl': 3 }}>
+                <FormComp />
+            </Grid> */}
         </Grid>
     );
 };

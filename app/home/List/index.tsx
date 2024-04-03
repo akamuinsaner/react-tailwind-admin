@@ -9,7 +9,7 @@ import { HomeIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 
 const ListComp = () => {
     return (
-        <Card className='break-inside-avoid mb-6'>
+        <Card>
             <CardBody>
                 <List divider className='h-96'>
                     <ListItem>
