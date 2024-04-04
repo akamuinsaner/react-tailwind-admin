@@ -3,9 +3,8 @@ import { treeData } from '@/app/utils/data';
 import Card from '@/src/components/Card';
 import CardBody from '@/src/components/Card/CardBody';
 import CardHeader from '@/src/components/Card/CardHeader';
-import Cascader from '@/src/components/Cascader';
 import Flex from '@/src/components/Flex';
-
+import TreeSelect from '@/src/components/TreeSelect';
 const Status = () => {
     const onChange = (value: any) => {
         console.log(value);
@@ -16,25 +15,25 @@ const Status = () => {
             <CardHeader>Status</CardHeader>
             <CardBody>
                 <Flex direction='column' gap='medium'>
-                    <Cascader
+                    <TreeSelect
                         options={treeData}
                         onChange={onChange}
                         placeholder='success'
                         status='success'
                     />
-                    <Cascader
+                    <TreeSelect
                         options={treeData}
                         onChange={onChange}
                         placeholder='info'
                         status='info'
                     />
-                    <Cascader
+                    <TreeSelect
                         options={treeData}
                         onChange={onChange}
                         placeholder='warning'
                         status='warning'
                     />
-                    <Cascader
+                    <TreeSelect
                         options={treeData}
                         onChange={onChange}
                         placeholder='danger'

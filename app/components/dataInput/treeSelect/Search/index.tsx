@@ -3,31 +3,28 @@ import { treeData } from '@/app/utils/data';
 import Card from '@/src/components/Card';
 import CardBody from '@/src/components/Card/CardBody';
 import CardHeader from '@/src/components/Card/CardHeader';
-import Cascader from '@/src/components/Cascader';
 import Flex from '@/src/components/Flex';
+import TreeSelect from '@/src/components/TreeSelect';
 
-const TagLimit = () => {
+const Search = () => {
     const onChange = (value: any) => {
         console.log(value);
+    };
+    const onSearch = (search: string) => {
+        console.log(search);
     };
 
     return (
         <Card className='break-inside-avoid mb-6'>
-            <CardHeader>TagLimit</CardHeader>
+            <CardHeader>Search</CardHeader>
             <CardBody>
                 <Flex direction='column' gap='medium'>
-                    <Cascader
-                        multiple
+                    <TreeSelect
                         options={treeData}
                         onChange={onChange}
-                        placeholder='limited to 2 tags'
-                        tagLimit={2}
-                        defaultValue={[
-                            'leaf1',
-                            'parent 1-1',
-                            'parent 1',
-                            'leaf3',
-                        ]}
+                        placeholder='please input the word you want to search'
+                        search
+                        onSearch={onSearch}
                     />
                 </Flex>
             </CardBody>
@@ -35,4 +32,4 @@ const TagLimit = () => {
     );
 };
 
-export default TagLimit;
+export default Search;

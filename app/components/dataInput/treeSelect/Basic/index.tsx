@@ -5,55 +5,45 @@ import CardBody from '@/src/components/Card/CardBody';
 import CardHeader from '@/src/components/Card/CardHeader';
 import Cascader from '@/src/components/Cascader';
 import Flex from '@/src/components/Flex';
+import TreeSelect from '@/src/components/TreeSelect';
 
-const Size = () => {
+const Basic = () => {
     const onChange = (value: any) => {
         console.log(value);
     };
 
     return (
         <Card className='break-inside-avoid mb-6'>
-            <CardHeader>Size</CardHeader>
+            <CardHeader>Basic usage</CardHeader>
             <CardBody>
                 <Flex direction='column' gap='medium'>
-                    <Cascader
-                        size='small'
+                    <TreeSelect
                         options={treeData}
                         onChange={onChange}
-                        placeholder='small'
+                        placeholder='single select'
+                        defaultValue={'parent 1-1'}
                     />
-                    <Cascader
-                        size='small'
+                    <TreeSelect
                         multiple
                         options={treeData}
                         onChange={onChange}
-                        placeholder='small'
+                        placeholder='multiple select'
+                        defaultValue={['leaf1', 'parent 1-1']}
                     />
-                    <Cascader
-                        size='medium'
+                    <TreeSelect
+                        disabled
                         options={treeData}
                         onChange={onChange}
-                        placeholder='medium'
+                        placeholder='single select'
+                        defaultValue={'parent 1-1'}
                     />
-                    <Cascader
-                        size='medium'
+                    <TreeSelect
                         multiple
+                        disabled
                         options={treeData}
                         onChange={onChange}
-                        placeholder='medium'
-                    />
-                    <Cascader
-                        size='large'
-                        options={treeData}
-                        onChange={onChange}
-                        placeholder='large'
-                    />
-                    <Cascader
-                        size='large'
-                        multiple
-                        options={treeData}
-                        onChange={onChange}
-                        placeholder='large'
+                        placeholder='multiple select '
+                        defaultValue={['leaf1', 'parent 1-1']}
                     />
                 </Flex>
             </CardBody>
@@ -61,4 +51,4 @@ const Size = () => {
     );
 };
 
-export default Size;
+export default Basic;

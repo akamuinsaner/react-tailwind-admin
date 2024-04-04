@@ -17,6 +17,7 @@ import DatePicker from '@/src/components/DatePicker';
 import DateRangePicker from '@/src/components/DatePicker/DateRangePicker';
 import Cascader from '@/src/components/Cascader';
 import { treeData } from '@/app/utils/data';
+import TreeSelect from '@/src/components/TreeSelect';
 
 const Disabled = () => {
     const [disabled, setDisabled] = useState<boolean>(false);
@@ -62,6 +63,9 @@ const Disabled = () => {
                         </Form.Item>
                         <Form.Item label='Cascader' name='cascader'>
                             <Cascader multiple options={treeData} />
+                        </Form.Item>
+                        <Form.Item label='TreeSelect' name='treeSelect'>
+                            <TreeSelect multiple options={treeData} />
                         </Form.Item>
 
                         <Form.Item label='Textarea' name='textarea'>

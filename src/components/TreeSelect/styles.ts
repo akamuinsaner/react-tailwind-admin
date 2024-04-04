@@ -39,7 +39,6 @@ export interface RTCascaderStyles {
     };
     expand: {
         icon: string;
-        show: string;
     };
     tagBox: string;
     tag: {
@@ -82,19 +81,18 @@ export const styles: RTCascaderStyles = {
     count: 'absolute right-1 top-1/2 -translate-y-1/2 text-inherit',
     input: 'outline-none border-none w-full h-full text-inherit bg-inherit',
     selectBox: {
-        base: `overflow-hidden bg-main max-h-56 rounded flex items-stretch`,
+        base: `overflow-hidden bg-main max-h-56 rounded`,
         show: `overflow-auto`,
     },
     option: {
-        base: `border-r border-mainBorder min-w-48`,
+        base: ``,
         selected: 'text-primary bg-primary/10',
         large: 'h-rt-large text-rt-large text-mainText',
         medium: 'h-rt-medium text-rt-medium text-mainText',
         small: 'h-rt-small text-rt-small text-mainText',
     },
     expand: {
-        icon: 'h-5 w-5 transition-transform duration-100',
-        show: 'rotate-90',
+        icon: 'h-5 w-5',
     },
     tagBox: 'h-full flex items-center pl-3 py-1 gap-x-0.5',
     tag: {

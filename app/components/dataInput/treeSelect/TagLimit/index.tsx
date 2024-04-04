@@ -3,8 +3,8 @@ import { treeData } from '@/app/utils/data';
 import Card from '@/src/components/Card';
 import CardBody from '@/src/components/Card/CardBody';
 import CardHeader from '@/src/components/Card/CardHeader';
-import Cascader from '@/src/components/Cascader';
 import Flex from '@/src/components/Flex';
+import TreeSelect from '@/src/components/TreeSelect';
 
 const TagLimit = () => {
     const onChange = (value: any) => {
@@ -16,7 +16,7 @@ const TagLimit = () => {
             <CardHeader>TagLimit</CardHeader>
             <CardBody>
                 <Flex direction='column' gap='medium'>
-                    <Cascader
+                    <TreeSelect
                         multiple
                         options={treeData}
                         onChange={onChange}

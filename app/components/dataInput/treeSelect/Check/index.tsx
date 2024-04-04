@@ -3,9 +3,9 @@ import { treeData } from '@/app/utils/data';
 import Card from '@/src/components/Card';
 import CardBody from '@/src/components/Card/CardBody';
 import CardHeader from '@/src/components/Card/CardHeader';
-import Cascader from '@/src/components/Cascader';
 import Checkbox from '@/src/components/Checkbox';
 import Flex from '@/src/components/Flex';
+import TreeSelect from '@/src/components/TreeSelect';
 import { useState } from 'react';
 
 const Check = () => {
@@ -25,7 +25,7 @@ const Check = () => {
                     >
                         CheckWithRelation
                     </Checkbox>
-                    <Cascader
+                    <TreeSelect
                         search
                         checkWithRelation={cr}
                         checkable

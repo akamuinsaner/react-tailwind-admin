@@ -118,6 +118,10 @@ export const config: Config[] = [
                         name: 'Switch',
                         path: '/components/dataInput/switch',
                     },
+                    {
+                        name: 'TreeSelect',
+                        path: '/components/dataInput/treeSelect',
+                    },
                 ],
             },
             {

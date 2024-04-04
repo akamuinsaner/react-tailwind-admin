@@ -3,8 +3,8 @@ import { treeData } from '@/app/utils/data';
 import Card from '@/src/components/Card';
 import CardBody from '@/src/components/Card/CardBody';
 import CardHeader from '@/src/components/Card/CardHeader';
-import Cascader from '@/src/components/Cascader';
 import Flex from '@/src/components/Flex';
+import TreeSelect from '@/src/components/TreeSelect';
 
 const Size = () => {
     const onChange = (value: any) => {
@@ -16,39 +16,39 @@ const Size = () => {
             <CardHeader>Size</CardHeader>
             <CardBody>
                 <Flex direction='column' gap='medium'>
-                    <Cascader
+                    <TreeSelect
                         size='small'
                         options={treeData}
                         onChange={onChange}
                         placeholder='small'
                     />
-                    <Cascader
+                    <TreeSelect
                         size='small'
                         multiple
                         options={treeData}
                         onChange={onChange}
                         placeholder='small'
                     />
-                    <Cascader
+                    <TreeSelect
                         size='medium'
                         options={treeData}
                         onChange={onChange}
                         placeholder='medium'
                     />
-                    <Cascader
+                    <TreeSelect
                         size='medium'
                         multiple
                         options={treeData}
                         onChange={onChange}
                         placeholder='medium'
                     />
-                    <Cascader
+                    <TreeSelect
                         size='large'
                         options={treeData}
                         onChange={onChange}
                         placeholder='large'
                     />
-                    <Cascader
+                    <TreeSelect
                         size='large'
                         multiple
                         options={treeData}

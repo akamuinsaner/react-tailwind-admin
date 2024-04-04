@@ -3,42 +3,42 @@ import { treeData } from '@/app/utils/data';
 import Card from '@/src/components/Card';
 import CardBody from '@/src/components/Card/CardBody';
 import CardHeader from '@/src/components/Card/CardHeader';
-import Cascader from '@/src/components/Cascader';
 import Flex from '@/src/components/Flex';
+import TreeSelect from '@/src/components/TreeSelect';
 
-const Status = () => {
+const Variant = () => {
     const onChange = (value: any) => {
         console.log(value);
     };
 
     return (
         <Card className='break-inside-avoid mb-6'>
-            <CardHeader>Status</CardHeader>
+            <CardHeader>Variant</CardHeader>
             <CardBody>
                 <Flex direction='column' gap='medium'>
-                    <Cascader
+                    <TreeSelect
                         options={treeData}
                         onChange={onChange}
-                        placeholder='success'
-                        status='success'
+                        placeholder='outlined'
+                        variant='outlined'
                     />
-                    <Cascader
+                    <TreeSelect
                         options={treeData}
                         onChange={onChange}
-                        placeholder='info'
-                        status='info'
+                        placeholder='contained'
+                        variant='contained'
                     />
-                    <Cascader
+                    <TreeSelect
                         options={treeData}
                         onChange={onChange}
-                        placeholder='warning'
-                        status='warning'
+                        placeholder='underlined'
+                        variant='underlined'
                     />
-                    <Cascader
+                    <TreeSelect
                         options={treeData}
                         onChange={onChange}
-                        placeholder='danger'
-                        status='danger'
+                        placeholder='borderless'
+                        variant='borderless'
                     />
                 </Flex>
             </CardBody>
@@ -46,4 +46,4 @@ const Status = () => {
     );
 };
 
-export default Status;
+export default Variant;

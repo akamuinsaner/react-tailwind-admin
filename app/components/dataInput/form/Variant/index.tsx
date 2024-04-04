@@ -16,6 +16,7 @@ import DateRangePicker from '@/src/components/DatePicker/DateRangePicker';
 import { RTVariant } from '@/src/types/variant';
 import Cascader from '@/src/components/Cascader';
 import { treeData } from '@/app/utils/data';
+import TreeSelect from '@/src/components/TreeSelect';
 
 const Variant = () => {
     const [variant, setVariant] = useState<RTVariant>('outlined');
@@ -64,6 +65,9 @@ const Variant = () => {
                         </Form.Item>
                         <Form.Item label='Cascader' name='cascader'>
                             <Cascader multiple options={treeData} />
+                        </Form.Item>
+                        <Form.Item label='TreeSelect' name='treeSelect'>
+                            <TreeSelect multiple options={treeData} />
                         </Form.Item>
                         <Form.Item label='DatePicker' name='datePicker'>
                             <DatePicker />
