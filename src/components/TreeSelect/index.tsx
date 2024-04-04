@@ -33,6 +33,7 @@ import useValue from '../Cascader/useValue';
 import useInput from '../Cascader/useInput';
 import useSearch from '../Cascader/useSearch';
 import { RTCascaderOption } from '../Cascader';
+import useExpand from './useExpand';
 
 export type RTCascaderPlacement =
     | 'top'
@@ -67,6 +68,10 @@ export type RTTreeSelectProps = {
     defaultValue?: any;
     tagLimit?: number;
     checkWithRelation?: boolean;
+    defaultExpandAll?: boolean;
+    defaultExpandedKeys?: Array<RTTreeSelectOption['id']>;
+    expandedKeys?: Array<number | string>;
+    onExpand?: (expandedKeys: Array<number | string>) => void;
 };
 
 const TreeSelect: FC<RTTreeSelectProps> = ({
@@ -92,6 +97,10 @@ const TreeSelect: FC<RTTreeSelectProps> = ({
     defaultValue,
     tagLimit = Infinity,
     checkWithRelation,
+    defaultExpandAll = false,
+    defaultExpandedKeys,
+    expandedKeys,
+    onExpand,
 }) => {
     const wrapperIdRef = useRef(uuidV4());
     const anchorRef = useRef<HTMLDivElement>(null);
