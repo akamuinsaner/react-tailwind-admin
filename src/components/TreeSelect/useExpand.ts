@@ -5,44 +5,46 @@ import { RESERVED_KEY, DataSet } from '../Cascader/utils';
 type UseExpandedProps = {
     flattedData: DataSet<RTTreeSelectOption>['flattedData'];
     defaultExpandAll: RTTreeSelectProps['defaultExpandAll'];
-    defaultExpandedKeys: RTTreeSelectProps['defaultExpandedKeys'];
-    expandedKeys: RTTreeSelectProps['expandedKeys'];
+    defaultExpandKeys: RTTreeSelectProps['defaultExpandKeys'];
+    expandKeys: RTTreeSelectProps['expandKeys'];
     onExpand: RTTreeSelectProps['onExpand'];
+    setOpenKeys: (openKeys: any[]) => void;
+    openKeys: any[];
 };
 
 export default ({
     flattedData,
     defaultExpandAll,
-    defaultExpandedKeys,
-    expandedKeys,
+    defaultExpandKeys,
+    expandKeys,
     onExpand,
+    setOpenKeys,
+    openKeys,
 }: UseExpandedProps) => {
-    const getDefaultExpandKeys = () => {
-        if (defaultExpandedKeys) return defaultExpandedKeys;
-        if (defaultExpandAll) return flattedData.map(o => o.id);
-        return [];
-    };
-
-    const [expandKeys, setExpandKeys] = React.useState<
-        Array<RTTreeSelectOption['id']>
-    >(getDefaultExpandKeys());
-
     const toggleExpand = (id: RTTreeSelectOption['id']) => {
         let keys = [];
-        if (!expandKeys.includes(id)) keys = [...expandKeys, id];
-        else keys = expandKeys.filter(item => item !== id);
+        if (!openKeys.includes(id)) keys = [...openKeys, id];
+        else keys = openKeys.filter(item => item !== id);
         if (onExpand) onExpand(keys);
-        if (!expandedKeys) setExpandKeys(keys);
+        if (!!expandKeys) return;
+        setOpenKeys(keys);
     };
 
     React.useEffect(() => {
-        if (expandedKeys) {
-            setExpandKeys(expandedKeys)
-        };
-    }, [expandedKeys]);
+        if (expandKeys) {
+            setOpenKeys(expandKeys);
+            return;
+        }
+        if (defaultExpandKeys) {
+            setOpenKeys(defaultExpandKeys);
+            return;
+        }
+        if (defaultExpandAll) {
+            setOpenKeys(flattedData.map(item => item.id));
+        }
+    }, [expandKeys]);
 
     return {
-        expandKeys,
         toggleExpand,
     };
 };

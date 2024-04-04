@@ -20,7 +20,6 @@ export type RTTreeSelectOptionProps = {
     style?: CSSProperties;
     className?: string;
     loadData?: (option: RTTreeSelectOption) => any;
-    setOpenKeys: (key: any[]) => void;
     setLoadingId: (id: number | string) => void;
     loadingId: number | string;
     showCheck: boolean;
@@ -30,6 +29,7 @@ export type RTTreeSelectOptionProps = {
     toggleCheck: (node: RTTreeSelectOption, checked: boolean) => void;
     checkWithRelation: boolean;
     idChildrenIdMap: Map<string | number, (string | number)[]>;
+    toggleExpand: (id: string | number) => void;
 };
 
 const Options: FC<RTTreeSelectOptionProps> = ({
@@ -40,7 +40,6 @@ const Options: FC<RTTreeSelectOptionProps> = ({
     style,
     className,
     loadData,
-    setOpenKeys,
     setLoadingId,
     loadingId,
     showCheck,
@@ -50,16 +49,8 @@ const Options: FC<RTTreeSelectOptionProps> = ({
     toggleCheck,
     checkWithRelation,
     idChildrenIdMap,
+    toggleExpand,
 }) => {
-    const toggleOpen = (key: string | number) => {
-        let keys = [...openKeys];
-        if (openKeys.includes(key)) {
-            keys = keys.filter(k => k !== key);
-        } else {
-            keys = [...keys, key];
-        }
-        setOpenKeys(keys);
-    };
     const renderItems = (
         pId: RTTreeSelectOption['id'] = RESERVED_KEY,
         depth: number = 0,
@@ -102,14 +93,14 @@ const Options: FC<RTTreeSelectOptionProps> = ({
                                 showChildren={showChildren}
                                 isLoading={isLoading}
                                 openChildren={() => {
-                                    toggleOpen(node.id);
+                                    toggleExpand(node.id);
                                 }}
                                 startLoadData={() => {
                                     if (!loadData) return;
                                     setLoadingId(node.id);
                                     loadData(node)
                                         .then(data => {
-                                            toggleOpen(node.id);
+                                            toggleExpand(node.id);
                                         })
                                         .finally(() => {
                                             setLoadingId(null);

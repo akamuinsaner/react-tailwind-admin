@@ -7,6 +7,7 @@ import Search from './Search';
 import TagLimit from './TagLimit';
 import Check from './Check';
 import LoadData from './Loaddata';
+import Expand from './Expand';
 
 const TreeSelectPage = () => {
     return (
@@ -20,6 +21,7 @@ const TreeSelectPage = () => {
             <Size />
             <Status />
             <Variant />
+            <Expand />
             <Search />
             <TagLimit />
             <Check />

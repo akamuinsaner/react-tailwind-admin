@@ -69,8 +69,8 @@ export type RTTreeSelectProps = {
     tagLimit?: number;
     checkWithRelation?: boolean;
     defaultExpandAll?: boolean;
-    defaultExpandedKeys?: Array<RTTreeSelectOption['id']>;
-    expandedKeys?: Array<number | string>;
+    defaultExpandKeys?: Array<RTTreeSelectOption['id']>;
+    expandKeys?: Array<number | string>;
     onExpand?: (expandedKeys: Array<number | string>) => void;
 };
 
@@ -98,8 +98,8 @@ const TreeSelect: FC<RTTreeSelectProps> = ({
     tagLimit = Infinity,
     checkWithRelation,
     defaultExpandAll = false,
-    defaultExpandedKeys,
-    expandedKeys,
+    defaultExpandKeys,
+    expandKeys,
     onExpand,
 }) => {
     const wrapperIdRef = useRef(uuidV4());
@@ -167,6 +167,16 @@ const TreeSelect: FC<RTTreeSelectProps> = ({
     useEffect(() => {
         setAnchor(anchorRef.current);
     }, []);
+
+    const { toggleExpand } = useExpand({
+        flattedData,
+        defaultExpandAll,
+        defaultExpandKeys,
+        expandKeys,
+        onExpand,
+        openKeys,
+        setOpenKeys,
+    });
 
     const { onOptionSelect, toggleCheck, valueOnChange } =
         useValue<RTTreeSelectOption>({
@@ -254,7 +264,6 @@ const TreeSelect: FC<RTTreeSelectProps> = ({
                     size={size}
                     loadingId={loadingId}
                     loadData={loadData}
-                    setOpenKeys={setOpenKeys}
                     setLoadingId={setLoadingId}
                     showCheck={multiple && checkable}
                     multiple={multiple}
@@ -262,6 +271,7 @@ const TreeSelect: FC<RTTreeSelectProps> = ({
                     toggleCheck={toggleCheck}
                     checkWithRelation={checkWithRelation}
                     idChildrenIdMap={idChildrenIdMap}
+                    toggleExpand={toggleExpand}
                 />
             </DropBox>
         </>
