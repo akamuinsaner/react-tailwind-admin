@@ -1,27 +1,26 @@
 import { RTSize } from '@/src/types/size';
 import { useMemo, useRef } from 'react';
-import SelectTag from '../Select/SelectTag';
+import SelectTag from './SelectTag';
 import { v4 as uuidV4 } from 'uuid';
-import { BaseTreeData } from './utils';
 import { styles } from './styles';
 
-export type RTCascaderUseTagProps<T> = {
+export type RTSelectUseTagProps = {
     tagLimit: number;
-    value: Array<number | string>;
+    value: string[];
     size: RTSize;
-    valueOnChange: (value: Array<number | string>) => void;
-    idTreeNodeMap: Map<BaseTreeData<T>['id'], T>;
+    valueOnChange: (value: string[]) => void;
+    displayMap: Map<string, string>;
     multiple: boolean;
 };
 
-const useTag = <T extends BaseTreeData<T>>({
+const useTag = ({
     value,
     tagLimit,
     size,
     valueOnChange,
-    idTreeNodeMap,
+    displayMap,
     multiple,
-}: RTCascaderUseTagProps<T>) => {
+}: RTSelectUseTagProps) => {
     const tagWidthRef = useRef<number[]>([]);
 
     const displayTags = useMemo(() => {
@@ -29,7 +28,7 @@ const useTag = <T extends BaseTreeData<T>>({
         const restCount = value.length - tagLimit;
         return renderValues
             .map((v, i) => {
-                const text = idTreeNodeMap.get(v)?.name || '';
+                const text = displayMap.get(v);
                 const ondelete = () => {
                     const values = value.filter(vl => vl !== v);
                     valueOnChange(values);
@@ -58,7 +57,7 @@ const useTag = <T extends BaseTreeData<T>>({
                       ]
                     : [],
             );
-    }, [value, idTreeNodeMap, size, tagLimit]);
+    }, [value, displayMap, size, tagLimit]);
 
     if (!value.length || !multiple) return null;
 

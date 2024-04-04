@@ -37,6 +37,14 @@ export interface RTSelectStyles {
         medium: string;
         small: string;
     };
+    tagBox: string;
+    tag: {
+        base: string;
+        large: string;
+        medium: string;
+        small: string;
+        icon: string;
+    };
 }
 
 export const styles: RTSelectStyles = {
@@ -79,5 +87,13 @@ export const styles: RTSelectStyles = {
         large: 'h-rt-large text-rt-large text-mainText',
         medium: 'h-rt-medium text-rt-medium text-mainText',
         small: 'h-rt-small text-rt-small text-mainText',
+    },
+    tagBox: 'h-full flex items-center pl-3 py-1 gap-x-0.5',
+    tag: {
+        base: 'h-full px-2 flex items-center bg-disableBg rounded text-inherit whitespace-nowrap',
+        large: 'text-rt-large',
+        medium: 'text-rt-medium',
+        small: 'text-rt-small',
+        icon: 'h-4 w-4 ml-1 cursor-pointer',
     },
 };

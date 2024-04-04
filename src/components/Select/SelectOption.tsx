@@ -1,12 +1,5 @@
 'use client';
-import {
-    CSSProperties,
-    FC,
-    memo,
-    ReactNode,
-    useContext,
-    useEffect,
-} from 'react';
+import { CSSProperties, FC, useContext } from 'react';
 import { twMerge } from 'tailwind-merge';
 import classNames from 'classnames';
 import { styles } from './styles';
@@ -22,18 +15,18 @@ export type RTOptionProps = {
 const Option: FC<RTOptionProps> = ({ className, style, children, value }) => {
     const context = useContext(SelectContext);
 
-    const { value: curValue, setValue, size } = context;
+    const { value: curValue, onOptionSelect, size } = context;
 
     const computedClassNames = twMerge(
         styles.option.base,
         classNames({
-            [styles.option.selected]: value === curValue,
+            [styles.option.selected]: curValue.includes(value),
             [styles.option[size]]: true,
         }),
         className,
     );
 
-    const onSelect = () => setValue(value);
+    const onSelect = () => onOptionSelect(value);
 
     return (
         <li style={style} className={computedClassNames} onClick={onSelect}>

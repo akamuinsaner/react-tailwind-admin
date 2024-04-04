@@ -4,7 +4,6 @@ import Sizes from './Sizes';
 import Status from './Status';
 import Variant from './Variant';
 import Search from './Search';
-import Multiple from './Multiple';
 import TagLimit from './TagLimits';
 import Columns from '@/src/components/Columns';
 
@@ -22,7 +21,6 @@ const SelectPage = () => {
             <Status />
             <Variant />
             <Search />
-            <Multiple />
             <TagLimit />
         </Columns>
     );

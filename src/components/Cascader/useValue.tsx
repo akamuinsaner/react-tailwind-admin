@@ -42,7 +42,7 @@ const useValue = <T extends BaseTreeData<T>>({
     }, [ctrlValue]);
 
     const valueOnChange = (curVal: (string | number)[]) => {
-        if (onChange) onChange(curVal);
+        if (onChange) onChange(multiple ? curVal : curVal[0]);
         if (ctrlValue !== undefined) return;
         setValue(curVal);
     };

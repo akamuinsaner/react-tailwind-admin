@@ -26,7 +26,6 @@ const DropBox: FC<RTCascaderDropBoxProps> = ({
         if (noData)
             return {
                 width: noData ? `${anchor.offsetWidth}px` : 'auto',
-                height: noData ? '150px' : 'auto',
             };
         return null;
     }, [noData, anchor]);

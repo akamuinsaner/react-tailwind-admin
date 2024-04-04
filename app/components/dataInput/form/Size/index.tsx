@@ -3,14 +3,11 @@ import Button from '@/src/components/Button';
 import Card from '@/src/components/Card';
 import CardBody from '@/src/components/Card/CardBody';
 import CardHeader from '@/src/components/Card/CardHeader';
-import Checkbox from '@/src/components/Checkbox';
 import RadioGroup from '@/src/components/Radio/RadioGroup';
 import Radio from '@/src/components/Radio';
 import Form from '@/src/components/Form';
 import Input from '@/src/components/Input';
-import MultiSelect from '@/src/components/MultiSelect';
 import Select from '@/src/components/Select';
-import SelectOption from '@/src/components/Select/SelectOption';
 import Textarea from '@/src/components/Textarea';
 import Switch from '@/src/components/Switch';
 import { useState } from 'react';
@@ -18,6 +15,8 @@ import { RTSize } from '@/src/types/size';
 import Flex from '@/src/components/Flex';
 import DatePicker from '@/src/components/DatePicker';
 import DateRangePicker from '@/src/components/DatePicker/DateRangePicker';
+import Cascader from '@/src/components/Cascader';
+import { treeData } from '@/app/utils/data';
 
 const Size = () => {
     const [size, setSize] = useState<RTSize>('medium');
@@ -47,9 +46,9 @@ const Size = () => {
                         </Form.Item>
                         <Form.Item label='Select' name='select'>
                             <Select>
-                                <SelectOption value='1'>1</SelectOption>
-                                <SelectOption value='2'>2</SelectOption>
-                                <SelectOption value='3'>3</SelectOption>
+                                <Select.Option value='1'>1</Select.Option>
+                                <Select.Option value='2'>2</Select.Option>
+                                <Select.Option value='3'>3</Select.Option>
                             </Select>
                         </Form.Item>
                         <Form.Item
@@ -57,17 +56,14 @@ const Size = () => {
                             name='multiSelect'
                             multiple
                         >
-                            <MultiSelect>
-                                <MultiSelect.Option value='1'>
-                                    1
-                                </MultiSelect.Option>
-                                <MultiSelect.Option value='2'>
-                                    2
-                                </MultiSelect.Option>
-                                <MultiSelect.Option value='3'>
-                                    3
-                                </MultiSelect.Option>
-                            </MultiSelect>
+                            <Select multiple>
+                                <Select.Option value='1'>1</Select.Option>
+                                <Select.Option value='2'>2</Select.Option>
+                                <Select.Option value='3'>3</Select.Option>
+                            </Select>
+                        </Form.Item>
+                        <Form.Item label='Cascader' name='cascader'>
+                            <Cascader multiple options={treeData} />
                         </Form.Item>
                         <Form.Item label='Textarea' name='textarea'>
                             <Textarea />
