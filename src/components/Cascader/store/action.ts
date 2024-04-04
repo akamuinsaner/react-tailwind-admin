@@ -2,11 +2,36 @@ import { RTCascaderState } from './state';
 
 export enum EActions {
     'set-anchor',
+    'set-value',
+    'set-wrapper',
+    'set-search',
+    'set-hover',
+    'set-open-keys',
+    'set-data-set',
+    'set-loading-id',
 }
 
 export type RTCascaderAction<T> = {
     type: EActions;
     value: T;
+};
+
+export const setDataSetAction = <T extends RTCascaderState['dataSet']>(
+    value: T,
+): RTCascaderAction<T> => {
+    return {
+        type: EActions['set-data-set'],
+        value: value,
+    };
+};
+
+export const setOpenKeysAction = <T extends RTCascaderState['openKeys']>(
+    value: T,
+): RTCascaderAction<T> => {
+    return {
+        type: EActions['set-open-keys'],
+        value: value,
+    };
 };
 
 export const setValueAction = <T extends RTCascaderState['value']>(
@@ -50,6 +75,15 @@ export const setHoverAction = <T extends RTCascaderState['hover']>(
 ): RTCascaderAction<T> => {
     return {
         type: EActions['set-hover'],
+        value: value,
+    };
+};
+
+export const setLoadingIdAction = <T extends RTCascaderState['loadingId']>(
+    value: T,
+): RTCascaderAction<T> => {
+    return {
+        type: EActions['set-loading-id'],
         value: value,
     };
 };

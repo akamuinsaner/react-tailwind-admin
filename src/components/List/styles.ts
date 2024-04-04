@@ -27,8 +27,8 @@ export const styles: RTListStyles = {
         medium: 'py-2 text-sm',
         large: 'py-3 text-base',
     },
-    icon: 'child:h-full child:w-full shrink-0 mr-2 h-6 w-6 text-inherit',
+    icon: 'child:h-full child:w-full shrink-0 mr-2 h-6 w-6 text-inherit flex items-center justify-center',
     text: 'flex-1 text-inherit flex justify-center flex-col',
-    action: 'child:h-full child:w-full shrink-0 ml-2 h-6 w-6 text-inherit',
+    action: 'child:h-full child:w-full shrink-0 ml-2 h-6 w-6 text-inherit flex items-center justify-center',
     avatar: 'mr-4 text-inherit',
 };

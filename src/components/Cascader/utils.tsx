@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 
 export type BaseTreeData<T> = {
@@ -104,4 +104,18 @@ const getTreeDataFormatted = <T extends BaseTreeData<T>>(
     };
 };
 
-export default getTreeDataFormatted;
+const highlightText = (text: ReactNode, highlight: string): ReactNode => {
+    const parts = `${text}`.split(new RegExp(`(${highlight})`, 'gi'));
+    return (
+        <span>
+            {parts.map((part, i) => {
+                if (part.toLowerCase() !== highlight.toLowerCase()) {
+                    return <span>{part}</span>;
+                }
+                return <span className='font-bold'>{part}</span>;
+            })}
+        </span>
+    );
+};
+
+export { getTreeDataFormatted, highlightText };

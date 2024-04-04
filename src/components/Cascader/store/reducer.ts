@@ -6,6 +6,10 @@ export const reducer = (
     action: RTCascaderAction<any>,
 ): RTCascaderState => {
     switch (action.type) {
+        case EActions['set-open-keys']:
+            return { ...state, openKeys: action.value };
+        case EActions['set-data-set']:
+            return { ...state, dataSet: action.value };
         case EActions['set-value']:
             return { ...state, value: action.value, searchValue: '' };
         case EActions['set-wrapper']:
@@ -16,6 +20,8 @@ export const reducer = (
             return { ...state, searchValue: action.value };
         case EActions['set-hover']:
             return { ...state, hover: action.value };
+        case EActions['set-loading-id']:
+            return { ...state, loadingId: action.value };
         default:
             return state;
     }

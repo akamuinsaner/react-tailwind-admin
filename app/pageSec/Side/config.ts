@@ -83,6 +83,10 @@ export const config: Config[] = [
                         path: '/components/dataInput/button',
                     },
                     {
+                        name: 'Cascader',
+                        path: '/components/dataInput/cascader',
+                    },
+                    {
                         name: 'Checkbox',
                         path: '/components/dataInput/checkbox',
                     },

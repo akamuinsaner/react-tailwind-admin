@@ -46,7 +46,7 @@ export type RTProgressStyles = {
 export const styles: RTProgressStyles = {
     linear: {
         box: {
-            base: 'flex items-center w-full',
+            base: 'flex items-center w-full h-full',
         },
         inner: {
             base: 'relative flex-1 h-1 overflow-hidden',
@@ -77,7 +77,7 @@ export const styles: RTProgressStyles = {
             base: 'w-full h-full',
         },
         prog: {
-            base: 'stroke-[4px] fill-none w-full h-full animate-circularProgress',
+            base: 'fill-none animate-circularProgress',
             primary: 'stroke-primary',
             secondary: 'stroke-secondary',
             success: 'stroke-success',

@@ -1,4 +1,4 @@
-export interface RTSelectStyles {
+export interface RTCascaderStyles {
     box: {
         base: string;
         focused: string;
@@ -37,6 +37,9 @@ export interface RTSelectStyles {
         medium: string;
         small: string;
     };
+    expand: {
+        icon: string;
+    };
     tagBox: string;
     tag: {
         base: string;
@@ -47,9 +50,9 @@ export interface RTSelectStyles {
     };
 }
 
-export const styles: RTSelectStyles = {
+export const styles: RTCascaderStyles = {
     box: {
-        base: 'rounded overflow-hidden border-solid border-mainBorder text-mainText flex items-center shrink-0 hover:border-primary pr-8 relative',
+        base: 'rounded overflow-hidden border-solid border-mainBorder flex items-center shrink-0 hover:border-primary pr-8 relative text-mainText',
         large: 'h-rt-large text-rt-large',
         medium: 'h-rt-medium text-rt-medium',
         small: 'h-rt-small text-rt-small',
@@ -64,7 +67,7 @@ export const styles: RTSelectStyles = {
         danger: '!border-danger  !hover:border-danger',
         focused: 'border-primary hover:border-primary',
         disabled:
-            'bg-disableBg hover:border-disableBg text-disableText select-none pointer-events-none',
+            'bg-disableBg hover:border-disableBg text-disableText pointer-events-none select-none',
     },
     icon: {
         base: 'absolute top-1/2 -translate-y-1/2 right-2 w-6 h-6  cursor-pointer text-inherit',
@@ -78,15 +81,18 @@ export const styles: RTSelectStyles = {
     count: 'absolute right-1 top-1/2 -translate-y-1/2 text-inherit',
     input: 'outline-none border-none w-full h-full text-inherit bg-inherit',
     selectBox: {
-        base: `overflow-hidden bg-main max-h-56 rounded`,
+        base: `overflow-hidden bg-main max-h-56 rounded flex items-stretch`,
         show: `overflow-auto`,
     },
     option: {
-        base: `flex justify-start items-center relative w-full text-left  cursor-pointer px-4 py-2 select-none bg-inherit hover:bg-main-hover break-inside-avoid text-mainText`,
-        selected: 'text-primary bg-primary/10 hover:bg-primary/10',
+        base: `border-r border-mainBorder min-w-48`,
+        selected: 'text-primary bg-primary/10',
         large: 'h-rt-large text-rt-large text-mainText',
         medium: 'h-rt-medium text-rt-medium text-mainText',
         small: 'h-rt-small text-rt-small text-mainText',
+    },
+    expand: {
+        icon: 'h-5 w-5',
     },
     tagBox: 'h-full flex items-center pl-3 py-1 gap-x-0.5',
     tag: {
