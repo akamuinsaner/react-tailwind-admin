@@ -2,7 +2,6 @@
 import NavBar from '@/src/components/NavBar';
 import Text from '@/src/components/Text';
 import Box from '@/src/components/Box';
-import Avatar from '@/src/components/Avatar';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import Select from '@/src/components/Select';
@@ -10,6 +9,9 @@ import Option from '@/src/components/Select/SelectOption';
 import { GlobalContext } from '../../globalContext';
 import { useContext, useEffect } from 'react';
 import GlobalSearch from './GlobalSearch';
+import UserBox from './UserBox';
+import NavIcons from './NavIcons';
+import Flex from '@/src/components/Flex';
 
 const Nav = () => {
     const context = useContext(GlobalContext);
@@ -31,18 +33,11 @@ const Nav = () => {
                     <Option value='dark'>Dark</Option>
                 </Select>
             </Box>
-            <GlobalSearch search={search} setSearch={setSearch} />
-            <Box className='flex items-center ml-4'>
-                <Avatar
-                    className='bg-amber-500 mr-4'
-                    src='https://avatars.githubusercontent.com/u/23072998?v=4'
-                    alt='ElCid Wang'
-                    title='ElCid Wang'
-                >
-                    ElCid Wang
-                </Avatar>
-                <Text>ElCid Wang</Text>
-            </Box>
+            <Flex gap='large' align='center'>
+                <GlobalSearch search={search} setSearch={setSearch} />
+                <NavIcons />
+                <UserBox />
+            </Flex>
         </NavBar>
     );
 };

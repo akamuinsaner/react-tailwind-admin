@@ -5,6 +5,7 @@ import {
     Squares2X2Icon,
     ExclamationTriangleIcon,
     CheckCircleIcon,
+    GifIcon,
 } from '@heroicons/react/24/outline';
 
 export type Config = {
@@ -245,7 +246,7 @@ export const config: Config[] = [
     {
         name: 'Animation',
         path: '/animation',
-        icon: ChartBarIcon,
+        icon: GifIcon,
         children: [
             {
                 name: 'Basic',
