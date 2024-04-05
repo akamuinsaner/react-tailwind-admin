@@ -5,7 +5,12 @@ import Empty from '@/src/components/Empty';
 import ModalBody from '@/src/components/Modal/ModalBody';
 import ModalHeader from '@/src/components/Modal/ModalHeader';
 import Text from '@/src/components/Text';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import {
+    MagnifyingGlassIcon,
+    ArrowDownIcon,
+    ArrowUpIcon,
+    DocumentIcon,
+} from '@heroicons/react/24/outline';
 import {
     createElement,
     ReactNode,
@@ -138,7 +143,7 @@ const GlobalSearch = ({
             let sub: string = '';
             if (inName) body = item.name;
             if (inPath) (body = item.name), (sub = item.path);
-            let icon = item.icon ? createElement(item.icon) : null;
+            let icon = item.icon ? createElement(item.icon) : <DocumentIcon />;
             const isActive =
                 activeItem?.name === item.name &&
                 activeItem?.path === item.path;
@@ -235,7 +240,38 @@ const GlobalSearch = ({
                 <ModalBody className='max-h-96 overflow-y-auto'>
                     <List size='large'>{searchList}</List>
                 </ModalBody>
-                <ModalFooter></ModalFooter>
+                <ModalFooter>
+                    <Button
+                        variant='outlined'
+                        onClick={() => activeItem && jumpPage(activeItem.path)}
+                        prefix={
+                            (<Text className='scale-150'>&crarr;</Text>) as any
+                        }
+                    >
+                        Enter
+                    </Button>
+                    <Button
+                        variant='outlined'
+                        onClick={() => switchActive(-1)}
+                        prefix={(<ArrowUpIcon className='h-4 w-4' />) as any}
+                    >
+                        Up
+                    </Button>
+                    <Button
+                        variant='outlined'
+                        onClick={() => switchActive(1)}
+                        prefix={(<ArrowDownIcon className='h-4 w-4' />) as any}
+                    >
+                        Down
+                    </Button>
+                    <Button
+                        variant='outlined'
+                        onClick={endSearch}
+                        prefix={(<Text size='tip'>esc</Text>) as any}
+                    >
+                        Exit
+                    </Button>
+                </ModalFooter>
             </Modal>
         </>
     );
