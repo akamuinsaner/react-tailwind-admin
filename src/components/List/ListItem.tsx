@@ -20,7 +20,7 @@ export type RTListItemProps = {
     active?: boolean;
 } & HTMLAttributes<HTMLLIElement>;
 
-const ListItem: FC<RTListItemProps> = forwardRef(
+const ListItem = forwardRef<HTMLLIElement, RTListItemProps>(
     (
         { children, className, style, active, ...nativeProps },
         ref: LegacyRef<HTMLLIElement>,

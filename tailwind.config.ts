@@ -80,6 +80,7 @@ const config: Config = {
         require('@mertasan/tailwindcss-variables'),
         require('tailwind-scrollbar'),
         require('tailwind-children'),
+        require('@xpd/tailwind-3dtransforms'),
     ],
 };
 export default config;

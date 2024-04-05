@@ -4,6 +4,7 @@ import {
     ChartBarIcon,
     Squares2X2Icon,
     ExclamationTriangleIcon,
+    CheckCircleIcon,
 } from '@heroicons/react/24/outline';
 
 export type Config = {
@@ -21,12 +22,12 @@ export const config: Config[] = [
     },
     {
         name: 'Components',
-        path: '/components',
+        path: '/components/dataDisplay/accordion',
         icon: CalendarIcon,
         children: [
             {
                 name: 'Display',
-                path: '/components/dataDisplay',
+                path: '/components/dataDisplay/accordion',
                 children: [
                     {
                         name: 'Accordion',
@@ -77,7 +78,7 @@ export const config: Config[] = [
             },
             {
                 name: 'Data Input',
-                path: '/components/dataInput',
+                path: '/components/dataInput/button',
                 children: [
                     {
                         name: 'Button',
@@ -127,7 +128,7 @@ export const config: Config[] = [
             },
             {
                 name: 'Feedback',
-                path: '/components/feedback',
+                path: '/components/feedback/alert',
                 children: [
                     {
                         name: 'Alert',
@@ -157,7 +158,7 @@ export const config: Config[] = [
             },
             {
                 name: 'Layout',
-                path: '/components/layout',
+                path: '/components/layout/columns',
                 children: [
                     {
                         name: 'Columns',
@@ -179,7 +180,7 @@ export const config: Config[] = [
             },
             {
                 name: 'Navigation',
-                path: '/components/navigation',
+                path: '/components/navigation/dropdown',
                 children: [
                     {
                         name: 'Dropdown',
@@ -203,12 +204,12 @@ export const config: Config[] = [
     },
     {
         name: 'Common UI',
-        path: '/commonUI',
+        path: '/commonUI/application/header',
         icon: Squares2X2Icon,
         children: [
             {
                 name: 'Application',
-                path: '/commonUI/application',
+                path: '/commonUI/application/header',
                 children: [
                     {
                         name: 'Header',
@@ -224,7 +225,7 @@ export const config: Config[] = [
     },
     {
         name: 'UI features',
-        path: '/uiFeatures',
+        path: '/uiFeatures/carousel',
         icon: Squares2X2Icon,
         children: [
             {
@@ -243,7 +244,7 @@ export const config: Config[] = [
     },
     {
         name: 'Animation',
-        path: '/animation',
+        path: '/animation/basic',
         icon: ChartBarIcon,
         children: [
             {
@@ -254,7 +255,7 @@ export const config: Config[] = [
     },
     {
         name: 'Charts',
-        path: '/charts',
+        path: '/charts/rechart',
         icon: ChartBarIcon,
         children: [
             {
@@ -269,26 +270,30 @@ export const config: Config[] = [
     },
     {
         name: 'Results',
-        path: '/exception',
-        icon: ExclamationTriangleIcon,
+        path: '/results/success',
+        icon: CheckCircleIcon,
         children: [
             {
-                name: '403',
-                path: '/exception/403',
+                name: 'success',
+                path: '/results/success',
             },
             {
-                name: '404',
-                path: '/exception/404',
+                name: 'info',
+                path: '/results/info',
             },
             {
-                name: '500',
-                path: '/exception/500',
+                name: 'warning',
+                path: '/results/warning',
+            },
+            {
+                name: 'danger',
+                path: '/results/danger',
             },
         ],
     },
     {
         name: 'Exceptions',
-        path: '/exceptions',
+        path: '/exceptions/403',
         icon: ExclamationTriangleIcon,
         children: [
             {

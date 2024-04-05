@@ -1,3 +1,3 @@
 export { initialState } from './state';
 export { reducer } from './reducer';
-export { setThemeAction, EActions } from './action';
+export { setThemeAction, EActions, setSearchAction } from './action';
