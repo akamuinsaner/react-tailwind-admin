@@ -1,11 +1,13 @@
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
     theme: {
         extend: {
             keyframes: {
-                fadeInLeft: {
+                fadeInUp: {
                     '0%': {
                         opacity: '0',
-                        transform: 'translate3d(-50%, 0, 0)',
+                        transform: 'translate3d(0, 100%, 0)',
                     },
                     '100%': {
                         opacity: '1',
@@ -15,17 +17,27 @@ module.exports = {
                 fadeInDown: {
                     '0%': {
                         opacity: '0',
-                        transform: 'translate3d(0, -50%, 0)',
+                        transform: 'translate3d(0, -100%, 0)',
                     },
                     '100%': {
                         opacity: '1',
                         transform: 'translateZ(0)',
                     },
                 },
-                fadeInUp: {
+                fadeInLeft: {
                     '0%': {
                         opacity: '0',
-                        transform: 'translate3d(0, 50%, 0)',
+                        transform: 'translate3d(-100%, 0, 0)',
+                    },
+                    '100%': {
+                        opacity: '1',
+                        transform: 'translateZ(0)',
+                    },
+                },
+                fadeInRight: {
+                    '0%': {
+                        opacity: '0',
+                        transform: 'translate3d(100%, 0, 0)',
                     },
                     '100%': {
                         opacity: '1',
@@ -66,13 +78,35 @@ module.exports = {
                 },
             },
             animation: {
-                fadeInLeft: 'fadeInLeft 0.5s linear forwards',
-                fadeInDown: 'fadeInDown 0.5s linear forwards',
-                fadeInUp: 'fadeInUp 0.5s linear forwards',
+                fadeInUp: 'fadeInUp 1s linear forwards',
+                fadeInDown: 'fadeInDown 1s linear forwards',
+                fadeInLeft: 'fadeInLeft 1s linear forwards',
+                fadeInRight: 'fadeInRight 1s linear forwards',
                 flow: 'flow 1.5s linear infinite',
                 linearProgress: 'linearProgress 1s ease-in-out infinite',
                 circularProgress: 'circularProgress 1s ease-in-out infinite',
             },
         },
     },
+    plugins: [
+        plugin(({ matchUtilities, theme }) => {
+            matchUtilities(
+                {
+                    'animation-delay': value => {
+                        return {
+                            'animation-delay': value,
+                        };
+                    },
+                    'animation-duration': value => {
+                        return {
+                            'animation-duration': value,
+                        };
+                    },
+                },
+                {
+                    values: theme('transitionDelay'),
+                },
+            );
+        }),
+    ],
 };

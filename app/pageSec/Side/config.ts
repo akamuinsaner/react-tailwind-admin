@@ -22,12 +22,12 @@ export const config: Config[] = [
     },
     {
         name: 'Components',
-        path: '/components/dataDisplay/accordion',
+        path: '/components',
         icon: CalendarIcon,
         children: [
             {
                 name: 'Display',
-                path: '/components/dataDisplay/accordion',
+                path: '/components/dataDisplay',
                 children: [
                     {
                         name: 'Accordion',
@@ -78,7 +78,7 @@ export const config: Config[] = [
             },
             {
                 name: 'Data Input',
-                path: '/components/dataInput/button',
+                path: '/components/dataInput',
                 children: [
                     {
                         name: 'Button',
@@ -128,7 +128,7 @@ export const config: Config[] = [
             },
             {
                 name: 'Feedback',
-                path: '/components/feedback/alert',
+                path: '/components/feedback',
                 children: [
                     {
                         name: 'Alert',
@@ -158,7 +158,7 @@ export const config: Config[] = [
             },
             {
                 name: 'Layout',
-                path: '/components/layout/columns',
+                path: '/components/layout',
                 children: [
                     {
                         name: 'Columns',
@@ -180,7 +180,7 @@ export const config: Config[] = [
             },
             {
                 name: 'Navigation',
-                path: '/components/navigation/dropdown',
+                path: '/components/navigation',
                 children: [
                     {
                         name: 'Dropdown',
@@ -204,12 +204,12 @@ export const config: Config[] = [
     },
     {
         name: 'Common UI',
-        path: '/commonUI/application/header',
+        path: '/commonUI',
         icon: Squares2X2Icon,
         children: [
             {
                 name: 'Application',
-                path: '/commonUI/application/header',
+                path: '/commonUI/application',
                 children: [
                     {
                         name: 'Header',
@@ -225,7 +225,7 @@ export const config: Config[] = [
     },
     {
         name: 'UI features',
-        path: '/uiFeatures/carousel',
+        path: '/uiFeatures',
         icon: Squares2X2Icon,
         children: [
             {
@@ -244,7 +244,7 @@ export const config: Config[] = [
     },
     {
         name: 'Animation',
-        path: '/animation/basic',
+        path: '/animation',
         icon: ChartBarIcon,
         children: [
             {
@@ -255,7 +255,7 @@ export const config: Config[] = [
     },
     {
         name: 'Charts',
-        path: '/charts/rechart',
+        path: '/charts',
         icon: ChartBarIcon,
         children: [
             {
@@ -270,7 +270,7 @@ export const config: Config[] = [
     },
     {
         name: 'Results',
-        path: '/results/success',
+        path: '/results',
         icon: CheckCircleIcon,
         children: [
             {
@@ -293,7 +293,7 @@ export const config: Config[] = [
     },
     {
         name: 'Exceptions',
-        path: '/exceptions/403',
+        path: '/exceptions',
         icon: ExclamationTriangleIcon,
         children: [
             {
