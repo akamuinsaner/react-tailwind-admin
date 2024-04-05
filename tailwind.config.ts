@@ -83,4 +83,5 @@ const config: Config = {
         require('@xpd/tailwind-3dtransforms'),
     ],
 };
+
 export default config;
