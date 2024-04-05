@@ -1,53 +1,18 @@
 import type { Config } from 'tailwindcss';
-const { createThemes } = require('tw-colors');
-let columnsSafeList = [];
-let gapSafeList = [];
-let spaceSafeList = [];
-let dividerGapList = [];
-Array(1000)
-    .fill(0)
-    .forEach((a, i) => {
-        columnsSafeList = [
-            ...columnsSafeList,
-            `columns-${i + 1}`,
-            `sm:columns-${i + 1}`,
-            `md:columns-${i + 1}`,
-            `lg:columns-${i + 1}`,
-            `xl:columns-${i + 1}`,
-            `2xl:columns-${i + 1}`,
-        ];
-        gapSafeList = [
-            ...gapSafeList,
-            `gap-[${i + 1}px]`,
-            `sm:gap-[${i + 1}px]`,
-            `md:gap-[${i + 1}px]`,
-            `lg:gap-[${i + 1}px]`,
-            `xl:gap-[${i + 1}px]`,
-            `2xl:gap-[${i + 1}px]`,
-        ];
-        spaceSafeList = [...spaceSafeList, `[&>*]:mb-[${i + 1}px]`];
-        dividerGapList = [
-            ...dividerGapList,
-            `mx-[${i + 1}px]`,
-            `my-[${i + 1}px]`,
-        ];
-    });
 
 const config: Config = {
-    safelist: [
-        ...columnsSafeList,
-        ...gapSafeList,
-        ...spaceSafeList,
-        ...dividerGapList,
-    ],
     content: [
         './src/**/*.{js,ts,jsx,tsx,mdx}',
         './pages/**/*.{js,ts,jsx,tsx,mdx}',
         './components/**/*.{js,ts,jsx,tsx,mdx}',
         './app/**/*.{js,ts,jsx,tsx,mdx}',
     ],
+    presets: [
+        require('./presets/safeList'),
+        require('./presets/animations'),
+        require('./presets/themes'),
+    ],
     theme: {
-        variables: {},
         extend: {
             flexGrow: {
                 2: '2',
@@ -109,97 +74,12 @@ const config: Config = {
                 tableLeft: '4px 0 8px -4px rgba(0,0,0,0.2)',
                 tableRight: '-4px 0 8px -4px rgba(0,0,0,0.2)',
             },
-            keyframes: {
-                linearProgress: {
-                    '0%': {
-                        left: '0',
-                        transform: 'translateX(-100%)',
-                    },
-                    '100%': {
-                        left: '100%',
-                        transform: 'translateX(0)',
-                    },
-                },
-                circularProgress: {
-                    '0%': {
-                        'stroke-dashoffset': '113px',
-                    },
-                    '100%': {
-                        'stroke-dashoffset': '-113px',
-                    },
-                },
-                flow: {
-                    '0%': {
-                        left: '0',
-                        transform: 'translateX(-100%)',
-                    },
-                    '80%': {
-                        left: '100%',
-                        transform: 'translateX(0)',
-                    },
-                    '100%': {
-                        left: '100%',
-                        transform: 'translateX(0)',
-                    },
-                },
-            },
-            animation: {
-                flow: 'flow 1.5s linear infinite',
-                linearProgress: 'linearProgress 1s ease-in-out infinite',
-                circularProgress: 'circularProgress 1s ease-in-out infinite',
-            },
         },
     },
     plugins: [
         require('@mertasan/tailwindcss-variables'),
         require('tailwind-scrollbar'),
         require('tailwind-children'),
-        createThemes({
-            light: {
-                main: '#fff',
-                mainText: '#1f2937', // gray-900
-                'main-hover': '#f3f4f6', // gray-100
-                mainBorder: '#d1d5db', // gray-300
-                content: '#F1F5F9',
-                primary: '#2563eb',
-                'primary-hover': '#1d4ed8',
-                hover: '#f1f5f9',
-                secondary: '#9333ea',
-                'secondary-hover': '#7e22ce',
-                success: '#16a34a',
-                'success-hover': '#15803d',
-                info: '#0284c7',
-                'info-hover': '#0369a1',
-                warning: '#ca8a04',
-                'warning-hover': '#a16207',
-                danger: '#dc2626',
-                'danger-hover': '#b91c1c',
-                disableBg: '#e5e7eb', // gray-200
-                disableText: '#9ca3af', // gray-400
-            },
-            dark: {
-                main: '#1f2937', // gray-800
-                mainText: '#e5e7eb', // gray-200
-                'main-hover': '#4b5563', // gray-600
-                mainBorder: '#030712', // gray-950
-                content: '#111827', // gray-900
-                primary: '#2563eb',
-                'primary-hover': '#1d4ed8',
-                hover: '#616161',
-                secondary: '#9333ea',
-                'secondary-hover': '#7e22ce',
-                success: '#16a34a',
-                'success-hover': '#15803d',
-                info: '#0284c7',
-                'info-hover': '#0369a1',
-                warning: '#ca8a04',
-                'warning-hover': '#a16207',
-                danger: '#dc2626',
-                'danger-hover': '#b91c1c',
-                disableBg: '#6b7280', // gray-500
-                disableText: '#9ca3af', // gray-400
-            },
-        }),
     ],
 };
 export default config;

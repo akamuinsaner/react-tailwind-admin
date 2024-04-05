@@ -3,7 +3,8 @@ import {
     CalendarIcon,
     ChartBarIcon,
     Squares2X2Icon,
-} from '@heroicons/react/24/solid';
+    ExclamationTriangleIcon,
+} from '@heroicons/react/24/outline';
 
 export type Config = {
     name: string;
@@ -263,6 +264,44 @@ export const config: Config[] = [
             {
                 name: 'Chartjs',
                 path: '/charts/chartjs',
+            },
+        ],
+    },
+    {
+        name: 'Results',
+        path: '/exception',
+        icon: ExclamationTriangleIcon,
+        children: [
+            {
+                name: '403',
+                path: '/exception/403',
+            },
+            {
+                name: '404',
+                path: '/exception/404',
+            },
+            {
+                name: '500',
+                path: '/exception/500',
+            },
+        ],
+    },
+    {
+        name: 'Exceptions',
+        path: '/exceptions',
+        icon: ExclamationTriangleIcon,
+        children: [
+            {
+                name: '403',
+                path: '/exceptions/403',
+            },
+            {
+                name: '404',
+                path: '/exceptions/404',
+            },
+            {
+                name: '500',
+                path: '/exceptions/500',
             },
         ],
     },
