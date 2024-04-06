@@ -10,7 +10,10 @@ export const reducer = (
             return { ...state, theme: action.value };
         case EActions['set-search']:
             return { ...state, search: action.value };
-
+        case EActions['set-side-width']:
+            return { ...state, sideWidth: action.value };
+        case EActions['set-side-open-keys']:
+            return { ...state, sideOpenKeys: action.value };
         default:
             return state;
     }

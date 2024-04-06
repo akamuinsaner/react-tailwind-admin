@@ -1,31 +1,25 @@
-'use client'
-import { reducer, initialState } from './reducer';
-import { useReducer, CSSProperties, FC, ReactNode, memo } from 'react';
+'use client';
+import { CSSProperties, ReactNode, forwardRef } from 'react';
 import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
+import { styles } from './styles';
 
-export type Props = {
+export type RTSideBarProps = {
     className?: string;
     style?: CSSProperties;
-    children?: ReactNode
-}
+    children?: ReactNode;
+};
 
-const SideBar: FC<Props> = ({
-    children,
-    className,
-    style,
-}) => {
-    const [state, dispatch] = useReducer(reducer, initialState)
+const SideBar = forwardRef<HTMLElement, RTSideBarProps>(
+    ({ children, className, style }, ref) => {
+        const computedClassNames = twMerge(styles.base, className);
 
-    const computedClassNames = classNames(state.styles.base, className);
+        return (
+            <aside ref={ref} style={style} className={computedClassNames}>
+                {children}
+            </aside>
+        );
+    },
+);
 
-    return (
-        <aside
-            style={style}
-            className={computedClassNames}
-        >
-            {children}
-        </aside>
-    )
-}
-
-export default memo(SideBar);
+export default SideBar;

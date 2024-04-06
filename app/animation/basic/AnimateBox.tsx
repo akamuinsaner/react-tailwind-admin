@@ -27,7 +27,7 @@ const AnimateBox = ({ name }: { name: string }) => {
     return (
         <Grid
             className='overflow-visible'
-            span={{ default: 12, md: 6, lg: 4, xl: 3, '2xl': 2 }}
+            span={{ default: 6, lg: 4, xl: 3, '2xl': 2 }}
         >
             <Box
                 onAnimationEnd={onAnimationEnd}

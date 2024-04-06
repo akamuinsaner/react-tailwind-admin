@@ -65,7 +65,7 @@ module.exports = {
                 fadeOutUp: {
                     to: {
                         opacity: '0',
-                        transform: 'translate3d(0, 100%, 0)',
+                        transform: 'translate3d(0, -100%, 0)',
                     },
                     from: {
                         opacity: '1',
@@ -75,7 +75,7 @@ module.exports = {
                 fadeOutDown: {
                     to: {
                         opacity: '0',
-                        transform: 'translate3d(0, -100%, 0)',
+                        transform: 'translate3d(0, 100%, 0)',
                     },
                     from: {
                         opacity: '1',

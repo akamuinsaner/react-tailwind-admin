@@ -28,7 +28,12 @@ const Nav = () => {
                 <Link href='/'>
                     <Text size='h5'>RT-ADMIN</Text>
                 </Link>
-                <Select value={theme} className='w-32' onChange={setTheme}>
+                <Select
+                    value={theme}
+                    className='w-32'
+                    onChange={setTheme}
+                    allowClear={false}
+                >
                     <Option value='light'>Light</Option>
                     <Option value='dark'>Dark</Option>
                 </Select>
