@@ -14,6 +14,8 @@ export const reducer = (
             return { ...state, sideWidth: action.value };
         case EActions['set-side-open-keys']:
             return { ...state, sideOpenKeys: action.value };
+        case EActions['set-breadcrumb']:
+            return { ...state, breadcrumb: action.value };
         default:
             return state;
     }

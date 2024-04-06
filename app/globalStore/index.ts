@@ -6,4 +6,5 @@ export {
     setSearchAction,
     setSideWidthAction,
     setSideOpenKeysAction,
+    setBreadcrumbAction,
 } from './action';

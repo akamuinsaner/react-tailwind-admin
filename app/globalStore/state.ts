@@ -1,8 +1,11 @@
+import { Config } from '../pageSec/Side/config';
+
 export type GlobalState = {
     theme: string;
     search: boolean;
     sideWidth: number;
     sideOpenKeys: string[];
+    breadcrumb: Config[];
 };
 
 export const initialState: GlobalState = {
@@ -10,4 +13,5 @@ export const initialState: GlobalState = {
     search: false,
     sideWidth: 256,
     sideOpenKeys: [],
+    breadcrumb: [],
 };

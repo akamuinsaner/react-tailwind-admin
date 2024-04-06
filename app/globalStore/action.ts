@@ -5,6 +5,7 @@ export enum EActions {
     'set-search',
     'set-side-width',
     'set-side-open-keys',
+    'set-breadcrumb',
 }
 
 export type GlobalAction<T> = {
@@ -45,5 +46,14 @@ export const setSideOpenKeysAction = <T extends GlobalState['sideOpenKeys']>(
     return {
         type: EActions['set-side-open-keys'],
         value: sideOpenKeys,
+    };
+};
+
+export const setBreadcrumbAction = <T extends GlobalState['breadcrumb']>(
+    breadcrumb: T,
+): GlobalAction<T> => {
+    return {
+        type: EActions['set-breadcrumb'],
+        value: breadcrumb,
     };
 };

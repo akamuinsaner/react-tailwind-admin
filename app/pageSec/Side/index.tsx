@@ -33,15 +33,15 @@ import { GlobalContext } from '@/app/globalContext';
 const Side = () => {
     const sideBarRef = useRef<HTMLElement>(null);
     const context = useContext(GlobalContext);
-    const dataSet = getTreeDataFormatted<Config>(config);
-    const { flattedData, idChildrenIdMap, idSiblingsMap } = dataSet;
+
     const router = useRouter();
-    const pathname = usePathname();
     const childrenRefs = useRef<{
         [name: string]: MutableRefObject<HTMLDivElement>;
     }>({});
 
-    const { sideOpenKeys, setSideOpenKeys, sideWidth } = context;
+    const { sideOpenKeys, setSideOpenKeys, sideWidth, pathname, dataSet } =
+        context;
+    const { flattedData, idChildrenIdMap, idSiblingsMap } = dataSet;
 
     const onTransitionEnd: TransitionEventHandler<HTMLDivElement> = e => {
         const target = e.currentTarget;
