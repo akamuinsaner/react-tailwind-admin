@@ -96,7 +96,7 @@ const Side = () => {
     const renderList = (pid: string = RESERVED_KEY, depth: number = 0) => {
         const children = flattedData.filter(item => item.parentId === pid);
         return (
-            <List size='large' divider>
+            <List size='large'>
                 {children.map(item => {
                     childrenRefs.current[item.id] =
                         useRef<HTMLDivElement>(null);
@@ -135,6 +135,7 @@ const Side = () => {
                                     onMenuClick(item);
                                 }}
                                 active={pathname === item.path}
+                                className='rounded-xl'
                             >
                                 <Box
                                     style={{
@@ -172,7 +173,7 @@ const Side = () => {
     return (
         <SideBar
             ref={sideBarRef}
-            className='pt-20 hidden md:block'
+            className='pt-20 hidden md:block px-2'
             style={{
                 width: `${sideWidth}px`,
             }}
