@@ -2,9 +2,14 @@ import Flex from '@/src/components/Flex';
 import Text from '@/src/components/Text';
 import GithubIcon from '@/app/utils/icons/GithubIcon';
 import Link from 'next/link';
-import { GITHUBLINK, LNKEDINLINK, PORTFOLIOLINK } from '@/app/utils/constants';
+import {
+    GITHUBLINK,
+    LNKEDINLINK,
+    MAILTOLINK,
+    PORTFOLIOLINK,
+} from '@/app/utils/constants';
 import LinkedinIcon from '@/app/utils/icons/LinkedinIcon';
-import { GlobeAltIcon } from '@heroicons/react/24/solid';
+import { GlobeAltIcon, EnvelopeIcon } from '@heroicons/react/24/solid';
 
 const Footer = () => {
     return (
@@ -15,6 +20,9 @@ const Footer = () => {
             gap='medium'
         >
             <Flex gap='medium'>
+                <Link href={MAILTOLINK} target='__blank'>
+                    <EnvelopeIcon className='h-6 w-6 text-mainText' />
+                </Link>
                 <Link href={GITHUBLINK} target='__blank'>
                     <GithubIcon className='h-6 w-6 text-mainText' />
                 </Link>
