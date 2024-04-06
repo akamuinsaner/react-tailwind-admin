@@ -70,7 +70,7 @@ export default function App({ children }: { children: ReactNode }) {
     const innerClassName = twMerge(
         'pt-20 md:pl-64 text-main duration-200 transition-transform flex flex-col',
         classNames({
-            'rotate-x-30 pointer-events-none  transform': state.search,
+            'rotate-x-30 pointer-events-none transform': state.search,
         }),
     );
     return (

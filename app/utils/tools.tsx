@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 import { v4 as uuidV4 } from 'uuid';
+import resolveConfig from 'tailwindcss/resolveConfig';
+import tailwindConfig from '@/tailwind.config';
 
 export const debounce = cb => {
     let timer;
@@ -28,3 +30,5 @@ export const highlightText = (
         </span>
     );
 };
+
+export const fullTWConfig = resolveConfig(tailwindConfig);

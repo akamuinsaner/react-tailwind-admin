@@ -11,6 +11,10 @@ import {
     useState,
     useEffect,
     useContext,
+    MouseEventHandler,
+    useMemo,
+    useLayoutEffect,
+    CSSProperties,
 } from 'react';
 import SideBar from '@/src/components/SideBar';
 import List from '@/src/components/List';
@@ -31,17 +35,39 @@ import {
 import { GlobalContext } from '@/app/globalContext';
 
 const Side = () => {
-    const sideBarRef = useRef<HTMLElement>(null);
-    const context = useContext(GlobalContext);
-
     const router = useRouter();
+    const context = useContext(GlobalContext);
+    const sideBarRef = useRef<HTMLElement>(null);
+    const listItemsRefs = useRef<{
+        [name: string]: MutableRefObject<HTMLLIElement>;
+    }>({});
     const childrenRefs = useRef<{
         [name: string]: MutableRefObject<HTMLDivElement>;
     }>({});
-
+    const [hoverRect, setHoverRect] = useState<DOMRect>(null);
+    const [activeRect, setActiveRect] = useState<DOMRect>(null);
     const { sideOpenKeys, setSideOpenKeys, sideWidth, pathname, dataSet } =
         context;
     const { flattedData, idChildrenIdMap, idSiblingsMap } = dataSet;
+
+    const onTransitionStart = (menu: Config) => {
+        if (sideOpenKeys.includes(menu.id)) {
+            const ele = childrenRefs.current[menu.id].current;
+            ele.style.maxHeight = `${ele.offsetHeight}px`;
+            const allChildrenIds = idChildrenIdMap.get(menu.id);
+            allChildrenIds.forEach(acId => {
+                const ele = childrenRefs.current[acId].current;
+                ele.style.maxHeight = `${ele.offsetHeight}px`;
+            });
+        } else {
+            const siblings = idSiblingsMap.get(menu.id);
+            const siblingIds = siblings.map(s => s.id);
+            siblingIds.forEach(sId => {
+                const ele = childrenRefs.current[sId].current;
+                ele.style.maxHeight = `${ele.offsetHeight}px`;
+            });
+        }
+    };
 
     const onTransitionEnd: TransitionEventHandler<HTMLDivElement> = e => {
         const target = e.currentTarget;
@@ -71,35 +97,44 @@ const Side = () => {
                 setSideOpenKeys(keys);
             }, 100);
         },
-        [sideOpenKeys, pathname],
+        [sideOpenKeys],
     );
 
-    const onTransitionStart = (menu: Config) => {
-        if (sideOpenKeys.includes(menu.id)) {
-            const ele = childrenRefs.current[menu.id].current;
-            ele.style.maxHeight = `${ele.offsetHeight}px`;
-            const allChildrenIds = idChildrenIdMap.get(menu.id);
-            allChildrenIds.forEach(acId => {
-                const ele = childrenRefs.current[acId].current;
-                ele.style.maxHeight = `${ele.offsetHeight}px`;
-            });
-        } else {
-            const siblings = idSiblingsMap.get(menu.id);
-            const siblingIds = siblings.map(s => s.id);
-            siblingIds.forEach(sId => {
-                const ele = childrenRefs.current[sId].current;
-                ele.style.maxHeight = `${ele.offsetHeight}px`;
-            });
-        }
+    const onMouseEnter: MouseEventHandler<HTMLLIElement> = e => {
+        setHoverRect(e.currentTarget.getBoundingClientRect());
     };
+
+    const activePointerTrace = () => {
+        setTimeout(() => {
+            const parentIds = dataSet.parentChainMap.get(pathname);
+            let pointer = pathname;
+            parentIds.forEach(
+                id => !sideOpenKeys.includes(id) && (pointer = id),
+            );
+            const element = listItemsRefs.current[pointer].current;
+            setActiveRect(element.getBoundingClientRect());
+        }, 300);
+    };
+    useLayoutEffect(() => {
+        activePointerTrace();
+    }, [pathname, sideOpenKeys]);
+
+    useEffect(() => {
+        // when page loaded, set parentIds to openKeys
+        const parentIds = dataSet.parentChainMap.get(pathname);
+        setSideOpenKeys(parentIds);
+    }, []);
 
     const renderList = (pid: string = RESERVED_KEY, depth: number = 0) => {
         const children = flattedData.filter(item => item.parentId === pid);
         return (
-            <List size='large'>
+            <List size='large' className='static bg-transparent'>
                 {children.map(item => {
                     childrenRefs.current[item.id] =
                         useRef<HTMLDivElement>(null);
+                    listItemsRefs.current[item.id] =
+                        useRef<HTMLLIElement>(null);
+                    const isActive = pathname === item.path;
                     const childrenCount = item?.children?.length || 0;
                     const hasChildren = !!childrenCount;
                     const showChildren = sideOpenKeys.includes(item.id);
@@ -134,8 +169,10 @@ const Side = () => {
                                     onTransitionStart(item);
                                     onMenuClick(item);
                                 }}
-                                active={pathname === item.path}
-                                className='rounded-xl'
+                                active={isActive}
+                                ref={listItemsRefs.current[item.id]}
+                                className='bg-inherit hover:bg-inherit'
+                                onMouseEnter={onMouseEnter}
                             >
                                 <Box
                                     style={{
@@ -170,14 +207,39 @@ const Side = () => {
             </List>
         );
     };
+    const mainClassName = twMerge('pt-20 hidden md:block px-2');
+    const hoverClassName = twMerge(
+        'absolute rounded-lg bg-main-hover transition-[top] duration-300',
+    );
+    const hoverStyles = useMemo(() => {
+        if (!hoverRect) return;
+        return {
+            width: `${hoverRect.width}px`,
+            height: `${hoverRect.height}px`,
+            left: `${hoverRect.left}px`,
+            top: `${hoverRect.top}px`,
+        };
+    }, [hoverRect]);
+    const activeClassName = twMerge(
+        'absolute bg-primary transition-[top] duration-300 w-1 right-0',
+    );
+    const activeStyles: CSSProperties = useMemo(() => {
+        if (!activeRect) return;
+        return {
+            height: `${activeRect.height}px`,
+            top: `${activeRect.top}px`,
+        };
+    }, [activeRect, pathname, sideOpenKeys]);
     return (
         <SideBar
             ref={sideBarRef}
-            className='pt-20 hidden md:block px-2'
+            className={mainClassName}
             style={{
                 width: `${sideWidth}px`,
             }}
         >
+            <span className={hoverClassName} style={hoverStyles}></span>
+            <span className={activeClassName} style={activeStyles}></span>
             {renderList()}
         </SideBar>
     );

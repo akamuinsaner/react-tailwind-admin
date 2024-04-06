@@ -1,3 +1,4 @@
+'use client';
 import Grid from '@/src/components/Grid';
 import Calendar from './Calendar';
 import Clock from './Clock';
@@ -7,32 +8,68 @@ import Tl from './Timeline';
 import StepperComp from './Stepper';
 import ListComp from './List';
 import FormComp from './Form';
+import { useLayoutEffect } from 'react';
+import { twMerge } from 'tailwind-merge';
+
+const HOMESECTIONSS = [
+    {
+        span: { default: 12, xl: 6, '2xl': 4 },
+        className: 'animation-delay-[0ms]',
+        comp: <Calendar />,
+    },
+    {
+        span: { default: 12, xl: 6, '2xl': 4 },
+        className: 'animation-delay-[200ms]',
+        comp: <Clock />,
+    },
+    {
+        span: { default: 12, '2xl': 4 },
+        className: 'animation-delay-[400ms]',
+        comp: <Swipe />,
+    },
+    {
+        span: { default: 12, '2xl': 4 },
+        className: 'animation-delay-[600ms]',
+        comp: <Tl />,
+    },
+    {
+        span: { default: 12, '2xl': 8 },
+        className: 'animation-delay-[800ms]',
+        comp: <Table />,
+    },
+    {
+        span: { default: 12, '2xl': 9 },
+        className: 'animation-delay-[1000ms]',
+        comp: <StepperComp />,
+    },
+    {
+        span: { default: 12, '2xl': 3 },
+        className: 'animation-delay-[1200ms]',
+        comp: <ListComp />,
+    },
+];
 
 const Home = () => {
+    const commonState = 'animate-fadeInUp opacity-0 -translate-y-full';
+    useLayoutEffect(() => {
+        const htmlEle = document.querySelector('html');
+        htmlEle.scrollIntoView();
+    }, []);
     return (
-        <Grid wrapper rowGap='medium' colGap='medium'>
-            <Grid span={{ default: 12, xl: 6, '2xl': 4 }}>
-                <Calendar />
-            </Grid>
-            <Grid span={{ default: 12, xl: 6, '2xl': 4 }}>
-                <Clock />
-            </Grid>
-            <Grid span={{ default: 12, '2xl': 4 }}>
-                <Swipe />
-            </Grid>
-            <Grid span={{ default: 12, '2xl': 4 }}>
-                <Tl />
-            </Grid>
-
-            <Grid span={{ default: 12, '2xl': 8 }}>
-                <Table />
-            </Grid>
-            <Grid span={{ default: 12, '2xl': 9 }}>
-                <StepperComp />
-            </Grid>
-            <Grid span={{ default: 12, '2xl': 3 }}>
-                <ListComp />
-            </Grid>
+        <Grid
+            wrapper
+            rowGap='medium'
+            colGap='medium'
+            className='overflow-visible'
+        >
+            {HOMESECTIONSS.map(item => (
+                <Grid
+                    span={item.span}
+                    wrapperClassName={twMerge(commonState, item.className)}
+                >
+                    {item.comp}
+                </Grid>
+            ))}
             {/* <Grid span={{ default: 12, '2xl': 3 }}>
                 <FormComp />
             </Grid> */}

@@ -7,7 +7,7 @@ export type RTGridProps = {
     wrapper?: boolean;
     style?: CSSProperties;
     className?: string;
-    itemClassName?: string;
+    wrapperClassName?: string;
     children?: ReactNode;
     span?:
         | number
@@ -36,7 +36,7 @@ export type RTGridProps = {
 const Grid: FC<RTGridProps> = ({
     wrapper,
     style,
-    itemClassName,
+    wrapperClassName,
     className,
     children,
     span = 12,
@@ -82,7 +82,7 @@ const Grid: FC<RTGridProps> = ({
         offsetClassStr,
         rowGapClassStr,
         colGapClassStr,
-        itemClassName,
+        wrapperClassName,
         classNames({
             [styles.wrapper.base]: wrapper,
             [wrapperColGapClassStr]: wrapper,

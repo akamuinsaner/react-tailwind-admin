@@ -1,4 +1,5 @@
 'use client';
+import { fullTWConfig } from '@/app/utils/tools';
 import Button from '@/src/components/Button';
 import Card from '@/src/components/Card';
 import CardBody from '@/src/components/Card/CardBody';
@@ -7,14 +8,11 @@ import Flex from '@/src/components/Flex';
 import Stepper from '@/src/components/Stepper';
 import StepperItem from '@/src/components/Stepper/StepperItem';
 import { useCallback, useEffect, useState } from 'react';
-import resolveConfig from 'tailwindcss/resolveConfig';
-import tailwindConfig from '../../../tailwind.config';
 
 const StepperComp = () => {
-    const fullConfig = resolveConfig(tailwindConfig);
     const [active, setActive] = useState<number>(0);
     const [vertical, setVertical] = useState<boolean>(false);
-    const xl = parseInt(fullConfig.theme.screens.xl.replace('px'));
+    const xl = parseInt(fullTWConfig.theme.screens.xl.replace('px'));
 
     const checkVertical = useCallback(() => {
         if (window.innerWidth < xl) {
