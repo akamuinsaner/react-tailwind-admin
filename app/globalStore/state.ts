@@ -1,7 +1,7 @@
 import { Config } from '../pageSec/Side/config';
 
 export type GlobalState = {
-    theme: string;
+    theme: THEME;
     search: boolean;
     sideOpenKeys: string[];
     breadcrumb: Config[];
@@ -19,8 +19,14 @@ export enum SIDEBARLOCALE {
     right,
 }
 
+export enum THEME {
+    'light' = 'light',
+    'dark' = 'dark',
+    'forest' = 'forest',
+}
+
 export const initialState: GlobalState = {
-    theme: localStorage.getItem('RT_THEME') || 'light',
+    theme: <THEME>localStorage.getItem('RT_THEME') || THEME['light'],
     search: false,
     sideOpenKeys: [],
     breadcrumb: [],

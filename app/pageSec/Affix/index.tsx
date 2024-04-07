@@ -30,6 +30,7 @@ import { useDraggable } from '@dnd-kit/core';
 import { AFFIXDRAGID } from '@/app/utils/constants';
 import { CSS } from '@dnd-kit/utilities';
 import ForestIcon from '@/app/utils/icons/ForestIcon';
+import { THEME } from '@/app/globalStore/state';
 
 const Affix = () => {
     const fullScreenEleRef = useRef<HTMLElement>(
@@ -99,7 +100,7 @@ const Affix = () => {
         'duration-100',
         classNames({
             ['-translate-y-[130%]']: colorMode,
-            'bg-primary text-white hover:bg-primary': theme === 'light',
+            'bg-primary text-white hover:bg-primary': theme === THEME['light'],
         }),
     );
 
@@ -108,7 +109,7 @@ const Affix = () => {
         'duration-200',
         classNames({
             ['-translate-y-[260%]']: colorMode,
-            'bg-primary text-white hover:bg-primary': theme === 'dark',
+            'bg-primary text-white hover:bg-primary': theme === THEME['dark'],
         }),
     );
 
@@ -117,7 +118,7 @@ const Affix = () => {
         'duration-300',
         classNames({
             ['-translate-y-[390%]']: colorMode,
-            'bg-primary text-white hover:bg-primary': theme === 'forest',
+            'bg-primary text-white hover:bg-primary': theme === THEME['forest'],
         }),
     );
 
@@ -151,7 +152,7 @@ const Affix = () => {
     }, [isDragging]);
 
     const onThemeBtnClick =
-        (theme: string): MouseEventHandler<HTMLButtonElement> =>
+        (theme: THEME): MouseEventHandler<HTMLButtonElement> =>
         e => {
             flushSync(() => {
                 if (!document.startViewTransition) {
@@ -209,19 +210,15 @@ const Affix = () => {
                 <Tooltip title='forest' placement='left' arrow>
                     <IconButton
                         className={forestThemeClassName}
-                        onClick={onThemeBtnClick('forest')}
+                        onClick={onThemeBtnClick(THEME['forest'])}
                     >
-                        <ForestIcon
-                            className={
-                                theme === 'forest' ? 'text-mainText' : null
-                            }
-                        />
+                        <ForestIcon />
                     </IconButton>
                 </Tooltip>
                 <Tooltip title='dark' placement='left' arrow>
                     <IconButton
                         className={darkThemeClassName}
-                        onClick={onThemeBtnClick('dark')}
+                        onClick={onThemeBtnClick(THEME['dark'])}
                     >
                         <MoonIcon />
                     </IconButton>
@@ -229,7 +226,7 @@ const Affix = () => {
                 <Tooltip title='light' placement='left' arrow>
                     <IconButton
                         className={lightThemeClassName}
-                        onClick={onThemeBtnClick('light')}
+                        onClick={onThemeBtnClick(THEME['light'])}
                     >
                         <SunIcon />
                     </IconButton>

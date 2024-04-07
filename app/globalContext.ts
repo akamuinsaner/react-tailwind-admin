@@ -1,13 +1,13 @@
 import { DataSet } from '@/src/components/Cascader/utils';
 import { createContext } from 'react';
 import { Config } from './pageSec/Side/config';
-import { GlobalState, SIDEBARLOCALE } from '@/app/globalStore/state';
+import { GlobalState, SIDEBARLOCALE, THEME } from '@/app/globalStore/state';
 
 export interface IGlobalContext {
     navigate: (path: string) => void;
-    theme: string;
+    theme: THEME;
     search: boolean;
-    setTheme: (theme: string) => void;
+    setTheme: (theme: THEME) => void;
     setSearch: (search: boolean) => void;
     sideOpenKeys: string[];
     setSideOpenKeys: (sideOpenKeys: string[]) => void;

@@ -29,7 +29,7 @@ import { getTreeDataFormatted } from '@/src/components/Cascader/utils';
 import { config, Config } from './pageSec/Side/config';
 import Footer from './pageSec/Footer';
 import Affix from './pageSec/Affix';
-import { GlobalState, SIDEBARLOCALE } from './globalStore/state';
+import { GlobalState, SIDEBARLOCALE, THEME } from './globalStore/state';
 import Nav from './pageSec/Nav';
 import { flushSync } from 'react-dom';
 import {
@@ -74,7 +74,7 @@ export default function App({ children }: { children: ReactNode }) {
         navHeight,
         affixPos,
     } = state;
-    const setTheme = (theme: string) => dispatch(setThemeAction(theme));
+    const setTheme = (theme: THEME) => dispatch(setThemeAction(theme));
     const setSearch = (search: boolean) => dispatch(setSearchAction(search));
     const setSideBarWidth = (width: number) =>
         dispatch(setSideBarWidthAction(width));
