@@ -19,38 +19,39 @@ const HOMESECTIONSS = [
     },
     {
         span: { default: 12, xl: 6, '2xl': 4 },
-        className: 'animation-delay-[200ms]',
+        className: 'animation-delay-[50ms]',
         comp: <Clock />,
     },
     {
         span: { default: 12, '2xl': 4 },
-        className: 'animation-delay-[400ms]',
+        className: 'animation-delay-[100ms]',
         comp: <Swipe />,
     },
     {
         span: { default: 12, '2xl': 4 },
-        className: 'animation-delay-[600ms]',
+        className: 'animation-delay-[150ms]',
         comp: <Tl />,
     },
     {
         span: { default: 12, '2xl': 8 },
-        className: 'animation-delay-[800ms]',
+        className: 'animation-delay-[200ms]',
         comp: <Table />,
     },
     {
         span: { default: 12, '2xl': 9 },
-        className: 'animation-delay-[1000ms]',
+        className: 'animation-delay-[250ms]',
         comp: <StepperComp />,
     },
     {
         span: { default: 12, '2xl': 3 },
-        className: 'animation-delay-[1200ms]',
+        className: 'animation-delay-[300ms]',
         comp: <ListComp />,
     },
 ];
 
 const Home = () => {
-    const commonState = 'animate-fadeInUp opacity-0 -translate-y-full';
+    const commonState =
+        'animate-fadeInUp opacity-0 -translate-y-full animation-duration-[0.3s]';
     useLayoutEffect(() => {
         const htmlEle = document.querySelector('html');
         htmlEle.scrollIntoView();

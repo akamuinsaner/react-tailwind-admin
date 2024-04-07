@@ -22,6 +22,7 @@ import { usePathname } from 'next/navigation';
 import { getTreeDataFormatted } from '@/src/components/Cascader/utils';
 import { config, Config } from './pageSec/Side/config';
 import Footer from './pageSec/Footer';
+import Affix from './pageSec/Affix';
 
 export default function App({ children }: { children: ReactNode }) {
     const pathname = usePathname();
@@ -68,11 +69,12 @@ export default function App({ children }: { children: ReactNode }) {
         }),
     );
     const innerClassName = twMerge(
-        'pt-20 md:pl-64 text-main duration-200 transition-transform flex flex-col',
+        'pt-20 md:pl-64 text-main duration-1000 transition-transform flex flex-col',
         classNames({
             'rotate-x-30 pointer-events-none transform': state.search,
         }),
     );
+
     return (
         <GlobalContext.Provider value={contextValue}>
             <ScrollPage className={wrapperClassName}>
@@ -81,6 +83,7 @@ export default function App({ children }: { children: ReactNode }) {
                     <Side />
                     <Content>{children}</Content>
                     <Footer />
+                    <Affix />
                 </Page>
             </ScrollPage>
         </GlobalContext.Provider>

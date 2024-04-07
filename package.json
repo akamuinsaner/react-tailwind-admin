@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "@mertasan/tailwindcss-variables": "^2.7.0",
+    "@types/dom-view-transitions": "^1.0.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

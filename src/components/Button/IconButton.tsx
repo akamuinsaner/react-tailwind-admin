@@ -22,7 +22,6 @@ export type RTButtonProps = {
     size?: RTSize;
     color?: 'primary' | 'secondary' | RTSeverity;
     disabled?: boolean;
-    onClick?: (e: SyntheticEvent) => void;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const IconButton: FC<RTButtonProps> = forwardRef(
