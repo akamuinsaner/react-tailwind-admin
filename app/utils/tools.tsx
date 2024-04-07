@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from '@/tailwind.config';
+import { flushSync } from 'react-dom';
 
 export const debounce = cb => {
     let timer;

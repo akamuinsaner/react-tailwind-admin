@@ -46,7 +46,6 @@ export const getRenderList = (current: { year: number; month: number }) => {
                 value: startDayOfMonth.subtract(index + 1, 'd'),
             });
         });
-    console.log(list.length);
     if (Math.ceil(list.length / 7) === 5) {
         daysAfterLastDay += 7;
     }

@@ -4,8 +4,11 @@ export {
     setThemeAction,
     EActions,
     setSearchAction,
-    setSideWidthAction,
+    setSideBarWidthAction,
+    setHeaderHeightAction,
+    setNavHeightAction,
     setSideOpenKeysAction,
     setBreadcrumbAction,
     setFullscreenAction,
+    setHistorysAction,
 } from './action';

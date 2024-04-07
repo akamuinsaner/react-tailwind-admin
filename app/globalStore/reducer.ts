@@ -10,14 +10,20 @@ export const reducer = (
             return { ...state, theme: action.value };
         case EActions['set-search']:
             return { ...state, search: action.value };
-        case EActions['set-side-width']:
-            return { ...state, sideWidth: action.value };
         case EActions['set-side-open-keys']:
             return { ...state, sideOpenKeys: action.value };
         case EActions['set-breadcrumb']:
             return { ...state, breadcrumb: action.value };
         case EActions['set-fullscreen']:
             return { ...state, fullScreen: action.value };
+        case EActions['set-historys']:
+            return { ...state, historys: action.value };
+        case EActions['set-side-bar-width']:
+            return { ...state, sideBarWidth: action.value };
+        case EActions['set-header-height']:
+            return { ...state, headerHeight: action.value };
+        case EActions['set-nav-height']:
+            return { ...state, navHeight: action.value };
         default:
             return state;
     }

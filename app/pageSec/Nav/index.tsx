@@ -1,38 +1,76 @@
-'use client';
-import NavBar from '@/src/components/NavBar';
-import Text from '@/src/components/Text';
-import Box from '@/src/components/Box';
-import { Bars3Icon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
-import { GlobalContext } from '../../globalContext';
-import { useContext, useEffect } from 'react';
-import GlobalSearch from './GlobalSearch';
-import UserBox from './UserBox';
-import NavIcons from './NavIcons';
-import Flex from '@/src/components/Flex';
+import Tabs from '@/src/components/Tabs';
+import Tab from '@/src/components/Tabs/Tab';
+import TabList from '@/src/components/Tabs/TabList';
+import { GlobalContext, IGlobalContext } from '@/app/globalContext';
+import { SyntheticEvent, useContext, useEffect, useMemo, useRef } from 'react';
+import { twMerge } from 'tailwind-merge';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import { Config } from '../Side/config';
+import { useRouter } from 'next/navigation';
 
 const Nav = () => {
-    const context = useContext(GlobalContext);
-    const { theme, search, setTheme, setSearch } = context;
+    const navRef = useRef<HTMLElement>(null);
+    const context = useContext<IGlobalContext>(GlobalContext);
+    const {
+        pathname,
+        navigate,
+        historys,
+        setHisorys,
+        sideBarWidth,
+        navHeight,
+        headerHeight,
+        setNavHeight,
+    } = context;
+
+    const tabClassName = twMerge(
+        `flex flex-row items-center px-2 font-normal text-sm`,
+    );
+
+    const onDeleteNav = (cfg: Config) => (e: SyntheticEvent) => {
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
+        const newHistory = historys.filter(h => h.path !== cfg.path);
+        setHisorys(newHistory);
+        if (cfg.path === pathname) {
+            navigate(newHistory[newHistory.length - 1].path);
+        }
+    };
+
+    const onTabChange = (path: string) => {
+        navigate(path);
+    };
+
+    const tabs = useMemo(() => {
+        return historys.map(item => (
+            <Tab value={item.id} className={tabClassName}>
+                {item.name}
+                {historys.length !== 1 ? (
+                    <XMarkIcon
+                        className='h-5 w-5 ml-2'
+                        onClick={onDeleteNav(item)}
+                    />
+                ) : null}
+            </Tab>
+        ));
+    }, [historys]);
 
     useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('RT_THEME', theme);
-    }, [theme]);
+        setNavHeight(navRef.current.offsetHeight);
+    }, []);
     return (
-        <NavBar>
-            <Box className='mr-auto flex items-center gap-4'>
-                <Bars3Icon className='h-8 w-8' />
-                <Link href='/'>
-                    <Text size='h5'>RT-ADMIN</Text>
-                </Link>
-            </Box>
-            <Flex gap='large' align='center'>
-                <GlobalSearch search={search} setSearch={setSearch} />
-                <NavIcons />
-                <UserBox />
-            </Flex>
-        </NavBar>
+        <nav
+            ref={navRef}
+            className='fixed z-50 shadow right-0 h-9'
+            style={{
+                height: navHeight ? `${navHeight}px` : null,
+                left: `${sideBarWidth}px`,
+                top: `${headerHeight}px`,
+            }}
+        >
+            <Tabs active={pathname} onChange={onTabChange}>
+                <TabList>{tabs}</TabList>
+            </Tabs>
+        </nav>
     );
 };
 

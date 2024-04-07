@@ -35,7 +35,6 @@ import {
 import { GlobalContext } from '@/app/globalContext';
 
 const Side = () => {
-    const router = useRouter();
     const context = useContext(GlobalContext);
     const sideBarRef = useRef<HTMLElement>(null);
     const listItemsRefs = useRef<{
@@ -46,8 +45,15 @@ const Side = () => {
     }>({});
     const [hoverRect, setHoverRect] = useState<DOMRect>(null);
     const [activeRect, setActiveRect] = useState<DOMRect>(null);
-    const { sideOpenKeys, setSideOpenKeys, sideWidth, pathname, dataSet } =
-        context;
+    const {
+        navigate,
+        sideOpenKeys,
+        setSideOpenKeys,
+        pathname,
+        dataSet,
+        sideBarWidth,
+        setSideBarWidth,
+    } = context;
     const { flattedData, idChildrenIdMap, idSiblingsMap } = dataSet;
 
     const onTransitionStart = (menu: Config) => {
@@ -80,7 +86,7 @@ const Side = () => {
         (menu: Config) => {
             const hasChildren = menu?.children?.length;
             if (!hasChildren) {
-                router.push(menu.path);
+                navigate(menu.path);
                 return;
             }
             const siblings = idSiblingsMap.get(menu.id);
@@ -220,6 +226,7 @@ const Side = () => {
             top: `${hoverRect.top}px`,
         };
     }, [hoverRect]);
+
     const activeClassName = twMerge(
         'absolute bg-primary transition-[top] duration-300 w-1 right-0',
     );
@@ -230,13 +237,24 @@ const Side = () => {
             top: `${activeRect.top}px`,
         };
     }, [activeRect, pathname, sideOpenKeys]);
+
+    const setSideWidth = useCallback(() => {
+        setSideBarWidth(sideBarRef.current.offsetWidth);
+    }, []);
+
+    useEffect(() => {
+        setSideWidth();
+        window.addEventListener('resize', setSideWidth);
+        return () => window.removeEventListener('resize', setSideWidth);
+    }, []);
+
     return (
         <SideBar
+            style={{
+                width: sideBarWidth ? `${sideBarWidth}px` : null,
+            }}
             ref={sideBarRef}
             className={mainClassName}
-            style={{
-                width: `${sideWidth}px`,
-            }}
         >
             <span className={hoverClassName} style={hoverStyles}></span>
             <span className={activeClassName} style={activeStyles}></span>

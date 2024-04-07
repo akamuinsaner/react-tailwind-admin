@@ -3,10 +3,13 @@ import { GlobalState } from './state';
 export enum EActions {
     'set-theme',
     'set-search',
-    'set-side-width',
     'set-side-open-keys',
     'set-breadcrumb',
     'set-fullscreen',
+    'set-historys',
+    'set-side-bar-width',
+    'set-header-height',
+    'set-nav-height',
 }
 
 export type GlobalAction<T> = {
@@ -29,15 +32,6 @@ export const setSearchAction = <T extends GlobalState['search']>(
     return {
         type: EActions['set-search'],
         value: search,
-    };
-};
-
-export const setSideWidthAction = <T extends GlobalState['sideWidth']>(
-    sideWidth: T,
-): GlobalAction<T> => {
-    return {
-        type: EActions['set-side-width'],
-        value: sideWidth,
     };
 };
 
@@ -65,5 +59,41 @@ export const setFullscreenAction = <T extends GlobalState['fullScreen']>(
     return {
         type: EActions['set-fullscreen'],
         value: fullScreen,
+    };
+};
+
+export const setHistorysAction = <T extends GlobalState['historys']>(
+    historys: T,
+): GlobalAction<T> => {
+    return {
+        type: EActions['set-historys'],
+        value: historys,
+    };
+};
+
+export const setSideBarWidthAction = <T extends GlobalState['sideBarWidth']>(
+    sideBarWidth: T,
+): GlobalAction<T> => {
+    return {
+        type: EActions['set-side-bar-width'],
+        value: sideBarWidth,
+    };
+};
+
+export const setHeaderHeightAction = <T extends GlobalState['headerHeight']>(
+    headerHeight: T,
+): GlobalAction<T> => {
+    return {
+        type: EActions['set-header-height'],
+        value: headerHeight,
+    };
+};
+
+export const setNavHeightAction = <T extends GlobalState['navHeight']>(
+    navHeight: T,
+): GlobalAction<T> => {
+    return {
+        type: EActions['set-nav-height'],
+        value: navHeight,
     };
 };
