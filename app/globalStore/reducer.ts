@@ -20,10 +20,14 @@ export const reducer = (
             return { ...state, historys: action.value };
         case EActions['set-side-bar-width']:
             return { ...state, sideBarWidth: action.value };
+        case EActions['set-side-bar-locale']:
+            return { ...state, sideBarLocale: action.value };
         case EActions['set-header-height']:
             return { ...state, headerHeight: action.value };
         case EActions['set-nav-height']:
             return { ...state, navHeight: action.value };
+        case EActions['set-affix-pos']:
+            return { ...state, affixPos: action.value };
         default:
             return state;
     }

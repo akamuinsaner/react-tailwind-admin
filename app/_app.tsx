@@ -14,11 +14,13 @@ import {
     setSearchAction,
     setSideOpenKeysAction,
     setSideBarWidthAction,
+    setSideBarLocaleAction,
     setHeaderHeightAction,
     setBreadcrumbAction,
     setFullscreenAction,
     setHistorysAction,
     setNavHeightAction,
+    setAffixPosAction,
 } from './globalStore';
 import { twMerge } from 'tailwind-merge';
 import classNames from 'classnames';
@@ -27,15 +29,38 @@ import { getTreeDataFormatted } from '@/src/components/Cascader/utils';
 import { config, Config } from './pageSec/Side/config';
 import Footer from './pageSec/Footer';
 import Affix from './pageSec/Affix';
-import { GlobalState } from './globalStore/state';
+import { GlobalState, SIDEBARLOCALE } from './globalStore/state';
 import Nav from './pageSec/Nav';
 import { flushSync } from 'react-dom';
+import {
+    DndContext,
+    useDroppable,
+    PointerSensor,
+    MouseSensor,
+    useSensor,
+    useSensors,
+} from '@dnd-kit/core';
+import { GLOBALDROPID } from './utils/constants';
 
 export default function App({ children }: { children: ReactNode }) {
     const router = useRouter();
     const pathname = usePathname();
+    const { isOver, setNodeRef } = useDroppable({ id: GLOBALDROPID });
     const dataSet = getTreeDataFormatted<Config>(config);
     const [state, dispatch] = useReducer(reducer, initialState);
+    const mouseSensor = useSensor(MouseSensor, {
+        activationConstraint: {
+            tolerance: 0,
+            delay: 300,
+        },
+    });
+    const pointerSensor = useSensor(PointerSensor, {
+        activationConstraint: {
+            tolerance: 0,
+            delay: 300,
+        },
+    });
+    const sensors = useSensors(mouseSensor, pointerSensor);
     const {
         theme,
         search,
@@ -44,13 +69,17 @@ export default function App({ children }: { children: ReactNode }) {
         fullScreen,
         historys,
         sideBarWidth,
+        sideBarLocale,
         headerHeight,
         navHeight,
+        affixPos,
     } = state;
     const setTheme = (theme: string) => dispatch(setThemeAction(theme));
     const setSearch = (search: boolean) => dispatch(setSearchAction(search));
     const setSideBarWidth = (width: number) =>
         dispatch(setSideBarWidthAction(width));
+    const setSideBarLocale = (locale: SIDEBARLOCALE) =>
+        dispatch(setSideBarLocaleAction(locale));
     const setHeaderHeight = (height: number) =>
         dispatch(setHeaderHeightAction(height));
     const setNavHeight = (height: number) =>
@@ -60,6 +89,8 @@ export default function App({ children }: { children: ReactNode }) {
     const setBreadcrumb = (bc: Config[]) => dispatch(setBreadcrumbAction(bc));
     const setFullScreen = (fs: boolean) => dispatch(setFullscreenAction(fs));
     const setHisorys = (hs: Config[]) => dispatch(setHistorysAction(hs));
+    const setAffixPos = (ap: GlobalState['affixPos']) =>
+        dispatch(setAffixPosAction(ap));
     const navigate = (path: string) => {
         flushSync(() => {
             if (!document.startViewTransition) {
@@ -102,6 +133,9 @@ export default function App({ children }: { children: ReactNode }) {
         setSideBarWidth,
         headerHeight,
         setHeaderHeight,
+        sideBarLocale,
+        setSideBarLocale,
+        affixPos,
     };
 
     const generateBreadcrumb = useCallback(() => {
@@ -166,31 +200,44 @@ export default function App({ children }: { children: ReactNode }) {
         'navHeight',
         navHeight,
     );
-    const paddingTop = useMemo(() => {
+
+    const pageStyle = useMemo(() => {
         let paddingTop = 0;
         if (headerHeight) paddingTop += headerHeight;
         if (navHeight) paddingTop += navHeight;
-        return paddingTop;
-    }, [headerHeight, navHeight]);
+        let style = { paddingTop };
+        if (sideBarLocale === SIDEBARLOCALE['left'])
+            style = Object.assign({}, style, {
+                paddingLeft: `${sideBarWidth}px`,
+            });
+        if (sideBarLocale === SIDEBARLOCALE['right'])
+            style = Object.assign({}, style, {
+                paddingRight: `${sideBarWidth}px`,
+            });
+        return style;
+    }, [headerHeight, navHeight, sideBarLocale, sideBarWidth]);
+
+    const handleDragEnd = ({ delta }) => {
+        setAffixPos({
+            right: affixPos.right - delta.x,
+            bottom: affixPos.bottom - delta.y,
+        });
+    };
 
     return (
         <GlobalContext.Provider value={contextValue}>
-            <ScrollPage className={wrapperClassName}>
-                <Page
-                    className={innerClassName}
-                    style={{
-                        paddingTop: `${paddingTop}px`,
-                        paddingLeft: `${sideBarWidth}px`,
-                    }}
-                >
-                    <Header />
-                    <Nav />
-                    <Side />
-                    <Content>{children}</Content>
-                    <Footer />
-                    <Affix />
-                </Page>
-            </ScrollPage>
+            <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
+                <ScrollPage ref={setNodeRef} className={wrapperClassName}>
+                    <Page className={innerClassName} style={pageStyle}>
+                        <Header />
+                        <Nav />
+                        <Side />
+                        <Content>{children}</Content>
+                        <Footer />
+                        <Affix />
+                    </Page>
+                </ScrollPage>
+            </DndContext>
         </GlobalContext.Provider>
     );
 }

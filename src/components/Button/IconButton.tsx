@@ -24,7 +24,7 @@ export type RTButtonProps = {
     disabled?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-const IconButton: FC<RTButtonProps> = forwardRef(
+const IconButton = forwardRef<HTMLButtonElement, RTButtonProps>(
     (
         {
             children,

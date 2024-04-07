@@ -54,8 +54,8 @@ module.exports = {
                 'main-hover': '#4c6d42', // gray-600
                 mainBorder: '#e3f1d9', // gray-950
                 content: '#4c6d42', // gray-900
-                primary: '#2563eb',
-                'primary-hover': '#1d4ed8',
+                primary: '#765434',
+                'primary-hover': '#654323',
                 hover: '#616161',
                 secondary: '#d8b08c',
                 'secondary-hover': '#7e22ce',

@@ -6,7 +6,9 @@ import { SyntheticEvent, useContext, useEffect, useMemo, useRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Config } from '../Side/config';
-import { useRouter } from 'next/navigation';
+import { styles } from './styles';
+import { SIDEBARLOCALE } from '@/app/globalStore/state';
+import classNames from 'classnames';
 
 const Nav = () => {
     const navRef = useRef<HTMLElement>(null);
@@ -20,7 +22,10 @@ const Nav = () => {
         navHeight,
         headerHeight,
         setNavHeight,
+        sideBarLocale,
     } = context;
+
+    const locale = sideBarLocale === SIDEBARLOCALE['left'] ? 'right' : 'left';
 
     const tabClassName = twMerge(
         `flex flex-row items-center px-2 font-normal text-sm`,
@@ -54,19 +59,33 @@ const Nav = () => {
         ));
     }, [historys]);
 
+    const mainClassName = twMerge(
+        styles.main.base,
+        classNames({
+            [styles.main.left]: locale === 'left',
+            [styles.main.right]: locale === 'right',
+        }),
+    );
+
+    const mainStyle = useMemo(() => {
+        let style = {
+            height: navHeight ? `${navHeight}px` : null,
+            top: `${headerHeight}px`,
+        };
+        if (sideBarLocale === SIDEBARLOCALE['left']) {
+            style = Object.assign({}, style, { left: `${sideBarWidth}px` });
+        }
+        if (sideBarLocale === SIDEBARLOCALE['right']) {
+            style = Object.assign({}, style, { right: `${sideBarWidth}px` });
+        }
+        return style;
+    }, [navHeight, sideBarWidth, headerHeight, sideBarLocale]);
+
     useEffect(() => {
         setNavHeight(navRef.current.offsetHeight);
     }, []);
     return (
-        <nav
-            ref={navRef}
-            className='fixed z-50 shadow right-0 h-9'
-            style={{
-                height: navHeight ? `${navHeight}px` : null,
-                left: `${sideBarWidth}px`,
-                top: `${headerHeight}px`,
-            }}
-        >
+        <nav ref={navRef} className={mainClassName} style={mainStyle}>
             <Tabs active={pathname} onChange={onTabChange}>
                 <TabList>{tabs}</TabList>
             </Tabs>

@@ -8,8 +8,10 @@ export enum EActions {
     'set-fullscreen',
     'set-historys',
     'set-side-bar-width',
+    'set-side-bar-locale',
     'set-header-height',
     'set-nav-height',
+    'set-affix-pos',
 }
 
 export type GlobalAction<T> = {
@@ -80,6 +82,15 @@ export const setSideBarWidthAction = <T extends GlobalState['sideBarWidth']>(
     };
 };
 
+export const setSideBarLocaleAction = <T extends GlobalState['sideBarLocale']>(
+    sideBarLocale: T,
+): GlobalAction<T> => {
+    return {
+        type: EActions['set-side-bar-locale'],
+        value: sideBarLocale,
+    };
+};
+
 export const setHeaderHeightAction = <T extends GlobalState['headerHeight']>(
     headerHeight: T,
 ): GlobalAction<T> => {
@@ -95,5 +106,14 @@ export const setNavHeightAction = <T extends GlobalState['navHeight']>(
     return {
         type: EActions['set-nav-height'],
         value: navHeight,
+    };
+};
+
+export const setAffixPosAction = <T extends GlobalState['affixPos']>(
+    affixPos: T,
+): GlobalAction<T> => {
+    return {
+        type: EActions['set-affix-pos'],
+        value: affixPos,
     };
 };

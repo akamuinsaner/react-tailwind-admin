@@ -5,10 +5,12 @@ export {
     EActions,
     setSearchAction,
     setSideBarWidthAction,
+    setSideBarLocaleAction,
     setHeaderHeightAction,
     setNavHeightAction,
     setSideOpenKeysAction,
     setBreadcrumbAction,
     setFullscreenAction,
     setHistorysAction,
+    setAffixPosAction,
 } from './action';

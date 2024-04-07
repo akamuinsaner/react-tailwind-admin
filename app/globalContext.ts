@@ -1,7 +1,7 @@
 import { DataSet } from '@/src/components/Cascader/utils';
 import { createContext } from 'react';
 import { Config } from './pageSec/Side/config';
-import { GlobalState } from '@/app/globalStore/state';
+import { GlobalState, SIDEBARLOCALE } from '@/app/globalStore/state';
 
 export interface IGlobalContext {
     navigate: (path: string) => void;
@@ -23,6 +23,9 @@ export interface IGlobalContext {
     setSideBarWidth: (sideWidth: number) => void;
     headerHeight: number;
     setHeaderHeight: (headerHeight: number) => void;
+    sideBarLocale: SIDEBARLOCALE;
+    setSideBarLocale: (locale: SIDEBARLOCALE) => void;
+    affixPos: GlobalState['affixPos'];
 }
 
 export const GlobalContext = createContext<IGlobalContext>(null);

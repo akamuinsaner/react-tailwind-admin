@@ -33,6 +33,10 @@ import {
     RESERVED_KEY,
 } from '@/src/components/Cascader/utils';
 import { GlobalContext } from '@/app/globalContext';
+import { styles } from './styles';
+import { locale } from 'dayjs';
+import { SIDEBARLOCALE } from '@/app/globalStore/state';
+import classNames from 'classnames';
 
 const Side = () => {
     const context = useContext(GlobalContext);
@@ -53,6 +57,8 @@ const Side = () => {
         dataSet,
         sideBarWidth,
         setSideBarWidth,
+        headerHeight,
+        sideBarLocale,
     } = context;
     const { flattedData, idChildrenIdMap, idSiblingsMap } = dataSet;
 
@@ -144,15 +150,16 @@ const Side = () => {
                     const childrenCount = item?.children?.length || 0;
                     const hasChildren = !!childrenCount;
                     const showChildren = sideOpenKeys.includes(item.id);
+                    const itemClassName = twMerge(styles.item.base);
                     const arrowClassName = twMerge(
-                        'transition-transform duration-300 linear h-4 w-4',
+                        styles.item.arrow,
                         classnames({
                             'rotate-90': showChildren,
                         }),
                     );
                     const actualHeight = 50 * childrenCount;
                     const childrenClassName = twMerge(
-                        'origin-top overflow-hidden transition-[max-height] duration-300 linear',
+                        styles.menu.children,
                         classnames({
                             'duration-200': childrenCount <= 3,
                             'duration-300':
@@ -167,6 +174,29 @@ const Side = () => {
                             ? 0
                             : `${actualHeight}px`,
                     };
+                    // const indent = (
+                    //     <Box
+                    //         style={{
+                    //             width: `${depth * 12}px`,
+                    //         }}
+                    //     ></Box>
+                    // );
+                    // const itemIcon =
+                    //     sideBarLocale === SIDEBARLOCALE['left'] ? (
+                    //         item.icon ? (
+                    //             createElement(item.icon)
+                    //         ) : null
+                    //     ) : hasChildren ? (
+                    //         <ChevronRightIcon className={arrowClassName} />
+                    //     ) : null;
+                    // const itemAction =
+                    //     sideBarLocale === SIDEBARLOCALE['right'] ? (
+                    //         item.icon ? (
+                    //             createElement(item.icon)
+                    //         ) : null
+                    //     ) : hasChildren ? (
+                    //         <ChevronRightIcon className={arrowClassName} />
+                    //     ) : null;
                     return (
                         <Fragment key={item.id}>
                             <ListItem
@@ -177,27 +207,22 @@ const Side = () => {
                                 }}
                                 active={isActive}
                                 ref={listItemsRefs.current[item.id]}
-                                className='bg-inherit hover:bg-inherit'
+                                className={itemClassName}
                                 onMouseEnter={onMouseEnter}
                             >
-                                <Box
-                                    style={{
-                                        width: `${depth * 12}px`,
-                                    }}
-                                ></Box>
                                 <ListItemIcon>
                                     {item.icon
                                         ? createElement(item.icon)
                                         : null}
                                 </ListItemIcon>
                                 <ListItemText body={item.name} />
-                                {hasChildren ? (
-                                    <ListItemAction>
+                                <ListItemAction>
+                                    {hasChildren ? (
                                         <ChevronRightIcon
                                             className={arrowClassName}
                                         />
-                                    </ListItemAction>
-                                ) : null}
+                                    ) : null}
+                                </ListItemAction>
                             </ListItem>
                             <div
                                 className={childrenClassName}
@@ -213,23 +238,39 @@ const Side = () => {
             </List>
         );
     };
-    const mainClassName = twMerge('pt-20 hidden md:block px-2');
-    const hoverClassName = twMerge(
-        'absolute rounded-lg bg-main-hover transition-[top] duration-300',
+    const mainClassName = twMerge(
+        styles.main.base,
+        classnames({
+            [styles.main.left]: sideBarLocale === SIDEBARLOCALE['left'],
+            [styles.main.right]: sideBarLocale === SIDEBARLOCALE['right'],
+        }),
     );
+    const hoverClassName = twMerge(styles.hover);
+    const activeClassName = twMerge(
+        styles.active.base,
+        classnames({
+            [styles.active.left]: sideBarLocale === SIDEBARLOCALE['right'],
+            [styles.active.right]: sideBarLocale === SIDEBARLOCALE['left'],
+        }),
+    );
+
     const hoverStyles = useMemo(() => {
         if (!hoverRect) return;
-        return {
+        let style = {
             width: `${hoverRect.width}px`,
             height: `${hoverRect.height}px`,
             left: `${hoverRect.left}px`,
             top: `${hoverRect.top}px`,
         };
-    }, [hoverRect]);
+        if (sideBarLocale === SIDEBARLOCALE['right']) {
+            style = Object.assign({}, style, {
+                left: 'auto',
+                right: `${(window.innerWidth - hoverRect.right) / 2}px`,
+            });
+        }
+        return style;
+    }, [hoverRect, sideBarLocale]);
 
-    const activeClassName = twMerge(
-        'absolute bg-primary transition-[top] duration-300 w-1 right-0',
-    );
     const activeStyles: CSSProperties = useMemo(() => {
         if (!activeRect) return;
         return {
@@ -252,6 +293,7 @@ const Side = () => {
         <SideBar
             style={{
                 width: sideBarWidth ? `${sideBarWidth}px` : null,
+                paddingTop: `${headerHeight}px`,
             }}
             ref={sideBarRef}
             className={mainClassName}

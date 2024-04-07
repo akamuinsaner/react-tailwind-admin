@@ -1,6 +1,5 @@
 'use client';
 import Box from '@/src/components/Box';
-import Button from '@/src/components/Button';
 import IconButton from '@/src/components/Button/IconButton';
 import {
     WrenchScrewdriverIcon,
@@ -14,11 +13,12 @@ import {
 import classNames from 'classnames';
 
 import {
+    CSSProperties,
     MouseEventHandler,
-    SyntheticEvent,
     useCallback,
     useContext,
     useEffect,
+    useMemo,
     useRef,
     useState,
 } from 'react';
@@ -26,28 +26,48 @@ import { flushSync } from 'react-dom';
 import { twMerge } from 'tailwind-merge';
 import { GlobalContext, IGlobalContext } from '@/app/globalContext';
 import Tooltip from '@/src/components/Tooltip';
+import { useDraggable } from '@dnd-kit/core';
+import { AFFIXDRAGID } from '@/app/utils/constants';
+import { CSS } from '@dnd-kit/utilities';
 import ForestIcon from '@/app/utils/icons/ForestIcon';
 
 const Affix = () => {
     const fullScreenEleRef = useRef<HTMLElement>(
         document.querySelector('html'),
     );
+    const { attributes, listeners, setNodeRef, transform, isDragging } =
+        useDraggable({
+            id: AFFIXDRAGID,
+        });
+
     const [undeterminate, setUndeterminate] = useState<boolean>(false);
     const [colorMode, setColorMode] = useState<boolean>(false);
-    const { setTheme, theme, fullScreen } =
+    const { setTheme, theme, fullScreen, affixPos } =
         useContext<IGlobalContext>(GlobalContext);
+
+    let style: CSSProperties = useMemo(() => {
+        return {
+            bottom: `${affixPos.bottom}px`,
+            right: `${affixPos.right}px`,
+            opacity: isDragging ? 0.5 : 1,
+            transform: CSS.Translate.toString(transform),
+        };
+    }, [isDragging, transform, affixPos]);
+
     const boxClassName = twMerge(
-        `h-12 w-12 bg-main text-mainText fixed bottom-10 right-10 rounded-full`,
+        `h-12 w-12 bg-main text-mainText fixed rounded-full`,
     );
 
     const mainClassName = twMerge(
         `bg-inherit text-inherit h-full w-full rounded-full rounded-full 
-        shadow-xl hover:bg-main-hover absolute left-0 top-0 transition-transform`,
+        shadow-md hover:bg-main-hover absolute left-0 top-0 transition-transform`,
     );
 
     const openBtnClassName = twMerge(
         mainClassName,
-        classNames({ 'bg-primary text-white hover:bg-primary': undeterminate }),
+        classNames({
+            'bg-primary text-white hover:bg-primary': undeterminate,
+        }),
     );
 
     const screenClassName = twMerge(
@@ -125,6 +145,11 @@ const Affix = () => {
         if (colorMode) setUndeterminate(false);
     }, [colorMode]);
 
+    useEffect(() => {
+        setUndeterminate(false);
+        setColorMode(false);
+    }, [isDragging]);
+
     const onThemeBtnClick =
         (theme: string): MouseEventHandler<HTMLButtonElement> =>
         e => {
@@ -175,9 +200,13 @@ const Affix = () => {
                 e.stopPropagation();
                 e.nativeEvent.stopImmediatePropagation();
             }}
+            ref={setNodeRef}
+            style={style}
+            {...listeners}
+            {...attributes}
         >
             <Box className={themeBoxClassName}>
-                {/* <Tooltip title='forest' placement='left' arrow>
+                <Tooltip title='forest' placement='left' arrow>
                     <IconButton
                         className={forestThemeClassName}
                         onClick={onThemeBtnClick('forest')}
@@ -188,7 +217,7 @@ const Affix = () => {
                             }
                         />
                     </IconButton>
-                </Tooltip> */}
+                </Tooltip>
                 <Tooltip title='dark' placement='left' arrow>
                     <IconButton
                         className={darkThemeClassName}
