@@ -15,6 +15,7 @@ import {
     setSideOpenKeysAction,
     setSideWidthAction,
     setBreadcrumbAction,
+    setFullscreenAction,
 } from './globalStore';
 import { twMerge } from 'tailwind-merge';
 import classNames from 'classnames';
@@ -28,13 +29,15 @@ export default function App({ children }: { children: ReactNode }) {
     const pathname = usePathname();
     const dataSet = getTreeDataFormatted<Config>(config);
     const [state, dispatch] = useReducer(reducer, initialState);
-    const { theme, search, sideOpenKeys, sideWidth, breadcrumb } = state;
+    const { theme, search, sideOpenKeys, sideWidth, breadcrumb, fullScreen } =
+        state;
     const setTheme = (theme: string) => dispatch(setThemeAction(theme));
     const setSearch = (search: boolean) => dispatch(setSearchAction(search));
     const setSideWidth = (width: number) => dispatch(setSideWidthAction(width));
     const setSideOpenKeys = (oks: string[]) =>
         dispatch(setSideOpenKeysAction(oks));
     const setBreadcrumb = (bc: Config[]) => dispatch(setBreadcrumbAction(bc));
+    const setFullScreen = (fs: boolean) => dispatch(setFullscreenAction(fs));
     const contextValue: IGlobalContext = {
         theme,
         search,
@@ -47,6 +50,7 @@ export default function App({ children }: { children: ReactNode }) {
         pathname,
         dataSet,
         breadcrumb,
+        fullScreen,
     };
 
     const generateBreadcrumb = () => {
@@ -75,6 +79,20 @@ export default function App({ children }: { children: ReactNode }) {
         }),
     );
 
+    const fullScreenChange = () => {
+        if (!!document.fullscreenElement) {
+            setFullScreen(true);
+        } else {
+            setFullScreen(false);
+        }
+    };
+
+    useEffect(() => {
+        fullScreenChange();
+        document.addEventListener('fullscreenchange', fullScreenChange);
+        return () =>
+            document.removeEventListener('fullscreenchange', fullScreenChange);
+    }, []);
     return (
         <GlobalContext.Provider value={contextValue}>
             <ScrollPage className={wrapperClassName}>

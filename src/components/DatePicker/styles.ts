@@ -91,7 +91,7 @@ export const styles: RTSelectStyles = {
     wrapper:
         'px-3 py-1 flex items-center w-full h-full text-inherit bg-inherit relative',
     count: 'absolute right-1 top-1/2 -translate-y-1/2 text-inherit',
-    input: 'outline-none border-none flex-1 h-full text-inherit bg-inherit',
+    input: 'outline-none border-none flex-1 h-full text-inherit bg-inherit placeholder-disableText',
     selectBox: {
         base: `overflow-hidden bg-main rounded`,
         show: `overflow-auto`,
@@ -109,7 +109,7 @@ export const styles: RTSelectStyles = {
             base: 'px-2 py-2 text-mainText flex-1',
             wrapper: 'grid grid-cols-7 h-full w-full gap-2',
             header: ' flex items-center justify-center font-semibold text-sm',
-            item: 'flex items-center justify-center text-sm cursor-pointer hover:bg-disableBg/50 min-h-8 min-w-8 rounded',
+            item: 'flex items-center justify-center text-sm cursor-pointer hover:bg-main-hover min-h-8 min-w-8 rounded',
             notInMonth: 'text-disableText',
             isToday: 'border-primary border',
             selected: 'bg-primary text-white hover:bg-primary',
@@ -119,7 +119,7 @@ export const styles: RTSelectStyles = {
         year: {
             selected: 'bg-primary text-white hover:bg-primary ',
             wrapper: 'grid grid-cols-3 px-2 py-2 gap-4 flex-1',
-            item: 'flex items-center justify-center text-sm cursor-pointer hover:bg-disableBg/50 min-h-8 min-w-8 rounded',
+            item: 'flex items-center justify-center text-sm cursor-pointer hover:bg-main-hover min-h-8 min-w-8 rounded',
             notIn: 'text-disableText',
         },
         footer: {

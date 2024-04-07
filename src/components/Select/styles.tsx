@@ -76,7 +76,7 @@ export const styles: RTSelectStyles = {
         'px-3 py-1 flex items-center w-full h-full text-inherit bg-inherit',
     inner: 'w-full h-full  text-inherit bg-inherit relative',
     count: 'absolute right-1 top-1/2 -translate-y-1/2 text-inherit',
-    input: 'outline-none border-none w-full h-full text-inherit bg-inherit',
+    input: 'outline-none border-none w-full h-full text-inherit bg-inherit placeholder-disableText',
     selectBox: {
         base: `overflow-hidden bg-main max-h-56 rounded`,
         show: `overflow-auto`,

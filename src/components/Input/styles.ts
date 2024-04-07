@@ -64,7 +64,7 @@ export const styles: RTInputStyles = {
         warning: 'text-warning',
         danger: 'text-danger',
     },
-    input: 'outline-none border-none w-full h-full text-inherit bg-inherit',
+    input: 'outline-none border-none w-full h-full text-inherit bg-inherit placeholder-disableText',
     suffix: {
         base: 'bg-inherit inline-block h-full shrink-0 flex items-center text-inherit ml-3 [&>svg]:h-5 [&>svg]:cursor-pointer',
         warning: 'text-warning',

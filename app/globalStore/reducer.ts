@@ -16,6 +16,8 @@ export const reducer = (
             return { ...state, sideOpenKeys: action.value };
         case EActions['set-breadcrumb']:
             return { ...state, breadcrumb: action.value };
+        case EActions['set-fullscreen']:
+            return { ...state, fullScreen: action.value };
         default:
             return state;
     }

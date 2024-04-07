@@ -14,6 +14,7 @@ export interface IGlobalContext {
     pathname: string;
     dataSet: DataSet<Config>;
     breadcrumb: Config[];
+    fullScreen: boolean;
 }
 
 export const GlobalContext = createContext<IGlobalContext>(null);

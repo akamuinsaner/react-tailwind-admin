@@ -6,6 +6,7 @@ export enum EActions {
     'set-side-width',
     'set-side-open-keys',
     'set-breadcrumb',
+    'set-fullscreen',
 }
 
 export type GlobalAction<T> = {
@@ -55,5 +56,14 @@ export const setBreadcrumbAction = <T extends GlobalState['breadcrumb']>(
     return {
         type: EActions['set-breadcrumb'],
         value: breadcrumb,
+    };
+};
+
+export const setFullscreenAction = <T extends GlobalState['fullScreen']>(
+    fullScreen: T,
+): GlobalAction<T> => {
+    return {
+        type: EActions['set-fullscreen'],
+        value: fullScreen,
     };
 };

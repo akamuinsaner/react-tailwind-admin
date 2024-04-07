@@ -4,8 +4,6 @@ import Text from '@/src/components/Text';
 import Box from '@/src/components/Box';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import Select from '@/src/components/Select';
-import Option from '@/src/components/Select/SelectOption';
 import { GlobalContext } from '../../globalContext';
 import { useContext, useEffect } from 'react';
 import GlobalSearch from './GlobalSearch';
@@ -28,15 +26,6 @@ const Nav = () => {
                 <Link href='/'>
                     <Text size='h5'>RT-ADMIN</Text>
                 </Link>
-                <Select
-                    value={theme}
-                    className='w-32'
-                    onChange={setTheme}
-                    allowClear={false}
-                >
-                    <Option value='light'>Light</Option>
-                    <Option value='dark'>Dark</Option>
-                </Select>
             </Box>
             <Flex gap='large' align='center'>
                 <GlobalSearch search={search} setSearch={setSearch} />

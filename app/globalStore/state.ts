@@ -6,6 +6,7 @@ export type GlobalState = {
     sideWidth: number;
     sideOpenKeys: string[];
     breadcrumb: Config[];
+    fullScreen: boolean;
 };
 
 export const initialState: GlobalState = {
@@ -14,4 +15,5 @@ export const initialState: GlobalState = {
     sideWidth: 256,
     sideOpenKeys: [],
     breadcrumb: [],
+    fullScreen: false,
 };

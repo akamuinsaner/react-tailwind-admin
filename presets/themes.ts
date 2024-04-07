@@ -48,6 +48,28 @@ module.exports = {
                 disableBg: '#6b7280', // gray-500
                 disableText: '#9ca3af', // gray-400
             },
+            forest: {
+                main: '#5e7f52', // gray-800
+                mainText: '#fff', // gray-200
+                'main-hover': '#4c6d42', // gray-600
+                mainBorder: '#e3f1d9', // gray-950
+                content: '#4c6d42', // gray-900
+                primary: '#2563eb',
+                'primary-hover': '#1d4ed8',
+                hover: '#616161',
+                secondary: '#d8b08c',
+                'secondary-hover': '#7e22ce',
+                success: '#16a34a',
+                'success-hover': '#15803d',
+                info: '#0284c7',
+                'info-hover': '#0369a1',
+                warning: '#ca8a04',
+                'warning-hover': '#a16207',
+                danger: '#dc2626',
+                'danger-hover': '#b91c1c',
+                disableBg: '#d1d5db', // gray-500
+                disableText: '#9ca3af', // gray-400
+            },
         }),
     ],
 };

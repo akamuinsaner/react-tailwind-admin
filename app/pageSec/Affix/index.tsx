@@ -9,6 +9,7 @@ import {
     MoonIcon,
     ArrowsPointingOutIcon,
     BeakerIcon,
+    ArrowsPointingInIcon,
 } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 
@@ -18,17 +19,23 @@ import {
     useCallback,
     useContext,
     useEffect,
+    useRef,
     useState,
 } from 'react';
 import { flushSync } from 'react-dom';
 import { twMerge } from 'tailwind-merge';
 import { GlobalContext, IGlobalContext } from '@/app/globalContext';
-import { m } from 'framer-motion';
+import Tooltip from '@/src/components/Tooltip';
+import ForestIcon from '@/app/utils/icons/ForestIcon';
 
 const Affix = () => {
+    const fullScreenEleRef = useRef<HTMLElement>(
+        document.querySelector('html'),
+    );
     const [undeterminate, setUndeterminate] = useState<boolean>(false);
     const [colorMode, setColorMode] = useState<boolean>(false);
-    const { setTheme, theme } = useContext<IGlobalContext>(GlobalContext);
+    const { setTheme, theme, fullScreen } =
+        useContext<IGlobalContext>(GlobalContext);
     const boxClassName = twMerge(
         `h-12 w-12 bg-main text-mainText fixed bottom-10 right-10 rounded-full`,
     );
@@ -82,6 +89,15 @@ const Affix = () => {
         classNames({
             ['-translate-y-[260%]']: colorMode,
             'bg-primary text-white hover:bg-primary': theme === 'dark',
+        }),
+    );
+
+    const forestThemeClassName = twMerge(
+        mainClassName,
+        'duration-300',
+        classNames({
+            ['-translate-y-[390%]']: colorMode,
+            'bg-primary text-white hover:bg-primary': theme === 'forest',
         }),
     );
 
@@ -144,6 +160,14 @@ const Affix = () => {
             });
         };
 
+    const toggleFullScreen = () => {
+        if (!fullScreen) {
+            fullScreenEleRef.current.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    };
+
     return (
         <Box
             className={boxClassName}
@@ -153,31 +177,66 @@ const Affix = () => {
             }}
         >
             <Box className={themeBoxClassName}>
-                <IconButton
-                    className={darkThemeClassName}
-                    onClick={onThemeBtnClick('dark')}
-                >
-                    <MoonIcon />
-                </IconButton>
-                <IconButton
-                    className={lightThemeClassName}
-                    onClick={onThemeBtnClick('light')}
-                >
-                    <SunIcon />
-                </IconButton>
-                <IconButton
-                    className={themeClassName}
-                    onClick={toggleColorMode}
-                >
-                    <BeakerIcon />
-                </IconButton>
+                {/* <Tooltip title='forest' placement='left' arrow>
+                    <IconButton
+                        className={forestThemeClassName}
+                        onClick={onThemeBtnClick('forest')}
+                    >
+                        <ForestIcon
+                            className={
+                                theme === 'forest' ? 'text-mainText' : null
+                            }
+                        />
+                    </IconButton>
+                </Tooltip> */}
+                <Tooltip title='dark' placement='left' arrow>
+                    <IconButton
+                        className={darkThemeClassName}
+                        onClick={onThemeBtnClick('dark')}
+                    >
+                        <MoonIcon />
+                    </IconButton>
+                </Tooltip>
+                <Tooltip title='light' placement='left' arrow>
+                    <IconButton
+                        className={lightThemeClassName}
+                        onClick={onThemeBtnClick('light')}
+                    >
+                        <SunIcon />
+                    </IconButton>
+                </Tooltip>
+                <Tooltip title='themes' placement='left' arrow>
+                    <IconButton
+                        className={themeClassName}
+                        onClick={toggleColorMode}
+                    >
+                        <BeakerIcon />
+                    </IconButton>
+                </Tooltip>
             </Box>
-            <IconButton className={settingClassName}>
-                <Cog6ToothIcon />
-            </IconButton>
-            <IconButton className={screenClassName}>
-                <ArrowsPointingOutIcon />
-            </IconButton>
+            <Tooltip title='open setting panel' placement='left' arrow>
+                <IconButton className={settingClassName}>
+                    <Cog6ToothIcon />
+                </IconButton>
+            </Tooltip>
+
+            <Tooltip
+                title={!fullScreen ? 'full screen' : 'exit full screen'}
+                placement='left'
+                arrow
+            >
+                <IconButton
+                    className={screenClassName}
+                    onClick={toggleFullScreen}
+                >
+                    {!fullScreen ? (
+                        <ArrowsPointingOutIcon />
+                    ) : (
+                        <ArrowsPointingInIcon />
+                    )}
+                </IconButton>
+            </Tooltip>
+
             <IconButton className={openBtnClassName} onClick={toggleActive}>
                 <WrenchScrewdriverIcon />
             </IconButton>

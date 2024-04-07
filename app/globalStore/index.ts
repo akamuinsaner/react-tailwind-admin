@@ -7,4 +7,5 @@ export {
     setSideWidthAction,
     setSideOpenKeysAction,
     setBreadcrumbAction,
+    setFullscreenAction,
 } from './action';

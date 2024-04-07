@@ -80,17 +80,22 @@ const Tooltip: FC<RTTooltipProps> = ({
         setAnchor(anchorRef.current);
     }, []);
 
-    const childProps = useMemo(() => {
+    const childProps = (ps: any) => {
         let props = { ref: anchorRef };
         if (trigger === 'hover')
             props = Object.assign({}, props, {
-                onMouseEnter: setWrapper,
+                onMouseEnter: e => {
+                    setWrapper();
+                    ps.onMouseEnter && ps.onMouseEnter(e);
+                },
                 onClick: e => {
                     e.stopPropagation();
                     e.preventDefault();
                     e.nativeEvent.stopImmediatePropagation();
+                    ps.onClick && ps.onClick(e);
                 },
                 onMouseLeave: e => {
+                    ps.onMouseLeave && ps.onMouseLeave(e);
                     leaveTimerRef.current = setTimeout(() => {
                         removeWrapper();
                     }, 100);
@@ -98,7 +103,10 @@ const Tooltip: FC<RTTooltipProps> = ({
             });
         if (trigger === 'click') {
             props = Object.assign({}, props, {
-                onClick: setWrapper,
+                onClick: e => {
+                    setWrapper();
+                    ps.onClick && ps.onClick(e);
+                },
             });
         }
         if (trigger === 'contextMenu') {
@@ -107,13 +115,15 @@ const Tooltip: FC<RTTooltipProps> = ({
             });
         }
         return props;
-    }, [trigger]);
+    };
 
     const child = useMemo(() => {
         if (Array.isArray(children)) {
-            return cloneElement(children[0], childProps);
+            const child = children[0] as ReactElement;
+            return cloneElement(child, childProps(child.props));
         } else {
-            return cloneElement(children as ReactElement, childProps);
+            const child = children as ReactElement;
+            return cloneElement(child, childProps(child.props));
         }
     }, [children, childProps]);
 
