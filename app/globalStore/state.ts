@@ -23,6 +23,8 @@ export enum THEME {
     'light' = 'light',
     'dark' = 'dark',
     'forest' = 'forest',
+    'desert' = 'desert',
+    'sky' = 'sky',
 }
 
 export const initialState: GlobalState = {
@@ -32,9 +34,9 @@ export const initialState: GlobalState = {
     breadcrumb: [],
     fullScreen: false,
     historys: [],
-    sideBarWidth: null,
+    sideBarWidth: 256,
     sideBarLocale: SIDEBARLOCALE['left'],
-    headerHeight: null,
-    navHeight: null,
+    headerHeight: 80,
+    navHeight: 36,
     affixPos: { right: 40, bottom: 40 },
 };

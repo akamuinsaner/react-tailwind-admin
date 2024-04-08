@@ -30,7 +30,9 @@ import { useDraggable } from '@dnd-kit/core';
 import { AFFIXDRAGID } from '@/app/utils/constants';
 import { CSS } from '@dnd-kit/utilities';
 import ForestIcon from '@/app/utils/icons/ForestIcon';
+import DesertIcon from '@/app/utils/icons/DesertIcon';
 import { THEME } from '@/app/globalStore/state';
+import SkyIcon from '@/app/utils/icons/SkyIcon';
 
 const Affix = () => {
     const fullScreenEleRef = useRef<HTMLElement>(
@@ -122,6 +124,24 @@ const Affix = () => {
         }),
     );
 
+    const desertThemeClassName = twMerge(
+        mainClassName,
+        'duration-300',
+        classNames({
+            ['-translate-y-[520%]']: colorMode,
+            'bg-primary text-white hover:bg-primary': theme === THEME['desert'],
+        }),
+    );
+
+    const skyThemeClassName = twMerge(
+        mainClassName,
+        'duration-300',
+        classNames({
+            ['-translate-y-[650%]']: colorMode,
+            'bg-primary text-white hover:bg-primary': theme === THEME['sky'],
+        }),
+    );
+
     const toggleActive = () => {
         setUndeterminate(!undeterminate);
     };
@@ -207,6 +227,22 @@ const Affix = () => {
             {...attributes}
         >
             <Box className={themeBoxClassName}>
+                <Tooltip title='sky' placement='left' arrow>
+                    <IconButton
+                        className={skyThemeClassName}
+                        onClick={onThemeBtnClick(THEME['sky'])}
+                    >
+                        <SkyIcon />
+                    </IconButton>
+                </Tooltip>
+                <Tooltip title='desert' placement='left' arrow>
+                    <IconButton
+                        className={desertThemeClassName}
+                        onClick={onThemeBtnClick(THEME['desert'])}
+                    >
+                        <DesertIcon />
+                    </IconButton>
+                </Tooltip>
                 <Tooltip title='forest' placement='left' arrow>
                     <IconButton
                         className={forestThemeClassName}

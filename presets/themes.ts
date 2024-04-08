@@ -70,6 +70,50 @@ module.exports = {
                 disableBg: '#d1d5db', // gray-500
                 disableText: '#9ca3af', // gray-400
             },
+            desert: {
+                main: '#F4E1D2', // gray-800
+                mainText: '#4D4D4D', // gray-200
+                'main-hover': '#c1afa1', // gray-600
+                mainBorder: '#c2afa1', // gray-950
+                content: '#D9A87C', // gray-900
+                primary: '#E8B28D',
+                'primary-hover': '#f9c39e',
+                hover: '#e8b28d',
+                secondary: '#d8b08c',
+                'secondary-hover': '#7e22ce',
+                success: '#16a34a',
+                'success-hover': '#15803d',
+                info: '#0284c7',
+                'info-hover': '#0369a1',
+                warning: '#ca8a04',
+                'warning-hover': '#a16207',
+                danger: '#dc2626',
+                'danger-hover': '#b91c1c',
+                disableBg: '#d1d5db', // gray-500
+                disableText: '#9ca3af', // gray-400
+            },
+            sky: {
+                main: '#87CEEB', // gray-800
+                mainText: '#FFFFFF', // gray-200
+                'main-hover': '#7ab1e6', // gray-600
+                mainBorder: '#559cb8', // gray-950
+                content: '#B0E0E6', // gray-900
+                primary: '#4682B4',
+                'primary-hover': '#7ab1e6',
+                hover: '#7ab1e6',
+                secondary: '#d8b08c',
+                'secondary-hover': '#7e22ce',
+                success: '#16a34a',
+                'success-hover': '#15803d',
+                info: '#0284c7',
+                'info-hover': '#0369a1',
+                warning: '#ca8a04',
+                'warning-hover': '#a16207',
+                danger: '#dc2626',
+                'danger-hover': '#b91c1c',
+                disableBg: '#d1d5db', // gray-500
+                disableText: '#9ca3af', // gray-400
+            },
         }),
     ],
 };
