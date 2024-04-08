@@ -23,10 +23,10 @@ export type RTButtonProps = {
     variant?: 'contained' | 'outlined' | 'text';
     color?: 'primary' | 'secondary' | RTSeverity;
     disabled?: boolean;
-    prefix?: ReactNode;
+    prefix?: JSX.Element;
     suffix?: ReactNode;
     onClick?: (e: SyntheticEvent) => void;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'prefix'>;
 
 const Button: FC<RTButtonProps> = forwardRef(
     (

@@ -58,7 +58,7 @@ const Affix = () => {
     }, [isDragging, transform, affixPos]);
 
     const boxClassName = twMerge(
-        `h-12 w-12 bg-main text-mainText fixed rounded-full`,
+        `h-12 w-12 bg-main text-mainText fixed rounded-full z-40`,
     );
 
     const mainClassName = twMerge(
