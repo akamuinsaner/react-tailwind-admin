@@ -57,7 +57,7 @@ const Nav = () => {
                 ) : null}
             </Tab>
         ));
-    }, [historys]);
+    }, [historys, pathname]);
 
     const mainClassName = twMerge(
         styles.main.base,

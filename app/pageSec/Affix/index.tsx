@@ -58,7 +58,7 @@ const Affix = () => {
     }, [isDragging, transform, affixPos]);
 
     const boxClassName = twMerge(
-        `h-12 w-12 bg-main text-mainText fixed rounded-full z-40`,
+        `h-12 w-12 bg-main text-mainText fixed rounded-full z-10`,
     );
 
     const mainClassName = twMerge(
@@ -68,6 +68,7 @@ const Affix = () => {
 
     const openBtnClassName = twMerge(
         mainClassName,
+        'z-10',
         classNames({
             'bg-primary text-white hover:bg-primary': undeterminate,
         }),
@@ -93,7 +94,7 @@ const Affix = () => {
         'duration-300 absolute inset-0',
         classNames({
             ['-translate-y-[390%]']: undeterminate,
-            ['z-[1]']: colorMode,
+            ['z-20']: colorMode,
         }),
     );
 
@@ -179,6 +180,7 @@ const Affix = () => {
                     setTheme(theme);
                     return;
                 }
+
                 const transition = document.startViewTransition(() => {
                     setTheme(theme);
                 });

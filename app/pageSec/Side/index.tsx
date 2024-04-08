@@ -261,7 +261,7 @@ const Side = () => {
             width: `${hoverRect.width}px`,
             height: `${hoverRect.height}px`,
             left: `${hoverRect.left}px`,
-            top: `${hoverRect.top}px`,
+            top: `${hoverRect.top + sideBarRef.current.scrollTop}px`,
         };
         if (sideBarLocale === SIDEBARLOCALE['right']) {
             style = Object.assign({}, style, {
@@ -270,13 +270,13 @@ const Side = () => {
             });
         }
         return style;
-    }, [hoverRect, sideBarLocale]);
+    }, [hoverRect, sideBarLocale, sideOpenKeys]);
 
     const activeStyles: CSSProperties = useMemo(() => {
         if (!activeRect) return;
         return {
             height: `${activeRect.height}px`,
-            top: `${activeRect.top}px`,
+            top: `${activeRect.top + sideBarRef.current.scrollTop}px`,
         };
     }, [activeRect, pathname, sideOpenKeys]);
 
