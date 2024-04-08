@@ -12,6 +12,7 @@ export type GlobalState = {
     headerHeight: number;
     navHeight: number;
     affixPos: { right: number; bottom: number };
+    footerHeight: number;
 };
 
 export enum SIDEBARLOCALE {
@@ -39,4 +40,5 @@ export const initialState: GlobalState = {
     headerHeight: 80,
     navHeight: 36,
     affixPos: { right: 40, bottom: 40 },
+    footerHeight: null,
 };

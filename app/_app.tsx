@@ -21,6 +21,7 @@ import {
     setHistorysAction,
     setNavHeightAction,
     setAffixPosAction,
+    setFooterHeightAction,
 } from './globalStore';
 import { twMerge } from 'tailwind-merge';
 import classNames from 'classnames';
@@ -73,6 +74,7 @@ export default function App({ children }: { children: ReactNode }) {
         headerHeight,
         navHeight,
         affixPos,
+        footerHeight,
     } = state;
     const setTheme = (theme: THEME) => dispatch(setThemeAction(theme));
     const setSearch = (search: boolean) => dispatch(setSearchAction(search));
@@ -91,6 +93,8 @@ export default function App({ children }: { children: ReactNode }) {
     const setHisorys = (hs: Config[]) => dispatch(setHistorysAction(hs));
     const setAffixPos = (ap: GlobalState['affixPos']) =>
         dispatch(setAffixPosAction(ap));
+    const setFooterHeight = (fh: GlobalState['footerHeight']) =>
+        dispatch(setFooterHeightAction(fh));
     const navigate = (path: string) => {
         flushSync(() => {
             if (!document.startViewTransition) {
@@ -136,6 +140,8 @@ export default function App({ children }: { children: ReactNode }) {
         sideBarLocale,
         setSideBarLocale,
         affixPos,
+        footerHeight,
+        setFooterHeight,
     };
 
     const generateBreadcrumb = useCallback(() => {
@@ -199,6 +205,8 @@ export default function App({ children }: { children: ReactNode }) {
         headerHeight,
         'navHeight',
         navHeight,
+        'footerHeight',
+        footerHeight,
     );
 
     const pageStyle = useMemo(() => {
@@ -232,7 +240,11 @@ export default function App({ children }: { children: ReactNode }) {
                         <Header />
                         <Nav />
                         <Side />
-                        <Content>{children}</Content>
+                        <Content
+                            style={{ height: `calc(100% - ${footerHeight}px)` }}
+                        >
+                            {children}
+                        </Content>
                         <Footer />
                         <Affix />
                     </Page>

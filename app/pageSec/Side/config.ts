@@ -5,7 +5,9 @@ import {
     Squares2X2Icon,
     ExclamationTriangleIcon,
     CheckCircleIcon,
+    ShieldCheckIcon,
     GifIcon,
+    Bars3BottomLeftIcon,
 } from '@heroicons/react/24/outline';
 
 export type Config = {
@@ -328,6 +330,29 @@ export const config: Config[] = [
         ],
     },
     {
+        id: '/auth',
+        name: 'Auth',
+        path: '/auth',
+        icon: ShieldCheckIcon,
+        children: [
+            {
+                id: '/auth/login',
+                name: 'Login',
+                path: '/auth/login',
+            },
+            {
+                id: '/auth/signUp',
+                name: 'Sign Up',
+                path: '/auth/signup',
+            },
+            {
+                id: '/auth/resetPassword',
+                name: 'Password',
+                path: '/auth/resetPassword',
+            },
+        ],
+    },
+    {
         id: '/results',
         name: 'Results',
         path: '/results',
@@ -375,6 +400,48 @@ export const config: Config[] = [
                 id: '/exceptions/500',
                 name: '500',
                 path: '/exceptions/500',
+            },
+        ],
+    },
+    {
+        id: '/hirarchy',
+        name: 'Hirarchy',
+        path: '/hirarchy',
+        icon: Bars3BottomLeftIcon,
+        children: [
+            {
+                id: '/hirarchy/1',
+                name: 'Hirarchy',
+                path: '/hirarchy/1',
+                children: [
+                    {
+                        id: '/hirarchy/1/1',
+                        name: 'Hirarchy',
+                        path: '/hirarchy/1/1',
+                    },
+                    {
+                        id: '/hirarchy/1/2',
+                        name: 'Hirarchy',
+                        path: '/hirarchy/1/2',
+                    },
+                ],
+            },
+            {
+                id: '/hirarchy/2',
+                name: 'Hirarchy',
+                path: '/hirarchy/2',
+                children: [
+                    {
+                        id: '/hirarchy/2/1',
+                        name: 'Hirarchy',
+                        path: '/hirarchy/2/1',
+                    },
+                    {
+                        id: '/hirarchy/2/2',
+                        name: 'Hirarchy',
+                        path: '/hirarchy/2/2',
+                    },
+                ],
             },
         ],
     },

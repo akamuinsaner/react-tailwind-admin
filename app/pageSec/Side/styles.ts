@@ -1,6 +1,6 @@
 export const styles = {
     main: {
-        base: 'hidden md:block px-2',
+        base: 'hidden md:block px-4',
         left: 'left-0 right-auto',
         right: 'right-0 left-auto',
     },

@@ -174,13 +174,13 @@ const Side = () => {
                             ? 0
                             : `${actualHeight}px`,
                     };
-                    // const indent = (
-                    //     <Box
-                    //         style={{
-                    //             width: `${depth * 12}px`,
-                    //         }}
-                    //     ></Box>
-                    // );
+                    const indent = (
+                        <Box
+                            style={{
+                                width: `${depth * 12}px`,
+                            }}
+                        ></Box>
+                    );
                     // const itemIcon =
                     //     sideBarLocale === SIDEBARLOCALE['left'] ? (
                     //         item.icon ? (
@@ -210,6 +210,7 @@ const Side = () => {
                                 className={itemClassName}
                                 onMouseEnter={onMouseEnter}
                             >
+                                {indent}
                                 <ListItemIcon>
                                     {item.icon
                                         ? createElement(item.icon)

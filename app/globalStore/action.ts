@@ -12,6 +12,7 @@ export enum EActions {
     'set-header-height',
     'set-nav-height',
     'set-affix-pos',
+    'set-footer-height',
 }
 
 export type GlobalAction<T> = {
@@ -115,5 +116,14 @@ export const setAffixPosAction = <T extends GlobalState['affixPos']>(
     return {
         type: EActions['set-affix-pos'],
         value: affixPos,
+    };
+};
+
+export const setFooterHeightAction = <T extends GlobalState['footerHeight']>(
+    footerHeight: T,
+): GlobalAction<T> => {
+    return {
+        type: EActions['set-footer-height'],
+        value: footerHeight,
     };
 };

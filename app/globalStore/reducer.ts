@@ -28,6 +28,8 @@ export const reducer = (
             return { ...state, navHeight: action.value };
         case EActions['set-affix-pos']:
             return { ...state, affixPos: action.value };
+        case EActions['set-footer-height']:
+            return { ...state, footerHeight: action.value };
         default:
             return state;
     }

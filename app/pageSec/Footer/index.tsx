@@ -1,3 +1,4 @@
+'use client';
 import Flex from '@/src/components/Flex';
 import Text from '@/src/components/Text';
 import GithubIcon from '@/app/utils/icons/GithubIcon';
@@ -10,14 +11,24 @@ import {
 } from '@/app/utils/constants';
 import LinkedinIcon from '@/app/utils/icons/LinkedinIcon';
 import { GlobeAltIcon, EnvelopeIcon } from '@heroicons/react/24/solid';
+import { useContext, useEffect, useRef } from 'react';
+import { GlobalContext } from '@/app/globalContext';
 
 const Footer = () => {
+    const footerRef = useRef<HTMLDivElement>(null);
+    const context = useContext(GlobalContext);
+    const { footerHeight, setFooterHeight } = context;
+    useEffect(() => {
+        setFooterHeight(footerRef.current.offsetHeight);
+    }, []);
     return (
         <Flex
             className='w-full py-4 px-8 text-mainText text-center'
             align='center'
             direction='column'
             gap='medium'
+            ref={footerRef}
+            style={{ height: `${footerHeight}px` }}
         >
             <Flex gap='medium'>
                 <Link href={MAILTOLINK} target='__blank'>

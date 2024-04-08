@@ -13,4 +13,5 @@ export {
     setFullscreenAction,
     setHistorysAction,
     setAffixPosAction,
+    setFooterHeightAction,
 } from './action';

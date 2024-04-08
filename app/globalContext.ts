@@ -26,6 +26,8 @@ export interface IGlobalContext {
     sideBarLocale: SIDEBARLOCALE;
     setSideBarLocale: (locale: SIDEBARLOCALE) => void;
     affixPos: GlobalState['affixPos'];
+    footerHeight: number;
+    setFooterHeight: (footerHeight: number) => void;
 }
 
 export const GlobalContext = createContext<IGlobalContext>(null);
