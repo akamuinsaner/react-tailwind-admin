@@ -343,12 +343,12 @@ export const config: Config[] = [
             {
                 id: '/auth/signUp',
                 name: 'Sign Up',
-                path: '/auth/signup',
+                path: '/auth/signUp',
             },
             {
-                id: '/auth/resetPassword',
+                id: '/auth/password',
                 name: 'Password',
-                path: '/auth/resetPassword',
+                path: '/auth/password',
             },
         ],
     },
