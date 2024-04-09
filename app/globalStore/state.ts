@@ -1,4 +1,6 @@
 import { Config } from '../pageSec/Side/config';
+import { SIDEBARFOLDSTORAGENAME, THEMESTORAGENAME } from '../utils/constants';
+import { getLocalStorage } from '../utils/storage';
 
 export enum SIDEBARLOCALE {
     left,
@@ -19,6 +21,11 @@ export enum SIDEBARMODE {
     'free' = 'free',
 }
 
+export const SIDEBARFOLDEDWIDTH = 60;
+export const SIDEBARNORMALWidth = 256;
+
+const folded = !!getLocalStorage(SIDEBARFOLDSTORAGENAME) || false;
+
 export type GlobalState = {
     theme: THEME;
     search: boolean;
@@ -37,15 +44,15 @@ export type GlobalState = {
 };
 
 export const initialState: GlobalState = {
-    theme: <THEME>localStorage.getItem('RT_THEME') || THEME['light'],
+    theme: <THEME>getLocalStorage(THEMESTORAGENAME) || THEME['light'],
     search: false,
     sideOpenKeys: [],
     breadcrumb: [],
     fullScreen: false,
     historys: [],
     sideBarHided: false,
-    sideBarFolded: false,
-    sideBarWidth: 256,
+    sideBarFolded: folded,
+    sideBarWidth: folded ? SIDEBARFOLDEDWIDTH : SIDEBARNORMALWidth,
     sideBarLocale: SIDEBARLOCALE['left'],
     headerHeight: 80,
     navHeight: 36,

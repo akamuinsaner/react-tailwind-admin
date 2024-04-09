@@ -1,10 +1,8 @@
 'use client';
 import {
-    useReducer,
     useCallback,
     createElement,
     Fragment,
-    SyntheticEvent,
     TransitionEventHandler,
     useRef,
     MutableRefObject,
@@ -23,20 +21,19 @@ import ListItemIcon from '@/src/components/List/ListItemIcon';
 import ListItemText from '@/src/components/List/ListItemText';
 import ListItemAction from '@/src/components/List/ListItemAction';
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
-import { config, Config } from './config';
-import { useRouter, usePathname } from 'next/navigation';
+import { Config } from './config';
 import classnames from 'classnames';
 import { twMerge } from 'tailwind-merge';
 import Box from '@/src/components/Box';
-import {
-    getTreeDataFormatted,
-    RESERVED_KEY,
-} from '@/src/components/Cascader/utils';
+import { RESERVED_KEY } from '@/src/components/Cascader/utils';
 import { GlobalContext } from '@/app/globalContext';
 import { styles } from './styles';
-import { locale } from 'dayjs';
 import { SIDEBARLOCALE } from '@/app/globalStore/state';
-import classNames from 'classnames';
+import useHoverStyle from './useHoverStyle';
+import useActiveStyle from './useActiveStyle';
+import useBarStyle from './useBarStyle';
+import Popover from '@/src/components/Popover';
+import Tooltip from '@/src/components/Tooltip';
 
 const Side = () => {
     const context = useContext(GlobalContext);
@@ -47,8 +44,7 @@ const Side = () => {
     const childrenRefs = useRef<{
         [name: string]: MutableRefObject<HTMLDivElement>;
     }>({});
-    const [hoverRect, setHoverRect] = useState<DOMRect>(null);
-    const [activeRect, setActiveRect] = useState<DOMRect>(null);
+
     const {
         navigate,
         sideOpenKeys,
@@ -59,8 +55,11 @@ const Side = () => {
         setSideBarWidth,
         headerHeight,
         sideBarLocale,
+        sideBarFolded,
+        setSideBarFolded,
     } = context;
-    const { flattedData, idChildrenIdMap, idSiblingsMap } = dataSet;
+    const { flattedData, idChildrenIdMap, idSiblingsMap, parentChainMap } =
+        dataSet;
 
     const onTransitionStart = (menu: Config) => {
         if (sideOpenKeys.includes(menu.id)) {
@@ -105,37 +104,78 @@ const Side = () => {
             } else {
                 keys = [...keys.filter(k => !siblingIds.includes(k)), menu.id];
             }
-            setTimeout(() => {
-                setSideOpenKeys(keys);
-            }, 100);
+            setSideOpenKeys(keys);
         },
         [sideOpenKeys],
     );
 
-    const onMouseEnter: MouseEventHandler<HTMLLIElement> = e => {
-        setHoverRect(e.currentTarget.getBoundingClientRect());
-    };
+    useEffect(() => {
+        setSideOpenKeys([]);
+    }, [sideBarFolded]);
 
-    const activePointerTrace = () => {
+    const { placeholder: hoverHolder, setHoverRect } = useHoverStyle({
+        sideBarLocale,
+        sideOpenKeys,
+        sideBarRef,
+    });
+
+    const { placeholder: barHolder } = useBarStyle({
+        sideBarFolded,
+        setSideBarFolded,
+    });
+
+    const onMouseEnter: MouseEventHandler<HTMLLIElement> = e => {
+        const element = e.currentTarget;
         setTimeout(() => {
-            const parentIds = dataSet.parentChainMap.get(pathname);
-            let pointer = pathname;
-            parentIds.forEach(
-                id => !sideOpenKeys.includes(id) && (pointer = id),
-            );
-            const element = listItemsRefs.current[pointer].current;
-            setActiveRect(element.getBoundingClientRect());
+            setHoverRect(element.getBoundingClientRect());
         }, 300);
     };
-    useLayoutEffect(() => {
-        activePointerTrace();
-    }, [pathname, sideOpenKeys]);
 
     useEffect(() => {
         // when page loaded, set parentIds to openKeys
+        if (sideBarFolded) return;
         const parentIds = dataSet.parentChainMap.get(pathname);
         setSideOpenKeys(parentIds);
     }, []);
+
+    const popMenuOpen = (menu: Config) => {
+        const siblings = idSiblingsMap.get(menu.id);
+        const siblingIds = siblings.map(s => s.id);
+        let siblingChildrenIds = [];
+        siblingIds.forEach(sId => {
+            const childrenIds = dataSet.idChildrenIdMap.get(sId);
+            siblingChildrenIds = [...siblingChildrenIds, ...childrenIds];
+        });
+        const closeIds = [...siblingIds, ...siblingChildrenIds];
+        let keys = [...sideOpenKeys];
+        keys = Array.from(
+            new Set([...keys.filter(k => !closeIds.includes(k)), menu.id]),
+        );
+        setSideOpenKeys(keys);
+    };
+
+    const popMenuClose = (menu: Config) => {
+        const allChildrenIds = idChildrenIdMap.get(menu.id);
+        // has children opening
+        if (!!sideOpenKeys.find(item => allChildrenIds.includes(item))) {
+            return;
+        }
+        const parentIds = dataSet.parentChainMap.get(menu.id);
+        const closeIds = [...parentIds, menu.id];
+        let keys = [...sideOpenKeys];
+        keys = Array.from(
+            new Set([...keys.filter(k => !closeIds.includes(k))]),
+        );
+        setSideOpenKeys(keys);
+    };
+
+    const changeChildrenPopOpen = (menu: Config, open: boolean) => {
+        if (open) {
+            popMenuOpen(menu);
+        } else {
+            popMenuClose(menu);
+        }
+    };
 
     const renderList = (pid: string = RESERVED_KEY, depth: number = 0) => {
         const children = flattedData.filter(item => item.parentId === pid);
@@ -158,17 +198,7 @@ const Side = () => {
                         }),
                     );
                     const actualHeight = 50 * childrenCount;
-                    const childrenClassName = twMerge(
-                        styles.menu.children,
-                        classnames({
-                            'duration-200': childrenCount <= 3,
-                            'duration-300':
-                                childrenCount > 3 && childrenCount <= 6,
-                            'duration-400':
-                                childrenCount > 6 && childrenCount <= 9,
-                            'duration-500': childrenCount > 9,
-                        }),
-                    );
+                    const childrenClassName = twMerge(styles.menu.children);
                     const childrenStyle = {
                         maxHeight: !(hasChildren && showChildren)
                             ? 0
@@ -181,22 +211,131 @@ const Side = () => {
                             }}
                         ></Box>
                     );
-                    // const itemIcon =
-                    //     sideBarLocale === SIDEBARLOCALE['left'] ? (
-                    //         item.icon ? (
-                    //             createElement(item.icon)
-                    //         ) : null
-                    //     ) : hasChildren ? (
-                    //         <ChevronRightIcon className={arrowClassName} />
-                    //     ) : null;
-                    // const itemAction =
-                    //     sideBarLocale === SIDEBARLOCALE['right'] ? (
-                    //         item.icon ? (
-                    //             createElement(item.icon)
-                    //         ) : null
-                    //     ) : hasChildren ? (
-                    //         <ChevronRightIcon className={arrowClassName} />
-                    //     ) : null;
+                    if (sideBarFolded) {
+                        if (hasChildren) {
+                            if (depth === 0) {
+                                //haschildren && depth === 0
+                                return (
+                                    <Popover
+                                        open={hasChildren && showChildren}
+                                        placement='right-start'
+                                        className='p-0'
+                                        trigger='click'
+                                        onOpenChange={open =>
+                                            changeChildrenPopOpen(item, open)
+                                        }
+                                        content={
+                                            <div
+                                                className={childrenClassName}
+                                                onTransitionEnd={
+                                                    onTransitionEnd
+                                                }
+                                                ref={
+                                                    childrenRefs.current[
+                                                        item.id
+                                                    ]
+                                                }
+                                            >
+                                                {renderList(item.id, depth + 1)}
+                                            </div>
+                                        }
+                                    >
+                                        <ListItem
+                                            key={item.id}
+                                            active={isActive}
+                                            ref={listItemsRefs.current[item.id]}
+                                            className={itemClassName}
+                                            onClick={e => {
+                                                e.stopPropagation();
+                                                e.nativeEvent.stopImmediatePropagation();
+                                            }}
+                                        >
+                                            <ListItemIcon>
+                                                {item.icon
+                                                    ? createElement(item.icon)
+                                                    : null}
+                                            </ListItemIcon>
+                                        </ListItem>
+                                    </Popover>
+                                );
+                            }
+                            //haschildren && depth !== 0
+                            return (
+                                <Popover
+                                    open={hasChildren && showChildren}
+                                    placement='right-start'
+                                    className='p-0'
+                                    trigger='click'
+                                    onOpenChange={open =>
+                                        changeChildrenPopOpen(item, open)
+                                    }
+                                    content={
+                                        <div
+                                            className={childrenClassName}
+                                            onTransitionEnd={onTransitionEnd}
+                                            ref={childrenRefs.current[item.id]}
+                                        >
+                                            {renderList(item.id, depth + 1)}
+                                        </div>
+                                    }
+                                >
+                                    <ListItem
+                                        key={item.id}
+                                        active={isActive}
+                                        ref={listItemsRefs.current[item.id]}
+                                        className={itemClassName}
+                                        onClick={e => {
+                                            e.stopPropagation();
+                                            e.nativeEvent.stopImmediatePropagation();
+                                        }}
+                                    >
+                                        <ListItemText body={item.name} />
+                                        <ListItemAction>
+                                            {hasChildren ? (
+                                                <ChevronRightIcon
+                                                    className={arrowClassName}
+                                                />
+                                            ) : null}
+                                        </ListItemAction>
+                                    </ListItem>
+                                </Popover>
+                            );
+                        }
+                        if (depth === 0) {
+                            // !haschildren && depth === 0
+                            return (
+                                <ListItem
+                                    key={item.id}
+                                    active={isActive}
+                                    ref={listItemsRefs.current[item.id]}
+                                    className={itemClassName}
+                                    onClick={() => onMenuClick(item)}
+                                >
+                                    <ListItemIcon>
+                                        {createElement(item.icon)}
+                                    </ListItemIcon>
+                                </ListItem>
+                            );
+                        }
+                        return (
+                            <ListItem
+                                key={item.id}
+                                active={isActive}
+                                ref={listItemsRefs.current[item.id]}
+                                className={itemClassName}
+                                onClick={() => onMenuClick(item)}
+                            >
+                                <ListItemText body={item.name} />
+                                <ListItemAction>
+                                    {hasChildren ? (
+                                        <ChevronRightIcon
+                                            className={arrowClassName}
+                                        />
+                                    ) : null}
+                                </ListItemAction>
+                            </ListItem>
+                        );
+                    }
                     return (
                         <Fragment key={item.id}>
                             <ListItem
@@ -246,39 +385,6 @@ const Side = () => {
             [styles.main.right]: sideBarLocale === SIDEBARLOCALE['right'],
         }),
     );
-    const hoverClassName = twMerge(styles.hover);
-    const activeClassName = twMerge(
-        styles.active.base,
-        classnames({
-            [styles.active.left]: sideBarLocale === SIDEBARLOCALE['right'],
-            [styles.active.right]: sideBarLocale === SIDEBARLOCALE['left'],
-        }),
-    );
-
-    const hoverStyles = useMemo(() => {
-        if (!hoverRect) return;
-        let style = {
-            width: `${hoverRect.width}px`,
-            height: `${hoverRect.height}px`,
-            left: `${hoverRect.left}px`,
-            top: `${hoverRect.top + sideBarRef.current.scrollTop}px`,
-        };
-        if (sideBarLocale === SIDEBARLOCALE['right']) {
-            style = Object.assign({}, style, {
-                left: 'auto',
-                right: `${(window.innerWidth - hoverRect.right) / 2}px`,
-            });
-        }
-        return style;
-    }, [hoverRect, sideBarLocale, sideOpenKeys]);
-
-    const activeStyles: CSSProperties = useMemo(() => {
-        if (!activeRect) return;
-        return {
-            height: `${activeRect.height}px`,
-            top: `${activeRect.top + sideBarRef.current.scrollTop}px`,
-        };
-    }, [activeRect, pathname, sideOpenKeys]);
 
     const setSideWidth = useCallback(() => {
         setSideBarWidth(sideBarRef.current.offsetWidth);
@@ -290,6 +396,16 @@ const Side = () => {
         return () => window.removeEventListener('resize', setSideWidth);
     }, []);
 
+    const { placeholder: activeHolder } = useActiveStyle({
+        sideBarLocale,
+        sideOpenKeys,
+        sideBarRef,
+        sideBarFolded,
+        pathname,
+        listItemsRefs,
+        parentChainMap,
+    });
+
     return (
         <SideBar
             style={{
@@ -299,9 +415,10 @@ const Side = () => {
             ref={sideBarRef}
             className={mainClassName}
         >
-            <span className={hoverClassName} style={hoverStyles}></span>
-            <span className={activeClassName} style={activeStyles}></span>
-            {renderList()}
+            {/* {hoverHolder} */}
+            {activeHolder}
+            {barHolder}
+            <div className={twMerge(styles.menu.wrapper)}>{renderList()}</div>
         </SideBar>
     );
 };

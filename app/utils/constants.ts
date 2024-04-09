@@ -10,3 +10,6 @@ export const MAILTOLINK = 'mailto:elcidwang@gmail.com';
 
 export const GLOBALDROPID = 'GLOBAL';
 export const AFFIXDRAGID = 'AFFIX';
+
+export const THEMESTORAGENAME = 'RT_THEME';
+export const SIDEBARFOLDSTORAGENAME = 'RT_SIDEBAR_FOLDED';

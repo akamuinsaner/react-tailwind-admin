@@ -411,34 +411,34 @@ export const config: Config[] = [
         children: [
             {
                 id: '/hirarchy/1',
-                name: 'Hirarchy',
+                name: 'Hirarchy/1',
                 path: '/hirarchy/1',
                 children: [
                     {
                         id: '/hirarchy/1/1',
-                        name: 'Hirarchy',
+                        name: 'Hirarchy/1/1',
                         path: '/hirarchy/1/1',
                     },
                     {
                         id: '/hirarchy/1/2',
-                        name: 'Hirarchy',
+                        name: 'Hirarchy/1/2',
                         path: '/hirarchy/1/2',
                     },
                 ],
             },
             {
                 id: '/hirarchy/2',
-                name: 'Hirarchy',
+                name: 'Hirarchy/2',
                 path: '/hirarchy/2',
                 children: [
                     {
                         id: '/hirarchy/2/1',
-                        name: 'Hirarchy',
+                        name: 'Hirarchy/2/1',
                         path: '/hirarchy/2/1',
                     },
                     {
                         id: '/hirarchy/2/2',
-                        name: 'Hirarchy',
+                        name: 'Hirarchy/2/2',
                         path: '/hirarchy/2/2',
                     },
                 ],

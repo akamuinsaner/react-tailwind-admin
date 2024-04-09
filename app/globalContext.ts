@@ -28,6 +28,8 @@ export interface IGlobalContext {
     affixPos: GlobalState['affixPos'];
     footerHeight: number;
     setFooterHeight: (footerHeight: number) => void;
+    sideBarFolded: boolean;
+    setSideBarFolded: (sideBarFolded: boolean) => void;
 }
 
 export const GlobalContext = createContext<IGlobalContext>(null);

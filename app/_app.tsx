@@ -28,6 +28,7 @@ import {
     setNavHeightAction,
     setAffixPosAction,
     setFooterHeightAction,
+    setSideBarFoldedAction,
 } from './globalStore';
 import { twMerge } from 'tailwind-merge';
 import classNames from 'classnames';
@@ -81,6 +82,7 @@ export default function App({ children }: { children: ReactNode }) {
         navHeight,
         affixPos,
         footerHeight,
+        sideBarFolded,
     } = state;
     const setTheme = (theme: THEME) => dispatch(setThemeAction(theme));
     const setSearch = (search: boolean) => dispatch(setSearchAction(search));
@@ -101,6 +103,8 @@ export default function App({ children }: { children: ReactNode }) {
         dispatch(setAffixPosAction(ap));
     const setFooterHeight = (fh: GlobalState['footerHeight']) =>
         dispatch(setFooterHeightAction(fh));
+    const setSideBarFolded = (sbf: boolean) =>
+        dispatch(setSideBarFoldedAction(sbf));
     const navigate = (path: string) => {
         flushSync(() => {
             if (!document.startViewTransition) {
@@ -148,6 +152,8 @@ export default function App({ children }: { children: ReactNode }) {
         affixPos,
         footerHeight,
         setFooterHeight,
+        sideBarFolded,
+        setSideBarFolded,
     };
 
     const generateBreadcrumb = useCallback(() => {
@@ -194,7 +200,6 @@ export default function App({ children }: { children: ReactNode }) {
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('RT_THEME', theme);
     }, [theme]);
 
     useEffect(() => {
@@ -203,17 +208,6 @@ export default function App({ children }: { children: ReactNode }) {
         return () =>
             document.removeEventListener('fullscreenchange', fullScreenChange);
     }, []);
-
-    console.log(
-        'sideBarWidth',
-        sideBarWidth,
-        'headerHeight',
-        headerHeight,
-        'navHeight',
-        navHeight,
-        'footerHeight',
-        footerHeight,
-    );
 
     const pageStyle: CSSProperties = useMemo(() => {
         let paddingTop = 0;
@@ -243,15 +237,15 @@ export default function App({ children }: { children: ReactNode }) {
             <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
                 <ScrollPage ref={setNodeRef} className={wrapperClassName}>
                     <Page className={innerClassName} style={pageStyle}>
-                        <Header />
-                        <Nav />
-                        <Side />
                         <Content
                             className='h-full'
                             style={{ minHeight: `calc()` }}
                         >
                             {children}
                         </Content>
+                        <Header />
+                        <Nav />
+                        <Side />
                         <Footer />
                         <Affix />
                     </Page>
