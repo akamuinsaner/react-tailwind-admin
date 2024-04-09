@@ -22,6 +22,10 @@ export const reducer = (
             return { ...state, sideBarWidth: action.value };
         case EActions['set-side-bar-locale']:
             return { ...state, sideBarLocale: action.value };
+        case EActions['set-side-bar-hided']:
+            return { ...state, sideBarHided: action.value };
+        case EActions['set-side-bar-folded']:
+            return { ...state, sideBarFolded: action.value };
         case EActions['set-header-height']:
             return { ...state, headerHeight: action.value };
         case EActions['set-nav-height']:

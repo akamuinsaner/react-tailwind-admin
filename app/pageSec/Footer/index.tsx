@@ -23,7 +23,7 @@ const Footer = () => {
     }, []);
     return (
         <Flex
-            className='w-full py-4 px-8 text-mainText text-center'
+            className='w-full py-4 px-8 text-mainText text-center absolute bottom-0 left-0'
             align='center'
             direction='column'
             gap='medium'

@@ -9,6 +9,8 @@ export enum EActions {
     'set-historys',
     'set-side-bar-width',
     'set-side-bar-locale',
+    'set-side-bar-hided',
+    'set-side-bar-folded',
     'set-header-height',
     'set-nav-height',
     'set-affix-pos',
@@ -71,6 +73,24 @@ export const setHistorysAction = <T extends GlobalState['historys']>(
     return {
         type: EActions['set-historys'],
         value: historys,
+    };
+};
+
+export const setSideBarHidedAction = <T extends GlobalState['sideBarHided']>(
+    sideBarHided: T,
+): GlobalAction<T> => {
+    return {
+        type: EActions['set-side-bar-hided'],
+        value: sideBarHided,
+    };
+};
+
+export const setSideBarFoldedAction = <T extends GlobalState['sideBarFolded']>(
+    sideBarFolded: T,
+): GlobalAction<T> => {
+    return {
+        type: EActions['set-side-bar-folded'],
+        value: sideBarFolded,
     };
 };
 

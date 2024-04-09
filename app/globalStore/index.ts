@@ -8,6 +8,8 @@ export {
     setSideBarLocaleAction,
     setHeaderHeightAction,
     setNavHeightAction,
+    setSideBarFoldedAction,
+    setSideBarHidedAction,
     setSideOpenKeysAction,
     setBreadcrumbAction,
     setFullscreenAction,

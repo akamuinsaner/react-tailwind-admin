@@ -4,7 +4,13 @@ import Page from '@/src/components/Page';
 import Header from './pageSec/Header';
 import Side from './pageSec/Side';
 import Content from '@/src/components/Content';
-import { ReactNode, useCallback, useEffect, useMemo } from 'react';
+import {
+    CSSProperties,
+    ReactNode,
+    useCallback,
+    useEffect,
+    useMemo,
+} from 'react';
 import { GlobalContext, IGlobalContext } from './globalContext';
 import { useReducer } from 'react';
 import {
@@ -167,7 +173,7 @@ export default function App({ children }: { children: ReactNode }) {
         }),
     );
     const innerClassName = twMerge(
-        'text-mainText duration-1000 transition-transform flex flex-col',
+        'text-mainText duration-1000 transition-transform flex flex-col relative',
         classNames({
             'rotate-x-30 pointer-events-none transform': state.search,
         }),
@@ -209,11 +215,11 @@ export default function App({ children }: { children: ReactNode }) {
         footerHeight,
     );
 
-    const pageStyle = useMemo(() => {
+    const pageStyle: CSSProperties = useMemo(() => {
         let paddingTop = 0;
         if (headerHeight) paddingTop += headerHeight;
         if (navHeight) paddingTop += navHeight;
-        let style = { paddingTop };
+        let style = { paddingTop, paddingBottom: `${footerHeight}px` };
         if (sideBarLocale === SIDEBARLOCALE['left'])
             style = Object.assign({}, style, {
                 paddingLeft: `${sideBarWidth}px`,
@@ -223,7 +229,7 @@ export default function App({ children }: { children: ReactNode }) {
                 paddingRight: `${sideBarWidth}px`,
             });
         return style;
-    }, [headerHeight, navHeight, sideBarLocale, sideBarWidth]);
+    }, [headerHeight, navHeight, sideBarLocale, sideBarWidth, footerHeight]);
 
     const handleDragEnd = ({ delta }) => {
         setAffixPos({
@@ -241,7 +247,8 @@ export default function App({ children }: { children: ReactNode }) {
                         <Nav />
                         <Side />
                         <Content
-                            style={{ height: `calc(100% - ${footerHeight}px)` }}
+                            className='h-full'
+                            style={{ minHeight: `calc()` }}
                         >
                             {children}
                         </Content>

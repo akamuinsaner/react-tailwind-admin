@@ -19,7 +19,7 @@ const Password = () => {
                 <ChevronDoubleLeftIcon className='w-6 h-6' />
             </Flex>
             <Flex
-                className='flex-1 relative z-[1]'
+                className='flex-1 relative z-[1] py-40'
                 align='center'
                 justify='center'
             >
