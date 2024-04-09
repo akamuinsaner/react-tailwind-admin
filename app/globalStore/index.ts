@@ -16,4 +16,6 @@ export {
     setHistorysAction,
     setAffixPosAction,
     setFooterHeightAction,
+    setSettingPanelOpenAction,
+    setSettingOptionsAction,
 } from './action';

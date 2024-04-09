@@ -15,6 +15,8 @@ export enum EActions {
     'set-nav-height',
     'set-affix-pos',
     'set-footer-height',
+    'set-setting-panel-open',
+    'set-setting-options',
 }
 
 export type GlobalAction<T> = {
@@ -145,5 +147,27 @@ export const setFooterHeightAction = <T extends GlobalState['footerHeight']>(
     return {
         type: EActions['set-footer-height'],
         value: footerHeight,
+    };
+};
+
+export const setSettingPanelOpenAction = <
+    T extends GlobalState['settingPanelOpen'],
+>(
+    settingPanelOpen: T,
+): GlobalAction<T> => {
+    return {
+        type: EActions['set-setting-panel-open'],
+        value: settingPanelOpen,
+    };
+};
+
+export const setSettingOptionsAction = <
+    T extends GlobalState['settingOptions'],
+>(
+    settingOptions: T,
+): GlobalAction<T> => {
+    return {
+        type: EActions['set-setting-options'],
+        value: settingOptions,
     };
 };

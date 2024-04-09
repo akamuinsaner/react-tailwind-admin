@@ -45,7 +45,7 @@ const Affix = () => {
 
     const [undeterminate, setUndeterminate] = useState<boolean>(false);
     const [colorMode, setColorMode] = useState<boolean>(false);
-    const { setTheme, theme, fullScreen, affixPos } =
+    const { setTheme, theme, fullScreen, affixPos, setSettingPanelOpen } =
         useContext<IGlobalContext>(GlobalContext);
 
     let style: CSSProperties = useMemo(() => {
@@ -216,6 +216,12 @@ const Affix = () => {
         }
     };
 
+    const openSettingPanel = () => {
+        setSettingPanelOpen(true);
+        setUndeterminate(false);
+        setColorMode(false);
+    };
+
     return (
         <Box
             className={boxClassName}
@@ -279,7 +285,10 @@ const Affix = () => {
                 </Tooltip>
             </Box>
             <Tooltip title='open setting panel' placement='left' arrow>
-                <IconButton className={settingClassName}>
+                <IconButton
+                    className={settingClassName}
+                    onClick={openSettingPanel}
+                >
                     <Cog6ToothIcon />
                 </IconButton>
             </Tooltip>

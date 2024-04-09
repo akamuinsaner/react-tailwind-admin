@@ -30,6 +30,10 @@ export interface IGlobalContext {
     setFooterHeight: (footerHeight: number) => void;
     sideBarFolded: boolean;
     setSideBarFolded: (sideBarFolded: boolean) => void;
+    settingPanelOpen: boolean;
+    setSettingPanelOpen: (open: boolean) => void;
+    settingOptions: GlobalState['settingOptions'];
+    setSettingOptions: (settingOptions: GlobalState['settingOptions']) => void;
 }
 
 export const GlobalContext = createContext<IGlobalContext>(null);

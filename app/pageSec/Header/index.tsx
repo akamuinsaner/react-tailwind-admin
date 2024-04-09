@@ -35,7 +35,7 @@ const Header = () => {
                 height: headerHeight ? `${headerHeight}px` : null,
             }}
         >
-            <Box className='mr-auto flex items-center gap-4'>
+            <Box className='mr-auto flex items-center gap-4 rtl:ml-auto rtl:mr-0'>
                 <Bars3Icon className='h-8 w-8' />
                 <Link href='/'>
                     <Text size='h5'>RT-ADMIN</Text>

@@ -29,6 +29,8 @@ import {
     setAffixPosAction,
     setFooterHeightAction,
     setSideBarFoldedAction,
+    setSettingPanelOpenAction,
+    setSettingOptionsAction,
 } from './globalStore';
 import { twMerge } from 'tailwind-merge';
 import classNames from 'classnames';
@@ -49,6 +51,7 @@ import {
     useSensors,
 } from '@dnd-kit/core';
 import { GLOBALDROPID } from './utils/constants';
+import SettingPanel from './pageSec/SettingPanel';
 
 export default function App({ children }: { children: ReactNode }) {
     const router = useRouter();
@@ -83,6 +86,8 @@ export default function App({ children }: { children: ReactNode }) {
         affixPos,
         footerHeight,
         sideBarFolded,
+        settingPanelOpen,
+        settingOptions,
     } = state;
     const setTheme = (theme: THEME) => dispatch(setThemeAction(theme));
     const setSearch = (search: boolean) => dispatch(setSearchAction(search));
@@ -105,6 +110,10 @@ export default function App({ children }: { children: ReactNode }) {
         dispatch(setFooterHeightAction(fh));
     const setSideBarFolded = (sbf: boolean) =>
         dispatch(setSideBarFoldedAction(sbf));
+    const setSettingPanelOpen = (spo: boolean) =>
+        dispatch(setSettingPanelOpenAction(spo));
+    const setSettingOptions = (so: GlobalState['settingOptions']) =>
+        dispatch(setSettingOptionsAction(so));
     const navigate = (path: string) => {
         flushSync(() => {
             if (!document.startViewTransition) {
@@ -154,6 +163,10 @@ export default function App({ children }: { children: ReactNode }) {
         setFooterHeight,
         sideBarFolded,
         setSideBarFolded,
+        settingPanelOpen,
+        setSettingPanelOpen,
+        settingOptions,
+        setSettingOptions,
     };
 
     const generateBreadcrumb = useCallback(() => {
@@ -209,11 +222,37 @@ export default function App({ children }: { children: ReactNode }) {
             document.removeEventListener('fullscreenchange', fullScreenChange);
     }, []);
 
+    useEffect(() => {
+        const html = document.querySelector('html');
+        if (settingOptions.grayMode) html.classList.add('grayscale');
+        else html.classList.remove('grayscale');
+    }, [settingOptions.grayMode]);
+
+    useEffect(() => {
+        const html = document.querySelector('html');
+        if (settingOptions.blindMode) html.classList.add('invert');
+        else html.classList.remove('invert');
+    }, [settingOptions.blindMode]);
+
+    useEffect(() => {
+        const html = document.querySelector('html');
+        if (settingOptions.rtl) {
+            html.setAttribute('dir', 'rtl');
+        } else {
+            html.removeAttribute('dir');
+        }
+    }, [settingOptions.rtl]);
+
     const pageStyle: CSSProperties = useMemo(() => {
         let paddingTop = 0;
         if (headerHeight) paddingTop += headerHeight;
-        if (navHeight) paddingTop += navHeight;
-        let style = { paddingTop, paddingBottom: `${footerHeight}px` };
+        if (navHeight && settingOptions.navVisible) paddingTop += navHeight;
+        let style = { paddingTop };
+        if (settingOptions.footerVisible) {
+            style = Object.assign({}, style, {
+                paddingBottom: `${footerHeight}px`,
+            });
+        }
         if (sideBarLocale === SIDEBARLOCALE['left'])
             style = Object.assign({}, style, {
                 paddingLeft: `${sideBarWidth}px`,
@@ -223,7 +262,15 @@ export default function App({ children }: { children: ReactNode }) {
                 paddingRight: `${sideBarWidth}px`,
             });
         return style;
-    }, [headerHeight, navHeight, sideBarLocale, sideBarWidth, footerHeight]);
+    }, [
+        headerHeight,
+        navHeight,
+        sideBarLocale,
+        sideBarWidth,
+        footerHeight,
+        settingOptions.footerVisible,
+        settingOptions.navVisible,
+    ]);
 
     const handleDragEnd = ({ delta }) => {
         setAffixPos({
@@ -244,10 +291,11 @@ export default function App({ children }: { children: ReactNode }) {
                             {children}
                         </Content>
                         <Header />
-                        <Nav />
+                        {settingOptions.navVisible && <Nav />}
                         <Side />
-                        <Footer />
+                        {settingOptions.footerVisible && <Footer />}
                         <Affix />
+                        <SettingPanel />
                     </Page>
                 </ScrollPage>
             </DndContext>

@@ -1,4 +1,8 @@
-import { SIDEBARFOLDSTORAGENAME, THEMESTORAGENAME } from '../utils/constants';
+import {
+    SETTINGSTORAGENAME,
+    SIDEBARFOLDSTORAGENAME,
+    THEMESTORAGENAME,
+} from '../utils/constants';
 import { setLocalStorage } from '../utils/storage';
 import { EActions, GlobalAction } from './action';
 import { GlobalState, SIDEBARFOLDEDWIDTH, SIDEBARNORMALWidth } from './state';
@@ -47,6 +51,11 @@ export const reducer = (
             return { ...state, affixPos: action.value };
         case EActions['set-footer-height']:
             return { ...state, footerHeight: action.value };
+        case EActions['set-setting-panel-open']:
+            return { ...state, settingPanelOpen: action.value };
+        case EActions['set-setting-options']:
+            setLocalStorage(SETTINGSTORAGENAME, JSON.stringify(action.value));
+            return { ...state, settingOptions: action.value };
         default:
             return state;
     }
