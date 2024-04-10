@@ -35,9 +35,6 @@ import { THEME } from '@/app/globalStore/state';
 import SkyIcon from '@/app/utils/icons/SkyIcon';
 
 const Affix = () => {
-    const fullScreenEleRef = useRef<HTMLElement>(
-        document.querySelector('html'),
-    );
     const { attributes, listeners, setNodeRef, transform, isDragging } =
         useDraggable({
             id: AFFIXDRAGID,
@@ -45,9 +42,9 @@ const Affix = () => {
 
     const [undeterminate, setUndeterminate] = useState<boolean>(false);
     const [colorMode, setColorMode] = useState<boolean>(false);
-    const { setTheme, theme, fullScreen, affixPos, setSettingPanelOpen } =
+    const { settingOptions, affixPos, setSettingPanelOpen, setSettingOptions } =
         useContext<IGlobalContext>(GlobalContext);
-
+    const { theme, fullScreen } = settingOptions;
     let style: CSSProperties = useMemo(() => {
         return {
             bottom: `${affixPos.bottom}px`,
@@ -177,12 +174,12 @@ const Affix = () => {
         e => {
             flushSync(() => {
                 if (!document.startViewTransition) {
-                    setTheme(theme);
+                    setSettingOptions({ ...settingOptions, theme });
                     return;
                 }
 
                 const transition = document.startViewTransition(() => {
-                    setTheme(theme);
+                    setSettingOptions({ ...settingOptions, theme });
                 });
                 const pageX = e.pageX,
                     pageY = e.pageY;
@@ -210,9 +207,9 @@ const Affix = () => {
 
     const toggleFullScreen = () => {
         if (!fullScreen) {
-            fullScreenEleRef.current.requestFullscreen();
+            setSettingOptions({ ...settingOptions, fullScreen: true });
         } else {
-            document.exitFullscreen();
+            setSettingOptions({ ...settingOptions, fullScreen: false });
         }
     };
 

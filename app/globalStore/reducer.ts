@@ -12,17 +12,12 @@ export const reducer = (
     action: GlobalAction<any>,
 ): GlobalState => {
     switch (action.type) {
-        case EActions['set-theme']:
-            setLocalStorage(THEMESTORAGENAME, action.value);
-            return { ...state, theme: action.value };
         case EActions['set-search']:
             return { ...state, search: action.value };
         case EActions['set-side-open-keys']:
             return { ...state, sideOpenKeys: action.value };
         case EActions['set-breadcrumb']:
             return { ...state, breadcrumb: action.value };
-        case EActions['set-fullscreen']:
-            return { ...state, fullScreen: action.value };
         case EActions['set-historys']:
             return { ...state, historys: action.value };
         case EActions['set-side-bar-width']:
@@ -30,8 +25,6 @@ export const reducer = (
                 ...state,
                 sideBarWidth: action.value,
             };
-        case EActions['set-side-bar-locale']:
-            return { ...state, sideBarLocale: action.value };
         case EActions['set-side-bar-hided']:
             return { ...state, sideBarHided: action.value };
         case EActions['set-side-bar-folded']:

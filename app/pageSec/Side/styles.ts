@@ -22,7 +22,7 @@ export const styles = {
     },
     bar: {
         wrapper: {
-            base: 'h-full w-0 absolute left-full overflow-visible top-0',
+            base: 'h-full w-0 absolute overflow-visible top-0',
         },
         inner: {
             base: `cursor-pointer h-10 w-6 absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2

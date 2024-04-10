@@ -1,14 +1,11 @@
 import { GlobalState } from './state';
 
 export enum EActions {
-    'set-theme',
     'set-search',
     'set-side-open-keys',
     'set-breadcrumb',
-    'set-fullscreen',
     'set-historys',
     'set-side-bar-width',
-    'set-side-bar-locale',
     'set-side-bar-hided',
     'set-side-bar-folded',
     'set-header-height',
@@ -22,15 +19,6 @@ export enum EActions {
 export type GlobalAction<T> = {
     type: EActions;
     value: T;
-};
-
-export const setThemeAction = <T extends GlobalState['theme']>(
-    theme: T,
-): GlobalAction<T> => {
-    return {
-        type: EActions['set-theme'],
-        value: theme,
-    };
 };
 
 export const setSearchAction = <T extends GlobalState['search']>(
@@ -57,15 +45,6 @@ export const setBreadcrumbAction = <T extends GlobalState['breadcrumb']>(
     return {
         type: EActions['set-breadcrumb'],
         value: breadcrumb,
-    };
-};
-
-export const setFullscreenAction = <T extends GlobalState['fullScreen']>(
-    fullScreen: T,
-): GlobalAction<T> => {
-    return {
-        type: EActions['set-fullscreen'],
-        value: fullScreen,
     };
 };
 
@@ -102,15 +81,6 @@ export const setSideBarWidthAction = <T extends GlobalState['sideBarWidth']>(
     return {
         type: EActions['set-side-bar-width'],
         value: sideBarWidth,
-    };
-};
-
-export const setSideBarLocaleAction = <T extends GlobalState['sideBarLocale']>(
-    sideBarLocale: T,
-): GlobalAction<T> => {
-    return {
-        type: EActions['set-side-bar-locale'],
-        value: sideBarLocale,
     };
 };
 

@@ -15,15 +15,12 @@ import { GlobalContext, IGlobalContext } from './globalContext';
 import { useReducer } from 'react';
 import {
     reducer,
-    setThemeAction,
     initialState,
     setSearchAction,
     setSideOpenKeysAction,
     setSideBarWidthAction,
-    setSideBarLocaleAction,
     setHeaderHeightAction,
     setBreadcrumbAction,
-    setFullscreenAction,
     setHistorysAction,
     setNavHeightAction,
     setAffixPosAction,
@@ -50,8 +47,9 @@ import {
     useSensor,
     useSensors,
 } from '@dnd-kit/core';
-import { GLOBALDROPID } from './utils/constants';
+import { GLOBALDROPID, THEMESTORAGENAME } from './utils/constants';
 import SettingPanel from './pageSec/SettingPanel';
+import { setLocalStorage } from './utils/storage';
 
 export default function App({ children }: { children: ReactNode }) {
     const router = useRouter();
@@ -73,14 +71,11 @@ export default function App({ children }: { children: ReactNode }) {
     });
     const sensors = useSensors(mouseSensor, pointerSensor);
     const {
-        theme,
         search,
         sideOpenKeys,
         breadcrumb,
-        fullScreen,
         historys,
         sideBarWidth,
-        sideBarLocale,
         headerHeight,
         navHeight,
         affixPos,
@@ -89,12 +84,21 @@ export default function App({ children }: { children: ReactNode }) {
         settingPanelOpen,
         settingOptions,
     } = state;
-    const setTheme = (theme: THEME) => dispatch(setThemeAction(theme));
+
+    const {
+        theme,
+        sideBarLocale,
+        grayMode,
+        blindMode,
+        fullScreen,
+        rtl,
+        navVisible,
+        footerVisible,
+    } = settingOptions;
+
     const setSearch = (search: boolean) => dispatch(setSearchAction(search));
     const setSideBarWidth = (width: number) =>
         dispatch(setSideBarWidthAction(width));
-    const setSideBarLocale = (locale: SIDEBARLOCALE) =>
-        dispatch(setSideBarLocaleAction(locale));
     const setHeaderHeight = (height: number) =>
         dispatch(setHeaderHeightAction(height));
     const setNavHeight = (height: number) =>
@@ -102,7 +106,6 @@ export default function App({ children }: { children: ReactNode }) {
     const setSideOpenKeys = (oks: string[]) =>
         dispatch(setSideOpenKeysAction(oks));
     const setBreadcrumb = (bc: Config[]) => dispatch(setBreadcrumbAction(bc));
-    const setFullScreen = (fs: boolean) => dispatch(setFullscreenAction(fs));
     const setHisorys = (hs: Config[]) => dispatch(setHistorysAction(hs));
     const setAffixPos = (ap: GlobalState['affixPos']) =>
         dispatch(setAffixPosAction(ap));
@@ -138,16 +141,13 @@ export default function App({ children }: { children: ReactNode }) {
 
     const contextValue: IGlobalContext = {
         navigate,
-        theme,
         search,
-        setTheme,
         setSearch,
         sideOpenKeys,
         setSideOpenKeys,
         pathname,
         dataSet,
         breadcrumb,
-        fullScreen,
         navHeight,
         setNavHeight,
         historys,
@@ -156,8 +156,6 @@ export default function App({ children }: { children: ReactNode }) {
         setSideBarWidth,
         headerHeight,
         setHeaderHeight,
-        sideBarLocale,
-        setSideBarLocale,
         affixPos,
         footerHeight,
         setFooterHeight,
@@ -200,9 +198,9 @@ export default function App({ children }: { children: ReactNode }) {
 
     const fullScreenChange = useCallback(() => {
         if (!!document.fullscreenElement) {
-            setFullScreen(true);
+            setSettingOptions({ ...settingOptions, fullScreen: true });
         } else {
-            setFullScreen(false);
+            setSettingOptions({ ...settingOptions, fullScreen: false });
         }
     }, []);
 
@@ -212,6 +210,7 @@ export default function App({ children }: { children: ReactNode }) {
     }, [pathname]);
 
     useEffect(() => {
+        setLocalStorage(THEMESTORAGENAME, theme);
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
@@ -224,31 +223,40 @@ export default function App({ children }: { children: ReactNode }) {
 
     useEffect(() => {
         const html = document.querySelector('html');
-        if (settingOptions.grayMode) html.classList.add('grayscale');
+        if (grayMode) html.classList.add('grayscale');
         else html.classList.remove('grayscale');
-    }, [settingOptions.grayMode]);
+    }, [grayMode]);
 
     useEffect(() => {
         const html = document.querySelector('html');
-        if (settingOptions.blindMode) html.classList.add('invert');
+        if (blindMode) html.classList.add('invert');
         else html.classList.remove('invert');
-    }, [settingOptions.blindMode]);
+    }, [blindMode]);
 
     useEffect(() => {
         const html = document.querySelector('html');
-        if (settingOptions.rtl) {
+        if (fullScreen) {
+            html.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    }, [fullScreen]);
+
+    useEffect(() => {
+        const html = document.querySelector('html');
+        if (rtl) {
             html.setAttribute('dir', 'rtl');
         } else {
             html.removeAttribute('dir');
         }
-    }, [settingOptions.rtl]);
+    }, [rtl]);
 
     const pageStyle: CSSProperties = useMemo(() => {
         let paddingTop = 0;
         if (headerHeight) paddingTop += headerHeight;
-        if (navHeight && settingOptions.navVisible) paddingTop += navHeight;
+        if (navHeight && navVisible) paddingTop += navHeight;
         let style = { paddingTop };
-        if (settingOptions.footerVisible) {
+        if (footerVisible) {
             style = Object.assign({}, style, {
                 paddingBottom: `${footerHeight}px`,
             });
@@ -268,8 +276,8 @@ export default function App({ children }: { children: ReactNode }) {
         sideBarLocale,
         sideBarWidth,
         footerHeight,
-        settingOptions.footerVisible,
-        settingOptions.navVisible,
+        footerVisible,
+        navVisible,
     ]);
 
     const handleDragEnd = ({ delta }) => {
@@ -291,9 +299,9 @@ export default function App({ children }: { children: ReactNode }) {
                             {children}
                         </Content>
                         <Header />
-                        {settingOptions.navVisible && <Nav />}
+                        {navVisible && <Nav />}
                         <Side />
-                        {settingOptions.footerVisible && <Footer />}
+                        {footerVisible && <Footer />}
                         <Affix />
                         <SettingPanel />
                     </Page>

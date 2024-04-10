@@ -54,10 +54,13 @@ const Side = () => {
         sideBarWidth,
         setSideBarWidth,
         headerHeight,
-        sideBarLocale,
         sideBarFolded,
         setSideBarFolded,
+        settingOptions,
     } = context;
+
+    const { sideBarLocale } = settingOptions;
+
     const { flattedData, idChildrenIdMap, idSiblingsMap, parentChainMap } =
         dataSet;
 
@@ -122,6 +125,7 @@ const Side = () => {
     const { placeholder: barHolder } = useBarStyle({
         sideBarFolded,
         setSideBarFolded,
+        sideBarLocale,
     });
 
     const onMouseEnter: MouseEventHandler<HTMLLIElement> = e => {

@@ -5,16 +5,13 @@ import { GlobalState, SIDEBARLOCALE, THEME } from '@/app/globalStore/state';
 
 export interface IGlobalContext {
     navigate: (path: string) => void;
-    theme: THEME;
     search: boolean;
-    setTheme: (theme: THEME) => void;
     setSearch: (search: boolean) => void;
     sideOpenKeys: string[];
     setSideOpenKeys: (sideOpenKeys: string[]) => void;
     pathname: string;
     dataSet: DataSet<Config>;
     breadcrumb: Config[];
-    fullScreen: boolean;
     navHeight: number;
     setNavHeight: (headerHeight: number) => void;
     historys: GlobalState['historys'];
@@ -23,8 +20,6 @@ export interface IGlobalContext {
     setSideBarWidth: (sideWidth: number) => void;
     headerHeight: number;
     setHeaderHeight: (headerHeight: number) => void;
-    sideBarLocale: SIDEBARLOCALE;
-    setSideBarLocale: (locale: SIDEBARLOCALE) => void;
     affixPos: GlobalState['affixPos'];
     footerHeight: number;
     setFooterHeight: (footerHeight: number) => void;

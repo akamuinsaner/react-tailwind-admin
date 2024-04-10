@@ -29,10 +29,13 @@ export const SIDEBARFOLDEDWIDTH = 60;
 export const SIDEBARNORMALWidth = 256;
 
 const initialSettings = {
+    theme: <THEME>getLocalStorage(THEMESTORAGENAME) || THEME['light'],
+    sideBarLocale: SIDEBARLOCALE['left'],
     grayMode: false,
     blindMode: false,
     footerVisible: true,
     navVisible: true,
+    fullScreen: false,
     rtl: false,
 };
 
@@ -47,41 +50,38 @@ const settings = getLocalStorage(SETTINGSTORAGENAME)
     : initialSettings;
 
 export type GlobalState = {
-    theme: THEME;
     search: boolean;
     sideOpenKeys: string[];
     breadcrumb: Config[];
-    fullScreen: boolean;
     historys: Config[];
     sideBarHided: boolean;
     sideBarFolded: boolean;
     sideBarWidth: number;
-    sideBarLocale: SIDEBARLOCALE;
     headerHeight: number;
     navHeight: number;
     affixPos: { right: number; bottom: number };
     footerHeight: number;
     settingPanelOpen: boolean;
     settingOptions: {
+        theme: THEME;
+        sideBarLocale: SIDEBARLOCALE;
         grayMode: boolean;
         blindMode: boolean;
         footerVisible: boolean;
         navVisible: boolean;
+        fullScreen: boolean;
         rtl: boolean;
     };
 };
 
 export const initialState: GlobalState = {
-    theme: <THEME>getLocalStorage(THEMESTORAGENAME) || THEME['light'],
     search: false,
     sideOpenKeys: [],
     breadcrumb: [],
-    fullScreen: false,
     historys: [],
     sideBarHided: false,
     sideBarFolded: folded,
     sideBarWidth: folded ? SIDEBARFOLDEDWIDTH : SIDEBARNORMALWidth,
-    sideBarLocale: SIDEBARLOCALE['left'],
     headerHeight: 80,
     navHeight: 36,
     affixPos: { right: 40, bottom: 40 },
