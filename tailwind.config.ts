@@ -14,6 +14,9 @@ const config: Config = {
     ],
     theme: {
         extend: {
+            transitionDuration: {
+                standard: '300ms',
+            },
             flexGrow: {
                 2: '2',
                 3: '3',

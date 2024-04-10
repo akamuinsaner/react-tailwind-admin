@@ -190,7 +190,7 @@ export default function App({ children }: { children: ReactNode }) {
         }),
     );
     const innerClassName = twMerge(
-        'text-mainText duration-1000 transition-transform flex flex-col relative',
+        'text-mainText duration-standard transition-all flex flex-col relative',
         classNames({
             'rotate-x-30 pointer-events-none transform': state.search,
         }),
@@ -235,9 +235,10 @@ export default function App({ children }: { children: ReactNode }) {
 
     useEffect(() => {
         const html = document.querySelector('html');
-        if (fullScreen) {
+        if (fullScreen && !document.fullscreenElement) {
             html.requestFullscreen();
-        } else {
+        }
+        if (!fullScreen && document.fullscreenElement) {
             document.exitFullscreen();
         }
     }, [fullScreen]);
@@ -286,6 +287,7 @@ export default function App({ children }: { children: ReactNode }) {
             bottom: affixPos.bottom - delta.y,
         });
     };
+    const extraHeight = headerHeight + navHeight + footerHeight;
 
     return (
         <GlobalContext.Provider value={contextValue}>
@@ -294,7 +296,9 @@ export default function App({ children }: { children: ReactNode }) {
                     <Page className={innerClassName} style={pageStyle}>
                         <Content
                             className='h-full'
-                            style={{ minHeight: `calc()` }}
+                            style={{
+                                minHeight: `calc(100vh - ${extraHeight}px)`,
+                            }}
                         >
                             {children}
                         </Content>

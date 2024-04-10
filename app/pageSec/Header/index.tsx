@@ -14,14 +14,7 @@ import Flex from '@/src/components/Flex';
 const Header = () => {
     const navBarRef = useRef<HTMLDivElement>(null);
     const context = useContext(GlobalContext);
-    const {
-        theme,
-        search,
-        setTheme,
-        setSearch,
-        headerHeight,
-        setHeaderHeight,
-    } = context;
+    const { search, setSearch, headerHeight, setHeaderHeight } = context;
 
     useEffect(() => {
         setHeaderHeight(navBarRef.current.offsetHeight);
@@ -36,7 +29,7 @@ const Header = () => {
             }}
         >
             <Box className='mr-auto flex items-center gap-4 rtl:ml-auto rtl:mr-0'>
-                <Bars3Icon className='h-8 w-8' />
+                <Bars3Icon className='h-8 w-8 cursor-pointer' />
                 <Link href='/'>
                     <Text size='h5'>RT-ADMIN</Text>
                 </Link>

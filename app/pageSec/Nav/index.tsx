@@ -22,8 +22,9 @@ const Nav = () => {
         navHeight,
         headerHeight,
         setNavHeight,
-        sideBarLocale,
+        settingOptions,
     } = context;
+    const { sideBarLocale } = settingOptions;
 
     const locale = sideBarLocale === SIDEBARLOCALE['left'] ? 'right' : 'left';
 
