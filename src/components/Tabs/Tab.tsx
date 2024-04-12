@@ -11,7 +11,7 @@ import {
 import classNames from 'classnames';
 import { twMerge } from 'tailwind-merge';
 import { styles, RTTabsStyles } from './styles';
-import { TabsContext } from './index';
+import { TabsContext } from './context';
 
 export type RTTabProps = {
     className?: string;
@@ -34,7 +34,7 @@ const Tab: FC<RTTabProps> = ({
 }) => {
     const tabRef = useRef<HTMLButtonElement>(null);
     const context = useContext(TabsContext);
-    const { placement } = context;
+    const { placement, tabRefs } = context;
     const computedClassNames = twMerge(
         classNames(styles.tab.base, {
             [styles.tab.active]: context.active === value,

@@ -8,6 +8,10 @@ import {
     createContext,
     useEffect,
     forwardRef,
+    useState,
+    MutableRefObject,
+    useRef,
+    useLayoutEffect,
 } from 'react';
 import classNames from 'classnames';
 import { twMerge } from 'tailwind-merge';
@@ -18,6 +22,7 @@ import {
     setActiveAction,
     setFocusInfoAction,
 } from './store';
+import { TabsContext } from './context';
 
 export type RTTabsProps = {
     className?: string;
@@ -28,24 +33,14 @@ export type RTTabsProps = {
     placement?: 'top' | 'left' | 'bottom' | 'right';
 };
 
-export type RTTabsContext = {
-    styles: RTTabsStyles;
-    setActive: (active: string | number) => void;
-    controlled: boolean;
-    active: string | number;
-    focusInfo: { width: number; left: number };
-    setFocusInfo: (info: { width: number; left: number }) => void;
-    placement: 'top' | 'left' | 'bottom' | 'right';
-};
-
-export const TabsContext = createContext<RTTabsContext>(null);
-
 const Tabs = forwardRef<HTMLDivElement, RTTabsProps>(
     (
         { children, className, style, active, onChange, placement = 'top' },
         ref,
     ) => {
         const [state, dispatch] = useReducer(reducer, initialState);
+        const tabRefs = useRef<HTMLElement[]>([]);
+
         const isControlled = !!(active !== undefined);
         const computedClassNames = twMerge(
             styles.base.base,
@@ -73,16 +68,20 @@ const Tabs = forwardRef<HTMLDivElement, RTTabsProps>(
             }
         }, [active]);
 
+        useLayoutEffect(() => {
+            console.log(tabRefs.current);
+        }, [children]);
+
         return (
             <TabsContext.Provider
                 value={{
-                    styles,
                     controlled: isControlled,
                     active: state.active,
                     focusInfo: state.focusInfo,
                     setActive,
                     setFocusInfo,
                     placement,
+                    tabRefs,
                 }}
             >
                 <div ref={ref} style={style} className={computedClassNames}>

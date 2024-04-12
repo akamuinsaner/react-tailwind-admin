@@ -45,7 +45,6 @@ const useActiveStyle = ({
                 }
             }
             const element = listItemsRefs.current[pointer].current;
-            console.log(listItemsRefs.current);
             setActiveRect(element.getBoundingClientRect());
         }, 300);
     };

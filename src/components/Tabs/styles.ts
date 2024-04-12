@@ -35,7 +35,7 @@ export const styles: RTTabsStyles = {
         right: 'bg-main rounded flex flex-row-reverse w-full flex-nowrap break-inside-avoid overflow-hidden relative text-inherit',
     },
     tabs: {
-        base: 'flex items-center break-inside-avoid border-b border-mainBorder relative text-inherit',
+        base: 'flex items-center break-inside-avoid border-b border-mainBorder relative text-inherit whitespace-nowrap',
         left: 'flex flex-col items-center break-inside-avoid border-b border-mainBorder relative text-inherit',
         bottom: 'flex items-center break-inside-avoid border-t border-mainBorder relative text-inherit',
         right: 'flex flex-col items-center break-inside-avoid border-l border-mainBorder relative text-inherit',
