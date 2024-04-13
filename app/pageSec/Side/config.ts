@@ -136,6 +136,11 @@ export const config: Config[] = [
                         path: '/components/dataInput/radio',
                     },
                     {
+                        id: '/components/dataInput/rate',
+                        name: 'Rate',
+                        path: '/components/dataInput/rate',
+                    },
+                    {
                         id: '/components/dataInput/select',
                         name: 'Select',
                         path: '/components/dataInput/select',
