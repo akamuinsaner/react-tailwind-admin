@@ -1,6 +1,7 @@
 import Basic from './Basic';
 import Columns from '@/src/components/Columns';
 import Size from './Size';
+import ReadOnly from './ReadOnly';
 import Custom from './Custom';
 
 const RatePage = () => {
@@ -13,6 +14,7 @@ const RatePage = () => {
         >
             <Basic />
             <Size />
+            <ReadOnly />
             <Custom />
         </Columns>
     );
