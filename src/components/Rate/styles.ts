@@ -1,5 +1,6 @@
 export type RTRateStyles = {
     box: string;
+    readOnly: string;
     item: {
         base: string;
         small: string;
@@ -20,6 +21,7 @@ export type RTRateStyles = {
 
 export const styles: RTRateStyles = {
     box: 'inline-flex p-0 m-0 relative gap-1 items-center overflow-hidden',
+    readOnly: 'select-none pointer-events-none',
     item: {
         base: 'flex items-center relative cursor-pointer',
         small: 'h-rt-small w-rt-small text-[32px]',

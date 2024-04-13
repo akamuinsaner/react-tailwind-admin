@@ -21,6 +21,7 @@ export type RTRateProps = {
     size?: RTSize;
     token?: ReactNode;
     value?: number;
+    readOnly?: boolean;
     onChange?: (value: number) => void;
 };
 
@@ -32,13 +33,20 @@ const Rate = forwardRef<HTMLUListElement, RTRateProps>(
             size = 'medium',
             token = <StarIcon />,
             value,
+            readOnly,
             onChange,
         },
         ref,
     ) => {
         const [score, setScore] = useState<number>(0);
         const [temp, setTemp] = useState<number>(0);
-        const boxClassName = twMerge(styles.box, className);
+        const boxClassName = twMerge(
+            styles.box,
+            classNames({
+                [styles.readOnly]: readOnly,
+            }),
+            className,
+        );
         const itemClassName = twMerge(styles.item.base, styles.item[size]);
         const innerClassName = twMerge(styles.item.inner);
         const leftClassName = twMerge(innerClassName, styles.item.left);
