@@ -66,7 +66,11 @@ const Home = () => {
             {HOMESECTIONSS.map(item => (
                 <Grid
                     span={item.span}
-                    wrapperClassName={twMerge(commonState, item.className)}
+                    wrapperClassName={twMerge(
+                        commonState,
+                        item.className,
+                        'overflow-hidden',
+                    )}
                 >
                     {item.comp}
                 </Grid>

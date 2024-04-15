@@ -13,11 +13,11 @@ const Navigation = () => {
             <CardHeader>Navigation</CardHeader>
             <CardBody>
                 <Flex
-                    className='bg-primary p-20 text-white'
+                    className='bg-primary p-20 text-white text-center md:text-left'
                     direction='column'
                     gap='large'
                 >
-                    <Grid wrapper colGap='large'>
+                    <Grid wrapper colGap='large' rowGap='large'>
                         <Grid span={{ default: 12, md: 12, lg: 12, xl: 4 }}>
                             <Flex
                                 direction='column'

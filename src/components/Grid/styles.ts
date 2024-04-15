@@ -178,7 +178,7 @@ export const styles: RTGridStyles = {
         'col-gap-large': '-ml-6',
     },
     inner: {
-        base: 'overflow-hidden',
+        base: '',
         'span-1': 'basis-1/12',
         'span-2': 'basis-2/12',
         'span-3': 'basis-3/12',

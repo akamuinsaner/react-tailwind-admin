@@ -9,7 +9,7 @@ export type Props = {
     className?: string;
     style?: CSSProperties;
     children?: ReactNode;
-    size?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body' | 'tip';
+    size?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body' | 'tip' | 'tip2';
 };
 
 const Text: FC<Props> = ({ children, className, style, size }) => {
@@ -25,7 +25,8 @@ const Text: FC<Props> = ({ children, className, style, size }) => {
             'text-2xl': size === 'h5',
             'text-xl': size === 'h6',
             'text-base': size === 'body',
-            'text-xs': size === 'tip',
+            'text-sm': size === 'tip',
+            'text-xs': size === 'tip2',
         }),
         className,
     );

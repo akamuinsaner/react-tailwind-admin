@@ -84,6 +84,11 @@ export const config: Config[] = [
                         path: '/components/dataDisplay/tabs',
                     },
                     {
+                        id: '/components/dataDisplay/tag',
+                        name: 'Tag',
+                        path: '/components/dataDisplay/tag',
+                    },
+                    {
                         id: '/components/dataDisplay/timeline',
                         name: 'Timeline',
                         path: '/components/dataDisplay/timeline',
@@ -262,21 +267,24 @@ export const config: Config[] = [
         icon: Squares2X2Icon,
         children: [
             {
-                id: '/commonUI/application',
-                name: 'Application',
-                path: '/commonUI/application',
-                children: [
-                    {
-                        id: '/commonUI/application/header',
-                        name: 'Header',
-                        path: '/commonUI/application/header',
-                    },
-                    {
-                        id: '/commonUI/application/footer',
-                        name: 'Footer',
-                        path: '/commonUI/application/footer',
-                    },
-                ],
+                id: '/commonUI/card',
+                name: 'Card',
+                path: '/commonUI/card',
+            },
+            {
+                id: '/commonUI/footer',
+                name: 'Footer',
+                path: '/commonUI/footer',
+            },
+            {
+                id: '/commonUI/header',
+                name: 'Header',
+                path: '/commonUI/header',
+            },
+            {
+                id: '/commonUI/profile',
+                name: 'Profile',
+                path: '/commonUI/profile',
             },
         ],
     },
