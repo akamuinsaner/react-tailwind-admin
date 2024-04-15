@@ -48,6 +48,7 @@ const Columns: FC<RTColumnsProps> = ({
     }, [space]);
 
     const baseClassName = twMerge(
+        'w-full',
         columnClassStr,
         gapClassStr,
         spaceClassStr,

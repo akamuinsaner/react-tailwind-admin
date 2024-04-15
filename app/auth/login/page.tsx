@@ -15,7 +15,7 @@ import Image from 'next/image';
 
 const Login = () => {
     return (
-        <Flex className='h-full bg-main relative' direction='column'>
+        <Flex className='h-full bg-main relative flex-1' direction='column'>
             <Flex
                 className='h-16 pl-10 border-b border-mainBorder relative z-[1]'
                 align='center'
@@ -23,7 +23,7 @@ const Login = () => {
                 <ChevronDoubleLeftIcon className='w-6 h-6' />
             </Flex>
             <Flex
-                className='flex-1 relative z-[1] py-40'
+                className='flex-1 relative z-[1]'
                 align='center'
                 justify='center'
             >

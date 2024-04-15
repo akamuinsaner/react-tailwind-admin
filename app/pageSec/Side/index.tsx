@@ -94,6 +94,7 @@ const Side = () => {
         (menu: Config) => {
             const hasChildren = menu?.children?.length;
             if (!hasChildren) {
+                if (menu.canNotJump) return;
                 navigate(menu.path);
                 return;
             }

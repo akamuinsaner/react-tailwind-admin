@@ -17,6 +17,7 @@ export type Config = {
     icon?: any;
     parentId?: string;
     children?: Config[];
+    canNotJump?: boolean;
 };
 
 export const config: Config[] = [
@@ -431,11 +432,39 @@ export const config: Config[] = [
                         id: '/hirarchy/1/1',
                         name: 'Hirarchy/1/1',
                         path: '/hirarchy/1/1',
+                        children: [
+                            {
+                                id: '/hirarchy/1/1/1',
+                                name: 'Hirarchy/1/1/1',
+                                path: '/hirarchy/1/1/1',
+                                canNotJump: true,
+                            },
+                            {
+                                id: '/hirarchy/1/1/2',
+                                name: 'Hirarchy/1/1/2',
+                                path: '/hirarchy/1/1/2',
+                                canNotJump: true,
+                            },
+                        ],
                     },
                     {
                         id: '/hirarchy/1/2',
                         name: 'Hirarchy/1/2',
                         path: '/hirarchy/1/2',
+                        children: [
+                            {
+                                id: '/hirarchy/1/2/1',
+                                name: 'Hirarchy/1/2/1',
+                                path: '/hirarchy/1/2/1',
+                                canNotJump: true,
+                            },
+                            {
+                                id: '/hirarchy/1/2/2',
+                                name: 'Hirarchy/1/2/2',
+                                path: '/hirarchy/1/2/3',
+                                canNotJump: true,
+                            },
+                        ],
                     },
                 ],
             },
@@ -448,11 +477,39 @@ export const config: Config[] = [
                         id: '/hirarchy/2/1',
                         name: 'Hirarchy/2/1',
                         path: '/hirarchy/2/1',
+                        children: [
+                            {
+                                id: '/hirarchy/2/1/1',
+                                name: 'Hirarchy/2/1/1',
+                                path: '/hirarchy/2/1/1',
+                                canNotJump: true,
+                            },
+                            {
+                                id: '/hirarchy/2/1/2',
+                                name: 'Hirarchy/2/1/2',
+                                path: '/hirarchy/2/1/2',
+                                canNotJump: true,
+                            },
+                        ],
                     },
                     {
                         id: '/hirarchy/2/2',
                         name: 'Hirarchy/2/2',
                         path: '/hirarchy/2/2',
+                        children: [
+                            {
+                                id: '/hirarchy/2/2/1',
+                                name: 'Hirarchy/2/2/1',
+                                path: '/hirarchy/2/2/1',
+                                canNotJump: true,
+                            },
+                            {
+                                id: '/hirarchy/2/2/2',
+                                name: 'Hirarchy/2/2/2',
+                                path: '/hirarchy/2/2/2',
+                                canNotJump: true,
+                            },
+                        ],
                     },
                 ],
             },

@@ -20,7 +20,7 @@ const CICD = () => {
         <Card>
             <CardHeader>CI/CD</CardHeader>
             <CardBody>
-                <Grid wrapper className='flex content-stretch'>
+                <Grid wrapper className='flex content-stretch' colGap='medium'>
                     <Grid span={{ default: 12, md: 6, lg: 4 }}>
                         <Card className='h-full'>
                             <CardBody>

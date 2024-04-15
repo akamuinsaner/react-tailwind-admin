@@ -295,7 +295,7 @@ export default function App({ children }: { children: ReactNode }) {
                 <ScrollPage ref={setNodeRef} className={wrapperClassName}>
                     <Page className={innerClassName} style={pageStyle}>
                         <Content
-                            className='h-full'
+                            className='h-full flex flex-col'
                             style={{
                                 minHeight: `calc(100vh - ${extraHeight}px)`,
                             }}
