@@ -7,6 +7,7 @@ import {
     ReactNode,
     useContext,
     useEffect,
+    useRef,
     useState,
 } from 'react';
 import { twMerge } from 'tailwind-merge';
@@ -29,6 +30,7 @@ import classNames from 'classnames';
 import CircularProgress, {
     RTCircularProgressProps,
 } from '../Progress/CircularProgress';
+import ScrollBar from '../ScrollBar';
 
 export type RTDataTableFilters = {
     parentId?: string | number;
@@ -175,16 +177,22 @@ const TableContainer = forwardRef(
     },
 );
 
-const TableWrapper = ({ children }: { children: ReactNode }) => {
-    const { scrollProps } = useContext(DataTableContext);
-    const wrapperClassName = twMerge(
-        styles.wrapper.base,
-        classNames({
-            [styles.wrapper.scroll]: !!scrollProps?.y,
-        }),
-    );
-    return <div className={wrapperClassName}>{children}</div>;
-};
+const TableWrapper = forwardRef<HTMLDivElement, any>(
+    ({ children }: { children: ReactNode }, ref) => {
+        const { scrollProps } = useContext(DataTableContext);
+        const wrapperClassName = twMerge(
+            styles.wrapper.base,
+            classNames({
+                [styles.wrapper.scroll]: !!scrollProps?.y,
+            }),
+        );
+        return (
+            <div ref={ref} className={wrapperClassName}>
+                {children}
+            </div>
+        );
+    },
+);
 
 const DataTable = <T extends object>(props: RTDataTableProps<T>) => {
     const {
@@ -206,6 +214,7 @@ const DataTable = <T extends object>(props: RTDataTableProps<T>) => {
         filterProps,
         onChange,
     } = props;
+    const wrapperRef = useRef<HTMLDivElement>(null);
     const dataColumns = getDataColumns(columns);
     const renderColumns = getRenderColumns(columns);
     const [displayData, setDisplayData] = useState<T[]>([]);
@@ -297,6 +306,11 @@ const DataTable = <T extends object>(props: RTDataTableProps<T>) => {
                         <RTDataTableHead />
                         <RTDataTableBody />
                     </Table>
+
+                    {/* <ScrollBar
+                        direction='horizontal'
+                        scrollEle={containerRef.current}
+                    /> */}
                 </TableContainer>
                 {paginationProps === false ? null : (
                     <TablePagination
@@ -313,6 +327,11 @@ const DataTable = <T extends object>(props: RTDataTableProps<T>) => {
                         <CircularProgress />
                     </div>
                 ) : null}
+                <ScrollBar scrollEle={containerRef.current} />
+                <ScrollBar
+                    scrollEle={containerRef.current}
+                    direction='horizontal'
+                />
             </TableWrapper>
         </DataTableContext.Provider>
     );

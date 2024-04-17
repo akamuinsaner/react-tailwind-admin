@@ -23,7 +23,7 @@ const Header = () => {
     return (
         <NavBar
             ref={navBarRef}
-            className='shadow-none border-b border-mainBorder'
+            className='shadow-none border-b border-mainBorder z-10'
             style={{
                 height: headerHeight ? `${headerHeight}px` : null,
             }}

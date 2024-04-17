@@ -60,7 +60,7 @@ export const styles: RTTableStyles = {
         scroll: 'h-full',
     },
     container: {
-        base: 'w-auto overflow-hidden bg-inherit',
+        base: 'w-auto overflow-hidden bg-inherit relative',
         scrollX: 'w-full overflow-x-auto table-fixed',
         scrollY: 'overflow-y-auto',
     },

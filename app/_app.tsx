@@ -50,6 +50,7 @@ import {
 import { GLOBALDROPID, THEMESTORAGENAME } from './utils/constants';
 import SettingPanel from './pageSec/SettingPanel';
 import { setLocalStorage } from './utils/storage';
+import ScrollBar from '@/src/components/ScrollBar';
 
 export default function App({ children }: { children: ReactNode }) {
     const router = useRouter();
@@ -304,12 +305,16 @@ export default function App({ children }: { children: ReactNode }) {
                         </Content>
                         <Header />
                         {navVisible && <Nav />}
-                        <Side />
                         {footerVisible && <Footer />}
+                        <Side />
                         <Affix />
                         <SettingPanel />
                     </Page>
                 </ScrollPage>
+                <ScrollBar
+                    className='fixed'
+                    scrollEle={document.documentElement}
+                />
             </DndContext>
         </GlobalContext.Provider>
     );

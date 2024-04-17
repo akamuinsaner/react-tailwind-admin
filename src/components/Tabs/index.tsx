@@ -68,9 +68,7 @@ const Tabs = forwardRef<HTMLDivElement, RTTabsProps>(
             }
         }, [active]);
 
-        useLayoutEffect(() => {
-            console.log(tabRefs.current);
-        }, [children]);
+        useLayoutEffect(() => {}, [children]);
 
         return (
             <TabsContext.Provider

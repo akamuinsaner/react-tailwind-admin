@@ -1,6 +1,6 @@
 export const styles = {
     main: {
-        base: 'hidden md:block max-w-64 w-full overflow-visible transition-[width] duration-standard ease-in',
+        base: 'hidden md:block max-w-64 w-full overflow-visible transition-[width] duration-standard ease-in h-auto bottom-0',
         left: 'left-0 right-auto',
         right: 'right-0 left-auto',
     },

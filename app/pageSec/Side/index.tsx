@@ -34,10 +34,12 @@ import useActiveStyle from './useActiveStyle';
 import useBarStyle from './useBarStyle';
 import Popover from '@/src/components/Popover';
 import Tooltip from '@/src/components/Tooltip';
+import ScrollBar from '@/src/components/ScrollBar';
 
 const Side = () => {
     const context = useContext(GlobalContext);
     const sideBarRef = useRef<HTMLElement>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
     const listItemsRefs = useRef<{
         [name: string]: MutableRefObject<HTMLLIElement>;
     }>({});
@@ -415,15 +417,18 @@ const Side = () => {
         <SideBar
             style={{
                 width: sideBarWidth ? `${sideBarWidth}px` : null,
-                paddingTop: `${headerHeight}px`,
+                top: `${headerHeight}px`,
             }}
             ref={sideBarRef}
             className={mainClassName}
         >
             {/* {hoverHolder} */}
-            {activeHolder}
+            {/* {activeHolder} */}
             {barHolder}
-            <div className={twMerge(styles.menu.wrapper)}>{renderList()}</div>
+            <div ref={scrollRef} className={twMerge(styles.menu.wrapper)}>
+                {renderList()}
+            </div>
+            <ScrollBar scrollEle={scrollRef.current} />
         </SideBar>
     );
 };
