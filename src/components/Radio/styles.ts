@@ -36,7 +36,7 @@ export const styles: RTRadioStyles = {
     },
     inner: {
         base: `inline-block absolute w-full h-full overflow-hidden after:content=['']
-            after:absolute after:border-white transition-[background-color] duration-200 ease-linear`,
+            after:absolute after:border-white  transition-all`,
         checked: `bg-primary after:w-1.5 after:h-1.5 after:rounded-full after:bg-white
         after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2`,
         success: 'bg-success',

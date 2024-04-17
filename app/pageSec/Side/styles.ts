@@ -1,24 +1,23 @@
 export const styles = {
     main: {
-        base: 'hidden md:block max-w-64 w-full overflow-visible transition-[width] duration-standard ease-in h-auto bottom-0',
+        base: 'hidden md:block max-w-64 w-full overflow-visible transition-all h-auto bottom-0',
         left: 'left-0 right-auto',
         right: 'right-0 left-auto',
     },
-    hover: 'absolute rounded-lg bg-main-hover transition-[top] duration-standard ease-in',
+    hover: 'absolute rounded-lg bg-main-hover transition-all',
     active: {
-        base: 'absolute bg-primary transition-[top] duration-standard w-1 right-0',
+        base: 'absolute bg-primary transition-all w-1 right-0',
         left: 'left-0 right-auto',
         right: 'right-0 left-auto',
     },
     menu: {
         wrapper: 'w-full h-full overflow-y-auto',
-        children:
-            'origin-top overflow-hidden transition-[max-height] duration-standard ease-in',
+        children: 'origin-top overflow-hidden transition-all',
     },
     item: {
         base: ' whitespace-nowrap',
         right: 'text-right',
-        arrow: 'transition-transform duration-standard ease-in h-4 w-4',
+        arrow: ' transition-all h-4 w-4',
     },
     bar: {
         wrapper: {
@@ -29,7 +28,7 @@ export const styles = {
                     bg-main text-mainText flex items-center justify-center z-40 shadow-lg`,
         },
         icon: {
-            base: 'w-4 h-4',
+            base: 'w-4 h-4 transition-all',
         },
     },
 };

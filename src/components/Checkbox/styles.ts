@@ -27,7 +27,7 @@ export const styles: RTCheckboxStyles = {
     input: 'absolute z-[1] opacity-0 cursor-pointer w-full h-full',
     inner: {
         base: `inline-block absolute w-full h-full overflow-hidden after:content=['']
-            after:absolute after:border-white transition-[background-color] duration-200 ease-linear`,
+            after:absolute after:border-white transition-all`,
         checked: `bg-primary after:border-r-2 after:border-b-2 after:w-2 after:h-4
                  after:-translate-y-px after:translate-x-1.5 after:rotate-45`,
         success: 'bg-success',

@@ -36,7 +36,7 @@ export interface RTInputStyles {
 
 export const styles: RTInputStyles = {
     box: {
-        base: 'rounded overflow-hidden border-solid border-mainBorder text-mainText flex items-center hover:border-primary shrink-0',
+        base: 'rounded overflow-hidden border-solid border-mainBorder text-mainText flex items-center hover:border-primary shrink-0 transition-all',
         large: 'h-rt-large text-rt-large',
         medium: 'h-rt-medium text-rt-medium',
         small: 'h-rt-small text-rt-small',

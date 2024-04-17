@@ -191,7 +191,7 @@ export default function App({ children }: { children: ReactNode }) {
         }),
     );
     const innerClassName = twMerge(
-        'text-mainText duration-standard transition-all flex flex-col relative',
+        'text-mainText transition-all flex flex-col relative',
         classNames({
             'rotate-x-30 pointer-events-none transform': state.search,
         }),

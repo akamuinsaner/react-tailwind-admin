@@ -32,7 +32,7 @@ export const styles: RTRateStyles = {
         right: 'right-0',
     },
     icon: {
-        base: 'text-disableText h-full',
+        base: 'text-disableText h-full  transition-all',
         string: 'w-[200%] flex items-center justify-center',
         left: 'absolute left-0',
         right: 'absolute right-0',

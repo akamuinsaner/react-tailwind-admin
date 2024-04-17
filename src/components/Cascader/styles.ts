@@ -53,7 +53,7 @@ export interface RTCascaderStyles {
 
 export const styles: RTCascaderStyles = {
     box: {
-        base: 'rounded overflow-hidden border-solid border-mainBorder flex items-center shrink-0 hover:border-primary pr-8 relative text-mainText',
+        base: 'rounded overflow-hidden border-solid border-mainBorder flex items-center shrink-0 hover:border-primary pr-8 relative text-mainText transition-all',
         large: 'h-rt-large text-rt-large',
         medium: 'h-rt-medium text-rt-medium',
         small: 'h-rt-small text-rt-small',
@@ -93,7 +93,7 @@ export const styles: RTCascaderStyles = {
         small: 'h-rt-small text-rt-small text-mainText',
     },
     expand: {
-        icon: 'h-5 w-5 transition-transform duration-100',
+        icon: 'h-5 w-5 transition-all',
         show: 'rotate-90',
     },
     tagBox: 'h-full flex items-center pl-3 py-1 gap-x-0.5',

@@ -31,7 +31,7 @@ export type RTButtonStyles = {
 };
 
 export const styles: RTButtonStyles = {
-    base: 'outline-none border-solid border inline-flex items-center justify-center cursor-pointer px-4 rounded',
+    base: 'outline-none border-solid border inline-flex items-center justify-center cursor-pointer px-4 rounded transition-all',
     large: 'h-12 text-base',
     medium: 'h-10 text-sm',
     small: 'h-8 text-sm',

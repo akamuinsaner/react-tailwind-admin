@@ -20,7 +20,7 @@ export const styles: RTListStyles = {
     item: {
         base: `flex justify-start items-center relative w-full text-left 
             cursor-pointer px-4 py-2 select-none text-inherit
-            hover:bg-main-hover break-inside-avoid`,
+            hover:bg-main-hover break-inside-avoid transition-all`,
         divider: 'border-y border-mainBorder -mt-px',
         active: 'text-primary bg-primary/10 hover:bg-primary/10',
         small: 'py-1 text-sm',

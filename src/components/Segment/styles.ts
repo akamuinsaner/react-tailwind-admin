@@ -33,7 +33,7 @@ export const styles: RTSegmentStyles = {
         block: 'flex w-full',
     },
     focus: {
-        base: 'bg-white/60 absolute top-0.5 bottom-0.5 rounded transition-[left, width] duration-100 ease-linear',
+        base: 'bg-white/60 absolute top-0.5 bottom-0.5 rounded transition-all',
     },
     item: {
         base: 'flex flex-1 items-center justify-center px-4 h-full cursor-pointer relative z-[1] select-none',

@@ -1,48 +1,47 @@
-import { RTStyles } from '../../types/styles'
+import { RTStyles } from '../../types/styles';
 
 export interface RTPaginationStyles {
-    base: string
+    base: string;
     item: {
-        base: string
-        large: string
-        medium: string
-        small: string
-        square: string
-        circle: string
-        primary: string
-        secondary: string
-        success: string
-        info: string
-        warning: string
-        danger: string
-        text: string
-        contained: string
-        outlined: string
-        forbid: string
-        current: string
-        containedAndCurrent: string
-        disabled: string
+        base: string;
+        large: string;
+        medium: string;
+        small: string;
+        square: string;
+        circle: string;
+        primary: string;
+        secondary: string;
+        success: string;
+        info: string;
+        warning: string;
+        danger: string;
+        text: string;
+        contained: string;
+        outlined: string;
+        forbid: string;
+        current: string;
+        containedAndCurrent: string;
+        disabled: string;
         icon: {
-            base: string
-            large: string
-            medium: string
-            small: string
-        }
-    }
+            base: string;
+            large: string;
+            medium: string;
+            small: string;
+        };
+    };
 }
 
 export const styles: RTPaginationStyles = {
     base: 'flex gap-2 items-center',
     item: {
-        base: 'flex shrink-0 items-center justify-center text-mainText cursor-pointer border border-mainBorder select-none',
+        base: 'flex shrink-0 items-center justify-center text-mainText cursor-pointer border border-mainBorder select-none transition-all',
         large: 'w-rt-large h-rt-large text-lg',
         medium: 'w-rt-medium h-rt-medium text-base',
         small: 'w-rt-small h-rt-small text-sm',
         square: 'rounded border-mainBorder',
         circle: 'rounded-full border-mainBorder',
         text: 'bg-transparent border-transparent hover:bg-transparent hover:border-transparent',
-        contained:
-            '',
+        contained: '',
         containedAndCurrent: 'text-white hover:text-white',
         outlined: 'bg-transparent hover:bg-transparent',
         primary:
@@ -66,4 +65,4 @@ export const styles: RTPaginationStyles = {
             small: 'h-[14px] w-[14px]',
         },
     },
-}
+};

@@ -53,7 +53,7 @@ export const styles: RTStepperStyles = {
         alternative: 'pr-0 after:content-none',
     },
     order: {
-        base: 'h-6 w-6 rounded-full bg-disableBg flex items-center justify-center relative shrink-0',
+        base: 'h-6 w-6 rounded-full bg-disableBg flex items-center justify-center relative shrink-0 transition-all',
         alternative: `
         before:content-[""] before:absolute before:w-screen before:top-1/2 before:border-t before:right-full before:border-mainBorder
         after:content-[""] after:absolute after:w-screen after:top-1/2 after:border-t after:left-full after:border-mainBorder

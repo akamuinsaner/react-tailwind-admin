@@ -14,7 +14,7 @@ export type RTMessageStyles = {
 
 export const styles: RTMessageStyles = {
     box: {
-        base: `bg-main text-mainText opacity-0 -top-20 transition-[opacity,top] duration-300 left-1/2
+        base: `bg-main text-mainText opacity-0 -top-20  transition-all left-1/2
                  rounded py-2 px-3 text-base fixed shadow-lg -translate-x-1/2 z-50 flex items-center`,
         show: 'opacity-100 top-3',
     },

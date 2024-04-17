@@ -33,8 +33,7 @@ export const styles: RTCheckboxStyles = {
     base: 'inline-flex items-center gap-2 text-mainText',
     box: {
         base: `inline-flex items-center cursor-pointer select-none min-w-12 rounded-full 
-            overflow-hidden h-6 relative bg-primary bg-disableText 
-            transition-[background-color] duration-200 ease-linear`,
+            overflow-hidden h-6 relative bg-primary bg-disableText transition-all`,
         checked: 'bg-primary',
         success: 'bg-success',
         info: 'bg-info',
@@ -55,7 +54,7 @@ export const styles: RTCheckboxStyles = {
     },
     inner: {
         base: `inline-block absolute w-5 h-5 overflow-hidden bg-white rounded-full
-            transition-[left] duration-200 ease-linear left-[2px] top-1/2 -translate-y-1/2`,
+        transition-all left-[2px] top-1/2 -translate-y-1/2`,
         disabled: 'bg-disableBg pointer-events-none select-none',
         large: 'h-6 w-6',
         medium: 'h-5 w-5',

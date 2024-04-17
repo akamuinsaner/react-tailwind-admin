@@ -1,38 +1,38 @@
-'use client'
-import { RTSize } from '@/src/types/size'
-import { RTVariant } from '@/src/types/variant'
-import classNames from 'classnames'
-import { FC, memo, useEffect, useMemo, useReducer } from 'react'
-import { twMerge } from 'tailwind-merge'
+'use client';
+import { RTSize } from '@/src/types/size';
+import { RTVariant } from '@/src/types/variant';
+import classNames from 'classnames';
+import { FC, memo, useEffect, useMemo, useReducer } from 'react';
+import { twMerge } from 'tailwind-merge';
 import {
     reducer,
     initialState,
     setPageAction,
     setPageSizeAction,
-} from './store'
-import { styles } from './styles'
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
-import { RTSeverity } from '@/src/types/severity'
-import Select from '../Select'
-import SelectOption from '../Select/SelectOption'
+} from './store';
+import { styles } from './styles';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import { RTSeverity } from '@/src/types/severity';
+import Select from '../Select';
+import SelectOption from '../Select/SelectOption';
 
-export type RTPaginationShapes = 'circle' | 'square'
-export type RTPaginationVariants = 'text' | 'outlined' | 'contained'
+export type RTPaginationShapes = 'circle' | 'square';
+export type RTPaginationVariants = 'text' | 'outlined' | 'contained';
 
 export type RTPaginationProps = {
-    disabled?: boolean
-    page?: number
-    pageSize?: number
-    total?: number
-    boundaryCount?: number
-    siblingCount?: number
-    shape?: RTPaginationShapes
-    size?: RTSize
-    variant?: RTPaginationVariants
-    color?: 'primary' | 'secondary' | RTSeverity
-    onChange?: (page: number, pageSize: number) => void
-    sizeOptions?: number[]
-}
+    disabled?: boolean;
+    page?: number;
+    pageSize?: number;
+    total?: number;
+    boundaryCount?: number;
+    siblingCount?: number;
+    shape?: RTPaginationShapes;
+    size?: RTSize;
+    variant?: RTPaginationVariants;
+    color?: 'primary' | 'secondary' | RTSeverity;
+    onChange?: (page: number, pageSize: number) => void;
+    sizeOptions?: number[];
+};
 
 const Pagination: FC<RTPaginationProps> = ({
     disabled = false,
@@ -48,19 +48,19 @@ const Pagination: FC<RTPaginationProps> = ({
     onChange,
     sizeOptions,
 }) => {
-    const [state, dispatch] = useReducer(reducer, initialState)
+    const [state, dispatch] = useReducer(reducer, initialState);
     const pages = useMemo(() => {
-        return Math.ceil(total / state.pageSize)
-    }, [state.pageSize, total])
+        return Math.ceil(total / state.pageSize);
+    }, [state.pageSize, total]);
 
     const list = useMemo<Array<number>>(() => {
-        const { page } = state
-        const leastCount = 1 + siblingCount * 2 + boundaryCount * 2 + 2
+        const { page } = state;
+        const leastCount = 1 + siblingCount * 2 + boundaryCount * 2 + 2;
         // shouw all page items
         if (pages < leastCount)
             return Array(pages)
                 .fill(0)
-                .map((item, i) => i + 1)
+                .map((item, i) => i + 1);
         // page at start items
         if (page < boundaryCount + 1 + siblingCount) {
             return [
@@ -71,7 +71,7 @@ const Pagination: FC<RTPaginationProps> = ({
                 ...Array(boundaryCount)
                     .fill(0)
                     .map((item, i) => pages - boundaryCount + i + 1),
-            ]
+            ];
         }
         if (page === boundaryCount + 1 + siblingCount) {
             return [
@@ -82,7 +82,7 @@ const Pagination: FC<RTPaginationProps> = ({
                 ...Array(boundaryCount)
                     .fill(0)
                     .map((item, i) => pages - boundaryCount + i + 1),
-            ]
+            ];
         }
         if (page > pages - (boundaryCount + siblingCount)) {
             return [
@@ -96,7 +96,7 @@ const Pagination: FC<RTPaginationProps> = ({
                         (item, i) =>
                             pages - (boundaryCount + 1 + siblingCount) + i + 1,
                     ),
-            ]
+            ];
         }
         if (page === pages - (boundaryCount + siblingCount)) {
             return [
@@ -113,7 +113,7 @@ const Pagination: FC<RTPaginationProps> = ({
                             i +
                             1,
                     ),
-            ]
+            ];
         }
         return [
             ...Array(boundaryCount)
@@ -127,16 +127,16 @@ const Pagination: FC<RTPaginationProps> = ({
             ...Array(boundaryCount)
                 .fill(0)
                 .map((item, i) => pages - boundaryCount + i + 1),
-        ]
-    }, [state.page, siblingCount, boundaryCount, total, pages])
+        ];
+    }, [state.page, siblingCount, boundaryCount, total, pages]);
 
     useEffect(() => {
-        if (page !== undefined) dispatch(setPageAction(page))
-    }, [page])
+        if (page !== undefined) dispatch(setPageAction(page));
+    }, [page]);
 
     useEffect(() => {
-        if (pageSize !== undefined) dispatch(setPageSizeAction(pageSize))
-    }, [pageSize])
+        if (pageSize !== undefined) dispatch(setPageSizeAction(pageSize));
+    }, [pageSize]);
 
     const itemClassName = (page: number) =>
         twMerge(
@@ -152,7 +152,7 @@ const Pagination: FC<RTPaginationProps> = ({
                 [styles.item.containedAndCurrent]:
                     page === state.page && variant === 'contained',
             }),
-        )
+        );
 
     const prevBtnClassName = twMerge(
         classNames({
@@ -160,9 +160,12 @@ const Pagination: FC<RTPaginationProps> = ({
             [styles.item.disabled]: state.page === 1 || disabled,
             [styles.item[variant]]: true,
         }),
-    )
+    );
 
-    const iconClassName = twMerge(styles.item.icon.base, styles.item.icon[size])
+    const iconClassName = twMerge(
+        styles.item.icon.base,
+        styles.item.icon[size],
+    );
 
     const afterBtnClassName = twMerge(
         classNames({
@@ -170,22 +173,22 @@ const Pagination: FC<RTPaginationProps> = ({
             [styles.item.disabled]: state.page === pages,
             [styles.item[variant]]: true,
         }),
-    )
+    );
 
     const setPage = (curPage: number) => {
-        if (!curPage) return
-        if (onChange) onChange(curPage, state.pageSize)
-        if (page !== undefined) return
-        dispatch(setPageAction(curPage))
-    }
+        if (!curPage) return;
+        if (onChange) onChange(curPage, state.pageSize);
+        if (page !== undefined) return;
+        dispatch(setPageAction(curPage));
+    };
 
     const setPageSize = (curPageSize: string) => {
-        const ps = Number(curPageSize)
-        if (!ps) return
-        if (onChange) onChange(1, ps)
-        if (pageSize !== undefined) return
-        dispatch(setPageSizeAction(ps))
-    }
+        const ps = Number(curPageSize);
+        if (!ps) return;
+        if (onChange) onChange(1, ps);
+        if (pageSize !== undefined) return;
+        dispatch(setPageSizeAction(ps));
+    };
 
     return (
         <div className={styles.base}>
@@ -216,6 +219,7 @@ const Pagination: FC<RTPaginationProps> = ({
                     value={`${state.pageSize}`}
                     onChange={setPageSize}
                     disabled={disabled}
+                    allowClear={false}
                 >
                     {sizeOptions.map(item => (
                         <SelectOption
@@ -225,7 +229,7 @@ const Pagination: FC<RTPaginationProps> = ({
                 </Select>
             ) : null}
         </div>
-    )
-}
+    );
+};
 
-export default memo(Pagination)
+export default memo(Pagination);

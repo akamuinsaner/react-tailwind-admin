@@ -49,7 +49,7 @@ export interface RTSelectStyles {
 
 export const styles: RTSelectStyles = {
     box: {
-        base: 'rounded overflow-hidden border-solid border-mainBorder flex items-center shrink-0 hover:border-primary pr-8 relative text-mainText',
+        base: 'rounded overflow-hidden border-solid border-mainBorder flex items-center shrink-0 hover:border-primary pr-8 relative text-mainText transition-all',
         large: 'h-rt-large text-rt-large',
         medium: 'h-rt-medium text-rt-medium',
         small: 'h-rt-small text-rt-small',
@@ -82,7 +82,7 @@ export const styles: RTSelectStyles = {
         show: `overflow-auto`,
     },
     option: {
-        base: `flex justify-start items-center relative w-full text-left cursor-pointer px-4 py-2 select-none bg-inherit hover:bg-main-hover break-inside-avoid text-mainText`,
+        base: `flex justify-start items-center relative w-full text-left cursor-pointer px-4 py-2 select-none bg-inherit hover:bg-main-hover break-inside-avoid text-mainText  transition-all`,
         selected: 'text-primary bg-primary/10',
         large: 'h-rt-large text-rt-large text-mainText',
         medium: 'h-rt-medium text-rt-medium text-mainText',

@@ -60,7 +60,7 @@ const Affix = () => {
 
     const mainClassName = twMerge(
         `bg-inherit text-inherit h-full w-full rounded-full rounded-full 
-        shadow-md hover:bg-main-hover absolute left-0 top-0 transition-transform`,
+        shadow-md hover:bg-main-hover absolute left-0 top-0 transition-all`,
     );
 
     const openBtnClassName = twMerge(
