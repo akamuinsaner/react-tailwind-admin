@@ -143,7 +143,10 @@ export default ({
                 className='p-0 pt-4'
                 trigger='click'
                 content={
-                    <div onClick={e => e.stopPropagation()}>
+                    <div
+                        onClick={e => e.stopPropagation()}
+                        className='text-base'
+                    >
                         <ModalBody>{renderFilters()}</ModalBody>
                         <ModalFooter>
                             <Button

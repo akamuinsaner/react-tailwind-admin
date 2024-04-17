@@ -15,6 +15,6 @@ export const styles: RTToolTipStyles = {
         show: 'block',
         arrow: 'h-3 w-3 absolute bg-main',
         title: 'mb-2 font-semibold',
-        content: 'text-xs',
+        content: 'text-sm',
     },
 };
