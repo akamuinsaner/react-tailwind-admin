@@ -16,7 +16,7 @@ const Action = () => {
                 <Alert
                     severity='info'
                     action={
-                        <Button size='small' type='text'>
+                        <Button size='small' variant='text'>
                             close
                         </Button>
                     }

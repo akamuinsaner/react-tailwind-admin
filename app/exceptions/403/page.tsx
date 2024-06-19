@@ -1,5 +1,5 @@
 import Flex from '@/src/components/Flex';
-import Image from 'next/Image';
+import Image from 'next/image';
 import forbiddenImage from '@/public/403.png';
 import Button from '@/src/components/Button';
 import Link from 'next/link';

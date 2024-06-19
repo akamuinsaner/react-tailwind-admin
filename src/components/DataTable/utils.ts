@@ -64,7 +64,7 @@ export const getRenderColumns = (columns: RTDataTableColumn<any>[]): any => {
     });
 };
 
-const getCellValueByDataIndex = <T>(
+const getCellValueByDataIndex = <T extends Object>(
     record: T,
     dataIndex: RTDataTableColumn<T>['dataIndex'],
 ) => {

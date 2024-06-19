@@ -44,7 +44,7 @@ const Search = () => {
                             </Text>
                         </Flex>
                         <Input
-                            prefix={<MagnifyingGlassIcon />}
+                            prefix={<MagnifyingGlassIcon /> as any}
                             className='grow mx-5 xl:grow-0'
                             placeholder='search'
                         />
