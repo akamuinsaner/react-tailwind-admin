@@ -7,7 +7,7 @@ import Link from 'next/link';
 const Exception500 = () => {
     return (
         <Flex
-            className='h-full w-full'
+            className='h-full w-full flex-1'
             direction='column'
             align='center'
             justify='center'

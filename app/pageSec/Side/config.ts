@@ -289,29 +289,29 @@ export const config: Config[] = [
             },
         ],
     },
-    {
-        id: '/uiFeatures',
-        name: 'UI features',
-        path: '/uiFeatures',
-        icon: Squares2X2Icon,
-        children: [
-            {
-                id: '/uiFeatures/carousel',
-                name: 'Carousel',
-                path: '/uiFeatures/carousel',
-            },
-            {
-                id: '/uiFeatures/dataTable',
-                name: 'Datatable',
-                path: '/uiFeatures/dataTable',
-            },
-            {
-                id: '/uiFeatures/waterfall',
-                name: 'Waterfall',
-                path: '/uiFeatures/waterfall',
-            },
-        ],
-    },
+    // {
+    //     id: '/uiFeatures',
+    //     name: 'UI features',
+    //     path: '/uiFeatures',
+    //     icon: Squares2X2Icon,
+    //     children: [
+    //         {
+    //             id: '/uiFeatures/carousel',
+    //             name: 'Carousel',
+    //             path: '/uiFeatures/carousel',
+    //         },
+    //         {
+    //             id: '/uiFeatures/dataTable',
+    //             name: 'Datatable',
+    //             path: '/uiFeatures/dataTable',
+    //         },
+    //         {
+    //             id: '/uiFeatures/waterfall',
+    //             name: 'Waterfall',
+    //             path: '/uiFeatures/waterfall',
+    //         },
+    //     ],
+    // },
     {
         id: '/animation',
         name: 'Animation',
