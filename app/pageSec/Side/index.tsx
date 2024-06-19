@@ -428,7 +428,7 @@ const Side = () => {
             <div ref={scrollRef} className={twMerge(styles.menu.wrapper)}>
                 {renderList()}
             </div>
-            <ScrollBar scrollEle={scrollRef.current} />
+            {/* <ScrollBar scrollEle={scrollRef.current} /> */}
         </SideBar>
     );
 };

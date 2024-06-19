@@ -307,10 +307,11 @@ const DataTable = <T extends object>(props: RTDataTableProps<T>) => {
                         <RTDataTableBody />
                     </Table>
 
-                    {/* <ScrollBar
-                        direction='horizontal'
-                        scrollEle={containerRef.current}
-                    /> */}
+                    {/* <ScrollBar scrollEle={containerRef.current} />
+                <ScrollBar
+                    scrollEle={containerRef.current}
+                    direction='horizontal'
+                /> */}
                 </TableContainer>
                 {paginationProps === false ? null : (
                     <TablePagination
@@ -327,11 +328,7 @@ const DataTable = <T extends object>(props: RTDataTableProps<T>) => {
                         <CircularProgress />
                     </div>
                 ) : null}
-                <ScrollBar scrollEle={containerRef.current} />
-                <ScrollBar
-                    scrollEle={containerRef.current}
-                    direction='horizontal'
-                />
+
             </TableWrapper>
         </DataTableContext.Provider>
     );

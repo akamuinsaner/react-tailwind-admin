@@ -311,10 +311,10 @@ export default function App({ children }: { children: ReactNode }) {
                         <SettingPanel />
                     </Page>
                 </ScrollPage>
-                <ScrollBar
+                {/* <ScrollBar
                     className='fixed'
                     scrollEle={document.documentElement}
-                />
+                /> */}
             </DndContext>
         </GlobalContext.Provider>
     );
