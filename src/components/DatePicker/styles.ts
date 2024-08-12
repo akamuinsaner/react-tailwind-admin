@@ -119,7 +119,7 @@ export const styles: RTSelectStyles = {
         year: {
             selected: 'bg-primary text-white hover:bg-primary ',
             wrapper: 'grid grid-cols-3 px-2 py-2 gap-4 flex-1',
-            item: 'flex items-center justify-center text-sm cursor-pointer hover:bg-main-hover min-h-8 min-w-8 rounded transition-all',
+            item: 'flex items-center justify-center text-sm cursor-pointer hover:bg-main-hover min-h-8 min-w-20 rounded transition-all',
             notIn: 'text-disableText',
         },
         footer: {

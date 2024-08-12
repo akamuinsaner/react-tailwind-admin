@@ -2,6 +2,8 @@ import Columns from '@/src/components/Columns';
 import Commodity from './Commodity';
 import Travel from './Travel';
 import CICD from './CICD';
+import Testimonial from './Testimonial';
+import Blog from './Blog';
 
 const Card = () => {
     return (
@@ -14,6 +16,8 @@ const Card = () => {
             <Commodity />
             <Travel />
             <CICD />
+            <Testimonial />
+            <Blog />
         </Columns>
     );
 };
