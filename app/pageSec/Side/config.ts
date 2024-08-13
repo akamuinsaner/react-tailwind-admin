@@ -283,6 +283,11 @@ export const config: Config[] = [
                 path: '/commonUI/header',
             },
             {
+                id: '/commonUI/pricing',
+                name: 'Pricing',
+                path: '/commonUI/pricing',
+            },
+            {
                 id: '/commonUI/profile',
                 name: 'Profile',
                 path: '/commonUI/profile',
