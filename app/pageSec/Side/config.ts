@@ -288,6 +288,11 @@ export const config: Config[] = [
                 path: '/commonUI/pricing',
             },
             {
+                id: '/commonUI/product',
+                name: 'Product',
+                path: '/commonUI/product',
+            },
+            {
                 id: '/commonUI/profile',
                 name: 'Profile',
                 path: '/commonUI/profile',
