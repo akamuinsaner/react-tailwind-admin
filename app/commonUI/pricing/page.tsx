@@ -1,5 +1,6 @@
 import Columns from '@/src/components/Columns';
 import Tiers from './Tiers';
+import Single from './Single';
 
 const Pricing = () => {
     return (
@@ -9,6 +10,7 @@ const Pricing = () => {
             space='medium'
             className='max-w-[1600px] mx-auto'
         >
+            <Single />
             <Tiers />
         </Columns>
     );
